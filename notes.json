@@ -17,7 +17,7 @@ revoke select on emp from dbs4;
 
 --to drop a user (before dropping user should be disconnected)
 drop user dbs4;"
-  },
+  }
 ]
 
 [
@@ -68,5 +68,4 @@ update emp2 set department='CS', salary=15000 where emp_id=6;
 --c. DELETE (to delete the data from table)
 delete from emp2 where emp_id=6;"
   }
-
 ]
