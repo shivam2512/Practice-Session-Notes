@@ -20,44 +20,55 @@
     </div>
   </main>
 
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js"></script>
   <script>
-    // Replace with your Firebase config
-    const firebaseConfig = {
-    apiKey: "AIzaSyChZDzf2ACwLeGbmTAfF6YOpIIiIqVySts",
-    authDomain: "practice-session-notes.firebaseapp.com",
-    projectId: "practice-session-notes",
-    storageBucket: "practice-session-notes.firebasestorage.app",
-    messagingSenderId: "629507483450",
-    appId: "1:629507483450:web:c8800611c1b80433359203",
-    measurementId: "G-QQKLJ7LBWV"
-  };
-    const app = firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
+    async function loadNotes() {
+      try {
+        const res = await fetch("notes.json");
+        const notes = await res.json();
+        renderNotes(notes);
+      } catch (err) {
+        console.error("Error loading notes:", err);
+      }
+    }
 
-    function renderNotes(snapshot) {
-      const notesContainer = document.getElementById("notesContainer");
+    function renderNotes(notes) {
+      const container = document.getElementById("notesContainer");
       const emptyState = document.getElementById("emptyState");
-      notesContainer.innerHTML = "";
-      if (snapshot.empty) {
+      container.innerHTML = "";
+
+      if (!notes.length) {
         emptyState.classList.remove("d-none");
         return;
       }
       emptyState.classList.add("d-none");
-      snapshot.forEach(doc => {
-        const n = doc.data();
+
+      // group by date
+      const groups = {};
+      notes.forEach(n => {
+        groups[n.date] = groups[n.date] || [];
+        groups[n.date].push(n);
+      });
+
+      Object.keys(groups).sort().forEach(date => {
+        const list = groups[date];
         const card = document.createElement("div");
         card.className = "card mb-3";
         card.innerHTML = `
-          <div class="card-header"><strong>${n.date}</strong> — ${n.title}</div>
-          <div class="card-body">${n.body}</div>
+          <div class="card-header"><strong>${date}</strong></div>
+          <div class="list-group list-group-flush">
+            ${list.map(n => `
+              <div class="list-group-item">
+                <h6>${n.title}</h6>
+                <p>${n.body}</p>
+              </div>
+            `).join("")}
+          </div>
         `;
-        notesContainer.appendChild(card);
+        container.appendChild(card);
       });
     }
 
-    db.collection("notes").orderBy("date").onSnapshot(renderNotes);
+    loadNotes();
   </script>
 </body>
 </html>
