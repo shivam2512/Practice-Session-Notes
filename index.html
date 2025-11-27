@@ -75,20 +75,19 @@
         card.className = "card mb-3";
 
         card.innerHTML = `
-          <div class="card-header d-flex justify-content-between align-items-center">
-            <strong>${date}</strong>
-            <span class="toggle-btn text-primary">[–]</span>
-          </div>
-          <div class="list-group list-group-flush">
-            ${list.map(n => `
-              <div class="list-group-item">
-                <h6>${n.title}</h6>
-                <pre class="bg-light p-3"><code>${n.body}</code></pre>
-              </div>
-            `).join("")}
-          </div>
-        `;
-
+  <div class="card-header d-flex justify-content-between align-items-center">
+    <strong>${date}</strong>
+    <span class="toggle-btn text-primary">[+]</span>
+  </div>
+  <div class="list-group list-group-flush" style="display:none;">
+    ${list.map(n => `
+      <div class="list-group-item">
+        <h6>${n.title}</h6>
+        <pre class="bg-light p-3"><code>${n.body}</code></pre>
+      </div>
+    `).join("")}
+  </div>
+`;
         // toggle collapse
         const toggleBtn = card.querySelector(".toggle-btn");
         const content = card.querySelector(".list-group");
