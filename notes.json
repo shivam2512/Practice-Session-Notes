@@ -1,68 +1,12 @@
 [
   {
-    "date": "19-Nov-25",
-    "title": "Evening Practice Session",
-    "body": "--DCL (Grant and revoke)
---to create a new user
-create user dbs4 identified by admin;
-
---to grant session access
-grant create session to dbs4;
-
---to grant access to db table
-grant select, insert, update on emp to dbs4;
-
---to revoke access from table:
-revoke select on emp from dbs4;
-
---to drop a user (before dropping user should be disconnected)
-drop user dbs4;"
+    "date": "19-NOV-25",
+    "title": "Evening Practice Session:",
+    "body": "--DCL (Grant and revoke)\n--to create a new user\ncreate user dbs4 identified by admin;\n\n--to grant session access\ngrant create session to dbs4;\n\n--to grant access to db table\ngrant select, insert, update on emp to dbs4;\n\n--to revoke access from table:\nrevoke select on emp from dbs4;\n\n--to drop a user (before dropping user should be disconnected)\ndrop user dbs4;"
   },
-{
-    "date": "20-Nov-25",
-    "title": "Afternoon Practice Session",
-    "body": "-- Types of SQL commands:
---1. DDL
---a. CREATE (to create database object)
-create table emp2
-(
-emp_id number,
-emp_name varchar2(50),
-department varchar2(30),
-salary number(10,2)
-);
-
-desc emp2;
-
---b. ALTER (to make any changes in database object structure)
-alter table emp2 add hire_date date; -- to add new column
-alter table emp2 drop column salary; -- to remove exisitng column
-alter table emp2 rename COLUMN department to dept; -- to rename column
-alter table emp2 modify dept char(30); -- to modify dataype of column
-
---c. Rename:
-rename emp2 to emp3;
-
---d. DROP and TRUNCATE
---d.1. DROP - (it is used to delete all data + structure)
-drop table emp3;
-
---d.2. TRUNCATE - (it is used to delete all data but structure remains as it is)
-truncate table emp3;
-
---2. DML ()
---a. INSERT (is used to insert data in table)
-insert into emp2 values (1,'A','IT',10000);
-insert into emp2 (emp_id, emp_name) values (6,'F');
-insert into emp2 values (2,'B','CS',11000);
-insert into emp2 values (3,'C','CS',23000);
-insert into emp2 values (4,'D','IT',14000);
-insert into emp2 values (5,'E','IT',15000);
-
---b. UPDATE (is used to update the data in table)
-update emp2 set department='CS', salary=15000 where emp_id=6;
-
---c. DELETE (to delete the data from table)
-delete from emp2 where emp_id=6;"
-  },
+  {
+    "date": "2--NOV-25",
+    "title": "After Practice Session",
+    "body": "-- Types of SQL commands:\n--1. DDL\n--a. CREATE (to create database object)\ncreate table emp2\n(\nemp_id number,\nemp_name varchar2(50),\ndepartment varchar2(30),\nsalary number(10,2)\n);\n\ndesc emp2;\n\n--b. ALTER (to make any changes in database object structure)\nalter table emp2 add hire_date date; -- to add new column\nalter table emp2 drop column salary; -- to remove exisitng column\nalter table emp2 rename COLUMN department to dept; -- to rename column\nalter table emp2 modify dept char(30); -- to modify dataype of column\n\n--c. Rename:\nrename emp2 to emp3;\n\n--d. DROP and TRUNCATE\n--d.1. DROP - (it is used to delete all data + structure)\ndrop table emp3;\n\n--d.2. TRUNCATE - (it is used to delete all data but structure remains as it is)\ntruncate table emp3;\n\n--2. DML ()\n--a. INSERT (is used to insert data in table)\ninsert into emp2 values (1,'A','IT',10000);\ninsert into emp2 (emp_id, emp_name) values (6,'F');\ninsert into emp2 values (2,'B','CS',11000);\ninsert into emp2 values (3,'C','CS',23000);\ninsert into emp2 values (4,'D','IT',14000);\ninsert into emp2 values (5,'E','IT',15000);\n\n--b. UPDATE (is used to update the data in table)\nupdate emp2 set department='CS', salary=15000 where emp_id=6;\n\n--c. DELETE (to delete the data from table)\ndelete from emp2 where emp_id=6;"
+  }
 ]
