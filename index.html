@@ -11,6 +11,9 @@
       word-wrap: break-word;
       font-family: monospace;
     }
+    .toggle-btn {
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -21,6 +24,13 @@
   </nav>
 
   <main class="container py-4">
+    <!-- Date filter -->
+    <div class="mb-3 d-flex gap-2">
+      <input type="date" id="filterDate" class="form-control" />
+      <button class="btn btn-primary" onclick="applyFilter()">Filter</button>
+      <button class="btn btn-secondary" onclick="resetFilter()">Reset</button>
+    </div>
+
     <div id="notesContainer"></div>
     <div id="emptyState" class="text-center text-muted py-5 d-none">
       <h5>No notes yet</h5>
@@ -28,10 +38,13 @@
   </main>
 
   <script>
+    let allNotes = [];
+
     async function loadNotes() {
       try {
         const res = await fetch("notes.json");
         const notes = await res.json();
+        allNotes = notes;
         renderNotes(notes);
       } catch (err) {
         console.error("Error loading notes:", err);
@@ -60,8 +73,12 @@
         const list = groups[date];
         const card = document.createElement("div");
         card.className = "card mb-3";
+
         card.innerHTML = `
-          <div class="card-header"><strong>${date}</strong></div>
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <strong>${date}</strong>
+            <span class="toggle-btn text-primary">[–]</span>
+          </div>
           <div class="list-group list-group-flush">
             ${list.map(n => `
               <div class="list-group-item">
@@ -71,8 +88,37 @@
             `).join("")}
           </div>
         `;
+
+        // toggle collapse
+        const toggleBtn = card.querySelector(".toggle-btn");
+        const content = card.querySelector(".list-group");
+        toggleBtn.addEventListener("click", () => {
+          if (content.style.display === "none") {
+            content.style.display = "block";
+            toggleBtn.textContent = "[–]";
+          } else {
+            content.style.display = "none";
+            toggleBtn.textContent = "[+]";
+          }
+        });
+
         container.appendChild(card);
       });
+    }
+
+    function applyFilter() {
+      const filterDate = document.getElementById("filterDate").value;
+      if (!filterDate) {
+        renderNotes(allNotes);
+        return;
+      }
+      const filtered = allNotes.filter(n => n.date === filterDate);
+      renderNotes(filtered);
+    }
+
+    function resetFilter() {
+      document.getElementById("filterDate").value = "";
+      renderNotes(allNotes);
     }
 
     loadNotes();
