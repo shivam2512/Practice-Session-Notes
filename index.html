@@ -106,15 +106,24 @@
       });
     }
 
-    function applyFilter() {
-      const filterDate = document.getElementById("filterDate").value;
-      if (!filterDate) {
-        renderNotes(allNotes);
-        return;
-      }
-      const filtered = allNotes.filter(n => n.date === filterDate);
-      renderNotes(filtered);
-    }
+  function applyFilter() {
+  const filterDate = document.getElementById("filterDate").value;
+  if (!filterDate) {
+    renderNotes(allNotes);
+    return;
+  }
+
+  // Convert YYYY-MM-DD → DD-MMM-YYYY
+  const d = new Date(filterDate);
+  const day = String(d.getDate()).padStart(2, '0');
+  const month = d.toLocaleString('en-US', { month: 'short' }).toUpperCase();
+  const year = d.getFullYear();
+  const formatted = `${day}-${month}-${year}`;
+
+  const filtered = allNotes.filter(n => n.date === formatted);
+  renderNotes(filtered);
+}
+
 
     function resetFilter() {
       document.getElementById("filterDate").value = "";
