@@ -90,6 +90,12 @@
     "title": "Evening Practice Session",
     "body": "--DCL (Data Control Language): is used for providing or removing the access preveliege to users on db objects\n\n--to create a new user:\ncreate user dbs5 identified by admin;\ngrant create session to dbs5;\n\n--access using dbs5 user:\nselect * from system.emp_new;\ninsert into system.emp_new values (107, 'Rohan',12000);\n\ndelete from system.emp_new where id=101;\n\nupdate system.emp_new set id=108 where id=103;\n\n--1. Grant: is used to provide the access of DB object to user.\ngrant  on emp_new to dbs5;\n\n--2. Revoke: is used to remove the access of DB object from user.\nrevoke update, delete, insert on emp_new from dbs5;",
 "time": "09:00 PM"
-}
+},
+  {
+    "date": "28-NOV-2025",
+    "session": "Afternoon",
+    "title": "Practice Session",
+    "time": "02:21 PM",
+    "body": "--DISTINCT Keyword: is used to remove duplicate values from the result. It will show only unique values.\nselect * from emp_new;\n\nselect distinct * from emp_new order by id;\ninsert into emp_new values (101,'rahul', 30000);\ninsert into emp_new values (102,'Sneha', 35000);\nselect * from emp_new;\nselect * from emp_main;\n\n--SET Operators: are used to combine the results of two select queries.\n--1. UNION: removes duplicates and shows unique values from both tables.\nselect * from emp_main\nunion\nselect * from emp_new;\n\n--2. UNION ALL: keeps all values including duplicates.\nselect * from emp_main\nunion all\nselect * from emp_new;\n\n--3. INTERSECT: shows common values that exist in both tables:\nselect * from emp_new\nintersect\nselect * from emp_main;\n\n--4. MINUS: shows the values from the first query that are not in the second query.\nselect * from emp_new\nminus\nselect * from emp_main;\n\n--SPECIAL OPERATOR: REGEXP: is used to match patterns in text.\n--1. REGEXP_LIKE: used in where clause to match a pattern (similar to like but more powerful)\nselect * from emp_new where regexp_like (name,'^.{4}$');\nselect * from emp_new where name like '%';\n--2. REGEXP_REPLACE: used to replace the text using a pattern\nselect regexp_replace('Ph: 987-654-3210', '[^0-9]', '') as cleaned_num from dual;\nselect regexp_replace('Amit    Rohan    TCS', '\\s+', ' ') as result from dual;"
+  }
 ]
-
