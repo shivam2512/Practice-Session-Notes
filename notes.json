@@ -118,5 +118,16 @@
     "title": "Practice Session",
     "time": "08:15 PM",
     "body": "--Comparison and relational operators:\n--1. = equals to\nselect * from emp_new where name = 'Amit';\n\n--2. != or <>\nselect * from emp_new where salary <> 30000;\n\n--3. > (greater than),  < (less than)\nselect * from emp_new where salary > 30000;\nselect * from emp_new where salary < 30000;\n\n--4. >= (greater than equals to) , <= (less than equals to)\nselect * from emp_new where salary >= 30000;\nselect * from emp_new where salary <= 30000;\n\n--LOGICAL operators:\n--(AND, OR, NOT)\n\n--1. AND: All conditions should be true.\nselect * from emp_new where id =106 AND name='Sahil';\n\n--2. OR: At least one condition must be true\nselect * from emp_new where id=110 or name='Sahil';\n\n--3. NOT: Reverses the condition(true becomes false)\nselect * from emp_New where not salary = 30000 ;\n\n--DESC Keyword: is used to describe db object;\ndesc emp_new;\n\n--DISTINCT Keyword: is used to hide duplicate values from the result. It will show only unique values.\nselect  distinct * from emp_new;\n\n--SET Operators: are used to combine the results of the select queries.\n--1. UNION: removes duplicates and shows unique values from the tables.\nselect * from emp_main\nunion\nselect * from emp_new;\n\n--2. UNION ALL: keeps all values including duplicates.\nselect * from emp_main\nunion all\nselect * from emp_new;"
+},
+{
+    "date": "01-DEC-2025",
+    "session": "Afternoon",
+    "title": "Practice Session",
+    "time": "03:45 PM",
+    "body": "--Special operator: REGEXP: it stands for Regular Expressions. It is used\n--to search, match, extract or replace text in a smarter way than normal like\n\n--LIKE: simple pattern matching\n--REGEXP: advanced pattern matching (numbers, letters, words, formats)\n\n--Types of REGEXP:\n--1. REGEXP_LIKE: used to check if a value matches a pattern:\n--EG: find names starting with A\nselect * from emp_new where REGEXP_LIKE(name, '^A');\n\n--eg: find names containing digits\nselect * from emp_new where regexp_like(name,'[0-9]');\n\n--2. REGEXP_REPLACE: used to remove or replace parts of the text:\n--eg: remove all numbers:\nselect id, regexp_replace(name, '[0-9]','') as name, salary  from emp_new ;\n--eg: replace multiple spaces with no space:\nselect id, regexp_replace(name, '\\s+','') as name, salary  from emp_new ;\n\n--3. REGEXP_SUBSTR: is used to extract the certain part from the column data.\n--eg: to fetch the first name of the users:\nselect id, regexp_substr(name, '[^ ]+') as name, salary from emp_new;\n--eg: to fetch only digits inside the name column\nselect id, salary, regexp_substr(name, '[0-9]+') as name  from emp_new;\n\n--4. REGEXP_INSTR: to find position where a number/letter appears in the column data\nselect id, regexp_instr(name, 't') as letter_postion, salary from emp_new;\n\n--5. REGEXP_COUNT: is count how many times a pattern occurs\n--eg: count digits, letters and speciaal characters in the name column:\nselect id, regexp_count(name,'[A-Za-z0-9 ]') as count, salary from emp_new;"
 }
+]
+
+
+
 ]
