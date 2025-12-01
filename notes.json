@@ -125,7 +125,7 @@
     "title": "Practice Session",
     "time": "03:45 PM",
     "body": "--Special operator: REGEXP: it stands for Regular Expressions. It is used\n--to search, match, extract or replace text in a smarter way than normal like\n\n--LIKE: simple pattern matching\n--REGEXP: advanced pattern matching (numbers, letters, words, formats)\n\n--Types of REGEXP:\n--1. REGEXP_LIKE: used to check if a value matches a pattern:\n--EG: find names starting with A\nselect * from emp_new where REGEXP_LIKE(name, '^A');\n\n--eg: find names containing digits\nselect * from emp_new where regexp_like(name,'[0-9]');\n\n--2. REGEXP_REPLACE: used to remove or replace parts of the text:\n--eg: remove all numbers:\nselect id, regexp_replace(name, '[0-9]','') as name, salary  from emp_new ;\n--eg: replace multiple spaces with no space:\nselect id, regexp_replace(name, '\\s+','') as name, salary  from emp_new ;\n\n--3. REGEXP_SUBSTR: is used to extract the certain part from the column data.\n--eg: to fetch the first name of the users:\nselect id, regexp_substr(name, '[^ ]+') as name, salary from emp_new;\n--eg: to fetch only digits inside the name column\nselect id, salary, regexp_substr(name, '[0-9]+') as name  from emp_new;\n\n--4. REGEXP_INSTR: to find position where a number/letter appears in the column data\nselect id, regexp_instr(name, 't') as letter_postion, salary from emp_new;\n\n--5. REGEXP_COUNT: is count how many times a pattern occurs\n--eg: count digits, letters and speciaal characters in the name column:\nselect id, regexp_count(name,'[A-Za-z0-9 ]') as count, salary from emp_new;"
-}
+},
 {
     "date": "01-DEC-2025",
     "session": "Evening",
