@@ -5,14 +5,84 @@
   <title>Practice Session Notes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
   <style>
     pre {
-      white-space: pre-wrap;   /* preserve formatting but allow wrapping */
+      white-space: pre-wrap;
       word-wrap: break-word;
       font-family: monospace;
     }
-    .toggle-btn {
+
+    /* Calendar container */
+    .calendar {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    /* Weekday labels */
+    .weekday {
+      font-weight: 600;
+      text-align: center;
+      color: #495057;
+      padding: 6px 0;
+      background: #f8f9fa;
+      border-radius: 0.5rem;
+      border: 1px solid #e9ecef;
+    }
+
+    /* Day cell styling */
+    .calendar-day {
+      border: 1px solid #dee2e6;
+      padding: 12px;
+      text-align: center;
       cursor: pointer;
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0.6rem;
+      background-color: #ffffff;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+      font-weight: 500;
+    }
+
+    /* Has notes highlight */
+    .calendar-day.has-notes {
+      background: linear-gradient(135deg, #d1e7dd, #b6e0c2);
+      color: #0f5132;
+      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.25);
+      border-color: #b6e0c2;
+    }
+
+    /* Hover effect */
+    .calendar-day:hover {
+      transform: translateY(-2px);
+      background: linear-gradient(135deg, #f8d7da, #f5c2c7);
+      color: #842029;
+      box-shadow: 0 6px 16px rgba(220, 53, 69, 0.25);
+      border-color: #f5c2c7;
+    }
+
+    /* Today highlight */
+    .calendar-day.today {
+      background: linear-gradient(135deg, #fff3cd, #ffe69c);
+      color: #664d03;
+      border-color: #ffe69c;
+      box-shadow: 0 3px 10px rgba(255, 193, 7, 0.25);
+      font-weight: 700;
+    }
+
+    /* Card header gradient */
+    .month-header {
+      background: linear-gradient(90deg, #0d6efd, #6610f2);
+    }
+
+    /* Subtle container spacing */
+    #calendarContainer .card {
+      border: none;
+      overflow: hidden;
     }
   </style>
 </head>
@@ -29,128 +99,227 @@
   </div>
 
   <main class="container py-4">
-    <!-- Date filter -->
-    <div class="mb-3 d-flex gap-2">
-      <input type="date" id="filterDate" class="form-control" />
-      <button class="btn btn-primary" onclick="applyFilter()">Filter</button>
-      <button class="btn btn-secondary" onclick="resetFilter()">Reset</button>
-    </div>
-
     <!-- Download buttons -->
-    <div class="mb-3 d-flex gap-2">
+    <div class="mb-3 d-flex gap-2 flex-wrap">
       <button class="btn btn-success" onclick="downloadSQLFile('Afternoon','Afternoon.sql')">Download Afternoon Notes</button>
       <button class="btn btn-primary" onclick="downloadSQLFile('Evening','Evening.sql')">Download Evening Notes</button>
     </div>
 
+    <!-- Calendar view -->
+    <div id="calendarContainer" class="mb-4"></div>
+
+    <!-- Notes display -->
     <div id="notesContainer"></div>
     <div id="emptyState" class="text-center text-muted py-5 d-none">
       <h5>No notes yet</h5>
+    </div>
+
+    <!-- Clear view button -->
+    <div class="text-center mt-3">
+      <button class="btn btn-outline-secondary d-none" id="clearViewBtn" onclick="clearNotesView()">Clear View</button>
     </div>
   </main>
 
   <script>
     let allNotes = [];
 
+    const monthMap = {
+      JAN: "01", FEB: "02", MAR: "03", APR: "04", MAY: "05", JUN: "06",
+      JUL: "07", AUG: "08", SEP: "09", OCT: "10", NOV: "11", DEC: "12"
+    };
+
+    const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+    function parseNoteDate(str) {
+      // DD-MMM-YYYY
+      const [d, mText, y] = str.split("-");
+      const mNum = Number(monthMap[mText.toUpperCase()]);
+      return { day: d, monthNum: mNum, monthText: mText.toUpperCase(), year: y };
+    }
+
+    function toJSDate(str) {
+      const { day, monthNum, year } = parseNoteDate(str);
+      return new Date(Number(year), monthNum - 1, Number(day));
+    }
+
     async function loadNotes() {
       try {
         const res = await fetch("notes.json");
         const notes = await res.json();
 
-        // Notify if new content added
-        if (allNotes.length && notes.length > allNotes.length) {
-          showNotification("📢 New content has been added to the notes!");
-        }
-
         allNotes = notes;
-        renderNotes(notes);
-        updateLatestNotification(); // update persistent banner
+        renderCalendar(notes);
+        updateLatestNotification();
       } catch (err) {
         console.error("Error loading notes:", err);
+        document.getElementById("latestNotification").textContent = "Failed to load notes.";
       }
+    }
+
+    function renderCalendar(notes) {
+      const container = document.getElementById("calendarContainer");
+      container.innerHTML = "";
+
+      // Group notes by month-year (from DD-MMM-YYYY)
+      const groups = {};
+      notes.forEach(n => {
+        const { monthNum, year } = parseNoteDate(n.date);
+        const key = `${String(monthNum).padStart(2,"0")}-${year}`;
+        if (!groups[key]) groups[key] = [];
+        groups[key].push(n);
+      });
+
+      // Sort groups by year-month descending (latest first)
+      const groupKeys = Object.keys(groups).sort((a, b) => {
+        const [am, ay] = a.split("-").map(Number);
+        const [bm, by] = b.split("-").map(Number);
+        const aKey = new Date(ay, am - 1, 1).getTime();
+        const bKey = new Date(by, bm - 1, 1).getTime();
+        return bKey - aKey;
+      });
+
+      const today = new Date();
+      const currentMonth = String(today.getMonth() + 1).padStart(2, "0");
+      const currentYear = String(today.getFullYear());
+      const todayStr = String(today.getDate()).padStart(2, "0");
+
+      const row = document.createElement("div");
+      row.className = "row";
+
+      groupKeys.forEach(monthYear => {
+        const [mm, yyyy] = monthYear.split("-");
+        const monthIndex = Number(mm) - 1;
+        const yearNum = Number(yyyy);
+        const monthNotes = groups[monthYear];
+
+        // Actual month lengths and Monday-first alignment
+        const daysInMonth = new Date(yearNum, monthIndex + 1, 0).getDate();
+        let firstDay = new Date(yearNum, monthIndex, 1).getDay(); // 0=Sun..6=Sat
+        firstDay = firstDay === 0 ? 7 : firstDay; // shift Sunday to 7 (Mon-first grid)
+
+        const col = document.createElement("div");
+        col.className = "col-md-6 mb-4";
+
+        const card = document.createElement("div");
+        card.className = "card shadow-lg";
+
+        const header = document.createElement("div");
+        header.className = "card-header text-white fw-bold month-header";
+        header.textContent = `${monthNames[monthIndex]} ${yearNum}`;
+        card.appendChild(header);
+
+        const calendarBody = document.createElement("div");
+        calendarBody.className = "card-body";
+
+        // Weekday labels (Mon-first)
+        const weekdays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+        const weekdayRow = document.createElement("div");
+        weekdayRow.className = "calendar";
+        weekdays.forEach(w => {
+          const wd = document.createElement("div");
+          wd.className = "weekday";
+          wd.textContent = w;
+          weekdayRow.appendChild(wd);
+        });
+        calendarBody.appendChild(weekdayRow);
+
+        // Calendar grid
+        const calendar = document.createElement("div");
+        calendar.className = "calendar";
+
+        // Empty cells before first day to align start
+        for (let i = 1; i < firstDay; i++) {
+          const emptyCell = document.createElement("div");
+          emptyCell.className = "calendar-day";
+          calendar.appendChild(emptyCell);
+        }
+
+        // Actual days of month
+        for (let d = 1; d <= daysInMonth; d++) {
+          const dayStr = String(d).padStart(2, "0");
+
+          // Month groups already match the month/year, so only match the day within monthNotes
+          const hasNote = monthNotes.some(n => parseNoteDate(n.date).day === dayStr);
+
+          const dayCell = document.createElement("div");
+          dayCell.className = "calendar-day" + (hasNote ? " has-notes" : "");
+          dayCell.textContent = d;
+
+          // Mark today
+          const isCurrentMonthYear = (currentMonth === mm && currentYear === yyyy);
+          if (isCurrentMonthYear && dayStr === todayStr) {
+            dayCell.classList.add("today");
+          }
+
+          // Click to show notes for that day
+          dayCell.addEventListener("click", () => {
+            const filtered = monthNotes.filter(n => parseNoteDate(n.date).day === dayStr);
+            renderNotes(filtered);
+          });
+
+          calendar.appendChild(dayCell);
+        }
+
+        // Fill trailing blanks to complete week row
+        const totalCells = (firstDay - 1) + daysInMonth;
+        const trailing = (7 - (totalCells % 7)) % 7;
+        for (let i = 0; i < trailing; i++) {
+          const emptyCell = document.createElement("div");
+          emptyCell.className = "calendar-day";
+          calendar.appendChild(emptyCell);
+        }
+
+        calendarBody.appendChild(calendar);
+        card.appendChild(calendarBody);
+        col.appendChild(card);
+        row.appendChild(col);
+      });
+
+      container.appendChild(row);
     }
 
     function renderNotes(notes) {
       const container = document.getElementById("notesContainer");
       const emptyState = document.getElementById("emptyState");
+      const clearBtn = document.getElementById("clearViewBtn");
       container.innerHTML = "";
 
       if (!notes.length) {
         emptyState.classList.remove("d-none");
+        clearBtn.classList.add("d-none");
         return;
       }
       emptyState.classList.add("d-none");
 
-      // group by date
-      const groups = {};
       notes.forEach(n => {
-        groups[n.date] = groups[n.date] || [];
-        groups[n.date].push(n);
-      });
-
-      Object.keys(groups).sort().forEach(date => {
-        const list = groups[date];
         const card = document.createElement("div");
-        card.className = "card mb-3";
-
+        card.className = "card mb-3 shadow-sm";
         card.innerHTML = `
-          <div class="card-header d-flex justify-content-between align-items-center">
-            <strong>${date}</strong>
-            <span class="toggle-btn text-primary">[+]</span>
+          <div class="card-header bg-success text-white">
+            <strong>${n.date}</strong> – ${n.session} – ${n.title}
           </div>
-          <div class="list-group list-group-flush" style="display:none;">
-            ${list.map(n => `
-              <div class="list-group-item">
-                <h6>${n.session} – ${n.title}</h6>
-                <pre class="bg-light p-3"><code>${n.body}</code></pre>
-              </div>
-            `).join("")}
+          <div class="card-body">
+            <pre class="bg-light p-3 rounded"><code>${n.body}</code></pre>
           </div>
         `;
-
-        // toggle collapse
-        const toggleBtn = card.querySelector(".toggle-btn");
-        const content = card.querySelector(".list-group");
-        toggleBtn.addEventListener("click", () => {
-          if (content.style.display === "none") {
-            content.style.display = "block";
-            toggleBtn.textContent = "[–]";
-          } else {
-            content.style.display = "none";
-            toggleBtn.textContent = "[+]";
-          }
-        });
-
         container.appendChild(card);
       });
+
+      clearBtn.classList.remove("d-none");
     }
 
-    function applyFilter() {
-      const filterDate = document.getElementById("filterDate").value;
-      if (!filterDate) {
-        renderNotes(allNotes);
-        return;
-      }
-
-      // Convert YYYY-MM-DD → DD-MMM-YYYY
-      const d = new Date(filterDate);
-      const day = String(d.getDate()).padStart(2, '0');
-      const month = d.toLocaleString('en-US', { month: 'short' }).toUpperCase();
-      const year = d.getFullYear();
-      const formatted = `${day}-${month}-${year}`;
-
-      const filtered = allNotes.filter(n => n.date === formatted);
-      renderNotes(filtered);
-    }
-
-    function resetFilter() {
-      document.getElementById("filterDate").value = "";
-      renderNotes(allNotes);
+    function clearNotesView() {
+      document.getElementById("notesContainer").innerHTML = "";
+      document.getElementById("emptyState").classList.add("d-none");
+      document.getElementById("clearViewBtn").classList.add("d-none");
     }
 
     // Download SQL file by session
     function downloadSQLFile(session, filename) {
       const sessionNotes = allNotes.filter(n => n.session === session);
-      const sqlContent = sessionNotes.map(n => `-- ${n.date} : ${n.title}\n${n.body}\n\n`).join("");
+      const sqlContent = sessionNotes
+        .map(n => `-- ${n.date} : ${n.title}\n${n.body}\n\n`)
+        .join("");
       const blob = new Blob([sqlContent], { type: "text/sql" });
       const url = URL.createObjectURL(blob);
 
@@ -163,7 +332,6 @@
 
       URL.revokeObjectURL(url);
 
-      // Notify on download
       showNotification(`${filename} has been updated and downloaded!`);
     }
 
@@ -173,34 +341,23 @@
       notif.className = "alert alert-success text-center";
       notif.textContent = message;
       document.body.prepend(notif);
-
       setTimeout(() => notif.remove(), 5000);
     }
 
-    // Persistent latest notes banner
+    // Persistent latest notes banner (DD-MMM-YYYY friendly)
     function updateLatestNotification() {
       if (!allNotes.length) {
         document.getElementById("latestNotification").textContent = "No notes available yet.";
         return;
       }
 
-      // Sort notes by date (newest first)
-      const sorted = [...allNotes].sort((a, b) => {
-        const dateA = new Date(a.date);
-        const dateB = new Date(b.date);
-        return dateB - dateA; // newest first
-      });
-
-      // Get all notes for the latest date
+      const sorted = [...allNotes].sort((a, b) => toJSDate(b.date) - toJSDate(a.date));
       const latestDate = sorted[0].date;
       const latestDayNotes = allNotes.filter(n => n.date === latestDate);
+      const latestNote = latestDayNotes.find(n => n.session === "Evening") || latestDayNotes[0];
 
-      // Prefer Evening if available, otherwise Afternoon
-      let latestNote = latestDayNotes.find(n => n.session === "Evening") || latestDayNotes[0];
-
-      // Show date, session, and time
       document.getElementById("latestNotification").textContent =
-        `📢 Latest notes available: ${latestNote.date} (${latestNote.session} session, uploaded at ${latestNote.time})`;
+        `🔔 Latest notes available: ${latestNote.date} (${latestNote.session} session, uploaded at ${latestNote.time})`;
     }
 
     loadNotes();
