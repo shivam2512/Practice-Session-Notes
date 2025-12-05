@@ -17,7 +17,7 @@
     .calendar {
       display: grid;
       grid-template-columns: repeat(7, 1fr);
-      gap: 8px;
+      gap: 6px;
       margin-top: 10px;
     }
 
@@ -84,6 +84,25 @@
       border: none;
       overflow: hidden;
     }
+
+    /* Mobile responsiveness */
+    @media (max-width: 576px) {
+      .calendar {
+        grid-template-columns: repeat(3, 1fr); /* 3 days per row for readability */
+      }
+      .weekday {
+        font-size: 0.8rem;
+        padding: 4px 0;
+      }
+      .calendar-day {
+        min-height: 52px;
+        font-size: 0.9rem;
+        padding: 8px;
+      }
+      .btn {
+        width: 100%;
+      }
+    }
   </style>
 </head>
 <body>
@@ -131,7 +150,7 @@
     const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
     function parseNoteDate(str) {
-      // DD-MMM-YYYY
+      // Expects DD-MMM-YYYY (e.g., 04-DEC-2025)
       const [d, mText, y] = str.split("-");
       const mNum = Number(monthMap[mText.toUpperCase()]);
       return { day: d, monthNum: mNum, monthText: mText.toUpperCase(), year: y };
@@ -146,7 +165,6 @@
       try {
         const res = await fetch("notes.json");
         const notes = await res.json();
-
         allNotes = notes;
         renderCalendar(notes);
         updateLatestNotification();
@@ -160,7 +178,7 @@
       const container = document.getElementById("calendarContainer");
       container.innerHTML = "";
 
-      // Group notes by month-year (from DD-MMM-YYYY)
+      // Group notes by month-year derived from DD-MMM-YYYY
       const groups = {};
       notes.forEach(n => {
         const { monthNum, year } = parseNoteDate(n.date);
@@ -173,9 +191,7 @@
       const groupKeys = Object.keys(groups).sort((a, b) => {
         const [am, ay] = a.split("-").map(Number);
         const [bm, by] = b.split("-").map(Number);
-        const aKey = new Date(ay, am - 1, 1).getTime();
-        const bKey = new Date(by, bm - 1, 1).getTime();
-        return bKey - aKey;
+        return new Date(by, bm - 1) - new Date(ay, am - 1);
       });
 
       const today = new Date();
@@ -192,13 +208,13 @@
         const yearNum = Number(yyyy);
         const monthNotes = groups[monthYear];
 
-        // Actual month lengths and Monday-first alignment
+        // Actual month length and Monday-first alignment
         const daysInMonth = new Date(yearNum, monthIndex + 1, 0).getDate();
         let firstDay = new Date(yearNum, monthIndex, 1).getDay(); // 0=Sun..6=Sat
-        firstDay = firstDay === 0 ? 7 : firstDay; // shift Sunday to 7 (Mon-first grid)
+        firstDay = firstDay === 0 ? 7 : firstDay; // Shift Sunday to 7 (Mon-first grid)
 
         const col = document.createElement("div");
-        col.className = "col-md-6 mb-4";
+        col.className = "col-12 col-md-6 mb-4"; // full width on mobile, half on md+
 
         const card = document.createElement("div");
         card.className = "card shadow-lg";
@@ -238,7 +254,7 @@
         for (let d = 1; d <= daysInMonth; d++) {
           const dayStr = String(d).padStart(2, "0");
 
-          // Month groups already match the month/year, so only match the day within monthNotes
+          // Month groups already match month/year — check if any note exists on this day
           const hasNote = monthNotes.some(n => parseNoteDate(n.date).day === dayStr);
 
           const dayCell = document.createElement("div");
@@ -251,7 +267,7 @@
             dayCell.classList.add("today");
           }
 
-          // Click to show notes for that day
+          // Click to show notes for this day
           dayCell.addEventListener("click", () => {
             const filtered = monthNotes.filter(n => parseNoteDate(n.date).day === dayStr);
             renderNotes(filtered);
@@ -260,7 +276,7 @@
           calendar.appendChild(dayCell);
         }
 
-        // Fill trailing blanks to complete week row
+        // Fill trailing blanks to complete the last week row
         const totalCells = (firstDay - 1) + daysInMonth;
         const trailing = (7 - (totalCells % 7)) % 7;
         for (let i = 0; i < trailing; i++) {
@@ -351,6 +367,7 @@
         return;
       }
 
+      // Sort by JS date descending
       const sorted = [...allNotes].sort((a, b) => toJSDate(b.date) - toJSDate(a.date));
       const latestDate = sorted[0].date;
       const latestDayNotes = allNotes.filter(n => n.date === latestDate);
