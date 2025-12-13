@@ -1,66 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Practice Session Notes</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <title>Practice Session Notes + Assignments (CodeMirror)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
   <style>
     pre { white-space: pre-wrap; word-wrap: break-word; font-family: monospace; }
-
-    .calendar {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 6px;
-      margin-top: 10px;
-    }
-    .weekday {
-      font-weight: 600;
-      text-align: center;
-      color: #495057;
-      padding: 6px 0;
-      background: #f8f9fa;
-      border-radius: 0.5rem;
-      border: 1px solid #e9ecef;
-    }
-    .calendar-day {
-      border: 1px solid #dee2e6;
-      padding: 12px;
-      text-align: center;
-      cursor: pointer;
-      min-height: 70px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 0.6rem;
-      background-color: #ffffff;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
-      font-weight: 500;
-    }
-    .calendar-day.has-notes {
-      background: linear-gradient(135deg, #d1e7dd, #b6e0c2);
-      color: #0f5132;
-      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.25);
-      border-color: #b6e0c2;
-    }
-    .calendar-day.today {
-      background: linear-gradient(135deg, #fff3cd, #ffe69c);
-      color: #664d03;
-      border-color: #ffe69c;
-      box-shadow: 0 3px 10px rgba(255, 193, 7, 0.25);
-      font-weight: 700;
-    }
-    .calendar-day:hover {
-      transform: translateY(-2px);
-      background: linear-gradient(135deg, #f8d7da, #f5c2c7);
-      color: #842029;
-      box-shadow: 0 6px 16px rgba(220, 53, 69, 0.25);
-      border-color: #f5c2c7;
-    }
-    .month-header { background: linear-gradient(90deg, #0d6efd, #6610f2); }
+    .calendar { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; margin-top: 10px; }
+    .weekday { font-weight: 600; text-align: center; color: #495057; padding: 6px 0; background: #f8f9fa; border-radius: 0.5rem; border: 1px solid #e9ecef; }
+    .calendar-day { border: 1px solid #dee2e6; padding: 12px; text-align: center; cursor: pointer; min-height: 70px; display: flex; align-items: center; justify-content: center; border-radius: 0.6rem; background-color: #ffffff; transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease; font-weight: 500; }
+    .calendar-day.has-notes { background: linear-gradient(135deg, #d1e7dd, #b6e0c2); color: #0f5132; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.25); border-color: #b6e0c2; }
+    .calendar-day.today { background: linear-gradient(135deg, #fff3cd, #ffe69c); color: #664d03; border-color: #ffe69c; box-shadow: 0 3px 10px rgba(255, 193, 7, 0.25); font-weight: 700; }
+    .calendar-day:hover { transform: translateY(-2px); background: linear-gradient(135deg, #f8d7da, #f5c2c7); color: #842029; box-shadow: 0 6px 16px rgba(220, 53, 69, 0.25); border-color: #f5c2c7; }
     #calendarContainer .card { border: none; overflow: hidden; }
-
     @media (max-width: 576px) {
       .calendar { grid-template-columns: repeat(3, 1fr); }
       .weekday { font-size: 0.8rem; padding: 4px 0; }
@@ -68,18 +21,52 @@
       .btn { width: 100%; }
       .nav-controls h4 { font-size: 1rem; margin: 0 8px; }
     }
+
+    /* Assignment styles */
+    #assignmentSection { margin: 32px 0; }
+    #codeEditor { height: 300px; border: 1px solid #ddd; border-radius: 4px; }
+    .modal { position: fixed; top:0; left:0; width:100%; height:100%; z-index:1050; display:none; background: rgba(0,0,0,0.4); }
+    .modal .modal-dialog { margin: 6rem auto; }
+    .text-truncate-multi { overflow:hidden; text-overflow:ellipsis; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; }
+   
+
+   .new-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background: red;
+  border-radius: 50%;
+  margin-left: 6px;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.5); opacity: 0.3; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
   </style>
 </head>
 <body>
+<div id="uploadNotification" class="position-fixed top-0 start-50 translate-middle-x mt-3" style="z-index:1050;"></div>
   <nav class="navbar navbar-dark bg-dark">
-    <div class="container">
+    <div class="container d-flex align-items-center">
       <span class="navbar-brand">Practice Session Notes</span>
+
+<button id="openAssignmentsBtn" class="btn btn-warning ms-3"
+  onclick="document.getElementById('assignmentSection').scrollIntoView({behavior:'smooth'})">
+  Assignments <span id="assignmentNewDot" class="new-dot"></span>
+</button>
+
+      <div class="ms-auto d-flex gap-2 align-items-center">
+
+
+      </div>
     </div>
   </nav>
 
-  <div id="latestNotification" class="alert alert-info text-center mb-0">
-    Latest notes: Loading…
-  </div>
+  <div id="latestNotification" class="alert alert-info text-center mb-0">Latest notes: Loading…</div>
 
   <main class="container py-4">
     <div class="mb-3 d-flex gap-2 flex-wrap">
@@ -87,7 +74,6 @@
       <button class="btn btn-primary" onclick="downloadSQLFile('Evening','Evening.sql')">Download Evening Notes</button>
     </div>
 
-    <!-- Navigation arrows -->
     <div class="nav-controls d-flex justify-content-between align-items-center mb-2">
       <button class="btn btn-outline-secondary" onclick="prevMonth()">← Previous</button>
       <h4 id="monthLabel" class="fw-bold mb-0"></h4>
@@ -95,239 +81,399 @@
     </div>
 
     <div id="calendarContainer" class="mb-4"></div>
-
     <div id="notesContainer"></div>
-    <div id="emptyState" class="text-center text-muted py-5 d-none">
-      <h5>No notes yet</h5>
-    </div>
-
+    <div id="emptyState" class="text-center text-muted py-5 d-none"><h5>No notes yet</h5></div>
     <div class="text-center mt-3">
       <button class="btn btn-outline-secondary d-none" id="clearViewBtn" onclick="clearNotesView()">Clear View</button>
     </div>
+
+    <hr class="my-4">
+    <section id="assignmentSection">
+ <h3>
+  Assignment
+  <span class="new-badge">NEW</span>
+</h3>
+
+
+  <!-- Student Details -->
+  <div id="studentCard" class="card p-3 mb-3">
+    <h5>Enter details to download assignment</h5>
+    <input id="studentName" class="form-control mb-2" placeholder="Full Name">
+    <input id="studentMobile" class="form-control mb-2" placeholder="Mobile Number">
+    <button class="btn btn-primary" onclick="Assignment.start()">Proceed</button>
+  </div>
+
+  <!-- Download -->
+  <div id="downloadCard" class="card p-3 mb-3 d-none">
+    <a href="assignment.pdf"
+       download
+       class="btn btn-success"
+       onclick="Assignment.logDownload()">
+       Download Assignment
+    </a>
+  </div>
+
+  <!-- Upload -->
+  <div id="uploadCard" class="card p-3 d-none">
+    <input type="file"
+           id="fileInput"
+           class="form-control"
+           accept=".pdf,.doc,.docx">
+    <button class="btn btn-primary mt-3" onclick="Assignment.upload()">Upload</button>
+    <div id="result" class="mt-3"></div>
+  </div>
+
+  <!-- Admin -->
+  
+</section>
+
+
+
   </main>
 
+ 
+
+  <!-- CodeMirror 6 via dynamic import (works in modern browsers) -->
   <script>
+    // Create a global factory function to build the CodeMirror editor when needed.
+    // Uses dynamic import so this file remains a normal script.
+    window.createCodeMirrorEditor = async function (initialCode = '') {
+      try {
+        // dynamic imports
+        const [{ EditorView, keymap }, { default: basicSetup }, { sql }, { oneDark }, { EditorState }] = await Promise.all([
+          import('https://esm.sh/@codemirror/view@6.11.4'),
+          import('https://esm.sh/@codemirror/basic-setup@0.19.1'),
+          import('https://esm.sh/@codemirror/lang-sql@0.19.1'),
+          import('https://esm.sh/@codemirror/theme-one-dark@0.19.5'),
+          import('https://esm.sh/@codemirror/state@0.19.7')
+        ]);
+
+        // remove any previous editor content
+        const mount = document.getElementById('codeEditor');
+        mount.innerHTML = '';
+
+        const state = EditorState.create({
+          doc: initialCode,
+          extensions: [
+            basicSetup,
+            sql(),
+            oneDark,
+            EditorView.editable.of(true)
+          ]
+        });
+
+        // create view
+        window.codeEditor = new EditorView({ state, parent: mount });
+
+        // ensure visible & focused
+        setTimeout(() => {
+          try { window.codeEditor.focus(); } catch (e) {}
+        }, 50);
+
+        return window.codeEditor;
+      } catch (err) {
+        console.warn('CodeMirror init failed:', err);
+        // fallback: show simple textarea
+        const mount = document.getElementById('codeEditor');
+        mount.innerHTML = '';
+        document.getElementById('editorFallbackContainer').style.display = 'block';
+        const ta = document.getElementById('assignmentEditorFallback');
+        ta.value = initialCode || '';
+        ta.focus();
+        window.codeEditor = null; // signal fallback mode
+        return null;
+      }
+    }
+  </script>
+
+  <script>
+    /***********************
+     Original notes/calendar (kept exactly)
+    ***********************/
     let allNotes = [];
     let currentMonthIndex, currentYear;
 
-    const monthMap = {
-      JAN: "01", FEB: "02", MAR: "03", APR: "04", MAY: "05", JUN: "06",
-      JUL: "07", AUG: "08", SEP: "09", OCT: "10", NOV: "11", DEC: "12"
-    };
+    const monthMap = { JAN: "01", FEB: "02", MAR: "03", APR: "04", MAY: "05", JUN: "06", JUL: "07", AUG: "08", SEP: "09", OCT: "10", NOV: "11", DEC: "12" };
     const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
-    function parseNoteDate(str) {
-      // Expects DD-MMM-YYYY (e.g., 04-DEC-2025)
-      const [d, mText, y] = str.split("-");
-      const mNum = Number(monthMap[mText.toUpperCase()]);
-      return { day: d, monthNum: mNum, monthText: mText.toUpperCase(), year: y };
-    }
+    function parseNoteDate(str){ const [d,mText,y] = str.split("-"); const mNum = Number(monthMap[mText.toUpperCase()]); return { day:d, monthNum:mNum, monthText:mText.toUpperCase(), year:y }; }
+    function toJSDate(str){ const {day, monthNum, year} = parseNoteDate(str); return new Date(Number(year), monthNum-1, Number(day)); }
 
-    function toJSDate(str) {
-      const { day, monthNum, year } = parseNoteDate(str);
-      return new Date(Number(year), monthNum - 1, Number(day));
-    }
-
-    async function loadNotes() {
+    async function loadNotes(){
       try {
         const res = await fetch("notes.json");
         const notes = await res.json();
         allNotes = notes;
-
         const today = new Date();
         currentMonthIndex = today.getMonth();
         currentYear = today.getFullYear();
-
         renderCalendar();
         updateLatestNotification();
-      } catch (err) {
-        console.error("Error loading notes:", err);
-        document.getElementById("latestNotification").textContent = "Failed to load notes.";
-      }
+      } catch(err){ console.error("Error loading notes:", err); document.getElementById("latestNotification").textContent = "Failed to load notes."; }
     }
 
-    function renderCalendar() {
-      const container = document.getElementById("calendarContainer");
-      container.innerHTML = "";
-
-      // Header label
+    function renderCalendar(){
+      const container = document.getElementById("calendarContainer"); container.innerHTML="";
       document.getElementById("monthLabel").textContent = `${monthNames[currentMonthIndex]} ${currentYear}`;
-
-      // Compute month layout
-      const daysInMonth = new Date(currentYear, currentMonthIndex + 1, 0).getDate();
-      let firstDay = new Date(currentYear, currentMonthIndex, 1).getDay(); // 0=Sun..6=Sat
-      firstDay = firstDay === 0 ? 7 : firstDay; // Monday-first grid: shift Sunday to 7
-
-      // Card container
-      const card = document.createElement("div");
-      card.className = "card shadow-lg";
-
-      const calendarBody = document.createElement("div");
-      calendarBody.className = "card-body";
-
-      // Weekday labels (Mon-first)
-      const weekdays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-      const weekdayRow = document.createElement("div");
-      weekdayRow.className = "calendar";
-      weekdays.forEach(w => {
-        const wd = document.createElement("div");
-        wd.className = "weekday";
-        wd.textContent = w;
-        weekdayRow.appendChild(wd);
-      });
+      const daysInMonth = new Date(currentYear, currentMonthIndex+1, 0).getDate();
+      let firstDay = new Date(currentYear, currentMonthIndex,1).getDay(); firstDay = firstDay === 0 ? 7 : firstDay;
+      const card = document.createElement("div"); card.className="card shadow-lg";
+      const calendarBody = document.createElement("div"); calendarBody.className="card-body";
+      const weekdays = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]; const weekdayRow = document.createElement("div"); weekdayRow.className="calendar";
+      weekdays.forEach(w=>{ const wd=document.createElement("div"); wd.className="weekday"; wd.textContent=w; weekdayRow.appendChild(wd); });
       calendarBody.appendChild(weekdayRow);
-
-      // Calendar grid
-      const calendar = document.createElement("div");
-      calendar.className = "calendar";
-
-      // Leading blanks
-      for (let i = 1; i < firstDay; i++) {
-        const emptyCell = document.createElement("div");
-        emptyCell.className = "calendar-day";
-        calendar.appendChild(emptyCell);
-      }
-
-      // Day cells
+      const calendar = document.createElement("div"); calendar.className="calendar";
+      for(let i=1;i<firstDay;i++){ const emptyCell=document.createElement("div"); emptyCell.className="calendar-day"; calendar.appendChild(emptyCell); }
       const today = new Date();
-      for (let d = 1; d <= daysInMonth; d++) {
-        const dayStr = String(d).padStart(2, "0");
-
-        const hasNote = allNotes.some(n => {
-          const { day, monthNum, year } = parseNoteDate(n.date);
-          return day === dayStr && monthNum === currentMonthIndex + 1 && Number(year) === currentYear;
-        });
-
-        const dayCell = document.createElement("div");
-        dayCell.className = "calendar-day" + (hasNote ? " has-notes" : "");
-        dayCell.textContent = d;
-
-        if (today.getMonth() === currentMonthIndex && today.getFullYear() === currentYear && today.getDate() === d) {
-          dayCell.classList.add("today");
-        }
-
-        dayCell.addEventListener("click", () => {
-          const filtered = allNotes.filter(n => {
-            const { day, monthNum, year } = parseNoteDate(n.date);
-            return day === dayStr && monthNum === currentMonthIndex + 1 && Number(year) === currentYear;
-          });
-          renderNotes(filtered);
-        });
-
+      for(let d=1; d<=daysInMonth; d++){
+        const dayStr=String(d).padStart(2,'0');
+        const hasNote = allNotes.some(n=>{ const {day, monthNum, year} = parseNoteDate(n.date); return day===dayStr && monthNum=== currentMonthIndex+1 && Number(year)===currentYear; });
+        const dayCell = document.createElement("div"); dayCell.className = "calendar-day" + (hasNote ? " has-notes": ""); dayCell.textContent = d;
+        if(today.getMonth()===currentMonthIndex && today.getFullYear()===currentYear && today.getDate()===d) dayCell.classList.add("today");
+        dayCell.addEventListener("click", ()=>{ const filtered = allNotes.filter(n=>{ const {day, monthNum, year} = parseNoteDate(n.date); return day===dayStr && monthNum=== currentMonthIndex+1 && Number(year)===currentYear; }); renderNotes(filtered); });
         calendar.appendChild(dayCell);
       }
-
-      // Trailing blanks
-      const totalCells = (firstDay - 1) + daysInMonth;
-      const trailing = (7 - (totalCells % 7)) % 7;
-      for (let i = 0; i < trailing; i++) {
-        const emptyCell = document.createElement("div");
-        emptyCell.className = "calendar-day";
-        calendar.appendChild(emptyCell);
-      }
-
-      calendarBody.appendChild(calendar);
-      card.appendChild(calendarBody);
-      container.appendChild(card);
+      const totalCells = (firstDay-1) + daysInMonth; const trailing = (7 - (totalCells % 7)) % 7;
+      for(let i=0;i<trailing;i++){ const emptyCell=document.createElement("div"); emptyCell.className="calendar-day"; calendar.appendChild(emptyCell); }
+      calendarBody.appendChild(calendar); card.appendChild(calendarBody); container.appendChild(card);
     }
 
-    function prevMonth() {
-      currentMonthIndex--;
-      if (currentMonthIndex < 0) {
-        currentMonthIndex = 11;
-        currentYear--;
-      }
-      renderCalendar();
-    }
+    function prevMonth(){ currentMonthIndex--; if(currentMonthIndex<0){ currentMonthIndex=11; currentYear--; } renderCalendar(); }
+    function nextMonth(){ currentMonthIndex++; if(currentMonthIndex>11){ currentMonthIndex=0; currentYear++; } renderCalendar(); }
 
-    function nextMonth() {
-      currentMonthIndex++;
-      if (currentMonthIndex > 11) {
-        currentMonthIndex = 0;
-        currentYear++;
-      }
-      renderCalendar();
-    }
-
-    function renderNotes(notes) {
-      const container = document.getElementById("notesContainer");
-      const emptyState = document.getElementById("emptyState");
-      const clearBtn = document.getElementById("clearViewBtn");
-      container.innerHTML = "";
-
-      if (!notes.length) {
-        emptyState.classList.remove("d-none");
-        clearBtn.classList.add("d-none");
-        return;
-      }
+    function renderNotes(notes){
+      const container = document.getElementById("notesContainer"); const emptyState = document.getElementById("emptyState"); const clearBtn = document.getElementById("clearViewBtn");
+      container.innerHTML="";
+      if(!notes.length){ emptyState.classList.remove("d-none"); clearBtn.classList.add("d-none"); return; }
       emptyState.classList.add("d-none");
-
-      notes.forEach(n => {
-        const card = document.createElement("div");
-        card.className = "card mb-3 shadow-sm";
-        card.innerHTML = `
-          <div class="card-header bg-success text-white">
-            <strong>${n.date}</strong> – ${n.session} – ${n.title}
-          </div>
-          <div class="card-body">
-            <pre class="bg-light p-3 rounded"><code>${n.body}</code></pre>
-          </div>
-        `;
-        container.appendChild(card);
-      });
-
+      notes.forEach(n=>{ const card=document.createElement("div"); card.className="card mb-3 shadow-sm"; card.innerHTML = `<div class="card-header bg-success text-white"><strong>${n.date}</strong> – ${n.session} – ${n.title}</div><div class="card-body"><pre class="bg-light p-3 rounded"><code>${n.body}</code></pre></div>`; container.appendChild(card); });
       clearBtn.classList.remove("d-none");
     }
 
-    function clearNotesView() {
-      document.getElementById("notesContainer").innerHTML = "";
-      document.getElementById("emptyState").classList.add("d-none");
-      document.getElementById("clearViewBtn").classList.add("d-none");
+    function clearNotesView(){ document.getElementById("notesContainer").innerHTML=""; document.getElementById("emptyState").classList.add("d-none"); document.getElementById("clearViewBtn").classList.add("d-none"); }
+    function downloadSQLFile(session, filename){ const sessionNotes = allNotes.filter(n=>n.session === session); const sqlContent = sessionNotes.map(n=>`-- ${n.date} : ${n.title}\n${n.body}\n\n`).join(""); const blob = new Blob([sqlContent], { type: "text/sql" }); const url = URL.createObjectURL(blob); const a=document.createElement("a"); a.href=url; a.download=filename; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url); showNotification(`${filename} has been updated and downloaded!`); }
+    function showNotification(message){ const notif=document.createElement("div"); notif.className="alert alert-success text-center"; notif.textContent=message; document.body.prepend(notif); setTimeout(()=>notif.remove(),5000); }
+    function updateLatestNotification(){ if(!allNotes.length){ document.getElementById("latestNotification").textContent="No notes available yet."; return; } const sorted=[...allNotes].sort((a,b)=> toJSDate(b.date)-toJSDate(a.date)); const latestDate=sorted[0].date; const latestDayNotes = allNotes.filter(n=>n.date===latestDate); const latestNote = latestDayNotes.find(n=>n.session==='Evening') || latestDayNotes[0]; document.getElementById("latestNotification").textContent = `🔔 Latest notes available: ${latestNote.date} (${latestNote.session} session, uploaded at ${latestNote.time})`; }
+
+    // start notes load
+    loadNotes();
+
+   
+
+
+  </script>
+<script>
+  window.API = 'https://script.google.com/macros/s/AKfycbw35DNLh1KerYjpBilPcqOw1litT0nhtd5xnjQj1zBkmhI6QuwkXGDIca4qL8XsYGuP-g/exec';
+</script>
+
+
+  <script>
+const Assignment = (() => {
+  
+ 
+
+  let studentData = null;
+
+function start() {
+  const name = studentName.value.trim();
+  const mobile = studentMobile.value.trim();
+
+  if (!name || !mobile) {
+    alert('Enter name and mobile number');
+    return;
+  }
+
+  studentData = { name, mobile };
+
+  studentCard.classList.add('d-none');
+  downloadCard.classList.remove('d-none');
+}
+
+  function logDownload() {
+    downloadCard.classList.add('d-none');
+    uploadCard.classList.remove('d-none');
+  }
+
+
+async function upload() {
+  const file = fileInput.files[0];
+
+  if (!file) {
+    alert('Select a file');
+    return;
+  }
+
+  if (!studentData) {
+    alert('Please enter your details again');
+    return;
+  }
+
+  // Show floating "Uploading..." notification
+  showFloatingNotification('Uploading... ⏳', 'info');
+
+  const reader = new FileReader();
+
+  reader.onload = async () => {
+    const payload = {
+      action: 'upload',
+      name: studentData.name,
+      mobile: studentData.mobile,
+      fileName: file.name,
+      mimeType: file.type,
+      file: reader.result.split(',')[1]
+    };
+
+    try {
+      const res = await fetch(API, {
+        method: 'POST',
+        body: JSON.stringify(payload)
+      });
+
+      const out = await res.json();
+
+      if (out.status === 'success') {
+        showFloatingNotification('✅ Assignment Submitted Successfully!', 'success');
+        uploadCard.classList.add('d-none'); // hide upload form after success
+      } else {
+        showFloatingNotification(`❌ Upload failed: ${out.message || 'Unknown error'}`, 'danger');
+      }
+
+    } catch (err) {
+      console.error(err);
+      showFloatingNotification('❌ Upload failed. Check console for details.', 'danger');
     }
+  };
 
-    function downloadSQLFile(session, filename) {
-      const sessionNotes = allNotes.filter(n => n.session === session);
-      const sqlContent = sessionNotes
-        .map(n => `-- ${n.date} : ${n.title}\n${n.body}\n\n`)
-        .join("");
-      const blob = new Blob([sqlContent], { type: "text/sql" });
-      const url = URL.createObjectURL(blob);
+  reader.readAsDataURL(file);
+}
 
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = filename;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
+// Helper function to show floating notifications
+function showFloatingNotification(message, type='info') {
+  const notif = document.createElement('div');
+  notif.className = `alert alert-${type} text-center position-fixed top-0 start-50 translate-middle-x`;
+  notif.style.zIndex = 9999;
+  notif.style.minWidth = '250px';
+  notif.style.marginTop = '10px';
+  notif.textContent = message;
+  document.body.appendChild(notif);
 
-      URL.revokeObjectURL(url);
-      showNotification(`${filename} has been updated and downloaded!`);
-    }
+  setTimeout(() => {
+    notif.remove();
+  }, 5000);
+}
 
-    function showNotification(message) {
-      const notif = document.createElement("div");
-      notif.className = "alert alert-success text-center";
-      notif.textContent = message;
-      document.body.prepend(notif);
-      setTimeout(() => notif.remove(), 5000);
-    }
 
-    function updateLatestNotification() {
-      if (!allNotes.length) {
-        document.getElementById("latestNotification").textContent = "No notes available yet.";
+// Helper function to show notifications
+function showUploadNotification(message, type='info') {
+  const notifDiv = document.getElementById('uploadNotification');
+  notifDiv.innerHTML = `<div class="alert alert-${type} text-center">${message}</div>`;
+  setTimeout(() => { notifDiv.innerHTML = ''; }, 5000);
+}
+
+  function admin(rows) {
+  let html = `<table class="table table-bordered">
+    <tr>
+      <th>Time</th>
+      <th>Name</th>
+      <th>Mobile</th>
+      <th>File</th>
+    </tr>`;
+
+  rows.forEach(r => {
+    html += `<tr>
+      <td>${r[0]}</td>
+      <td>${r[1]}</td>
+      <td>${r[2]}</td>
+      <td><a href="${r[4]}" target="_blank">Open</a></td>
+    </tr>`;
+  });
+
+  html += `</table>`;
+
+  document.body.insertAdjacentHTML('beforeend',
+    `<div class="modal show d-block">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content p-3">
+          <h5>🔒 Admin Dashboard</h5>
+          ${html}
+          <button class="btn btn-secondary mt-3"
+            onclick="this.closest('.modal').remove()">Close</button>
+        </div>
+      </div>
+    </div>`
+  );
+}
+
+
+  return { start, logDownload, upload, admin };
+})();
+</script>
+
+<script>
+console.log('Admin shortcut script loaded');
+
+document.addEventListener('keydown', async function (e) {
+  console.log('Key pressed:', e.key);
+
+  if (e.shiftKey && e.altKey && e.key.toLowerCase() === 'a') {
+    e.preventDefault();
+    console.log('Admin shortcut triggered');
+
+    const pwd = prompt('Enter admin password');
+    if (!pwd) return;
+
+    try {
+      const res = await fetch(API,
+        {
+          method: 'POST',
+          body: JSON.stringify({
+            action: 'fetchAdmin',
+            password: pwd
+          })
+        }
+      );
+
+      const data = await res.json();
+
+      if (data.status !== 'success') {
+        alert('❌ Invalid password');
         return;
       }
-      const sorted = [...allNotes].sort((a, b) => toJSDate(b.date) - toJSDate(a.date));
-      const latestDate = sorted[0].date;
-      const latestDayNotes = allNotes.filter(n => n.date === latestDate);
-      const latestNote = latestDayNotes.find(n => n.session === "Evening") || latestDayNotes[0];
 
-      document.getElementById("latestNotification").textContent =
-        `🔔 Latest notes available: ${latestNote.date} (${latestNote.session} session, uploaded at ${latestNote.time})`;
+      let html = `<table class="table table-bordered">
+        <tr><th>Name</th><th>Mobile</th><th>File</th></tr>`;
+
+      data.rows.forEach(r => {
+        html += `<tr>
+          <td>${r[1]}</td>
+          <td>${r[2]}</td>
+          <td><a href="${r[4]}" target="_blank">Download</a></td>
+        </tr>`;
+      });
+
+      html += `</table>`;
+
+      document.body.insertAdjacentHTML('beforeend', `
+        <div class="modal show d-block">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content p-3">
+              <h5>Admin Dashboard</h5>
+              ${html}
+              <button class="btn btn-secondary mt-3"
+                onclick="this.closest('.modal').remove()">Close</button>
+            </div>
+          </div>
+        </div>
+      `);
+
+    } catch (err) {
+      console.error(err);
+      alert('Admin fetch failed');
     }
+  }
+});
+</script>
 
-    // Boot
-    loadNotes();
-  </script>
+
 </body>
 </html>
