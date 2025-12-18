@@ -187,12 +187,14 @@
       }
     }
   </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
   <!-- jsPDF CDN (ADD HERE) -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-<script>
-  // your existing scripts start here
-</script>
+
 
 
   <script>
@@ -208,18 +210,44 @@
     function parseNoteDate(str){ const [d,mText,y] = str.split("-"); const mNum = Number(monthMap[mText.toUpperCase()]); return { day:d, monthNum:mNum, monthText:mText.toUpperCase(), year:y }; }
     function toJSDate(str){ const {day, monthNum, year} = parseNoteDate(str); return new Date(Number(year), monthNum-1, Number(day)); }
 
+    // async function loadNotes(){
+    //   try {
+    //     const res = await fetch("notes.json");
+    //     const notes = await res.json();
+    //     allNotes = notes;
+    //     const today = new Date();
+    //     currentMonthIndex = today.getMonth();
+    //     currentYear = today.getFullYear();
+    //     renderCalendar();
+    //     updateLatestNotification();
+    //   } catch(err){ console.error("Error loading notes:", err); document.getElementById("latestNotification").textContent = "Failed to load notes."; }
+    // }
     async function loadNotes(){
-      try {
-        const res = await fetch("notes.json");
-        const notes = await res.json();
-        allNotes = notes;
-        const today = new Date();
-        currentMonthIndex = today.getMonth();
-        currentYear = today.getFullYear();
-        renderCalendar();
-        updateLatestNotification();
-      } catch(err){ console.error("Error loading notes:", err); document.getElementById("latestNotification").textContent = "Failed to load notes."; }
-    }
+  try {
+    const res = await fetch("notes.json");
+    const notes = await res.json();
+    allNotes = notes;
+
+    const today = new Date();
+    currentMonthIndex = today.getMonth();
+    currentYear = today.getFullYear();
+
+    renderCalendar();
+    updateLatestNotification();
+
+    // 🔹 ENABLE TOOLTIPS
+    setTimeout(() => {
+      document
+        .querySelectorAll('[data-bs-toggle="tooltip"]')
+        .forEach(el => new bootstrap.Tooltip(el));
+    }, 100);
+
+  } catch(err){
+    console.error("Error loading notes:", err);
+    document.getElementById("latestNotification").textContent = "Failed to load notes.";
+  }
+}
+
 
     function renderCalendar(){
       const container = document.getElementById("calendarContainer"); container.innerHTML="";
@@ -237,14 +265,56 @@
       for(let d=1; d<=daysInMonth; d++){
         const dayStr=String(d).padStart(2,'0');
         const hasNote = allNotes.some(n=>{ const {day, monthNum, year} = parseNoteDate(n.date); return day===dayStr && monthNum=== currentMonthIndex+1 && Number(year)===currentYear; });
-        const dayCell = document.createElement("div"); dayCell.className = "calendar-day" + (hasNote ? " has-notes": ""); dayCell.textContent = d;
-        if(today.getMonth()===currentMonthIndex && today.getFullYear()===currentYear && today.getDate()===d) dayCell.classList.add("today");
+       // const dayCell = document.createElement("div"); dayCell.className = "calendar-day" + (hasNote ? " has-notes": ""); dayCell.textContent = d;
+       const dayCell = document.createElement("div");
+dayCell.className = "calendar-day" + (hasNote ? " has-notes": "");
+dayCell.textContent = d;
+
+// 🔹 Collect subjects for this date
+const subjects = [
+  ...new Set(
+    allNotes
+      .filter(n => {
+        const { day, monthNum, year } = parseNoteDate(n.date);
+        return (
+          day === dayStr &&
+          monthNum === currentMonthIndex + 1 &&
+          Number(year) === currentYear
+        );
+      })
+      .map(n => n.subject)
+  )
+];
+
+// 🔹 Add tooltip only if notes exist
+if (subjects.length) {
+  dayCell.setAttribute("data-bs-toggle", "tooltip");
+  dayCell.setAttribute(
+  "data-bs-title",
+  "Subjects:<br>• " + subjects.join("<br>• ")
+);
+dayCell.setAttribute("data-bs-html", "true");
+
+}
+
+       
+       
+       if(today.getMonth()===currentMonthIndex && today.getFullYear()===currentYear && today.getDate()===d) dayCell.classList.add("today");
         dayCell.addEventListener("click", ()=>{ const filtered = allNotes.filter(n=>{ const {day, monthNum, year} = parseNoteDate(n.date); return day===dayStr && monthNum=== currentMonthIndex+1 && Number(year)===currentYear; }); renderNotes(filtered); });
         calendar.appendChild(dayCell);
       }
       const totalCells = (firstDay-1) + daysInMonth; const trailing = (7 - (totalCells % 7)) % 7;
       for(let i=0;i<trailing;i++){ const emptyCell=document.createElement("div"); emptyCell.className="calendar-day"; calendar.appendChild(emptyCell); }
       calendarBody.appendChild(calendar); card.appendChild(calendarBody); container.appendChild(card);
+// 🔹 Activate Bootstrap tooltips AFTER calendar is rendered
+setTimeout(() => {
+  document
+    .querySelectorAll('[data-bs-toggle="tooltip"]')
+    .forEach(el => new bootstrap.Tooltip(el));
+}, 0);
+
+
+
     }
 
     function prevMonth(){ currentMonthIndex--; if(currentMonthIndex<0){ currentMonthIndex=11; currentYear--; } renderCalendar(); }
@@ -300,14 +370,19 @@ function downloadLinuxPDF(session, filename) {
   let y = 10;
 
   linuxNotes.forEach((n, index) => {
-    doc.setFontSize(12);
-    doc.text(`${n.date} - ${n.title}`, 10, y);
-    y += 8;
 
-    doc.setFontSize(10);
-    const lines = doc.splitTextToSize(n.body, 180);
-    doc.text(lines, 10, y);
-    y += lines.length * 6 + 6;
+  // 🔹 DATE + TITLE (BOLD)
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(12);
+  doc.text(`${n.date} - ${n.title}`, 10, y);
+  y += 8;
+
+  // 🔹 BODY (NORMAL)
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(10);
+  const lines = doc.splitTextToSize(n.body, 180);
+  doc.text(lines, 10, y);
+  y += lines.length * 6 + 6;
 
     if (y > 270 && index < linuxNotes.length - 1) {
       doc.addPage();
