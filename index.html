@@ -353,46 +353,115 @@ function downloadSQLFile(session, filename) {
 
   showNotification(`${filename} downloaded`);
 }
+// function downloadLinuxPDF(session, filename) {
+//   const { jsPDF } = window.jspdf;
+//   const doc = new jsPDF();
+
+//   // filter ONLY Linux notes by session
+//   const linuxNotes = allNotes.filter(n =>
+//     n.session === session && n.subject === 'LINUX'
+//   );
+
+//   if (!linuxNotes.length) {
+//     showNotification(`No Linux notes found for ${session}`, 'danger');
+//     return;
+//   }
+
+//   let y = 10;
+
+//   linuxNotes.forEach((n, index) => {
+
+//   // 🔹 DATE + TITLE (BOLD)
+//   doc.setFont("helvetica", "bold");
+//   doc.setFontSize(12);
+//   doc.text(`${n.date} - ${n.title}`, 10, y);
+//   y += 8;
+
+//   // 🔹 BODY (NORMAL)
+//   doc.setFont("helvetica", "normal");
+//   doc.setFontSize(10);
+//   const lines = doc.splitTextToSize(n.body, 180);
+//   doc.text(lines, 10, y);
+//   y += lines.length * 6 + 6;
+
+//     if (y > 270 && index < linuxNotes.length - 1) {
+//       doc.addPage();
+//       y = 10;
+//     }
+//   });
+
+//   doc.save(filename);
+//   showNotification(`${filename} downloaded successfully!`);
+// }
+
 function downloadLinuxPDF(session, filename) {
   const { jsPDF } = window.jspdf;
-  const doc = new jsPDF();
+  const doc = new jsPDF("p", "mm", "a4");
 
-  // filter ONLY Linux notes by session
-  const linuxNotes = allNotes.filter(n =>
-    n.session === session && n.subject === 'LINUX'
+  const linuxNotes = allNotes.filter(
+    n => n.session === session && n.subject === "LINUX"
   );
 
   if (!linuxNotes.length) {
-    showNotification(`No Linux notes found for ${session}`, 'danger');
+    showNotification(`No Linux notes found for ${session}`, "danger");
     return;
   }
 
-  let y = 10;
+  const pageWidth = doc.internal.pageSize.width;
+  const pageHeight = doc.internal.pageSize.height;
 
-  linuxNotes.forEach((n, index) => {
+  const marginLeft = 10;
+  const marginRight = 10;
+  const marginTop = 10;
+  const marginBottom = 15;
 
-  // 🔹 DATE + TITLE (BOLD)
-  doc.setFont("helvetica", "bold");
-  doc.setFontSize(12);
-  doc.text(`${n.date} - ${n.title}`, 10, y);
-  y += 8;
+  const usableWidth = pageWidth - marginLeft - marginRight;
+  const lineHeight = 6;
 
-  // 🔹 BODY (NORMAL)
-  doc.setFont("helvetica", "normal");
-  doc.setFontSize(10);
-  const lines = doc.splitTextToSize(n.body, 180);
-  doc.text(lines, 10, y);
-  y += lines.length * 6 + 6;
+  let y = marginTop;
 
-    if (y > 270 && index < linuxNotes.length - 1) {
+  linuxNotes.forEach(n => {
+
+    /* ---------- TITLE ---------- */
+    doc.setFont("courier", "bold");
+    doc.setFontSize(12);
+
+    if (y + lineHeight > pageHeight - marginBottom) {
       doc.addPage();
-      y = 10;
+      y = marginTop;
     }
+
+    doc.text(`${n.date} - ${n.title}`, marginLeft, y);
+    y += lineHeight + 2;
+
+    /* ---------- BODY ---------- */
+    doc.setFont("courier", "normal");
+    doc.setFontSize(10);
+
+    const rawLines = n.body.split("\n");
+
+    rawLines.forEach(rawLine => {
+
+      // 🔹 Wrap line to page width
+      const wrappedLines = doc.splitTextToSize(rawLine, usableWidth);
+
+      wrappedLines.forEach(wLine => {
+        if (y + lineHeight > pageHeight - marginBottom) {
+          doc.addPage();
+          y = marginTop;
+        }
+        doc.text(wLine, marginLeft, y);
+        y += lineHeight;
+      });
+    });
+
+    y += lineHeight; // space between notes
   });
 
   doc.save(filename);
   showNotification(`${filename} downloaded successfully!`);
 }
+
 
 
 
