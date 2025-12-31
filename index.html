@@ -84,9 +84,29 @@
   }
 }
 
+#fireworksCanvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1100; /* 🔥 ABOVE modal + backdrop */
+}
+
+
+@keyframes sparkle {
+  0% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0); }
+}
+
+
+
   </style>
 </head>
 <body>
+
+
+
   <!-- 🎆 New Year 2026 Greeting Modal -->
 <div class="modal fade" id="newYearModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
@@ -757,34 +777,12 @@ document.addEventListener('keydown', async function (e) {
   }
 });
 </script>
-<!-- <script>
-document.addEventListener('DOMContentLoaded', function () {
 
-  const alreadyShown = localStorage.getItem('newYear2026ModalShown');
-  const today = new Date();
-
-  const start = new Date('2026-01-01');
-  const end   = new Date('2026-01-07');
-
-  if (today >= start && today <= end && !alreadyShown) {
-    const modal = new bootstrap.Modal(
-      document.getElementById('newYearModal'),
-      { backdrop: 'static', keyboard: false }
-    );
-    modal.show();
-    localStorage.setItem('newYear2026ModalShown', 'true');
-  }
-
-});
-</script> -->
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
 
-  const modalEl = document.getElementById('newYearModal');
-  if (!modalEl) return;
-
-  // ---- Get current IST time ----
+  // ---------- IST TIME ----------
   function getISTDate() {
     const now = new Date();
     const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
@@ -792,27 +790,84 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   const nowIST = getISTDate();
-
-  // ---- Tomorrow End of Day IST ----
   const endIST = new Date(nowIST);
   endIST.setDate(endIST.getDate() + 1);
   endIST.setHours(23, 59, 59, 999);
 
-  // ---- Show modal on EVERY refresh within time window ----
-  if (nowIST <= endIST) {
-    const modal = new bootstrap.Modal(modalEl, {
-      backdrop: 'static',
-      keyboard: false
-    });
-
+  // ---------- MODAL ----------
+  const modalEl = document.getElementById('newYearModal');
+  if (nowIST <= endIST && modalEl) {
+    const modal = new bootstrap.Modal(modalEl);
     modal.show();
-
-    // Auto close after 5 seconds
-    setTimeout(() => modal.hide(), 5000);
+    setTimeout(() => modal.hide(), 6000);
+    startFireworks(); // 🔥 trigger crackers
+  
   }
 
+  // ---------- FIREWORKS ----------
+ 
+function startFireworks() {
+  const canvas = document.getElementById('fireworksCanvas');
+  const ctx = canvas.getContext('2d');
+
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  let particles = [];
+
+  function blast(x, y) {
+    for (let i = 0; i < 150; i++) {
+      particles.push({
+        x,
+        y,
+        vx: Math.cos(Math.random() * Math.PI * 2) * (Math.random() * 6 + 2),
+        vy: Math.sin(Math.random() * Math.PI * 2) * (Math.random() * 6 + 2),
+        life: 100,
+        color: `hsl(${Math.random() * 360},100%,60%)`
+      });
+    }
+  }
+
+  // 🔥 Multiple visible blasts
+  blast(canvas.width * 0.3, canvas.height * 0.4);
+  blast(canvas.width * 0.7, canvas.height * 0.4);
+  blast(canvas.width * 0.5, canvas.height * 0.3);
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    particles = particles.filter(p => p.life-- > 0);
+
+    particles.forEach(p => {
+      p.x += p.vx;
+      p.y += p.vy;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 2.5, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.fill();
+    });
+
+    if (particles.length > 0) {
+      requestAnimationFrame(animate);
+    } else {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+  }
+
+  animate();
+}
+
+
+
 });
+
+
 </script>
+
+
+<!-- Firecracker Canvas -->
+<canvas id="fireworksCanvas"></canvas>
 
 
 
