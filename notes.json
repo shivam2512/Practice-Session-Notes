@@ -559,5 +559,13 @@
   "subject": "LINUX",
   "time": "04:16 PM",
   "body": "# chown : to change the owner of the file and directory\n# chown <New_owner_id/name> <File_name>\n# chown oracle abc.txt\n\n# chgrp : to change the group name\n# chgrp <New_group_id/name> <File_name>\n# chgrp dba_support abc.txt\n\n# file : It will show you file type. (empty file, text file or executable file)\n# file abc.txt\n\n# comm : It will show you common attribute of both files. Example below\n# comm file1.txt file2.txt\n\n# diff : It will show you different attribute of both files. Eg. Below\n# diff file1.txt file2.txt\n\n# sort : sort will sort the file content (lines) alphabetically.\n# sort animal.txt\n\nHow to Transfer files from Windows to Linux / Unix Server.\n\nWINSCP, FTTP, Filezilla and FLASH Exp such kinds of tools mostly get used for transferring files from\nwindows to linux or unix server.\n\nInstall above any one tool on your desktop and use it for transferring files from windows to linux or Unix\nserver."
+},
+{
+  "date": "02-JAN-2026",
+  "session": "Evening",
+  "title": "Practice Session",
+  "subject": "LINUX",
+  "time": "10:09 PM",
+  "body": ""# chown : to change the owner of the file and directory\n# chown New_owner_name File_name\n# chown oracle abc.txt\n\n# chgrp : to change the group name\n# chgrp New_group_name File_name\n# chgrp dba_support abc.txt\n\nzip & unzip Command\n# zip : zip command use to zip multiple files under single output.\n# zip abc.zip 1.txt 2.txt 3.txt 4.txt 5.txt 6.txt\nOutput is abc.zip contains all input file i.e. 1.txt 2.txt 3.txt 4.txt etc\n\n# unzip : unzip command use to unzip the files.\n# unzip abc.zip all files will unzipped\n# unzip abc.zip 1.txt 1.txt file will unzipped from abc.zip\n\n# cat command: to create, view and append the content to file\n\n1. to view file:\ncat file_name\n\n2. to create the file with content:\ncat > file_name\nadd content to file\npress (CTRL+D) to save and exit\n\n3. to append new content to file:\ncat >> file_name\nadd new content to file\npress (CTRL+D) to save and exit"
 }
 ]
