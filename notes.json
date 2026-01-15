@@ -735,5 +735,13 @@
   "subject": "LINUX",
   "time": "04:59 PM",
   "body": "Additional commands used in Application support\n\n1. ssh: it is used to test connectivity of remote server.\n\n# to install ssh service package run:\nsudo apt install openssh-server -y\n\n# to check SSH service status:\nsystemctl status ssh\n\n# ssh into your own VM:\nssh localhost\n\n# installing apache2 service to show the examples of service management:\n\nsudo apt install apache2 -y\n\n-> starting apache service\nsystemctl start apache2\n\n-> stop service\nsystemctl stop apache2\n\n-> restart service\nsystemctl restart apache2\n\n-> check status of service\nsystemctl status apache2\n\n# to list all the running services in system:\n\nsystemctl list-units --type=service --state=running\n\n\n2. awk: is a text processing command used to search, filter and format data from files.\n\nIt is used to monitor logs, reports or for doing RCA.\n\nSyntax:\n\nawk 'pattern {action}' filename\n\nExamples of awk command:\n\n# to print entire file data on terminal:\nawk '{print}' app.log\n\n# print specific columns:\nawk '{print $1,$2}' app.log\n\n# print line number:\nawk '{print NR,$0}' app.log\n\n# filter specific word:\nawk '/ERROR/ {print}' app.log\n\n# filter using column value:\nawk '$1==\"ERROR\" {print $0}' app.log\n\n# filter using column value and printing specific columns only:\nawk '$1==\"ERROR\" {print $1, $2, $3}' app.log"
+},
+{
+  "date": "15-JAN-2026",
+  "session": "Evening",
+  "title": "Practice Session",
+  "subject": "LINUX",
+  "time": "08:58 PM",
+  "body": "Additional commands used in Application support\n\n1. ssh: it is used to test connectivity of remote server.\n\n# to install ssh service package run:\nsudo apt install openssh-server -y\n\n# to check SSH service status:\nsystemctl status ssh\n\n# ssh into your own VM:\nssh localhost\n\n# installing apache2 service to show the examples of service management:\n\nsudo apt install apache2 -y\n\n-> starting apache service\nsystemctl start apache2\n\n-> stop service\nsystemctl stop apache2\n\n-> restart service\nsystemctl restart apache2\n\n-> check status of service\nsystemctl status apache2\n\n# to list all the running services in system:\n\nsystemctl list-units --type=service --state=running"
 }
 ]
