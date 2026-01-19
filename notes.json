@@ -775,5 +775,25 @@
   "subject": "LINUX",
   "time": "10:00 PM",
   "body": "------------------- REVISION -------------------\n\nTopics from Space Managment to Cut command has been revised. Refer to it from notes.\n\n\n------------------- END ------------------------"
+},
+{
+  "date": "19-JAN-2026",
+  "session": "Afternoon",
+  "title": "Practice Session",
+  "subject": "LINUX",
+  "time": "03:00 PM",
+  "body": "REVISION: process commands, kill command, nice, job scheduling (crontab), tee"
+},
+{
+  "date": "19-JAN-2026",
+  "session": "Evening",
+  "title": "Practice Session",
+  "subject": "LINUX",
+  "time": "09:09 PM",
+  "body": "REVISION: process commands, kill command, nice, job scheduling (crontab), tee"
 }
 ]
+
+
+
+
