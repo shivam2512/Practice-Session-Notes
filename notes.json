@@ -791,6 +791,22 @@
   "subject": "LINUX",
   "time": "09:09 PM",
   "body": "REVISION: process commands, kill command, nice, job scheduling (crontab), tee"
+},
+{
+  "date": "20-JAN-2026",
+  "session": "Afternoon",
+  "title": "Practice Session",
+  "subject": "LINUX",
+  "time": "03:09 PM",
+  "body": "-----------------REVISION----------------\n\nfind, locate, awk, hard link and soft link\n\n-----------------------------------------"
+},
+{
+  "date": "20-JAN-2026",
+  "session": "Evening",
+  "title": "Practice Session",
+  "subject": "LINUX",
+  "time": "07:09 PM",
+  "body": "-----------------REVISION----------------\n\nfind, locate, awk, hard link and soft link\n\n-----------------------------------------"
 }
 ]
 
