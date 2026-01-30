@@ -903,5 +903,13 @@
   "subject": "SQL",
   "time": "09:05 PM",
   "body": "--SQL Commands:\n\n-- TCL (Transaction control language): It is a group of DML operations in a database\n--It decides save/undo/make permanent the changes.\n\n--Used with: INSERT, UPDATE, DELETE, MERGE.\n\n--Types of TCL commands:\n\n--a. COMMIT: Save changes permanently.\n\ndesc emp678;\n\nselect * from emp678;\n\ninsert into emp678 values (16, 'Rahul', 17000.85);\ninsert into emp678 values (17, 'Mohit', 18000.85);\ninsert into emp678 values (18, 'Rohit', 18000.85);\n\n--b. ROLLBACK: Undo changes.\n\ninsert into emp678 values (18, 'Denis', 55000);\nrollback;\n\n--c. SAVEPOINT: create a checkpoint.\n\nupdate emp678 set salary=30000 where emp_id=1;\n\nupdate emp678 set salary =45000 where emp_id=2;\nsavepoint check123;\n\n--rollbacking to savepoint s1: it is used to go back to a specific point:\nupdate emp678 set salary =85000 where emp_id=3;\ninsert into emp678 values (20, 'Raman', 12000);\nrollback to check123;\ncommit;\n\n--Savepoint example\n\ncreate table account\n(\nacc_no number,\nname varchar2(100),\nbalance number\n);\n\ndesc account;\n\ninsert into account values(1, 'Ravi', 10000);\ninsert into account values(3, 'Ram', 25000);\n\nselect * from account;\nupdate account set balance= 5000 where acc_no=1;\nupdate account set balance=1000 where acc_no=2;\n\nsavepoint balance_check;\n\nupdate account set balance=35000 where acc_no=3; \n\nrollback to balance_check;\ncommit;"
+},
+{
+  "date": "30-JAN-2026",
+  "session": "Afternoon",
+  "title": "Practice Session",
+  "subject": "SQL",
+  "time": "03:14 PM",
+  "body": "--SQL Commands:\n\n--DQL/DRL (Data Query Language/Data Retrieval Language):\n--It is used to fetch\n--or printing the table data on editor output.\n\n--1. Select:\n--Which is used to fetch table data on screen/output.\n\n--Syntax:\nSelect * from emp678;\n\n--DCL (Data Control Language):\n--It controls access and permissions on database objects.\n--It decides who can do what in the database.\n\n--DB Objects:\n--Tables, views, procedures, triggers, functions, etc\n\n--Types:\n\n--1. Grant:\n--It is used to give permissions.\n--It gives access/rights to a user.\n\n--Syntax:\n--GRANT privilege on OBJECT to user;\n\ngrant select, insert, update, delete on emp678 to dbs101;\n\ngrant select on emp678 to demo_user, dbs5;\n\n--2. Revoke:\n--It is used to take back the permission.\n\nrevoke delete, select on emp678 from demo_user;\n\n--Creating a new user:\ncreate user dbs101 identified by admin;\n\n--Give session access to user:\ngrant create session to dbs101;\n\n--To access the table using new user, run the below in new user's connection:\nselect * from system.emp678;"
 }
 ]
