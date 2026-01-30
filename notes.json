@@ -911,5 +911,13 @@
   "subject": "SQL",
   "time": "03:14 PM",
   "body": "--SQL Commands:\n\n--DQL/DRL (Data Query Language/Data Retrieval Language):\n--It is used to fetch\n--or printing the table data on editor output.\n\n--1. Select:\n--Which is used to fetch table data on screen/output.\n\n--Syntax:\nSelect * from emp678;\n\n--DCL (Data Control Language):\n--It controls access and permissions on database objects.\n--It decides who can do what in the database.\n\n--DB Objects:\n--Tables, views, procedures, triggers, functions, etc\n\n--Types:\n\n--1. Grant:\n--It is used to give permissions.\n--It gives access/rights to a user.\n\n--Syntax:\n--GRANT privilege on OBJECT to user;\n\ngrant select, insert, update, delete on emp678 to dbs101;\n\ngrant select on emp678 to demo_user, dbs5;\n\n--2. Revoke:\n--It is used to take back the permission.\n\nrevoke delete, select on emp678 from demo_user;\n\n--Creating a new user:\ncreate user dbs101 identified by admin;\n\n--Give session access to user:\ngrant create session to dbs101;\n\n--To access the table using new user, run the below in new user's connection:\nselect * from system.emp678;"
+},
+{
+  "date": "30-JAN-2026",
+  "session": "Evening",
+  "title": "Practice Session",
+  "subject": "SQL",
+  "time": "09:07 PM",
+  "body": "--SQL Commands:\n\n--DQL/DRL (Data Query Language/Data Retrieval Language):\n--It is used to fetch\n--or printing the table data on editor output.\n\n--1. Select:\n--Which is used to fetch table data on screen/output.\n\n--Syntax:\nSelect * from emp678;\n\n--DCL (Data Control Language):\n--It controls access and permissions on database objects.\n--It decides who can do what in the database.\n\n--DB Objects:\n--Tables, views, procedures, triggers, functions, etc\n\n--Types:\n\n--1. Grant:\n--It is used to give permissions.\n--It gives access/rights to a user.\n\n--Syntax:\n--GRANT privilege on OBJECT to user;\n\ngrant select, insert, update, delete on emp678 to dbs101;\n\ngrant select on emp678 to demo_user, dbs5;\n\n--2. Revoke:\n--It is used to take back the permission.\n\nrevoke delete, select on emp678 from demo_user;\n\n--Creating a new user:\ncreate user dbs101 identified by admin;\n\n--Give session access to user:\ngrant create session to dbs101;\n\n--To access the table using new user, run the below in new user's connection:\nselect * from system.emp678;"
 }
 ]
