@@ -118,7 +118,11 @@
   Assignments <span id="assignmentNewDot" class="new-dot"></span>
 </button>
 
+      
       <div class="ms-auto d-flex gap-2 align-items-center">
+  <span id="onlineUsers" class="navbar-text text-info fw-semibold"></span>
+
+</div>
 
 
       </div>
@@ -541,7 +545,7 @@ function downloadLinuxPDF(session, filename) {
 
   </script>
 <script>
-  window.API = 'https://script.google.com/macros/s/AKfycbw35DNLh1KerYjpBilPcqOw1litT0nhtd5xnjQj1zBkmhI6QuwkXGDIca4qL8XsYGuP-g/exec';
+  window.API = 'https://script.google.com/macros/s/AKfycbzurA9vWdShU3aaJ0nKCT3PqqQET4reewk7oWV0SMPEgl2sTOovZlGz14tJZPPruf-ZPA/exec';
 </script>
 
 
@@ -752,10 +756,78 @@ document.addEventListener('keydown', async function (e) {
 });
 </script>
 
+<script>
+const ONLINE_API = window.API; // your existing GAS URL
+
+async function pingUser() {
+  const name = localStorage.getItem('currentUser');
+  if (!name) return;
+
+  await fetch(API, {
+    method: 'POST',
+    body: JSON.stringify({
+      action: 'pingUser',
+      name: name
+    })
+  });
+}
 
 
+async function fetchOnlineUsers() {
+  try {
+    const res = await fetch(API, {
+      method: 'POST',
+      body: JSON.stringify({ action: 'getOnlineUsers' })
+    });
+
+    const data = await res.json();
+
+    if (data.status === 'success') {
+      document.getElementById('onlineUsers').innerHTML =
+        `🟢 Online: ${data.users.join(', ')}`;
+    }
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+// initial load
+pingUser();
+fetchOnlineUsers();
+
+// ping every 15 sec
+setInterval(pingUser, 15000);
+// refresh list every 10 sec
+setInterval(fetchOnlineUsers, 10000);
 
 
+</script>
+
+
+<script>
+  function initCurrentUser() {
+    let user = localStorage.getItem('currentUser');
+
+    if (!user) {
+      user = prompt('Enter your name');
+      if (user && user.trim()) {
+        user = user.trim();
+        localStorage.setItem('currentUser', user);
+      }
+    }
+
+    return user;
+  }
+
+  // Initialize user ONCE page loads
+  const CURRENT_USER = initCurrentUser();
+
+  // Show user name in navbar
+  const navUser = document.getElementById('navUsername');
+  if (CURRENT_USER && navUser) {
+    navUser.innerHTML = `👤 ${CURRENT_USER}`;
+  }
+</script>
 
 
 </body>
