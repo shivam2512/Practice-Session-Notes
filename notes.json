@@ -921,6 +921,22 @@
   "body": "--SQL Commands:\n\n--DQL/DRL (Data Query Language/Data Retrieval Language):\n--It is used to fetch\n--or printing the table data on editor output.\n\n--1. Select:\n--Which is used to fetch table data on screen/output.\n\n--Syntax:\nSelect * from emp678;\n\n--DCL (Data Control Language):\n--It controls access and permissions on database objects.\n--It decides who can do what in the database.\n\n--DB Objects:\n--Tables, views, procedures, triggers, functions, etc\n\n--Types:\n\n--1. Grant:\n--It is used to give permissions.\n--It gives access/rights to a user.\n\n--Syntax:\n--GRANT privilege on OBJECT to user;\n\ngrant select, insert, update, delete on emp678 to dbs101;\n\ngrant select on emp678 to demo_user, dbs5;\n\n--2. Revoke:\n--It is used to take back the permission.\n\nrevoke delete, select on emp678 from demo_user;\n\n--Creating a new user:\ncreate user dbs101 identified by admin;\n\n--Give session access to user:\ngrant create session to dbs101;\n\n--To access the table using new user, run the below in new user's connection:\nselect * from system.emp678;"
 },
 {
+  "date": "31-JAN-2026",
+  "session": "Afternoon",
+  "title": "Practice Session",
+  "subject": "SQL",
+  "time": "03:07 PM",
+  "body": "1. Ticketing tools: Service Now and JIRA\n\n-- Ticket is created using Service Now.\n-- The ticket get assigned to the respective team.\n-- The priority of the ticket is decided by the impact that issue has.\n   -- P1: High Priority Ticket (3-4 hours)\n   -- P2: Medium Priority Ticket (2-3 days)\n   -- P3: Low Priority Ticket (5-7 days)\n-- Once the ticket is assigned to your queue, you need to work on it.\n-- You need to update the work notes with the progress/action taken to solve the incident.\n\n2. WinSCP and Putty: Used for connecting to remote servers via GUI and CMD interface.\n\n1. Connect to Remote Desktop/Virtual machine\n2. Enter the credentials to connect.\n3. You need open WinSCP in Remote Desktop.\n4. Once it is opened, you need to enter the hostname and credentials to login to remote server.\n5. Left area is local filesystem and right side area is remote server filesystem.\n6. It is used to connect multiple servers, edit files, copy/paste files between local and remote servers, to update file/dir permissions... etc (Using GUI)\n\nPutty: It is CLI interface which is used to perform remote server operations using commands\n\n1. Open Putty in RD and enter the hostname.\n2. It will open terminal for you to run the commands and perform the operations.\n3. All the operations that you are doing in Ubuntu will be performed the same way in Putty."
+},
+{
+  "date": "31-JAN-2026",
+  "session": "Evening",
+  "title": "Practice Session",
+  "subject": "SQL",
+  "time": "09:07 PM",
+  "body": "1. Ticketing tools: Service Now and JIRA\n\n-- Ticket is created using Service Now.\n-- The ticket get assigned to the respective team.\n-- The priority of the ticket is decided by the impact that issue has.\n   -- P1: High Priority Ticket (3-4 hours)\n   -- P2: Medium Priority Ticket (2-3 days)\n   -- P3: Low Priority Ticket (5-7 days)\n-- Once the ticket is assigned to your queue, you need to work on it.\n-- You need to update the work notes with the progress/action taken to solve the incident.\n\n2. WinSCP and Putty: Used for connecting to remote servers via GUI and CMD interface.\n\n1. Connect to Remote Desktop/Virtual machine\n2. Enter the credentials to connect.\n3. You need open WinSCP in Remote Desktop.\n4. Once it is opened, you need to enter the hostname and credentials to login to remote server.\n5. Left area is local filesystem and right side area is remote server filesystem.\n6. It is used to connect multiple servers, edit files, copy/paste files between local and remote servers, to update file/dir permissions... etc (Using GUI)\n\nPutty: It is CLI interface which is used to perform remote server operations using commands\n\n1. Open Putty in RD and enter the hostname.\n2. It will open terminal for you to run the commands and perform the operations.\n3. All the operations that you are doing in Ubuntu will be performed the same way in Putty."
+},
+{
   "date": "02-FEB-2026",
   "session": "Afternoon",
   "title": "Practice Session",
