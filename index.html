@@ -112,6 +112,10 @@
   <nav class="navbar navbar-dark bg-dark">
     <div class="container d-flex align-items-center">
       <span class="navbar-brand">Practice Session Notes</span>
+      <button class="btn btn-danger ms-3"
+  onclick="initExam()">
+  SQL Assesment (MCQ + Scenario based)
+</button>
 
 <button id="openAssignmentsBtn" class="btn btn-warning ms-3"
   onclick="document.getElementById('assignmentSection').scrollIntoView({behavior:'smooth'})">
@@ -130,7 +134,7 @@
   </nav>
   <div class="motivation-bar">
   <div class="motivation-text">
-    🌟 New Year 2026 🌟 Discipline beats motivation. Show up every day, even when you don’t feel like it 🚀
+    🌟🚀 Work hard in silence today, so your offer letter speaks loudly tomorrow. 💼🔥 
   </div>
 </div>
 
@@ -209,7 +213,425 @@
   
 </section>
 
+<!-- ================= EXAM MODULE ================= -->
+<section id="examSection" class="d-none mt-5">
+  <div class="card p-4">
+    <div class="d-flex justify-content-between">
+      <h3>SQL Assesment</h3>
+      <ul class="list-group list-group-flush mb-4">
+            <li class="list-group-item">⏱ <b>Total Time:</b> 20 Minutes</li>
+            <li class="list-group-item">📝 <b>Section A:</b> 40 MCQs (1 mark each)</li>
+            <li class="list-group-item">💻 <b>Section B:</b> 5 SQL Queries (4 marks each)</li>
+            <li class="list-group-item">🚫 <b>Strict Policy:</b> Auto-submit on tab switch or minimizing.</li>
+      </ul>
+      <h5>⏳ Time Left: <span id="timer">20:00</span></h5>
+    </div>
 
+    <hr>
+
+    <form id="examForm">
+
+      <h4>SQL: Section A: Multiple Choice Questions (40 Marks)</h4>
+<hr>
+
+<!-- Q1 -->
+<div class="mb-3">
+<p><b>Q1. Which data type stores fixed-length character data?</b></p>
+<input type="radio" name="q1" value="A"> VARCHAR2<br>
+<input type="radio" name="q1" value="B"> CHAR<br>
+<input type="radio" name="q1" value="C"> NUMBER<br>
+<input type="radio" name="q1" value="D"> DATE<br>
+</div>
+
+<!-- Q2 -->
+<div class="mb-3">
+<p><b>Q2. Maximum size of VARCHAR2 in Oracle is?</b></p>
+<input type="radio" name="q2" value="A"> 2000 bytes<br>
+<input type="radio" name="q2" value="B"> 4000 bytes<br>
+<input type="radio" name="q2" value="C"> 2 GB<br>
+<input type="radio" name="q2" value="D"> 1000 bytes<br>
+</div>
+
+<!-- Q3 -->
+<div class="mb-3">
+<p><b>Q3. Which data type supports multilingual data?</b></p>
+<input type="radio" name="q3" value="A"> CHAR<br>
+<input type="radio" name="q3" value="B"> NCHAR<br>
+<input type="radio" name="q3" value="C"> LONG<br>
+<input type="radio" name="q3" value="D"> DATE<br>
+</div>
+
+<!-- Q4 -->
+<div class="mb-3">
+<p><b>Q4. Maximum precision supported by NUMBER is?</b></p>
+<input type="radio" name="q4" value="A"> 20<br>
+<input type="radio" name="q4" value="B"> 30<br>
+<input type="radio" name="q4" value="C"> 38<br>
+<input type="radio" name="q4" value="D"> 50<br>
+</div>
+
+<!-- Q5 -->
+<div class="mb-3">
+<p><b>Q5. NUMBER(4,2) can store:</b></p>
+<input type="radio" name="q5" value="A"> 9999<br>
+<input type="radio" name="q5" value="B"> 99.20<br>
+<input type="radio" name="q5" value="C"> 1234.567<br>
+<input type="radio" name="q5" value="D"> 999.999<br>
+</div>
+
+<!-- Q6 -->
+<div class="mb-3">
+<p><b>Q6. Which data type is used to store images?</b></p>
+<input type="radio" name="q6" value="A"> CLOB<br>
+<input type="radio" name="q6" value="B"> BLOB<br>
+<input type="radio" name="q6" value="C"> CHAR<br>
+<input type="radio" name="q6" value="D"> NUMBER<br>
+</div>
+
+<!-- Q7 -->
+<div class="mb-3">
+<p><b>Q7. Which command is DDL?</b></p>
+<input type="radio" name="q7" value="A"> INSERT<br>
+<input type="radio" name="q7" value="B"> CREATE<br>
+<input type="radio" name="q7" value="C"> UPDATE<br>
+<input type="radio" name="q7" value="D"> SELECT<br>
+</div>
+
+<!-- Q8 -->
+<div class="mb-3">
+<p><b>Q8. Which command is DML?</b></p>
+<input type="radio" name="q8" value="A"> GRANT<br>
+<input type="radio" name="q8" value="B"> INSERT<br>
+<input type="radio" name="q8" value="C"> ALTER<br>
+<input type="radio" name="q8" value="D"> COMMIT<br>
+</div>
+
+<!-- Q9 -->
+<div class="mb-3">
+<p><b>Q9. WHERE clause is used to:</b></p>
+<input type="radio" name="q9" value="A"> Sort records<br>
+<input type="radio" name="q9" value="B"> Filter records<br>
+<input type="radio" name="q9" value="C"> Group records<br>
+<input type="radio" name="q9" value="D"> Remove duplicates<br>
+</div>
+
+<!-- Q10 -->
+<div class="mb-3">
+<p><b>Q10. DISTINCT is used to:</b></p>
+<input type="radio" name="q10" value="A"> Remove duplicates<br>
+<input type="radio" name="q10" value="B"> Sort records<br>
+<input type="radio" name="q10" value="C"> Join tables<br>
+<input type="radio" name="q10" value="D"> Filter records<br>
+</div>
+
+<!-- Q11 -->
+<div class="mb-3">
+<p><b>Q11. PRIMARY KEY enforces:</b></p>
+<input type="radio" name="q11" value="A"> Only unique<br>
+<input type="radio" name="q11" value="B"> Only not null<br>
+<input type="radio" name="q11" value="C"> Unique and Not Null<br>
+<input type="radio" name="q11" value="D"> Default values<br>
+</div>
+
+<!-- Q12 -->
+<div class="mb-3">
+<p><b>Q12. FOREIGN KEY is used to:</b></p>
+<input type="radio" name="q12" value="A"> Identify table<br>
+<input type="radio" name="q12" value="B"> Link two tables<br>
+<input type="radio" name="q12" value="C"> Delete rows<br>
+<input type="radio" name="q12" value="D"> Sort records<br>
+</div>
+
+<!-- Q13 -->
+<div class="mb-3">
+<p><b>Q13. LEFT JOIN returns:</b></p>
+<input type="radio" name="q13" value="A"> Matching rows only<br>
+<input type="radio" name="q13" value="B"> All left table rows<br>
+<input type="radio" name="q13" value="C"> All right table rows<br>
+<input type="radio" name="q13" value="D"> No rows<br>
+</div>
+
+<!-- Q14 -->
+<div class="mb-3">
+<p><b>Q14. RIGHT JOIN returns:</b></p>
+<input type="radio" name="q14" value="A"> All right table rows<br>
+<input type="radio" name="q14" value="B"> All left rows<br>
+<input type="radio" name="q14" value="C"> Matching only<br>
+<input type="radio" name="q14" value="D"> Cartesian product<br>
+</div>
+
+<!-- Q15 -->
+<div class="mb-3">
+<p><b>Q15. FULL JOIN returns:</b></p>
+<input type="radio" name="q15" value="A"> Matching only<br>
+<input type="radio" name="q15" value="B"> Left only<br>
+<input type="radio" name="q15" value="C"> All records from both tables<br>
+<input type="radio" name="q15" value="D"> Right only<br>
+</div>
+
+<!-- Q16 -->
+<div class="mb-3">
+<p><b>Q16. CROSS JOIN produces:</b></p>
+<input type="radio" name="q16" value="A"> Matching rows<br>
+<input type="radio" name="q16" value="B"> Cartesian product<br>
+<input type="radio" name="q16" value="C"> Grouped rows<br>
+<input type="radio" name="q16" value="D"> Filtered rows<br>
+</div>
+
+<!-- Q17 -->
+<div class="mb-3">
+<p><b>Q17. A subquery is:</b></p>
+<input type="radio" name="q17" value="A"> Query inside query<br>
+<input type="radio" name="q17" value="B"> Join condition<br>
+<input type="radio" name="q17" value="C"> Constraint<br>
+<input type="radio" name="q17" value="D"> Operator<br>
+</div>
+
+<!-- Q18 -->
+<div class="mb-3">
+<p><b>Q18. GROUP BY is used with:</b></p>
+<input type="radio" name="q18" value="A"> WHERE<br>
+<input type="radio" name="q18" value="B"> Aggregate functions<br>
+<input type="radio" name="q18" value="C"> ORDER BY<br>
+<input type="radio" name="q18" value="D"> JOIN<br>
+</div>
+
+<!-- Q19 -->
+<div class="mb-3">
+<p><b>Q19. HAVING clause filters:</b></p>
+<input type="radio" name="q19" value="A"> Rows<br>
+<input type="radio" name="q19" value="B"> Groups<br>
+<input type="radio" name="q19" value="C"> Tables<br>
+<input type="radio" name="q19" value="D"> Columns<br>
+</div>
+
+<!-- Q20 -->
+<div class="mb-3">
+<p><b>Q20. RANK() function gives:</b></p>
+<input type="radio" name="q20" value="A"> Rank without gaps<br>
+<input type="radio" name="q20" value="B"> Rank with gaps<br>
+<input type="radio" name="q20" value="C"> Row number only<br>
+<input type="radio" name="q20" value="D"> Count value<br>
+</div>
+
+<!-- Q21 -->
+<div class="mb-3">
+<p><b>Q21. DENSE_RANK() gives:</b></p>
+<input type="radio" name="q21" value="A"> Rank with gaps<br>
+<input type="radio" name="q21" value="B"> Rank without gaps<br>
+<input type="radio" name="q21" value="C"> Duplicate ranks<br>
+<input type="radio" name="q21" value="D"> Count<br>
+</div>
+
+<!-- Q22 -->
+<div class="mb-3">
+<p><b>Q22. ROW_NUMBER() gives:</b></p>
+<input type="radio" name="q22" value="A"> Sequential unique numbers<br>
+<input type="radio" name="q22" value="B"> Same rank<br>
+<input type="radio" name="q22" value="C"> Gaps<br>
+<input type="radio" name="q22" value="D"> Count<br>
+</div>
+
+<!-- Q23 -->
+<div class="mb-3">
+<p><b>Q23. ROWNUM is:</b></p>
+<input type="radio" name="q23" value="A"> Function<br>
+<input type="radio" name="q23" value="B"> Pseudo column<br>
+<input type="radio" name="q23" value="C"> Constraint<br>
+<input type="radio" name="q23" value="D"> Operator<br>
+</div>
+
+<!-- Q24 -->
+<div class="mb-3">
+<p><b>Q24. CHECK constraint is used to:</b></p>
+<input type="radio" name="q24" value="A"> Restrict values<br>
+<input type="radio" name="q24" value="B"> Create table<br>
+<input type="radio" name="q24" value="C"> Delete table<br>
+<input type="radio" name="q24" value="D"> Sort data<br>
+</div>
+
+<!-- Q25 -->
+<div class="mb-3">
+<p><b>Q25. DEFAULT constraint is used to:</b></p>
+<input type="radio" name="q25" value="A"> Set automatic value<br>
+<input type="radio" name="q25" value="B"> Remove null<br>
+<input type="radio" name="q25" value="C"> Join table<br>
+<input type="radio" name="q25" value="D"> Sort data<br>
+</div>
+
+<!-- Q26 -->
+<div class="mb-3">
+<p><b>Q26. UNIQUE constraint allows:</b></p>
+<input type="radio" name="q26" value="A"> Duplicate values<br>
+<input type="radio" name="q26" value="B"> Unique values<br>
+<input type="radio" name="q26" value="C"> Null only<br>
+<input type="radio" name="q26" value="D"> Default only<br>
+</div>
+
+<!-- Q27 -->
+<div class="mb-3">
+<p><b>Q27. ORDER BY DESC means:</b></p>
+<input type="radio" name="q27" value="A"> Ascending<br>
+<input type="radio" name="q27" value="B"> Descending<br>
+<input type="radio" name="q27" value="C"> Grouping<br>
+<input type="radio" name="q27" value="D"> Filtering<br>
+</div>
+
+<!-- Q28 -->
+<div class="mb-3">
+<p><b>Q28. UPPER() is:</b></p>
+<input type="radio" name="q28" value="A"> Number function<br>
+<input type="radio" name="q28" value="B"> Character function<br>
+<input type="radio" name="q28" value="C"> Date function<br>
+<input type="radio" name="q28" value="D"> Logical function<br>
+</div>
+
+<!-- Q29 -->
+<div class="mb-3">
+<p><b>Q29. ROUND() is:</b></p>
+<input type="radio" name="q29" value="A"> Character function<br>
+<input type="radio" name="q29" value="B"> Number function<br>
+<input type="radio" name="q29" value="C"> Date function<br>
+<input type="radio" name="q29" value="D"> Logical function<br>
+</div>
+
+<!-- Q30 -->
+<div class="mb-3">
+<p><b>Q30. SYSDATE returns:</b></p>
+<input type="radio" name="q30" value="A"> Current number<br>
+<input type="radio" name="q30" value="B"> Current date<br>
+<input type="radio" name="q30" value="C"> Current string<br>
+<input type="radio" name="q30" value="D"> Null<br>
+</div>
+
+<!-- Q31 -->
+<div class="mb-3">
+<p><b>Q31. TO_CHAR() is:</b></p>
+<input type="radio" name="q31" value="A"> Conversion function<br>
+<input type="radio" name="q31" value="B"> Date function<br>
+<input type="radio" name="q31" value="C"> Join function<br>
+<input type="radio" name="q31" value="D"> Logical function<br>
+</div>
+
+<!-- Q32 -->
+<div class="mb-3">
+<p><b>Q32. CASE expression is used for:</b></p>
+<input type="radio" name="q32" value="A"> Looping<br>
+<input type="radio" name="q32" value="B"> Conditional logic<br>
+<input type="radio" name="q32" value="C"> Sorting<br>
+<input type="radio" name="q32" value="D"> Joining<br>
+</div>
+
+<!-- Q33 -->
+<div class="mb-3">
+<p><b>Q33. COMMIT is:</b></p>
+<input type="radio" name="q33" value="A"> DML<br>
+<input type="radio" name="q33" value="B"> TCL<br>
+<input type="radio" name="q33" value="C"> DDL<br>
+<input type="radio" name="q33" value="D"> DCL<br>
+</div>
+
+<!-- Q34 -->
+<div class="mb-3">
+<p><b>Q34. GRANT belongs to:</b></p>
+<input type="radio" name="q34" value="A"> DDL<br>
+<input type="radio" name="q34" value="B"> DML<br>
+<input type="radio" name="q34" value="C"> DCL<br>
+<input type="radio" name="q34" value="D"> TCL<br>
+</div>
+
+<!-- Q35 -->
+<div class="mb-3">
+<p><b>Q35. Arithmetic operator example:</b></p>
+<input type="radio" name="q35" value="A"> AND<br>
+<input type="radio" name="q35" value="B"> +<br>
+<input type="radio" name="q35" value="C"> LIKE<br>
+<input type="radio" name="q35" value="D"> IN<br>
+</div>
+
+<!-- Q36 -->
+<div class="mb-3">
+<p><b>Q36. Relational operator example:</b></p>
+<input type="radio" name="q36" value="A"> ><br>
+<input type="radio" name="q36" value="B"> +<br>
+<input type="radio" name="q36" value="C"> ||<br>
+<input type="radio" name="q36" value="D"> AND<br>
+</div>
+
+<!-- Q37 -->
+<div class="mb-3">
+<p><b>Q37. Logical operator example:</b></p>
+<input type="radio" name="q37" value="A"> OR<br>
+<input type="radio" name="q37" value="B"> +<br>
+<input type="radio" name="q37" value="C"> =<br>
+<input type="radio" name="q37" value="D"> *<br>
+</div>
+
+<!-- Q38 -->
+<div class="mb-3">
+<p><b>Q38. Which LOB stores large text data?</b></p>
+<input type="radio" name="q38" value="A"> BLOB<br>
+<input type="radio" name="q38" value="B"> CLOB<br>
+<input type="radio" name="q38" value="C"> RAW<br>
+<input type="radio" name="q38" value="D"> LONG<br>
+</div>
+
+<!-- Q39 -->
+<div class="mb-3">
+<p><b>Q39. Only one LONG column is allowed per:</b></p>
+<input type="radio" name="q39" value="A"> Database<br>
+<input type="radio" name="q39" value="B"> Table<br>
+<input type="radio" name="q39" value="C"> Schema<br>
+<input type="radio" name="q39" value="D"> View<br>
+</div>
+
+<!-- Q40 -->
+<div class="mb-3">
+<p><b>Q40. HAVING is used with:</b></p>
+<input type="radio" name="q40" value="A"> GROUP BY<br>
+<input type="radio" name="q40" value="B"> WHERE<br>
+<input type="radio" name="q40" value="C"> ORDER BY<br>
+<input type="radio" name="q40" value="D"> JOIN<br>
+</div>
+
+<h4>Section B: SQL Query Writing (20 Marks)</h4>
+<hr>
+
+<div class="mb-4">
+<p><b>Q41.</b> STUDENTS(student_id, name, course_id) and COURSES(course_id, course_name).  
+Write a query to display student name and course name using INNER JOIN.</p>
+<textarea name="q41" class="form-control" rows="4" required></textarea>
+</div>
+
+<div class="mb-4">
+<p><b>Q42.</b> Write a query to display all students even if they are not enrolled in any course.</p>
+<textarea name="q42" class="form-control" rows="4" required></textarea>
+</div>
+
+<div class="mb-4">
+<p><b>Q43.</b> EMP(emp_id, name, salary).  
+Write a subquery to find employees earning more than average salary.</p>
+<textarea name="q43" class="form-control" rows="4" required></textarea>
+</div>
+
+<div class="mb-4">
+<p><b>Q44.</b> Write a query using subquery to find second highest salary.</p>
+<textarea name="q44" class="form-control" rows="4" required></textarea>
+</div>
+
+<div class="mb-4">
+<p><b>Q45.</b> DEPT(dept_id, dept_name) and EMP(emp_id, salary, dept_id).  
+Write a query to display department name and total salary using GROUP BY.</p>
+<textarea name="q45" class="form-control" rows="4" required></textarea>
+</div>
+
+      <button type="button" class="btn btn-success"
+        onclick="submitExam()">Submit Exam</button>
+
+    </form>
+  </div>
+</section>
+<!-- ================================================= -->
 
   </main>
 
@@ -602,7 +1024,7 @@ document.getElementById('batchSelect').addEventListener('change', () => {
 
   </script>
 <script>
-  window.API = 'https://script.google.com/macros/s/AKfycbzurA9vWdShU3aaJ0nKCT3PqqQET4reewk7oWV0SMPEgl2sTOovZlGz14tJZPPruf-ZPA/exec';
+  window.API = 'https://script.google.com/macros/s/AKfycbxAZb0HF920Ye-IXjVZCJumioWX3kzt3PWdVzTO1vSSEV0u-gNZtBSksIIUPlmNS1zmnQ/exec';
 </script>
 
 
@@ -886,6 +1308,186 @@ setInterval(fetchOnlineUsers, 10000);
   }
 </script>
 
+<script>
+let examStarted = false;
+let examSubmitted = false;
+let examDuration = 20 * 60; // 20 minutes
+let timerInterval;
 
+// ================= INIT EXAM =================
+async function initExam() {
+
+  const name = prompt("Enter Your Full Name");
+  if (!name || name.trim().length < 3) {
+    alert("Enter valid full name");
+    return;
+  }
+
+  const mobile = prompt("Enter 10 Digit Mobile Number");
+  const cleanMobile = mobile ? mobile.replace(/\D/g, '') : '';
+
+  if (!/^\d{10}$/.test(cleanMobile)) {
+    alert("Mobile number must be exactly 10 digits");
+    return;
+  }
+
+  const email = prompt("Enter Your Email Address");
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!email || !emailPattern.test(email)) {
+    alert("Enter valid email address");
+    return;
+  }
+
+  // Check one attempt
+  const res = await fetch(API, {
+    method: 'POST',
+    body: JSON.stringify({
+      action: "checkExamAttempt",
+      mobile: cleanMobile
+    })
+  });
+
+  const data = await res.json();
+
+  if (!data.allowed) {
+    alert("❌ You have already attempted this exam.");
+    return;
+  }
+
+  window.studentExam = {
+    name: name.trim(),
+    mobile: cleanMobile,
+    email: email.trim()
+  };
+
+  document.getElementById("examSection").classList.remove("d-none");
+
+  startExam();
+}
+
+// ================= START =================
+function startExam() {
+  examStarted = true;
+  enterFullscreen();
+  startTimer();
+}
+
+// ================= TIMER =================
+function startTimer() {
+  timerInterval = setInterval(() => {
+
+    let min = Math.floor(examDuration / 60);
+    let sec = examDuration % 60;
+
+    document.getElementById("timer").innerText =
+      `${min}:${sec < 10 ? '0' : ''}${sec}`;
+
+    examDuration--;
+
+    if (examDuration < 0) {
+      clearInterval(timerInterval);
+      alert("⏰ Time Up!");
+      submitExam();
+    }
+
+  }, 1000);
+}
+
+
+
+// ================= SUBMIT =================
+
+async function submitExam() {
+  // 1. Prevent double submission
+  const submitBtn = document.querySelector('#examForm button[type="button"]');
+  if (submitBtn.disabled) return;
+  submitBtn.disabled = true;
+  submitBtn.innerText = "Submitting...";
+
+  try {
+    const form = document.getElementById('examForm');
+    
+    // 2. Prepare the payload structure the Script expects
+    const payload = {
+      action: "secureExamSubmit",           // Missing in your current code
+      name: window.studentExam.name,        // Missing in your current code
+      mobile: window.studentExam.mobile,    // Missing in your current code
+      email: window.studentExam.email,      // Missing in your current code
+      answers: {},                          // Object for MCQ (q1-q40)
+    };
+
+    // 3. Collect MCQ answers (q1 to q40) into the 'answers' object
+    for (let i = 1; i <= 40; i++) {
+      const q = form.querySelector(`input[name="q${i}"]:checked`);
+      payload.answers[`q${i}`] = q ? q.value : null;
+    }
+
+    // 4. Collect SQL answers (q41 to q45) directly into payload
+    for (let i = 41; i <= 45; i++) {
+      const q = form.querySelector(`textarea[name="q${i}"]`);
+      payload[`q${i}`] = q ? q.value.trim() : '';
+    }
+
+    // 5. Send to Google Script
+    const response = await fetch(window.API, { // Use the global API variable
+      method: "POST",
+      body: JSON.stringify(payload)
+    });
+
+    const result = await response.json();
+
+    if (result.status === "success") {
+      examSubmitted = true;
+      clearInterval(timerInterval);
+      alert("✅ Exam submitted successfully! Check your email for the scorecard.");
+      document.getElementById("examSection").innerHTML = `
+        <div class="alert alert-success text-center">
+          <h3>Exam Submitted!</h3>
+          <p>Your results have been sent to ${window.studentExam.email}</p>
+        </div>`;
+    } else {
+      throw new Error(result.message || "Server rejected submission");
+    }
+
+  } catch (err) {
+    console.error("Submission error:", err);
+    alert("❌ Error: " + err.message);
+    submitBtn.disabled = false;
+    submitBtn.innerText = "Submit Exam";
+  }
+}
+
+
+// ================= SECURITY =================
+
+// Disable right click
+document.addEventListener('contextmenu', e => e.preventDefault());
+
+// Disable copy
+document.addEventListener('copy', e => e.preventDefault());
+
+// Disable devtools
+document.addEventListener('keydown', function(e) {
+  if (e.key === "F12" ||
+     (e.ctrlKey && e.shiftKey && e.key === 'I') ||
+     (e.ctrlKey && e.key === 'U')) {
+    e.preventDefault();
+  }
+});
+
+// Tab switch
+document.addEventListener("visibilitychange", function () {
+  if (examStarted && !examSubmitted && document.hidden) {
+    alert("⚠ Tab switch detected. Auto submitting.");
+    submitExam();
+  }
+});
+
+function enterFullscreen() {
+  const elem = document.documentElement;
+  if (elem.requestFullscreen) elem.requestFullscreen();
+}
+</script>
 </body>
 </html>
