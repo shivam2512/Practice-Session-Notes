@@ -1402,5 +1402,14 @@
   "time": "09:56 PM",
   "batch": "JAN_22_2026",
   "body": "Mailx command configuration: Refer to: 24-FEB-26 Afternoon Practice Session Notes"
+},
+{
+  "date": "26-FEB-2026",
+  "session": "Afternoon",
+  "title": "Practice Session",
+  "subject": "LINUX",
+  "time": "03:08 PM",
+  "batch": "JAN_22_2026",
+  "body": "# who : who are the users logged-in into the server.\nHow many users logged in into the server that will check\n\n# whoami : who is the user login into the session.\n\n# uname : It will show you which OS you are using (Linux, AIX, SunOS, HP-UX)\n# uname -a : shows all details of the system. (OS name, System Configuration, Terminal Details…etc…..)\n\n# hostname : It will also show the server name in which you are logged in.\n\n# script : script command use to record your session into new file.\ne.g. # script history_log.txt\nScript started, file is history_log.txt\n<Enter some commands>\nTo stop script, type exit and press [Enter]. Then you will get below massage.\nScript done, file is history_log.txt\n\n# cat :- with the help of cat command you can view the containt of history_log.txt file\ncat history_log.txt\n\n## SPACE MANAGEMENT COMMANDS:\n\n# df : Use to check disk space.\ndf -h is used to check disk space in human readable format.\n\n# du : Use to check directory space\ndu -h is used to check directory space in human readable format.\n\n# tty : shows you terminal name\n\n# stty : shows you terminal details\n\n# mkdir : Use to create directory/folder in UNIX.\n$ mkdir anushka -- - - - - -- - 1 directory created\n$ mkdir salman khan -- - -- - - 2 directories created\n$ mkdir \"aamir khan\" --------- 1 directory created."
 }
 ]
