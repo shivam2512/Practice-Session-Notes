@@ -1420,5 +1420,14 @@
   "time": "09:56 PM",
   "batch": "JAN_22_2026",
   "body": "Mailx command configuration: Refer to: 24-FEB-26 Afternoon Practice Session Notes"
+},
+{
+  "date": "27-FEB-2026",
+  "session": "Afternoon",
+  "title": "Practice Session",
+  "subject": "LINUX",
+  "time": "04:00 PM",
+  "batch": "JAN_22_2026",
+  "body": "# rmdir : Use to delete an empty directories only.\n$ rmdir anushka\n\n# touch : Use to create an empty file in UNIX.\n$ touch anushka.txt -- - - - - -- - 1 file created\n$ touch salman khan -- - -- - - 2 files created\n$ touch \"aamir khan\" --------- 1 file created.\n\n# rm : use to delete the files.\n# rm -r : use to delete the directories\n\n# ls - Command: It will show you list of files and directories present in your current folder.\n\nOption description\nls -a list all files including hidden file starting with '.'\nls --color colored list [=always/never/auto]\nls -d list directories - with ' */'\nls -F add one char of */=>@| to entries. (* = executive files, / = directory, @ = linking files)\nls -i list file's inode index number\nls -l list with long format - show permissions\nls -la list long format including hidden files\nls -lh list long format with readable file size\nls -ls list with long format with file size\nls -r list in reverse order\nls -R list recursively directory tree\nls -s list file size\nls -S sort by file size\nls -t sort by time & date\nls -X sort by extension name\n\nWhat is inode number? : - It is a unique number which assigns to each files and directories in UNIX by administrator for identification purpose and that unique number called as inode number.\n\nHow to check hidden files in UNIX? : Files and directories name start with (.) dot these are hidden files or hidden directories in UNIX.\n# ls -a command will show you all files including hidden files."
 }
 ]
