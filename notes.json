@@ -1438,5 +1438,14 @@
   "time": "08:37 PM",
   "batch": "JAN_22_2026",
   "body": "Mailx command configuration: Refer to: 24-FEB-26 Afternoon Practice Session Notes"
+},
+{
+  "date": "28-FEB-2026",
+  "session": "Afternoon",
+  "title": "Practice Session",
+  "subject": "SQL",
+  "time": "02:50 PM",
+  "batch": "JAN_22_2026",
+  "body": "--PLSQL:\n\n--1. Index.\n--2. Triggers.\n--3. Procedures.\n\n--1. Index: It is a database shortcut that helps find data faster.\n\nJust Like:\nBook Index: Quickly find the page number for specific topic/content.\nSQL Index: Quickly find required row.\n\nTypes:\n1. Primary index: Created automatically when you define PRIMARY KEY. No duplicate values allowed.\n\nselect * from employee;\nReal time: Searching employee using emp_id is very fast.\n\n2. Unique index: Does not allow duplicate values.\nUsed for columns like PAN, Email, Aadhar, Bank Account No.\n\n3. Single column index: It is a index on single column of the table.\n\nselect * from emp where emp_id=105;\n\n--creating index on emp_id column\ncreate index idx_emp_id on emp(emp_id);\n\nselect * from emp where emp_id between 100 and 200 and city = 'MUMBAI';\n\ncreate index idx_emp_id on emp(emp_id, city);\n\n--2. Procedure in SQL: A procedure is a stored program in the database that performs a specific task.\n\nLike:\nSQL Query -> single instructions\nProcedure -> saved set of SQL statements that run together.\n\nIt is stored in the database and can be reused anytime.\n\n--Why to use:\n--to reuse logic\n--to reduce repeated code\n--to improve performance\n\nTask: Increase salary of an employee:\nselect * from employee;\n\ncreate or replace procedure updt_salary\n(\np_emp_id number,\np_amount number\n)\nas\nbegin\nupdate employee set salary = salary + p_amount\nwhere emp_id=p_emp_id;\ncommit;\nend;\n/\n\n--to run the proc:\nexec updt_salary(2,14000);\n\nex: e-comm: used to update order status\nArchive old reports/ old logs\nInsert logs\n\n--Triggers: A trigger is a special program that runs automatically when a specific event happens in a table.\n\nselect * from employee;\n\ncreate table salary_audit\n(\nemp_id number,\nold_salary number,\nnew_salary number,\nupdated_on date\n);\n\nselect * from salary_audit;\n\n--Syntax to create trigger:\n\ncreate or replace trigger trg_salary_update\nbefore update of salary on employee\nfor each row\nbegin\ninsert into salary_audit\nvalues (:old.emp_id,\n:old.salary,\n:new.salary,\nsysdate);\nend;\n/\n\nselect * from employee;\nupdate employee set salary=salary +2500 where emp_id=3;\n\nselect * from salary_audit;"
 }
 ]
