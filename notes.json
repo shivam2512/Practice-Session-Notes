@@ -1519,5 +1519,14 @@
   "time": "03:05 PM",
   "batch": "JAN_22_2026",
   "body": "To create a new user:\nsudo useradd -m user_name\n\nTo set password for new user:\nsudo passwd user_name\n\nTo view how many users are there in system:\nawk -F: '$3>=1000 {print $1}' /etc/passwd\n\n# chown : to change the owner of the file and directory\n\n# chown <New_owner_id/name> <File_name>\n# chown oracle abc.txt\n\n# chgrp : to change the group name\n\n# chgrp <New_group_id/name> <File_name>\n# chgrp dba_support abc.txt\n\n# file : It will show you file type. (empty file, text file or executable file)\n# file abc.txt\n\n# comm : It will show you common attribute of both files. Example below\n# comm file1.txt file2.txt\n\n# diff : It will show you different attribute of both files. Eg. Below\n# diff file1.txt file2.txt\n\n# sort : sort will sort the file content (lines) alphabetically.\n# sort animal.txt\n\nto sort in descending order type:\nsort -r file_name"
+},
+{
+  "date": "05-MAR-2026",
+  "session": "Evening",
+  "title": "Practice Session",
+  "subject": "LINUX",
+  "time": "08:45 PM",
+  "batch": "JAN_22_2026",
+  "body": "To create a new user:\nsudo useradd -m user_name\n\nTo set password for new user:\nsudo passwd user_name\n\nTo view how many users are there in system:\nawk -F: '$3>=1000 {print $1}' /etc/passwd\n\n# chown : to change the owner of the file and directory\n\n# chown <New_owner_id/name> <File_name>\n# chown oracle abc.txt\n\n# chgrp : to change the group name\n\n# chgrp <New_group_id/name> <File_name>\n# chgrp dba_support abc.txt\n\n# file : It will show you file type. (empty file, text file or executable file)\n# file abc.txt\n\n# comm : It will show you common attribute of both files. Example below\n# comm file1.txt file2.txt\n\n# diff : It will show you different attribute of both files. Eg. Below\n# diff file1.txt file2.txt\n\n# sort : sort will sort the file content (lines) alphabetically.\n# sort animal.txt\n\nto sort in descending order type:\nsort -r file_name"
 }
 ]
