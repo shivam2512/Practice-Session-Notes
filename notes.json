@@ -1555,5 +1555,14 @@
   "time": "02:33 PM",
   "batch": "JAN_22_2026",
   "body": "REVISION till 'ls' command"
+},
+{
+  "date": "07-MAR-2026",
+  "session": "Evening",
+  "title": "Practice Session",
+  "subject": "LINUX",
+  "time": "07:40 PM",
+  "batch": "JAN_22_2026",
+  "body": "REVISION till 'File and Directory Permissions'"
 }
 ]
