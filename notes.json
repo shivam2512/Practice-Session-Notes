@@ -1618,5 +1618,14 @@
   "time": "08:25 PM",
   "batch": "JAN_22_2026",
   "body": "Process kill:-\n# kill : this command use to kill the process in unix.\n# kill <pid of the process>\n\nWith the help of # kill if your process is not get killed then you can use below command to kill it.\n\n# kill -15 : e.g. # kill -15 <pid>\n# kill -15 101143\n\n# kill -9 : Forcefully killed. E.g. # kill -9 <pid>\n# kill -9 101143\n\nNote: # kill -9 is forcefully killed option with the help of this command you can easily killed any stuck or zombies or daemon processes.\n\nnice: is used to run a program with a specific CPU priority.\n\nSyntax:\nnice -n [priority] command\n\nPriority(nice value): -20 to 19\nLower value -> Higher value\nHigher value -> Lower value\n\n-20: Highest Priority\n0: Default Priority\n19: Lowest Priority\n\nnice -n -20 tar -cvf bkp.tar 1_new.txt file1.txt file2.txt filenew55.txt\nProcess runs very fast and gets the more CPU priority.\n\nnice -n 19 tar -cvf backup.tar abc.txt file1.txt file2.txt\nProcess runs only when CPU is free.\n\nnice -n 0 tar -cvf backup.tar abc.txt file1.txt file2.txt OR\ntar -cvf backup.tar abc.txt file1.txt file2.txt\n\nJOB Running commands:\n\n1. &: is used to run a command in the background so the terminal can be used for other commands.\n\nsleep 60 &\n\nsleep runs for 60 seconds in background, terminal is free to run other commands for that 60 seconds.\n\n2. fg: is used to bring a background process back to the foreground.\n\nmove job to background:\nsleep 100 &\n\nto view the background jobs: cmd: jobs\n[1]+ Running sleep 60 &\n\nto bring the job on foreground:\nfg %1\n\n3. nohup (Run process even after logout): runs a process that continues even if the terminal is closed or you are logged out of system.\n\nnohup sleep 120 &\n\nsleep 120 -> waits for 120 seconds\nnohup -> keeps running even if you logout\n& -> runs in background."
+},
+{
+  "date": "12-MAR-2026",
+  "session": "Afternoon",
+  "title": "Practice Session",
+  "subject": "LINUX",
+  "time": "03:18 PM",
+  "batch": "JAN_22_2026",
+  "body": "mailx command configuration."
 }
 ]
