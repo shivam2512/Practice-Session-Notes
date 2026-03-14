@@ -1663,5 +1663,14 @@
   "time": "02:43 PM",
   "batch": "JAN_22_2026",
   "body": "REVISION from chown to process kill commands"
+},
+{
+  "date": "14-MAR-2026",
+  "session": "Evening",
+  "title": "Practice Session",
+  "subject": "LINUX",
+  "time": "07:42 PM",
+  "batch": "JAN_22_2026",
+  "body": "REVISION from & command to Hard and Soft Links"
 }
 ]
