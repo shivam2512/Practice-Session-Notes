@@ -1672,5 +1672,23 @@
   "time": "07:42 PM",
   "batch": "JAN_22_2026",
   "body": "REVISION from & command to Hard and Soft Links"
+},
+{
+  "date": "16-MAR-2026",
+  "session": "Afternoon",
+  "title": "Practice Session",
+  "subject": "LINUX",
+  "time": "03:00 PM",
+  "batch": "JAN_22_2026",
+  "body": "# tee : Output of 1st command stores in a new file.\n\n# ls -lrt | tee abc.txt\nOutput of ls -lrt stores in new file i.e. abc.txt\n\n# ps -ef | tee abcd.txt\nOutput of ps -ef stores in a new file i.e. abcd.txt\n\nWith the help of cat command also you can do the same, check below examples\n\n# ls -lrt | cat > abc.txt\n\n\n# HARD LINK and SOFT LINK:\nIn Linux, links are used to create references to files. There are two types of links:\n\n1. HARD LINK:\nA hard link is shortcut/another name for the same file (same inode number)\nIt points directly to the inode (actual data)\nIf the original file is deleted, the hard link still works\nCannot link directories\nYou can create at any location\n\nSyntax:\nln file_name hl_link_name\n\n\n2. SOFT LINK (Symbolic link):\nA soft link is like a shortcut that points to another file.\nPoints to file path, not inode\nIf original file is deleted -> link breaks\nYou need to create on the same path where the original file is present.\n\nSyntax:\nln -s filename sl_link_name"
+},
+{
+  "date": "16-MAR-2026",
+  "session": "Evening",
+  "title": "Practice Session",
+  "subject": "LINUX",
+  "time": "08:56 PM",
+  "batch": "JAN_22_2026",
+  "body": "# grep command:\nis used to search for a specific word or pattern inside files.\n\nSyntax:\ngrep [options] pattern filename\n\nEg 1: Search word in file\ngrep Unix result_new.txt\n\nShows all lines containing Unix in result_new.txt\n\nReal time use: Checking application logs for errors.\n\nEg 2: Ignore case:\ngrep -i word filename\n\nEg 3: Show line numbers\ngrep -n word filename\n\nEg 4: Recursive search in directory: It will search for any word across all files in a folder.\n\ngrep -r \"word\" /dirPath/\n\nEg: 5: show lines not matching\n\ngrep -v word filename\n\n\n# find command:\nis used to search files and directories based on name, size, date, permissions, etc.\n\nSyntax:\nfind [path] [conditions]\n\nEg: 1: Find file by name\nfind /home -name filename\n\nEg 2: Find all .log files\nfind /home/shivam/Documents -name \"*.log\"\n\nEg: 3: Find files larger than 100 MB\nfind /home/shivam/Documents -size +5k\n\nEg: 4: Find and delete files\nfind /dirPath/ -name \"*.tmp\" -delete\n\nEg: 5: Find files that are modified today\nfind /dirPath -mtime 0\n\n0 is used to check files modified in last 24 hours.\n\nEg: 6: To find only files we need to add -type f and if we need to find only folders/dir then we need to add -type d\n\n\n## sed command:\nsed (stream editor) is used to edit or replace text in files automatically.\n\nSyntax:\nsed 'operation' filename\n\nEg: 1: Replace word in output\nsed 's/Error/Warning/' filename\n\nEg: 2: Edit the file directly\nsed -i 's/wordToReplace/replace_with/g' filename\n\nEg: 3: Print specific line\nsed -n '3p' filename\n(it will print 3rd line from the file)\n\nEg: 4: Delete line containing word:\nsed '/error/d' filename\n\nIt will not include the lines containing error word in display"
 }
 ]
