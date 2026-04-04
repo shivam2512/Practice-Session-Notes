@@ -1951,5 +1951,14 @@
   "time": "08:58 PM",
   "batch": "FEB_19_2026",
   "body": "DML:\nMerge: It is used to INSERT + UPDATE in one single query.\n\nIn simple words: \nIf data already exists -> UPDATE it.\nIf data does not exist -> INSERT it.\n\nWhy to use MERGE ?\n\nInstead of writing:\nUPDATE first\nthen INSERT separately\n\nWe can do both in one query using MERGE.\n\nSyntax:\n\nMERGE INTO target_table t\nusing source_table s\non (t.comm_col=s.comm_col)\nwhen matched then\nupdate set ......\nwhen not matched then\ninsert into ......\n\nEg:\n\nWe have:\nstudents_main -> Main table\nstudents_new -> New data coming from file/API\n\n\nCreating the tables:\n\ncreate table students_main\n(\nstu_id number,\nstu_name varchar2(50)\n);\n\ncreate table students_new\n(\nstu_id number,\nstu_name varchar2(50)\n);\n\nInsert sample data:\n\n--Existing data:\ninsert into students_main values (1, 'Rahul');\ninsert into students_main values (2, 'Amit');\n\n--New incoming data\ninsert into students_new values (2, 'Amit Updated');\ninsert into students_new values (3, 'Pranav');\n\n\nApplying merge:\n\nmerge into students_main m\nusing students_new n\non (m.stu_id=n.stu_id) \nwhen matched then\nupdate set m.stu_name=n.stu_name\n\nwhen not matched then\ninsert (m.stu_id,m.stu_name) values (n.stu_id, n.stu_name);\n\nEg:\nemp_main -> Our production table (current emp. data)\nemp_hr_update -> Data received from HR (daily updated by HR)\n\nHR sends: \nSalary updates for existing employees.\nNew employees to be added\n\n\nCreating tables:\n\ncreate table emp_main\n(\nemp_id number,\nemp_main varchar2(50),\nemp_salary number\n);\n\n\ncreate table emp_hr_update\n(\nemp_id number, \nemp_name varchar2(50),\nemp_salary number\n)\n\n\nInserting sample data:\n\n--EXISTING DATA:\ninsert into emp_main values (101, 'Raj', 30000);\ninsert into emp_main values (102, 'Simran', 40000);\n\n--HR update\ninsert into emp_hr_update values (102, 'Simran', 45000); --salary updated\ninsert into emp_hr_update values (103, 'Arjun', 35000); --new employee added\n\nselect * from emp_hr_update;\n\nmerge into emp_main m\nusing emp_hr_update u\non (m.emp_id=u.emp_id) \nwhen matched then\nupdate set m.emp_salary=u.emp_salary\n\nwhen not matched then\ninsert (m.emp_id, m.emp_main, m.emp_salary) values \n(u.emp_id, u.emp_name,u.emp_salary);\n\nselect * from emp_main;"
+},
+{
+  "date": "04-APR-2026",
+  "session": "Afternoon",
+  "title": "Practice Session",
+  "subject": "SQL",
+  "time": "03:00 PM",
+  "batch": "FEB_19_2026",
+  "body": "## REVISION AND DOUBT CLEARING SESSION"
 }
 ]
