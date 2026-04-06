@@ -1969,5 +1969,14 @@
   "time": "07:30 PM",
   "batch": "FEB_19_2026",
   "body": "## REVISION AND DOUBT CLEARING SESSION"
+},
+{
+  "date": "06-APR-2026",
+  "session": "Afternoon",
+  "title": "Practice Session",
+  "subject": "SQL",
+  "time": "02:53 PM",
+  "batch": "FEB_19_2026",
+  "body": "--Ristrict and Sort Data:\n\n1. Where clause: is used for giving the conditions or to filter rows\nbased on a condition.\n\nselect * from account where balance > 15000;\n\nupdate account set balance=25000 where acc_no=445;\n\ndelete from account where acc_no=678;\n\n2. Order by: Sort the result set in asc or desc order based on columns\n(default= ASC)\n\nselect * from account order by balance asc;\nselect * from account order by name desc;\n\ndesc- descending order\nasc- ascending order\n--Ristrict and Sort Data:\n\n1. Where clause: is used for giving the conditions or to filter rows\nbased on a condition.\n\nselect * from account where balance > 10000;\n\nupdate account set balance=16000 where acc_no=555;\n\ndelete from account where acc_no=446;\n\n2. Order by: Sort the result set in asc or desc order based on columns\n(default= ASC)\n\nselect * from account order by name desc;\nselect * from account order by balance asc;\n\ndesc- descending order\nasc- ascending order\n\n3. Arithmetic operators: Performing calculations (+, -, *, /)\nBODMAS - Brackets, OFF, Division, Multiplication, Addition, Subtraction.\n\n--Addition (+):\n\nselect a.*, balance+10000 as bonus_balance from account a;\n\nupdate account set balance=balance+10000;\n\n-Subtraction (-):\nselect a.*, balance-5000 as reduced_balance from account a;\n\nupdate account set balance=balance-5000 where acc_no=678;\n\n\n--Multiplication (*):\nselect emp_id, emp_name,salary, salary * 12 as Annual_Salary\nfrom emp678;\n\nselect * from emp678;\n\nupdate emp678 set salary=salary*2;\n\n--Division (/):\nselect e.*, salary / 2 as half_salary from emp678 e;\n\nselect * from emp678;\n\nupdate emp678 set salary=salary/2;\n\nselect (100 + 20) * 10 / 5 - 30 as Result from dual;\n\n\ndual table: dummy table/ system generated table used for run time calculations/ system\ngenerated function testing\n\nBODMAS\n(100 + 20) * 10 / 5 - 30\n\n--B -- (100 + 20) = 120\n--O -- 120 * 10 = 1200\n--D -- 1200 / 5 = 240\n--S -- 240 - 30 = 210"
 }
 ]
