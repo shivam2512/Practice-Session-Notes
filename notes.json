@@ -2059,5 +2059,14 @@
   "time": "09:00 PM",
   "batch": "FEB_19_2026",
   "body": "DOUBTS DISCUSSION SESSION"
+},
+{
+  "date": "13-APR-2026",
+  "session": "Afternoon",
+  "title": "Practice Session",
+  "subject": "SQL",
+  "time": "03:01 PM",
+  "batch": "FEB_19_2026",
+  "body": "--Column level and Table level constraint:\n\nColumn level: This are applied directly on columns:\n\ncreate table table_name\n(\ncol1 datatype constraint,\ncol2 datatype constraint\n);\n\nTable level: This are applied after all columns are defined:\n\ncreate table table_name\n(\ncol1 datatype,\ncol2 datatype,\ncol3 datatype,\nconstraint cons_name primary key (col1, col2),\nconstraint cons_name unique (col3),\nconstraint chk_gender check(gender ='M' or gender='F')\n);\n\nTOPICS COVERED UNDER CONSTRAINTS:\nNOT NULL, UNIQUE, PRIMARY KEY, COMPOSITE PK, DEFAULT, CHECK, COL AND TABLE LEVEL CONST.\n\n--HOW TO DROP ANY CONSTRAINT\nalter table customer drop constraint PK_CUSTID_EMAIL;\n\n\n\n--Foreign Key Constraint: A foreign key (FK) is a rule that connects two tables\n--and keeps data valid.\n\n--It ensures that a value in one table(child table) must already exist\n--in another table (parent table).\n\n--Parent table\n\ncreate table students11\n(\nroll_no number primary key,\nname varchar2(100)\n);\n\n--Child Table:\ncreate table marks11\n(\nroll_no number,\nmarks number,\nconstraint fk_students foreign key(roll_no)\nreferences students11(roll_no)\n);\n\nselect * from marks11;\n\ninsert into students11 values (5, 'Rahul');\n\ninsert into marks11 values (1,80);\ninsert into marks11 values (5,90);\n\nIt will only allow you to insert marks for students for whom the roll_no is present in parent table (students11)\n\n\n--dropping constraint:\n\nalter table marks11 drop constraint FK_STUDENTS;\n\n--to create foreign key in existing table\nalter table marks11 add constraint fk_students foreign key (roll_no)\nreferences students11(roll_no);"
 }
 ]
