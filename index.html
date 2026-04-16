@@ -2,1493 +2,1218 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Practice Session Notes + Assignments (CodeMirror)</title>
+  <title>Practice Session Notes - Beautiful Edition</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  
   <style>
-    pre { white-space: pre-wrap; word-wrap: break-word; font-family: monospace; }
-    .calendar { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; margin-top: 10px; }
-    .weekday { font-weight: 600; text-align: center; color: #495057; padding: 6px 0; background: #f8f9fa; border-radius: 0.5rem; border: 1px solid #e9ecef; }
-    .calendar-day { border: 1px solid #dee2e6; padding: 12px; text-align: center; cursor: pointer; min-height: 70px; display: flex; align-items: center; justify-content: center; border-radius: 0.6rem; background-color: #ffffff; transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease; font-weight: 500; }
-    .calendar-day.has-notes { background: linear-gradient(135deg, #d1e7dd, #b6e0c2); color: #0f5132; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.25); border-color: #b6e0c2; }
-    .calendar-day.today { background: linear-gradient(135deg, #fff3cd, #ffe69c); color: #664d03; border-color: #ffe69c; box-shadow: 0 3px 10px rgba(255, 193, 7, 0.25); font-weight: 700; }
-    .calendar-day:hover { transform: translateY(-2px); background: linear-gradient(135deg, #f8d7da, #f5c2c7); color: #842029; box-shadow: 0 6px 16px rgba(220, 53, 69, 0.25); border-color: #f5c2c7; }
-    #calendarContainer .card { border: none; overflow: hidden; }
-    @media (max-width: 576px) {
-      .calendar { grid-template-columns: repeat(3, 1fr); }
-      .weekday { font-size: 0.8rem; padding: 4px 0; }
-      .calendar-day { min-height: 52px; font-size: 0.9rem; padding: 8px; }
-      .btn { width: 100%; }
-      .nav-controls h4 { font-size: 1rem; margin: 0 8px; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    /* Assignment styles */
-    #assignmentSection { margin: 32px 0; }
-    #codeEditor { height: 300px; border: 1px solid #ddd; border-radius: 4px; }
-    .modal { position: fixed; top:0; left:0; width:100%; height:100%; z-index:1050; display:none; background: rgba(0,0,0,0.4); }
-    .modal .modal-dialog { margin: 6rem auto; }
-    .text-truncate-multi { overflow:hidden; text-overflow:ellipsis; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; }
-   
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e3f2fd 50%, #e8eaf6 100%);
+    }
 
-   .new-dot {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  background: red;
-  border-radius: 50%;
-  margin-left: 6px;
-  animation: pulse 1s infinite;
-}
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
 
-@keyframes pulse {
-  0% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.5); opacity: 0.3; }
-  100% { transform: scale(1); opacity: 1; }
-}
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
 
-#newYearModal .modal-content {
-  border-radius: 16px;
-}
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
 
-#newYearModal .modal-header {
-  border-bottom: none;
-}
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(to bottom, #667eea, #764ba2);
+      border-radius: 5px;
+    }
 
-#newYearModal .modal-footer {
-  border-top: none;
-}
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(to bottom, #5568d3, #6a3f91);
+    }
 
-.motivation-bar {
-  overflow: hidden;
-  width: 100%;
-  background: linear-gradient(
-    270deg,
-    #0d6efd,
-    #6610f2,
-    #198754,
-    #20c997
-  );
-  background-size: 600% 600%;
-  animation: gradientMove 10s ease infinite;
-  padding: 10px 0;
-}
+    /* Navbar */
+    .navbar-custom {
+      background: linear-gradient(135deg, #1e293b 0%, #1e40af 50%, #4338ca 100%);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      padding: 1rem 0;
+    }
 
-.motivation-text {
-  display: inline-block;
-  white-space: nowrap;
-  color: #ffffff;
-  font-weight: 600;
-  font-size: 1rem;
-  padding-left: 100%;
-  animation: scrollText 18s linear infinite;
-}
+    .navbar-brand {
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #bfdbfe, #7dd3fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
 
-@keyframes gradientMove {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
+    .btn-exam {
+      background: linear-gradient(135deg, #ef4444, #dc2626);
+      color: white;
+      font-weight: 600;
+      padding: 0.7rem 1.5rem;
+      border-radius: 0.75rem;
+      border: none;
+      box-shadow: 0 8px 20px rgba(239, 68, 68, 0.4);
+      transition: all 0.3s ease;
+    }
 
-@keyframes scrollText {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-100%); }
-}
+    .btn-exam:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(239, 68, 68, 0.5);
+    }
 
-#assignmentSection,
-#openAssignmentsBtn {
-  display: none !important;
-}
+    .online-users {
+      color: #67e8f9;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
 
+    .online-dot {
+      width: 10px;
+      height: 10px;
+      background: #4ade80;
+      border-radius: 50%;
+      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
 
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    /* Motivation Bar */
+    .motivation-bar {
+      background: linear-gradient(270deg, #3b82f6, #8b5cf6, #10b981, #14b8a6);
+      background-size: 600% 600%;
+      animation: gradientMove 10s ease infinite;
+      overflow: hidden;
+      padding: 0.75rem 0;
+    }
+
+    .motivation-text {
+      display: inline-block;
+      white-space: nowrap;
+      color: white;
+      font-weight: 600;
+      font-size: 1rem;
+      padding-left: 100%;
+      animation: scrollText 20s linear infinite;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes scrollText {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+
+    /* Notification */
+    .notification-bar {
+      background: linear-gradient(135deg, #cffafe, #bfdbfe);
+      border-left: 4px solid #06b6d4;
+      color: #164e63;
+      padding: 1rem;
+      text-align: center;
+      font-weight: 500;
+      box-shadow: 0 4px 12px rgba(6, 182, 212, 0.2);
+    }
+
+    /* Buttons */
+    .btn-download {
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.75rem;
+      font-weight: 600;
+      border: none;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      transition: all 0.3s ease;
+      color: white;
+    }
+
+    .btn-download:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+      color: white;
+    }
+
+    .btn-green {
+      background: linear-gradient(135deg, #10b981, #059669);
+    }
+
+    .btn-blue {
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+    }
+
+    .btn-yellow {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+    }
+
+    .btn-red {
+      background: linear-gradient(135deg, #ef4444, #dc2626);
+    }
+
+    .btn-nav {
+      background: white;
+      border: 2px solid #e5e7eb;
+      color: #374151;
+      padding: 0.6rem 1.5rem;
+      border-radius: 0.75rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-nav:hover {
+      background: #f9fafb;
+      border-color: #9ca3af;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Calendar Container */
+    .calendar-container {
+      background: white;
+      border-radius: 1.5rem;
+      padding: 2rem;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+      margin-bottom: 2rem;
+    }
+
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 0.75rem;
+    }
+
+    .weekday-header {
+      text-align: center;
+      font-weight: 600;
+      color: #6b7280;
+      padding: 0.75rem;
+      background: linear-gradient(135deg, #f9fafb, #f3f4f6);
+      border-radius: 0.75rem;
+      border: 1px solid #e5e7eb;
+      font-size: 0.9rem;
+    }
+
+    .calendar-day {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 1rem;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1.1rem;
+      border: 2px solid #e5e7eb;
+      background: white;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .calendar-day:hover {
+      transform: translateY(-4px);
+      background: linear-gradient(135deg, #fce7f3, #fbcfe8);
+      border-color: #f9a8d4;
+      box-shadow: 0 12px 24px rgba(244, 114, 182, 0.3);
+      color: #831843;
+    }
+
+    .calendar-day.has-notes {
+      background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+      border-color: #6ee7b7;
+      color: #065f46;
+      box-shadow: 0 6px 16px rgba(16, 185, 129, 0.25);
+    }
+
+    .calendar-day.has-notes:hover {
+      background: linear-gradient(135deg, #a7f3d0, #6ee7b7);
+      box-shadow: 0 12px 24px rgba(16, 185, 129, 0.4);
+    }
+
+    .calendar-day.today {
+      background: linear-gradient(135deg, #fef3c7, #fde68a);
+      border-color: #fbbf24;
+      color: #78350f;
+      box-shadow: 0 8px 20px rgba(251, 191, 36, 0.3);
+      ring: 4px;
+      ring-color: #fef3c7;
+      font-weight: 700;
+    }
+
+    /* Notes Display */
+    .note-card {
+      background: white;
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+      margin-bottom: 1.5rem;
+      border-left: 4px solid #6366f1;
+      transition: all 0.3s ease;
+    }
+
+    .note-card:hover {
+      transform: scale(1.01);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.18);
+    }
+
+    .note-header {
+      background: linear-gradient(135deg, #6366f1, #3b82f6);
+      color: white;
+      padding: 1.5rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .note-body {
+      padding: 1.5rem;
+    }
+
+    .note-code {
+      background: linear-gradient(135deg, #f9fafb, #f1f5f9);
+      padding: 1rem;
+      border-radius: 0.75rem;
+      overflow-x: auto;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      border: 1px solid #e2e8f0;
+      box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Exam Styles */
+    .exam-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      background: white;
+      border-radius: 1.5rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    }
+
+    .exam-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 1.5rem;
+      border-bottom: 2px solid #e0e7ff;
+      margin-bottom: 2rem;
+    }
+
+    .exam-title {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .exam-timer {
+      text-align: right;
+    }
+
+    .timer-label {
+      font-size: 0.9rem;
+      color: #6b7280;
+    }
+
+    .timer-value {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #dc2626;
+    }
+
+    .exam-info {
+      background: linear-gradient(135deg, #eff6ff, #e0e7ff);
+      border-left: 4px solid #6366f1;
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .exam-info ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .exam-info li {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    .question-card {
+      background: linear-gradient(135deg, white, #fafafa);
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+      border: 2px solid #e5e7eb;
+      margin-bottom: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .question-card:hover {
+      border-color: #a78bfa;
+      box-shadow: 0 8px 20px rgba(167, 139, 250, 0.15);
+    }
+
+    .question-text {
+      font-weight: 600;
+      color: #1f2937;
+      margin-bottom: 1rem;
+    }
+
+    .option-label {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-bottom: 0.5rem;
+    }
+
+    .option-label:hover {
+      background: #ede9fe;
+    }
+
+    .sql-question-card {
+      background: linear-gradient(135deg, white, #eff6ff);
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+      border: 2px solid #bfdbfe;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
+    }
+
+    .sql-textarea {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid #cbd5e1;
+      border-radius: 0.5rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+
+    .sql-textarea:focus {
+      outline: none;
+      border-color: #6366f1;
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    }
+
+    .btn-submit {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: white;
+      padding: 1rem 3rem;
+      font-size: 1.2rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 1rem;
+      box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .btn-submit:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(16, 185, 129, 0.4);
+    }
+
+    /* Hidden assignment section */
+    #assignmentSection,
+    #openAssignmentsBtn {
+      display: none !important;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .calendar-grid {
+        grid-template-columns: repeat(7, 1fr);
+        gap: 0.4rem;
+      }
+
+      .calendar-day {
+        font-size: 0.9rem;
+        padding: 0.5rem;
+      }
+
+      .weekday-header {
+        font-size: 0.75rem;
+        padding: 0.5rem;
+      }
+
+      .btn-download {
+        width: 100%;
+        margin-bottom: 0.5rem;
+      }
+
+      .exam-header {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .navbar-custom .container {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+
+    .floating-notification {
+      position: fixed;
+      top: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 9999;
+      padding: 1rem 2rem;
+      border-radius: 0.75rem;
+      color: white;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      animation: slideDown 0.3s ease;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+    }
+
+    .batch-select {
+      padding: 0.6rem 1.2rem;
+      border: 2px solid #c7d2fe;
+      border-radius: 0.75rem;
+      font-weight: 500;
+      background: white;
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .batch-select:focus {
+      outline: none;
+      border-color: #6366f1;
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    }
   </style>
 </head>
 <body>
 
-
-
- 
-
-<div id="uploadNotification" class="position-fixed top-0 start-50 translate-middle-x mt-3" style="z-index:1050;"></div>
-  <nav class="navbar navbar-dark bg-dark">
-    <div class="container d-flex align-items-center">
+  <!-- Navbar -->
+  <nav class="navbar-custom">
+    <div class="container d-flex align-items-center justify-content-between flex-wrap gap-3">
       <span class="navbar-brand">Practice Session Notes</span>
-      <button class="btn btn-danger ms-3"
-  onclick="initExam()">
-  SQL Assesment (MCQ + Scenario based)
-</button>
-
-<button id="openAssignmentsBtn" class="btn btn-warning ms-3"
-  onclick="document.getElementById('assignmentSection').scrollIntoView({behavior:'smooth'})">
-  Assignments <span id="assignmentNewDot" class="new-dot"></span>
-</button>
-
-      
-      <div class="ms-auto d-flex gap-2 align-items-center">
-  <span id="onlineUsers" class="navbar-text text-info fw-semibold"></span>
-
-</div>
-
-
+      <button class="btn-exam" onclick="initExam()">
+        SQL Assessment (MCQ + Scenario based)
+      </button>
+      <div class="online-users">
+        <span class="online-dot"></span>
+        <span id="onlineUsers">Loading...</span>
       </div>
     </div>
   </nav>
+
+  <!-- Motivation Bar -->
   <div class="motivation-bar">
-  <div class="motivation-text">
-    🌟🚀 Work hard in silence today, so your offer letter speaks loudly tomorrow. 💼🔥 
+    <div class="motivation-text">
+      🌟🚀 Work hard in silence today, so your offer letter speaks loudly tomorrow. 💼🔥
+    </div>
   </div>
-</div>
 
+  <!-- Notification -->
+  <div class="notification-bar" id="latestNotification">
+    Latest notes: Loading…
+  </div>
 
-
-  <div id="latestNotification" class="alert alert-info text-center mb-0">Latest notes: Loading…</div>
-<br>
-<center><div class="mb-3">
-  <label class="fw-bold">Select Batch:</label>
-  <select id="batchSelect" class="form-select d-inline-block w-auto ms-2">
-    <option value="FEB_19_2026">Batch – Feb 2026</option>
-    <option value="JAN_22_2026">Batch – Jan 2026</option>
-    <option value="DEC_2025">Batch – Dec 2025</option>
-  </select>
-</div></center>
-
-
-
+  <!-- Main Content -->
   <main class="container py-4">
-    <center><div class="mb-3 d-flex gap-2 flex-wrap">
-      <button class="btn btn-success" onclick="downloadSQLFile('Afternoon','Afternoon.sql')">Download SQL Afternoon Notes</button>
-      <button class="btn btn-primary" onclick="downloadSQLFile('Evening','Evening.sql')">Download SQL Evening Notes</button>
-      <button class="btn btn-warning" onclick="downloadLinuxPDF('Afternoon','Linux_Afternoon.pdf')">Download Linux Afternoon Notes</button>
-      <button class="btn btn-danger" onclick="downloadLinuxPDF('Evening','Linux_Evening.pdf')">Download Linux Evening Notes</button>
-    </div></center>
-
-    <div class="nav-controls d-flex justify-content-between align-items-center mb-2">
-      <button class="btn btn-outline-secondary" onclick="prevMonth()">← Previous</button>
-      <h4 id="monthLabel" class="fw-bold mb-0"></h4>
-      <button class="btn btn-outline-secondary" onclick="nextMonth()">Next →</button>
+    <!-- Batch Selection -->
+    <div class="text-center mb-4">
+      <label class="fw-bold fs-5 me-3">Select Batch:</label>
+      <select id="batchSelect" class="batch-select">
+        <option value="FEB_19_2026">Batch – Feb 2026</option>
+        <option value="JAN_22_2026">Batch – Jan 2026</option>
+        <option value="DEC_2025">Batch – Dec 2025</option>
+      </select>
     </div>
 
-    <div id="calendarContainer" class="mb-4"></div>
+    <!-- Download Buttons -->
+    <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
+      <button class="btn-download btn-green" onclick="downloadSQLFile('Afternoon','Afternoon.sql')">
+        Download SQL Afternoon Notes
+      </button>
+      <button class="btn-download btn-blue" onclick="downloadSQLFile('Evening','Evening.sql')">
+        Download SQL Evening Notes
+      </button>
+      <button class="btn-download btn-yellow" onclick="downloadLinuxPDF('Afternoon','Linux_Afternoon.pdf')">
+        Download Linux Afternoon Notes
+      </button>
+      <button class="btn-download btn-red" onclick="downloadLinuxPDF('Evening','Linux_Evening.pdf')">
+        Download Linux Evening Notes
+      </button>
+    </div>
+
+    <!-- Calendar Navigation -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <button class="btn-nav" onclick="prevMonth()">← Previous</button>
+      <h4 class="fw-bold mb-0" id="monthLabel"></h4>
+      <button class="btn-nav" onclick="nextMonth()">Next →</button>
+    </div>
+
+    <!-- Calendar -->
+    <div class="calendar-container" id="calendarContainer"></div>
+
+    <!-- Notes Display -->
     <div id="notesContainer"></div>
-    <div id="emptyState" class="text-center text-muted py-5 d-none"><h5>No notes yet</h5></div>
+
+    <!-- Empty State -->
+    <div id="emptyState" class="text-center py-5 d-none">
+      <h5 class="text-muted">No notes selected. Click on a date to view notes.</h5>
+    </div>
+
+    <!-- Clear Button -->
     <div class="text-center mt-3">
-      <button class="btn btn-outline-secondary d-none" id="clearViewBtn" onclick="clearNotesView()">Clear View</button>
+      <button class="btn btn-secondary d-none" id="clearViewBtn" onclick="clearNotesView()">
+        Clear View
+      </button>
     </div>
-
-    <hr class="my-4">
-    <section id="assignmentSection">
- <h3>
-  Assignment
-  <span class="new-badge">NEW</span>
-</h3>
-
-
-  <!-- Student Details -->
-  <div id="studentCard" class="card p-3 mb-3">
-    <h5>Enter details to download assignment</h5>
-    <input id="studentName" class="form-control mb-2" placeholder="Full Name">
-    <input id="studentMobile" class="form-control mb-2" placeholder="Mobile Number">
-    <button class="btn btn-primary" onclick="Assignment.start()">Proceed</button>
-  </div>
-
-  <!-- Download -->
-  <div id="downloadCard" class="card p-3 mb-3 d-none">
-    <a href="assignment.pdf"
-       download
-       class="btn btn-success"
-       onclick="Assignment.logDownload()">
-       Download Assignment
-    </a>
-  </div>
-
-  <!-- Upload -->
-  <div id="uploadCard" class="card p-3 d-none">
-    <input type="file"
-           id="fileInput"
-           class="form-control"
-           accept=".pdf,.doc,.docx">
-    <button class="btn btn-primary mt-3" onclick="Assignment.upload()">Upload</button>
-    <div id="result" class="mt-3"></div>
-  </div>
-
-  <!-- Admin -->
-  
-</section>
-
-<!-- ================= EXAM MODULE ================= -->
-<section id="examSection" class="d-none mt-5">
-  <div class="card p-4">
-    <div class="d-flex justify-content-between">
-      <h3>SQL Assesment</h3>
-      <ul class="list-group list-group-flush mb-4">
-            <li class="list-group-item">⏱ <b>Total Time:</b> 20 Minutes</li>
-            <li class="list-group-item">📝 <b>Section A:</b> 40 MCQs (1 mark each)</li>
-            <li class="list-group-item">💻 <b>Section B:</b> 5 SQL Queries (4 marks each)</li>
-            <li class="list-group-item">🚫 <b>Strict Policy:</b> Auto-submit on tab switch or minimizing.</li>
-      </ul>
-      <h5>⏳ Time Left: <span id="timer">20:00</span></h5>
-    </div>
-
-    <hr>
-
-    <form id="examForm">
-
-      <h4>SQL: Section A: Multiple Choice Questions (40 Marks)</h4>
-<hr>
-
-<!-- Q1 -->
-<div class="mb-3">
-<p><b>Q1. Which data type stores fixed-length character data?</b></p>
-<input type="radio" name="q1" value="A"> VARCHAR2<br>
-<input type="radio" name="q1" value="B"> CHAR<br>
-<input type="radio" name="q1" value="C"> NUMBER<br>
-<input type="radio" name="q1" value="D"> DATE<br>
-</div>
-
-<!-- Q2 -->
-<div class="mb-3">
-<p><b>Q2. Maximum size of VARCHAR2 in Oracle is?</b></p>
-<input type="radio" name="q2" value="A"> 2000 bytes<br>
-<input type="radio" name="q2" value="B"> 4000 bytes<br>
-<input type="radio" name="q2" value="C"> 2 GB<br>
-<input type="radio" name="q2" value="D"> 1000 bytes<br>
-</div>
-
-<!-- Q3 -->
-<div class="mb-3">
-<p><b>Q3. Which data type supports multilingual data?</b></p>
-<input type="radio" name="q3" value="A"> CHAR<br>
-<input type="radio" name="q3" value="B"> NCHAR<br>
-<input type="radio" name="q3" value="C"> LONG<br>
-<input type="radio" name="q3" value="D"> DATE<br>
-</div>
-
-<!-- Q4 -->
-<div class="mb-3">
-<p><b>Q4. Maximum precision supported by NUMBER is?</b></p>
-<input type="radio" name="q4" value="A"> 20<br>
-<input type="radio" name="q4" value="B"> 30<br>
-<input type="radio" name="q4" value="C"> 38<br>
-<input type="radio" name="q4" value="D"> 50<br>
-</div>
-
-<!-- Q5 -->
-<div class="mb-3">
-<p><b>Q5. NUMBER(4,2) can store:</b></p>
-<input type="radio" name="q5" value="A"> 9999<br>
-<input type="radio" name="q5" value="B"> 99.20<br>
-<input type="radio" name="q5" value="C"> 1234.567<br>
-<input type="radio" name="q5" value="D"> 999.999<br>
-</div>
-
-<!-- Q6 -->
-<div class="mb-3">
-<p><b>Q6. Which data type is used to store images?</b></p>
-<input type="radio" name="q6" value="A"> CLOB<br>
-<input type="radio" name="q6" value="B"> BLOB<br>
-<input type="radio" name="q6" value="C"> CHAR<br>
-<input type="radio" name="q6" value="D"> NUMBER<br>
-</div>
-
-<!-- Q7 -->
-<div class="mb-3">
-<p><b>Q7. Which command is DDL?</b></p>
-<input type="radio" name="q7" value="A"> INSERT<br>
-<input type="radio" name="q7" value="B"> CREATE<br>
-<input type="radio" name="q7" value="C"> UPDATE<br>
-<input type="radio" name="q7" value="D"> SELECT<br>
-</div>
-
-<!-- Q8 -->
-<div class="mb-3">
-<p><b>Q8. Which command is DML?</b></p>
-<input type="radio" name="q8" value="A"> GRANT<br>
-<input type="radio" name="q8" value="B"> INSERT<br>
-<input type="radio" name="q8" value="C"> ALTER<br>
-<input type="radio" name="q8" value="D"> COMMIT<br>
-</div>
-
-<!-- Q9 -->
-<div class="mb-3">
-<p><b>Q9. WHERE clause is used to:</b></p>
-<input type="radio" name="q9" value="A"> Sort records<br>
-<input type="radio" name="q9" value="B"> Filter records<br>
-<input type="radio" name="q9" value="C"> Group records<br>
-<input type="radio" name="q9" value="D"> Remove duplicates<br>
-</div>
-
-<!-- Q10 -->
-<div class="mb-3">
-<p><b>Q10. DISTINCT is used to:</b></p>
-<input type="radio" name="q10" value="A"> Remove duplicates<br>
-<input type="radio" name="q10" value="B"> Sort records<br>
-<input type="radio" name="q10" value="C"> Join tables<br>
-<input type="radio" name="q10" value="D"> Filter records<br>
-</div>
-
-<!-- Q11 -->
-<div class="mb-3">
-<p><b>Q11. PRIMARY KEY enforces:</b></p>
-<input type="radio" name="q11" value="A"> Only unique<br>
-<input type="radio" name="q11" value="B"> Only not null<br>
-<input type="radio" name="q11" value="C"> Unique and Not Null<br>
-<input type="radio" name="q11" value="D"> Default values<br>
-</div>
-
-<!-- Q12 -->
-<div class="mb-3">
-<p><b>Q12. FOREIGN KEY is used to:</b></p>
-<input type="radio" name="q12" value="A"> Identify table<br>
-<input type="radio" name="q12" value="B"> Link two tables<br>
-<input type="radio" name="q12" value="C"> Delete rows<br>
-<input type="radio" name="q12" value="D"> Sort records<br>
-</div>
-
-<!-- Q13 -->
-<div class="mb-3">
-<p><b>Q13. LEFT JOIN returns:</b></p>
-<input type="radio" name="q13" value="A"> Matching rows only<br>
-<input type="radio" name="q13" value="B"> All left table rows<br>
-<input type="radio" name="q13" value="C"> All right table rows<br>
-<input type="radio" name="q13" value="D"> No rows<br>
-</div>
-
-<!-- Q14 -->
-<div class="mb-3">
-<p><b>Q14. RIGHT JOIN returns:</b></p>
-<input type="radio" name="q14" value="A"> All right table rows<br>
-<input type="radio" name="q14" value="B"> All left rows<br>
-<input type="radio" name="q14" value="C"> Matching only<br>
-<input type="radio" name="q14" value="D"> Cartesian product<br>
-</div>
-
-<!-- Q15 -->
-<div class="mb-3">
-<p><b>Q15. FULL JOIN returns:</b></p>
-<input type="radio" name="q15" value="A"> Matching only<br>
-<input type="radio" name="q15" value="B"> Left only<br>
-<input type="radio" name="q15" value="C"> All records from both tables<br>
-<input type="radio" name="q15" value="D"> Right only<br>
-</div>
-
-<!-- Q16 -->
-<div class="mb-3">
-<p><b>Q16. CROSS JOIN produces:</b></p>
-<input type="radio" name="q16" value="A"> Matching rows<br>
-<input type="radio" name="q16" value="B"> Cartesian product<br>
-<input type="radio" name="q16" value="C"> Grouped rows<br>
-<input type="radio" name="q16" value="D"> Filtered rows<br>
-</div>
-
-<!-- Q17 -->
-<div class="mb-3">
-<p><b>Q17. A subquery is:</b></p>
-<input type="radio" name="q17" value="A"> Query inside query<br>
-<input type="radio" name="q17" value="B"> Join condition<br>
-<input type="radio" name="q17" value="C"> Constraint<br>
-<input type="radio" name="q17" value="D"> Operator<br>
-</div>
-
-<!-- Q18 -->
-<div class="mb-3">
-<p><b>Q18. GROUP BY is used with:</b></p>
-<input type="radio" name="q18" value="A"> WHERE<br>
-<input type="radio" name="q18" value="B"> Aggregate functions<br>
-<input type="radio" name="q18" value="C"> ORDER BY<br>
-<input type="radio" name="q18" value="D"> JOIN<br>
-</div>
-
-<!-- Q19 -->
-<div class="mb-3">
-<p><b>Q19. HAVING clause filters:</b></p>
-<input type="radio" name="q19" value="A"> Rows<br>
-<input type="radio" name="q19" value="B"> Groups<br>
-<input type="radio" name="q19" value="C"> Tables<br>
-<input type="radio" name="q19" value="D"> Columns<br>
-</div>
-
-<!-- Q20 -->
-<div class="mb-3">
-<p><b>Q20. RANK() function gives:</b></p>
-<input type="radio" name="q20" value="A"> Rank without gaps<br>
-<input type="radio" name="q20" value="B"> Rank with gaps<br>
-<input type="radio" name="q20" value="C"> Row number only<br>
-<input type="radio" name="q20" value="D"> Count value<br>
-</div>
-
-<!-- Q21 -->
-<div class="mb-3">
-<p><b>Q21. DENSE_RANK() gives:</b></p>
-<input type="radio" name="q21" value="A"> Rank with gaps<br>
-<input type="radio" name="q21" value="B"> Rank without gaps<br>
-<input type="radio" name="q21" value="C"> Duplicate ranks<br>
-<input type="radio" name="q21" value="D"> Count<br>
-</div>
-
-<!-- Q22 -->
-<div class="mb-3">
-<p><b>Q22. ROW_NUMBER() gives:</b></p>
-<input type="radio" name="q22" value="A"> Sequential unique numbers<br>
-<input type="radio" name="q22" value="B"> Same rank<br>
-<input type="radio" name="q22" value="C"> Gaps<br>
-<input type="radio" name="q22" value="D"> Count<br>
-</div>
-
-<!-- Q23 -->
-<div class="mb-3">
-<p><b>Q23. ROWNUM is:</b></p>
-<input type="radio" name="q23" value="A"> Function<br>
-<input type="radio" name="q23" value="B"> Pseudo column<br>
-<input type="radio" name="q23" value="C"> Constraint<br>
-<input type="radio" name="q23" value="D"> Operator<br>
-</div>
-
-<!-- Q24 -->
-<div class="mb-3">
-<p><b>Q24. CHECK constraint is used to:</b></p>
-<input type="radio" name="q24" value="A"> Restrict values<br>
-<input type="radio" name="q24" value="B"> Create table<br>
-<input type="radio" name="q24" value="C"> Delete table<br>
-<input type="radio" name="q24" value="D"> Sort data<br>
-</div>
-
-<!-- Q25 -->
-<div class="mb-3">
-<p><b>Q25. DEFAULT constraint is used to:</b></p>
-<input type="radio" name="q25" value="A"> Set automatic value<br>
-<input type="radio" name="q25" value="B"> Remove null<br>
-<input type="radio" name="q25" value="C"> Join table<br>
-<input type="radio" name="q25" value="D"> Sort data<br>
-</div>
-
-<!-- Q26 -->
-<div class="mb-3">
-<p><b>Q26. UNIQUE constraint allows:</b></p>
-<input type="radio" name="q26" value="A"> Duplicate values<br>
-<input type="radio" name="q26" value="B"> Unique values<br>
-<input type="radio" name="q26" value="C"> Null only<br>
-<input type="radio" name="q26" value="D"> Default only<br>
-</div>
-
-<!-- Q27 -->
-<div class="mb-3">
-<p><b>Q27. ORDER BY DESC means:</b></p>
-<input type="radio" name="q27" value="A"> Ascending<br>
-<input type="radio" name="q27" value="B"> Descending<br>
-<input type="radio" name="q27" value="C"> Grouping<br>
-<input type="radio" name="q27" value="D"> Filtering<br>
-</div>
-
-<!-- Q28 -->
-<div class="mb-3">
-<p><b>Q28. UPPER() is:</b></p>
-<input type="radio" name="q28" value="A"> Number function<br>
-<input type="radio" name="q28" value="B"> Character function<br>
-<input type="radio" name="q28" value="C"> Date function<br>
-<input type="radio" name="q28" value="D"> Logical function<br>
-</div>
-
-<!-- Q29 -->
-<div class="mb-3">
-<p><b>Q29. ROUND() is:</b></p>
-<input type="radio" name="q29" value="A"> Character function<br>
-<input type="radio" name="q29" value="B"> Number function<br>
-<input type="radio" name="q29" value="C"> Date function<br>
-<input type="radio" name="q29" value="D"> Logical function<br>
-</div>
-
-<!-- Q30 -->
-<div class="mb-3">
-<p><b>Q30. SYSDATE returns:</b></p>
-<input type="radio" name="q30" value="A"> Current number<br>
-<input type="radio" name="q30" value="B"> Current date<br>
-<input type="radio" name="q30" value="C"> Current string<br>
-<input type="radio" name="q30" value="D"> Null<br>
-</div>
-
-<!-- Q31 -->
-<div class="mb-3">
-<p><b>Q31. TO_CHAR() is:</b></p>
-<input type="radio" name="q31" value="A"> Conversion function<br>
-<input type="radio" name="q31" value="B"> Date function<br>
-<input type="radio" name="q31" value="C"> Join function<br>
-<input type="radio" name="q31" value="D"> Logical function<br>
-</div>
-
-<!-- Q32 -->
-<div class="mb-3">
-<p><b>Q32. CASE expression is used for:</b></p>
-<input type="radio" name="q32" value="A"> Looping<br>
-<input type="radio" name="q32" value="B"> Conditional logic<br>
-<input type="radio" name="q32" value="C"> Sorting<br>
-<input type="radio" name="q32" value="D"> Joining<br>
-</div>
-
-<!-- Q33 -->
-<div class="mb-3">
-<p><b>Q33. COMMIT is:</b></p>
-<input type="radio" name="q33" value="A"> DML<br>
-<input type="radio" name="q33" value="B"> TCL<br>
-<input type="radio" name="q33" value="C"> DDL<br>
-<input type="radio" name="q33" value="D"> DCL<br>
-</div>
-
-<!-- Q34 -->
-<div class="mb-3">
-<p><b>Q34. GRANT belongs to:</b></p>
-<input type="radio" name="q34" value="A"> DDL<br>
-<input type="radio" name="q34" value="B"> DML<br>
-<input type="radio" name="q34" value="C"> DCL<br>
-<input type="radio" name="q34" value="D"> TCL<br>
-</div>
-
-<!-- Q35 -->
-<div class="mb-3">
-<p><b>Q35. Arithmetic operator example:</b></p>
-<input type="radio" name="q35" value="A"> AND<br>
-<input type="radio" name="q35" value="B"> +<br>
-<input type="radio" name="q35" value="C"> LIKE<br>
-<input type="radio" name="q35" value="D"> IN<br>
-</div>
-
-<!-- Q36 -->
-<div class="mb-3">
-<p><b>Q36. Relational operator example:</b></p>
-<input type="radio" name="q36" value="A"> ><br>
-<input type="radio" name="q36" value="B"> +<br>
-<input type="radio" name="q36" value="C"> ||<br>
-<input type="radio" name="q36" value="D"> AND<br>
-</div>
-
-<!-- Q37 -->
-<div class="mb-3">
-<p><b>Q37. Logical operator example:</b></p>
-<input type="radio" name="q37" value="A"> OR<br>
-<input type="radio" name="q37" value="B"> +<br>
-<input type="radio" name="q37" value="C"> =<br>
-<input type="radio" name="q37" value="D"> *<br>
-</div>
-
-<!-- Q38 -->
-<div class="mb-3">
-<p><b>Q38. Which LOB stores large text data?</b></p>
-<input type="radio" name="q38" value="A"> BLOB<br>
-<input type="radio" name="q38" value="B"> CLOB<br>
-<input type="radio" name="q38" value="C"> RAW<br>
-<input type="radio" name="q38" value="D"> LONG<br>
-</div>
-
-<!-- Q39 -->
-<div class="mb-3">
-<p><b>Q39. Only one LONG column is allowed per:</b></p>
-<input type="radio" name="q39" value="A"> Database<br>
-<input type="radio" name="q39" value="B"> Table<br>
-<input type="radio" name="q39" value="C"> Schema<br>
-<input type="radio" name="q39" value="D"> View<br>
-</div>
-
-<!-- Q40 -->
-<div class="mb-3">
-<p><b>Q40. HAVING is used with:</b></p>
-<input type="radio" name="q40" value="A"> GROUP BY<br>
-<input type="radio" name="q40" value="B"> WHERE<br>
-<input type="radio" name="q40" value="C"> ORDER BY<br>
-<input type="radio" name="q40" value="D"> JOIN<br>
-</div>
-
-<h4>Section B: SQL Query Writing (20 Marks)</h4>
-<hr>
-
-<div class="mb-4">
-<p><b>Q41.</b> STUDENTS(student_id, name, course_id) and COURSES(course_id, course_name).  
-Write a query to display student name and course name using INNER JOIN.</p>
-<textarea name="q41" class="form-control" rows="4" required></textarea>
-</div>
-
-<div class="mb-4">
-<p><b>Q42.</b> Write a query to display all students even if they are not enrolled in any course.</p>
-<textarea name="q42" class="form-control" rows="4" required></textarea>
-</div>
-
-<div class="mb-4">
-<p><b>Q43.</b> EMP(emp_id, name, salary).  
-Write a subquery to find employees earning more than average salary.</p>
-<textarea name="q43" class="form-control" rows="4" required></textarea>
-</div>
-
-<div class="mb-4">
-<p><b>Q44.</b> Write a query using subquery to find second highest salary.</p>
-<textarea name="q44" class="form-control" rows="4" required></textarea>
-</div>
-
-<div class="mb-4">
-<p><b>Q45.</b> DEPT(dept_id, dept_name) and EMP(emp_id, salary, dept_id).  
-Write a query to display department name and total salary using GROUP BY.</p>
-<textarea name="q45" class="form-control" rows="4" required></textarea>
-</div>
-
-      <button type="button" class="btn btn-success"
-        onclick="submitExam()">Submit Exam</button>
-
-    </form>
-  </div>
-</section>
-<!-- ================================================= -->
-
   </main>
 
- 
-
-  <!-- CodeMirror 6 via dynamic import (works in modern browsers) -->
-  <script>
-    // Create a global factory function to build the CodeMirror editor when needed.
-    // Uses dynamic import so this file remains a normal script.
-    window.createCodeMirrorEditor = async function (initialCode = '') {
-      try {
-        // dynamic imports
-        const [{ EditorView, keymap }, { default: basicSetup }, { sql }, { oneDark }, { EditorState }] = await Promise.all([
-          import('https://esm.sh/@codemirror/view@6.11.4'),
-          import('https://esm.sh/@codemirror/basic-setup@0.19.1'),
-          import('https://esm.sh/@codemirror/lang-sql@0.19.1'),
-          import('https://esm.sh/@codemirror/theme-one-dark@0.19.5'),
-          import('https://esm.sh/@codemirror/state@0.19.7')
-        ]);
-
-        // remove any previous editor content
-        const mount = document.getElementById('codeEditor');
-        mount.innerHTML = '';
-
-        const state = EditorState.create({
-          doc: initialCode,
-          extensions: [
-            basicSetup,
-            sql(),
-            oneDark,
-            EditorView.editable.of(true)
-          ]
-        });
-
-        // create view
-        window.codeEditor = new EditorView({ state, parent: mount });
-
-        // ensure visible & focused
-        setTimeout(() => {
-          try { window.codeEditor.focus(); } catch (e) {}
-        }, 50);
-
-        return window.codeEditor;
-      } catch (err) {
-        console.warn('CodeMirror init failed:', err);
-        // fallback: show simple textarea
-        const mount = document.getElementById('codeEditor');
-        mount.innerHTML = '';
-        document.getElementById('editorFallbackContainer').style.display = 'block';
-        const ta = document.getElementById('assignmentEditorFallback');
-        ta.value = initialCode || '';
-        ta.focus();
-        window.codeEditor = null; // signal fallback mode
-        return null;
-      }
-    }
-  </script>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-
-  <!-- jsPDF CDN (ADD HERE) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
-
-
+  <!-- Exam Section -->
+  <div id="examSection" class="d-none" style="min-height: 100vh; background: linear-gradient(135deg, #faf5ff, #f5f3ff, #fce7f3); padding: 2rem;">
+  </div>
 
   <script>
-    /***********************
-     Original notes/calendar (kept exactly)
-    ***********************/
-    let allNotes = [];
-
+    const API = 'https://script.google.com/macros/s/AKfycbxAZb0HF920Ye-IXjVZCJumioWX3kzt3PWdVzTO1vSSEV0u-gNZtBSksIIUPlmNS1zmnQ/exec';
     const CURRENT_BATCH = 'FEB_19_2026';
-
-    let currentMonthIndex, currentYear;
+    
+    let allNotes = [];
+    let currentMonthIndex = new Date().getMonth();
+    let currentYear = new Date().getFullYear();
+    let examStarted = false;
+    let examDuration = 20 * 60;
+    let timerInterval;
+    let studentExam = null;
+    let examAnswers = {};
 
     const monthMap = { JAN: "01", FEB: "02", MAR: "03", APR: "04", MAY: "05", JUN: "06", JUL: "07", AUG: "08", SEP: "09", OCT: "10", NOV: "11", DEC: "12" };
     const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
-    function parseNoteDate(str){ const [d,mText,y] = str.split("-"); const mNum = Number(monthMap[mText.toUpperCase()]); return { day:d, monthNum:mNum, monthText:mText.toUpperCase(), year:y }; }
-    function toJSDate(str){ const {day, monthNum, year} = parseNoteDate(str); return new Date(Number(year), monthNum-1, Number(day)); }
-
-    // async function loadNotes(){
-    //   try {
-    //     const res = await fetch("notes.json");
-    //     const notes = await res.json();
-    //     allNotes = notes;
-    //     const today = new Date();
-    //     currentMonthIndex = today.getMonth();
-    //     currentYear = today.getFullYear();
-    //     renderCalendar();
-    //     updateLatestNotification();
-    //   } catch(err){ console.error("Error loading notes:", err); document.getElementById("latestNotification").textContent = "Failed to load notes."; }
-    // }
-    async function loadNotes(){
-  try {
-    const res = await fetch("notes.json");
-    const notes = await res.json();
-    allNotes = notes;
-
-    document.getElementById('batchSelect').value = CURRENT_BATCH;
-
-
-    const today = new Date();
-    currentMonthIndex = today.getMonth();
-    currentYear = today.getFullYear();
-
-    renderCalendar();
-    updateLatestNotification();
-
-    // 🔹 ENABLE TOOLTIPS
-    setTimeout(() => {
-      document
-        .querySelectorAll('[data-bs-toggle="tooltip"]')
-        .forEach(el => new bootstrap.Tooltip(el));
-    }, 100);
-
-  } catch(err){
-    console.error("Error loading notes:", err);
-    document.getElementById("latestNotification").textContent = "Failed to load notes.";
-  }
-}
-
-
-    function renderCalendar(){
-      const container = document.getElementById("calendarContainer"); container.innerHTML="";
-      document.getElementById("monthLabel").textContent = `${monthNames[currentMonthIndex]} ${currentYear}`;
-      const daysInMonth = new Date(currentYear, currentMonthIndex+1, 0).getDate();
-      let firstDay = new Date(currentYear, currentMonthIndex,1).getDay(); firstDay = firstDay === 0 ? 7 : firstDay;
-      const card = document.createElement("div"); card.className="card shadow-lg";
-      const calendarBody = document.createElement("div"); calendarBody.className="card-body";
-      const weekdays = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]; const weekdayRow = document.createElement("div"); weekdayRow.className="calendar";
-      weekdays.forEach(w=>{ const wd=document.createElement("div"); wd.className="weekday"; wd.textContent=w; weekdayRow.appendChild(wd); });
-      calendarBody.appendChild(weekdayRow);
-      const calendar = document.createElement("div"); calendar.className="calendar";
-      for(let i=1;i<firstDay;i++){ const emptyCell=document.createElement("div"); emptyCell.className="calendar-day"; calendar.appendChild(emptyCell); }
-      const today = new Date();
-      for(let d=1; d<=daysInMonth; d++){
-        const dayStr=String(d).padStart(2,'0');
-        //const hasNote = allNotes.some(n=>{ const {day, monthNum, year} = parseNoteDate(n.date); return day===dayStr && monthNum=== currentMonthIndex+1 && Number(year)===currentYear; });
-       // const dayCell = document.createElement("div"); dayCell.className = "calendar-day" + (hasNote ? " has-notes": ""); dayCell.textContent = d;
-       
-       const hasNote = allNotes.some(n => {
-  if (n.batch !== getSelectedBatch()) return false;
-  const { day, monthNum, year } = parseNoteDate(n.date);
-  return (
-    day === dayStr &&
-    monthNum === currentMonthIndex + 1 &&
-    Number(year) === currentYear
-  );
-});
-
-       
-       const dayCell = document.createElement("div");
-dayCell.className = "calendar-day" + (hasNote ? " has-notes": "");
-dayCell.textContent = d;
-
-// 🔹 Collect subjects for this date
-const subjects = [
-  ...new Set(
-    allNotes
-      .filter(n => {
-  if (n.batch !== getSelectedBatch()) return false;
-  const { day, monthNum, year } = parseNoteDate(n.date);
-  return (
-    day === dayStr &&
-    monthNum === currentMonthIndex + 1 &&
-    Number(year) === currentYear
-  );
-})
-      .map(n => n.subject)
-  )
-];
-
-// 🔹 Add tooltip only if notes exist
-if (subjects.length) {
-  dayCell.setAttribute("data-bs-toggle", "tooltip");
-  dayCell.setAttribute(
-  "data-bs-title",
-  "Subjects:<br>• " + subjects.join("<br>• ")
-);
-dayCell.setAttribute("data-bs-html", "true");
-
-}
-
-       
-       
-       if(today.getMonth()===currentMonthIndex && today.getFullYear()===currentYear && today.getDate()===d) dayCell.classList.add("today");
-        //dayCell.addEventListener("click", ()=>{ const filtered = allNotes.filter(n=>{ const {day, monthNum, year} = parseNoteDate(n.date); return day===dayStr && monthNum=== currentMonthIndex+1 && Number(year)===currentYear; }); renderNotes(filtered); });
-        
-        dayCell.addEventListener("click", () => {
-  const filtered = allNotes.filter(n => {
-    if (n.batch !== getSelectedBatch()) return false;
-    const { day, monthNum, year } = parseNoteDate(n.date);
-    return (
-      day === dayStr &&
-      monthNum === currentMonthIndex + 1 &&
-      Number(year) === currentYear
-    );
-  });
-
-  renderNotes(filtered);
-});
-
-
-        calendar.appendChild(dayCell);
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      loadNotes();
+      const currentUser = initCurrentUser();
+      if (currentUser) {
+        pingUser(currentUser);
+        setInterval(() => pingUser(currentUser), 15000);
       }
-      const totalCells = (firstDay-1) + daysInMonth; const trailing = (7 - (totalCells % 7)) % 7;
-      for(let i=0;i<trailing;i++){ const emptyCell=document.createElement("div"); emptyCell.className="calendar-day"; calendar.appendChild(emptyCell); }
-      calendarBody.appendChild(calendar); card.appendChild(calendarBody); container.appendChild(card);
-// 🔹 Activate Bootstrap tooltips AFTER calendar is rendered
-setTimeout(() => {
-  document
-    .querySelectorAll('[data-bs-toggle="tooltip"]')
-    .forEach(el => new bootstrap.Tooltip(el));
-}, 0);
+      fetchOnlineUsers();
+      setInterval(fetchOnlineUsers, 10000);
 
+      // Security
+      document.addEventListener('contextmenu', e => e.preventDefault());
+      document.addEventListener('copy', e => e.preventDefault());
+      document.addEventListener('keydown', handleKeyDown);
+      document.addEventListener('visibilitychange', handleVisibilityChange);
 
+      // Batch change
+      document.getElementById('batchSelect').addEventListener('change', () => {
+        renderCalendar();
+        clearNotesView();
+      });
+    });
 
+    function parseNoteDate(str) {
+      const [d, mText, y] = str.split("-");
+      const mNum = Number(monthMap[mText.toUpperCase()]);
+      return { day: d, monthNum: mNum, monthText: mText.toUpperCase(), year: y };
     }
 
-    function prevMonth(){ currentMonthIndex--; if(currentMonthIndex<0){ currentMonthIndex=11; currentYear--; } renderCalendar(); }
-    function nextMonth(){ currentMonthIndex++; if(currentMonthIndex>11){ currentMonthIndex=0; currentYear++; } renderCalendar(); }
-
-    function renderNotes(notes){
-      const container = document.getElementById("notesContainer"); const emptyState = document.getElementById("emptyState"); const clearBtn = document.getElementById("clearViewBtn");
-      container.innerHTML="";
-      if(!notes.length){ emptyState.classList.remove("d-none"); clearBtn.classList.add("d-none"); return; }
-      emptyState.classList.add("d-none");
-      notes.forEach(n=>{ const card=document.createElement("div"); card.className="card mb-3 shadow-sm"; card.innerHTML = `<div class="card-header bg-success text-white"><strong>${n.date}</strong> – ${n.session} – ${n.title}</div><div class="card-body"><pre class="bg-light p-3 rounded"><code>${n.body}</code></pre></div>`; container.appendChild(card); });
-      clearBtn.classList.remove("d-none");
+    function toJSDate(str) {
+      const {day, monthNum, year} = parseNoteDate(str);
+      return new Date(Number(year), monthNum - 1, Number(day));
     }
 
-    function clearNotesView(){ document.getElementById("notesContainer").innerHTML=""; document.getElementById("emptyState").classList.add("d-none"); document.getElementById("clearViewBtn").classList.add("d-none"); }
-    //function downloadSQLFile(session, filename){ const sessionNotes = allNotes.filter(n=>n.session === session); const sqlContent = sessionNotes.map(n=>`-- ${n.date} : ${n.title}\n${n.body}\n\n`).join(""); const blob = new Blob([sqlContent], { type: "text/sql" }); const url = URL.createObjectURL(blob); const a=document.createElement("a"); a.href=url; a.download=filename; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url); showNotification(`${filename} has been updated and downloaded!`); }
-function downloadSQLFile(session, filename) {
-  const sessionNotes = allNotes.filter(
-    n => n.session === session &&
-  n.subject === "SQL" &&
-  n.batch === getSelectedBatch()
-  );
-
-  const sqlContent = sessionNotes
-    .map(n => `-- ${n.date} : ${n.title}\n${n.body}\n\n`)
-    .join("");
-
-  const blob = new Blob([sqlContent], { type: "text/sql" });
-  const url = URL.createObjectURL(blob);
-
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = filename;
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-  URL.revokeObjectURL(url);
-
-  showNotification(`${filename} downloaded`);
-}
-// function downloadLinuxPDF(session, filename) {
-//   const { jsPDF } = window.jspdf;
-//   const doc = new jsPDF();
-
-//   // filter ONLY Linux notes by session
-//   const linuxNotes = allNotes.filter(n =>
-//     n.session === session && n.subject === 'LINUX'
-//   );
-
-//   if (!linuxNotes.length) {
-//     showNotification(`No Linux notes found for ${session}`, 'danger');
-//     return;
-//   }
-
-//   let y = 10;
-
-//   linuxNotes.forEach((n, index) => {
-
-//   // 🔹 DATE + TITLE (BOLD)
-//   doc.setFont("helvetica", "bold");
-//   doc.setFontSize(12);
-//   doc.text(`${n.date} - ${n.title}`, 10, y);
-//   y += 8;
-
-//   // 🔹 BODY (NORMAL)
-//   doc.setFont("helvetica", "normal");
-//   doc.setFontSize(10);
-//   const lines = doc.splitTextToSize(n.body, 180);
-//   doc.text(lines, 10, y);
-//   y += lines.length * 6 + 6;
-
-//     if (y > 270 && index < linuxNotes.length - 1) {
-//       doc.addPage();
-//       y = 10;
-//     }
-//   });
-
-//   doc.save(filename);
-//   showNotification(`${filename} downloaded successfully!`);
-// }
-
-function downloadLinuxPDF(session, filename) {
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF("p", "mm", "a4");
-
-  const linuxNotes = allNotes.filter(
-    n => n.session === session &&
-  n.subject === "LINUX" &&
-  n.batch === getSelectedBatch()
-  );
-
-  if (!linuxNotes.length) {
-    showNotification(`No Linux notes found for ${session}`, "danger");
-    return;
-  }
-
-  const pageWidth = doc.internal.pageSize.width;
-  const pageHeight = doc.internal.pageSize.height;
-
-  const marginLeft = 10;
-  const marginRight = 10;
-  const marginTop = 10;
-  const marginBottom = 15;
-
-  const usableWidth = pageWidth - marginLeft - marginRight;
-  const lineHeight = 6;
-
-  let y = marginTop;
-
-  linuxNotes.forEach(n => {
-
-    /* ---------- TITLE ---------- */
-    doc.setFont("courier", "bold");
-    doc.setFontSize(12);
-
-    if (y + lineHeight > pageHeight - marginBottom) {
-      doc.addPage();
-      y = marginTop;
+    async function loadNotes() {
+      try {
+        const res = await fetch('notes.json');
+        const notes = await res.json();
+        allNotes = notes;
+        renderCalendar();
+        updateLatestNotification();
+      } catch(err) {
+        console.error('Error loading notes:', err);
+        document.getElementById('latestNotification').textContent = 'Failed to load notes.';
+      }
     }
 
-    doc.text(`${n.date} - ${n.title}`, marginLeft, y);
-    y += lineHeight + 2;
+    function updateLatestNotification() {
+      if (!allNotes.length) {
+        document.getElementById('latestNotification').textContent = 'No notes available yet.';
+        return;
+      }
+      const sorted = [...allNotes].sort((a,b) => toJSDate(b.date) - toJSDate(a.date));
+      const latestDate = sorted[0].date;
+      const latestDayNotes = allNotes.filter(n => n.date === latestDate);
+      const latestNote = latestDayNotes.find(n => n.session === 'Evening') || latestDayNotes[0];
+      document.getElementById('latestNotification').textContent = `🔔 Latest notes available: ${latestNote.date} (${latestNote.session} session, uploaded at ${latestNote.time})`;
+    }
 
-    /* ---------- BODY ---------- */
-    doc.setFont("courier", "normal");
-    doc.setFontSize(10);
+    function renderCalendar() {
+      const selectedBatch = document.getElementById('batchSelect').value;
+      document.getElementById('monthLabel').textContent = `${monthNames[currentMonthIndex]} ${currentYear}`;
+      
+      const daysInMonth = new Date(currentYear, currentMonthIndex + 1, 0).getDate();
+      let firstDay = new Date(currentYear, currentMonthIndex, 1).getDay();
+      firstDay = firstDay === 0 ? 7 : firstDay;
+      const today = new Date();
 
-    const rawLines = n.body.split("\n");
+      let html = '<div class="calendar-grid mb-3">';
+      ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].forEach(day => {
+        html += `<div class="weekday-header">${day}</div>`;
+      });
+      html += '</div><div class="calendar-grid">';
 
-    rawLines.forEach(rawLine => {
+      for (let i = 1; i < firstDay; i++) {
+        html += '<div></div>';
+      }
 
-      // 🔹 Wrap line to page width
-      const wrappedLines = doc.splitTextToSize(rawLine, usableWidth);
+      for (let d = 1; d <= daysInMonth; d++) {
+        const dayStr = String(d).padStart(2, '0');
+        const hasNote = allNotes.some(n => {
+          if (n.batch !== selectedBatch) return false;
+          const { day, monthNum, year } = parseNoteDate(n.date);
+          return day === dayStr && monthNum === currentMonthIndex + 1 && Number(year) === currentYear;
+        });
 
-      wrappedLines.forEach(wLine => {
+        const subjects = [...new Set(
+          allNotes
+            .filter(n => {
+              if (n.batch !== selectedBatch) return false;
+              const { day, monthNum, year } = parseNoteDate(n.date);
+              return day === dayStr && monthNum === currentMonthIndex + 1 && Number(year) === currentYear;
+            })
+            .map(n => n.subject)
+        )];
+
+        const isToday = today.getMonth() === currentMonthIndex && 
+                        today.getFullYear() === currentYear && 
+                        today.getDate() === d;
+
+        let classes = 'calendar-day';
+        if (hasNote) classes += ' has-notes';
+        if (isToday) classes += ' today';
+
+        const tooltip = subjects.length ? `Subjects: ${subjects.join(', ')}` : '';
+        html += `<div class="${classes}" onclick="handleDayClick('${dayStr}')" title="${tooltip}">${d}</div>`;
+      }
+
+      html += '</div>';
+      document.getElementById('calendarContainer').innerHTML = html;
+    }
+
+    function handleDayClick(dayStr) {
+      const selectedBatch = document.getElementById('batchSelect').value;
+      const filtered = allNotes.filter(n => {
+        if (n.batch !== selectedBatch) return false;
+        const { day, monthNum, year } = parseNoteDate(n.date);
+        return day === dayStr && monthNum === currentMonthIndex + 1 && Number(year) === currentYear;
+      });
+
+      if (filtered.length === 0) {
+        document.getElementById('emptyState').classList.remove('d-none');
+        document.getElementById('notesContainer').innerHTML = '';
+        document.getElementById('clearViewBtn').classList.add('d-none');
+        return;
+      }
+
+      document.getElementById('emptyState').classList.add('d-none');
+      let html = '';
+      filtered.forEach(note => {
+        html += `
+          <div class="note-card">
+            <div class="note-header">
+              <strong>${note.date}</strong> – ${note.session} – ${note.title}
+            </div>
+            <div class="note-body">
+              <pre class="note-code"><code>${note.body}</code></pre>
+            </div>
+          </div>
+        `;
+      });
+      document.getElementById('notesContainer').innerHTML = html;
+      document.getElementById('clearViewBtn').classList.remove('d-none');
+    }
+
+    function clearNotesView() {
+      document.getElementById('notesContainer').innerHTML = '';
+      document.getElementById('emptyState').classList.add('d-none');
+      document.getElementById('clearViewBtn').classList.add('d-none');
+    }
+
+    function prevMonth() {
+      if (currentMonthIndex === 0) {
+        currentMonthIndex = 11;
+        currentYear--;
+      } else {
+        currentMonthIndex--;
+      }
+      renderCalendar();
+    }
+
+    function nextMonth() {
+      if (currentMonthIndex === 11) {
+        currentMonthIndex = 0;
+        currentYear++;
+      } else {
+        currentMonthIndex++;
+      }
+      renderCalendar();
+    }
+
+    function downloadSQLFile(session, filename) {
+      const selectedBatch = document.getElementById('batchSelect').value;
+      const sessionNotes = allNotes.filter(
+        n => n.session === session && n.subject === "SQL" && n.batch === selectedBatch
+      );
+      const sqlContent = sessionNotes.map(n => `-- ${n.date} : ${n.title}\n${n.body}\n\n`).join("");
+      const blob = new Blob([sqlContent], { type: "text/sql" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+      showNotification(`${filename} downloaded successfully!`);
+    }
+
+    function downloadLinuxPDF(session, filename) {
+      const selectedBatch = document.getElementById('batchSelect').value;
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF("p", "mm", "a4");
+
+      const linuxNotes = allNotes.filter(
+        n => n.session === session && n.subject === "LINUX" && n.batch === selectedBatch
+      );
+
+      if (!linuxNotes.length) {
+        showNotification(`No Linux notes found for ${session}`, 'danger');
+        return;
+      }
+
+      const pageWidth = doc.internal.pageSize.width;
+      const pageHeight = doc.internal.pageSize.height;
+      const marginLeft = 10;
+      const marginRight = 10;
+      const marginTop = 10;
+      const marginBottom = 15;
+      const usableWidth = pageWidth - marginLeft - marginRight;
+      const lineHeight = 6;
+      let y = marginTop;
+
+      linuxNotes.forEach(n => {
+        doc.setFont("courier", "bold");
+        doc.setFontSize(12);
         if (y + lineHeight > pageHeight - marginBottom) {
           doc.addPage();
           y = marginTop;
         }
-        doc.text(wLine, marginLeft, y);
+        doc.text(`${n.date} - ${n.title}`, marginLeft, y);
+        y += lineHeight + 2;
+
+        doc.setFont("courier", "normal");
+        doc.setFontSize(10);
+        const rawLines = n.body.split("\n");
+        rawLines.forEach(rawLine => {
+          const wrappedLines = doc.splitTextToSize(rawLine, usableWidth);
+          wrappedLines.forEach(wLine => {
+            if (y + lineHeight > pageHeight - marginBottom) {
+              doc.addPage();
+              y = marginTop;
+            }
+            doc.text(wLine, marginLeft, y);
+            y += lineHeight;
+          });
+        });
         y += lineHeight;
       });
-    });
 
-    y += lineHeight; // space between notes
-  });
-
-  doc.save(filename);
-  showNotification(`${filename} downloaded successfully!`);
-}
-
-
-
-
-    function showNotification(message){ const notif=document.createElement("div"); notif.className="alert alert-success text-center"; notif.textContent=message; document.body.prepend(notif); setTimeout(()=>notif.remove(),5000); }
-    function updateLatestNotification(){ if(!allNotes.length){ document.getElementById("latestNotification").textContent="No notes available yet."; return; } const sorted=[...allNotes].sort((a,b)=> toJSDate(b.date)-toJSDate(a.date)); const latestDate=sorted[0].date; const latestDayNotes = allNotes.filter(n=>n.date===latestDate); const latestNote = latestDayNotes.find(n=>n.session==='Evening') || latestDayNotes[0]; document.getElementById("latestNotification").textContent = `🔔 Latest notes available: ${latestNote.date} (${latestNote.session} session, uploaded at ${latestNote.time})`; }
-
-    // start notes load
-    loadNotes();
-
-   function getSelectedBatch() {
-  return document.getElementById('batchSelect').value;
-}
-
-document.getElementById('batchSelect').addEventListener('change', () => {
-  renderCalendar();
-  clearNotesView();
-});
-
-
-  </script>
-<script>
-  window.API = 'https://script.google.com/macros/s/AKfycbxAZb0HF920Ye-IXjVZCJumioWX3kzt3PWdVzTO1vSSEV0u-gNZtBSksIIUPlmNS1zmnQ/exec';
-</script>
-
-
-  <script>
-const Assignment = (() => {
-  
- 
-
-  let studentData = null;
-
-function start() {
-  const name = studentName.value.trim();
-  const mobile = studentMobile.value.trim();
-
-  if (!name || !mobile) {
-    alert('Enter name and mobile number');
-    return;
-  }
-
-  studentData = { name, mobile };
-
-  studentCard.classList.add('d-none');
-  downloadCard.classList.remove('d-none');
-}
-
-  function logDownload() {
-    downloadCard.classList.add('d-none');
-    uploadCard.classList.remove('d-none');
-  }
-
-
-async function upload() {
-  const file = fileInput.files[0];
-
-  if (!file) {
-    alert('Select a file');
-    return;
-  }
-
-  if (!studentData) {
-    alert('Please enter your details again');
-    return;
-  }
-
-  // Show floating "Uploading..." notification
-  showFloatingNotification('Uploading... ⏳', 'info');
-
-  const reader = new FileReader();
-
-  reader.onload = async () => {
-    const payload = {
-      action: 'upload',
-      name: studentData.name,
-      mobile: studentData.mobile,
-      fileName: file.name,
-      mimeType: file.type,
-      file: reader.result.split(',')[1]
-    };
-
-    try {
-      const res = await fetch(API, {
-        method: 'POST',
-        body: JSON.stringify(payload)
-      });
-
-      const out = await res.json();
-
-      if (out.status === 'success') {
-        showFloatingNotification('✅ Assignment Submitted Successfully!', 'success');
-        uploadCard.classList.add('d-none'); // hide upload form after success
-      } else {
-        showFloatingNotification(`❌ Upload failed: ${out.message || 'Unknown error'}`, 'danger');
-      }
-
-    } catch (err) {
-      console.error(err);
-      showFloatingNotification('❌ Upload failed. Check console for details.', 'danger');
+      doc.save(filename);
+      showNotification(`${filename} downloaded successfully!`);
     }
-  };
 
-  reader.readAsDataURL(file);
-}
+    function showNotification(message, type = 'success') {
+      const notif = document.createElement('div');
+      notif.className = 'floating-notification';
+      notif.style.background = type === 'success' 
+        ? 'linear-gradient(135deg, #10b981, #059669)' 
+        : 'linear-gradient(135deg, #ef4444, #dc2626)';
+      notif.textContent = message;
+      document.body.appendChild(notif);
+      setTimeout(() => notif.remove(), 5000);
+    }
 
-// Helper function to show floating notifications
-function showFloatingNotification(message, type='info') {
-  const notif = document.createElement('div');
-  notif.className = `alert alert-${type} text-center position-fixed top-0 start-50 translate-middle-x`;
-  notif.style.zIndex = 9999;
-  notif.style.minWidth = '250px';
-  notif.style.marginTop = '10px';
-  notif.textContent = message;
-  document.body.appendChild(notif);
-
-  setTimeout(() => {
-    notif.remove();
-  }, 5000);
-}
-
-
-// Helper function to show notifications
-function showUploadNotification(message, type='info') {
-  const notifDiv = document.getElementById('uploadNotification');
-  notifDiv.innerHTML = `<div class="alert alert-${type} text-center">${message}</div>`;
-  setTimeout(() => { notifDiv.innerHTML = ''; }, 5000);
-}
-
-  function admin(rows) {
-  let html = `<table class="table table-bordered">
-    <tr>
-      <th>Time</th>
-      <th>Name</th>
-      <th>Mobile</th>
-      <th>File</th>
-    </tr>`;
-
-  rows.forEach(r => {
-    html += `<tr>
-      <td>${r[0]}</td>
-      <td>${r[1]}</td>
-      <td>${r[2]}</td>
-      <td><a href="${r[4]}" target="_blank">Open</a></td>
-    </tr>`;
-  });
-
-  html += `</table>`;
-
-  document.body.insertAdjacentHTML('beforeend',
-    `<div class="modal show d-block">
-      <div class="modal-dialog modal-xl">
-        <div class="modal-content p-3">
-          <h5>🔒 Admin Dashboard</h5>
-          ${html}
-          <button class="btn btn-secondary mt-3"
-            onclick="this.closest('.modal').remove()">Close</button>
-        </div>
-      </div>
-    </div>`
-  );
-}
-
-
-  return { start, logDownload, upload, admin };
-})();
-</script>
-
-<script>
-console.log('Admin shortcut script loaded');
-
-document.addEventListener('keydown', async function (e) {
-  console.log('Key pressed:', e.key);
-
-  if (e.shiftKey && e.altKey && e.key.toLowerCase() === 'a') {
-    e.preventDefault();
-    console.log('Admin shortcut triggered');
-
-    const pwd = prompt('Enter admin password');
-    if (!pwd) return;
-
-    try {
-      const res = await fetch(API,
-        {
-          method: 'POST',
-          body: JSON.stringify({
-            action: 'fetchAdmin',
-            password: pwd
-          })
+    function initCurrentUser() {
+      let user = localStorage.getItem('currentUser');
+      if (!user) {
+        user = prompt('Enter your name');
+        if (user && user.trim()) {
+          user = user.trim();
+          localStorage.setItem('currentUser', user);
         }
-      );
+      }
+      return user;
+    }
 
-      const data = await res.json();
+    async function pingUser(name) {
+      if (!name) return;
+      try {
+        await fetch(API, {
+          method: 'POST',
+          body: JSON.stringify({ action: 'pingUser', name })
+        });
+      } catch (e) {
+        console.error('Ping failed:', e);
+      }
+    }
 
-      if (data.status !== 'success') {
-        alert('❌ Invalid password');
+    async function fetchOnlineUsers() {
+      try {
+        const res = await fetch(API, {
+          method: 'POST',
+          body: JSON.stringify({ action: 'getOnlineUsers' })
+        });
+        const data = await res.json();
+        if (data.status === 'success') {
+          document.getElementById('onlineUsers').textContent = `Online: ${data.users.join(', ')}`;
+        }
+      } catch (e) {
+        console.error('Fetch online users failed:', e);
+      }
+    }
+
+    // Exam Functions
+    async function initExam() {
+      const name = prompt("Enter Your Full Name");
+      if (!name || name.trim().length < 3) {
+        alert("Enter valid full name");
         return;
       }
 
-      let html = `<table class="table table-bordered">
-        <tr><th>Name</th><th>Mobile</th><th>File</th></tr>`;
+      const mobile = prompt("Enter 10 Digit Mobile Number");
+      const cleanMobile = mobile ? mobile.replace(/\D/g, '') : '';
 
-      data.rows.forEach(r => {
-        html += `<tr>
-          <td>${r[1]}</td>
-          <td>${r[2]}</td>
-          <td><a href="${r[4]}" target="_blank">Download</a></td>
-        </tr>`;
-      });
+      if (!/^\d{10}$/.test(cleanMobile)) {
+        alert("Mobile number must be exactly 10 digits");
+        return;
+      }
 
-      html += `</table>`;
+      const email = prompt("Enter Your Email Address");
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-      document.body.insertAdjacentHTML('beforeend', `
-        <div class="modal show d-block">
-          <div class="modal-dialog modal-lg">
-            <div class="modal-content p-3">
-              <h5>Admin Dashboard</h5>
-              ${html}
-              <button class="btn btn-secondary mt-3"
-                onclick="this.closest('.modal').remove()">Close</button>
-            </div>
-          </div>
-        </div>
-      `);
+      if (!email || !emailPattern.test(email)) {
+        alert("Enter valid email address");
+        return;
+      }
 
-    } catch (err) {
-      console.error(err);
-      alert('Admin fetch failed');
-    }
-  }
-});
-</script>
+      try {
+        const res = await fetch(API, {
+          method: 'POST',
+          body: JSON.stringify({ action: "checkExamAttempt", mobile: cleanMobile })
+        });
+        const data = await res.json();
 
-<script>
-const ONLINE_API = window.API; // your existing GAS URL
+        if (!data.allowed) {
+          alert("❌ You have already attempted this exam.");
+          return;
+        }
 
-async function pingUser() {
-  const name = localStorage.getItem('currentUser');
-  if (!name) return;
-
-  await fetch(API, {
-    method: 'POST',
-    body: JSON.stringify({
-      action: 'pingUser',
-      name: name
-    })
-  });
-}
-
-
-async function fetchOnlineUsers() {
-  try {
-    const res = await fetch(API, {
-      method: 'POST',
-      body: JSON.stringify({ action: 'getOnlineUsers' })
-    });
-
-    const data = await res.json();
-
-    if (data.status === 'success') {
-      document.getElementById('onlineUsers').innerHTML =
-        `🟢 Online: ${data.users.join(', ')}`;
-    }
-  } catch (e) {
-    console.error(e);
-  }
-}
-
-// initial load
-pingUser();
-fetchOnlineUsers();
-
-// ping every 15 sec
-setInterval(pingUser, 15000);
-// refresh list every 10 sec
-setInterval(fetchOnlineUsers, 10000);
-
-
-</script>
-
-
-<script>
-  function initCurrentUser() {
-    let user = localStorage.getItem('currentUser');
-
-    if (!user) {
-      user = prompt('Enter your name');
-      if (user && user.trim()) {
-        user = user.trim();
-        localStorage.setItem('currentUser', user);
+        studentExam = { name: name.trim(), mobile: cleanMobile, email: email.trim() };
+        examStarted = true;
+        renderExamSection();
+        enterFullscreen();
+        startTimer();
+      } catch (err) {
+        console.error('Exam init failed:', err);
+        alert('Failed to initialize exam');
       }
     }
 
-    return user;
-  }
-
-  // Initialize user ONCE page loads
-  const CURRENT_USER = initCurrentUser();
-
-  // Show user name in navbar
-  const navUser = document.getElementById('navUsername');
-  if (CURRENT_USER && navUser) {
-    navUser.innerHTML = `👤 ${CURRENT_USER}`;
-  }
-</script>
-
-<script>
-let examStarted = false;
-let examSubmitted = false;
-let examDuration = 20 * 60; // 20 minutes
-let timerInterval;
-
-// ================= INIT EXAM =================
-async function initExam() {
-
-  const name = prompt("Enter Your Full Name");
-  if (!name || name.trim().length < 3) {
-    alert("Enter valid full name");
-    return;
-  }
-
-  const mobile = prompt("Enter 10 Digit Mobile Number");
-  const cleanMobile = mobile ? mobile.replace(/\D/g, '') : '';
-
-  if (!/^\d{10}$/.test(cleanMobile)) {
-    alert("Mobile number must be exactly 10 digits");
-    return;
-  }
-
-  const email = prompt("Enter Your Email Address");
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  if (!email || !emailPattern.test(email)) {
-    alert("Enter valid email address");
-    return;
-  }
-
-  // Check one attempt
-  const res = await fetch(API, {
-    method: 'POST',
-    body: JSON.stringify({
-      action: "checkExamAttempt",
-      mobile: cleanMobile
-    })
-  });
-
-  const data = await res.json();
-
-  if (!data.allowed) {
-    alert("❌ You have already attempted this exam.");
-    return;
-  }
-
-  window.studentExam = {
-    name: name.trim(),
-    mobile: cleanMobile,
-    email: email.trim()
-  };
-
-  document.getElementById("examSection").classList.remove("d-none");
-
-  startExam();
-}
-
-// ================= START =================
-function startExam() {
-  examStarted = true;
-  enterFullscreen();
-  startTimer();
-}
-
-// ================= TIMER =================
-function startTimer() {
-  timerInterval = setInterval(() => {
-
-    let min = Math.floor(examDuration / 60);
-    let sec = examDuration % 60;
-
-    document.getElementById("timer").innerText =
-      `${min}:${sec < 10 ? '0' : ''}${sec}`;
-
-    examDuration--;
-
-    if (examDuration < 0) {
-      clearInterval(timerInterval);
-      alert("⏰ Time Up!");
-      submitExam();
+    function startTimer() {
+      timerInterval = setInterval(() => {
+        examDuration--;
+        updateTimerDisplay();
+        
+        if (examDuration <= 0) {
+          clearInterval(timerInterval);
+          alert('⏰ Time Up!');
+          submitExam();
+        }
+      }, 1000);
     }
 
-  }, 1000);
-}
-
-
-
-// ================= SUBMIT =================
-
-async function submitExam() {
-  // 1. Prevent double submission
-  const submitBtn = document.querySelector('#examForm button[type="button"]');
-  if (submitBtn.disabled) return;
-  submitBtn.disabled = true;
-  submitBtn.innerText = "Submitting...";
-
-  try {
-    const form = document.getElementById('examForm');
-    
-    // 2. Prepare the payload structure the Script expects
-    const payload = {
-      action: "secureExamSubmit",           // Missing in your current code
-      name: window.studentExam.name,        // Missing in your current code
-      mobile: window.studentExam.mobile,    // Missing in your current code
-      email: window.studentExam.email,      // Missing in your current code
-      answers: {},                          // Object for MCQ (q1-q40)
-    };
-
-    // 3. Collect MCQ answers (q1 to q40) into the 'answers' object
-    for (let i = 1; i <= 40; i++) {
-      const q = form.querySelector(`input[name="q${i}"]:checked`);
-      payload.answers[`q${i}`] = q ? q.value : null;
+    function updateTimerDisplay() {
+      const min = Math.floor(examDuration / 60);
+      const sec = examDuration % 60;
+      const timerEl = document.getElementById('examTimer');
+      if (timerEl) {
+        timerEl.textContent = `${min}:${sec < 10 ? '0' : ''}${sec}`;
+      }
     }
 
-    // 4. Collect SQL answers (q41 to q45) directly into payload
-    for (let i = 41; i <= 45; i++) {
-      const q = form.querySelector(`textarea[name="q${i}"]`);
-      payload[`q${i}`] = q ? q.value.trim() : '';
+    function renderExamSection() {
+      const mcqQuestions = [
+        { q: 'q1', text: 'Which data type stores fixed-length character data?', options: ['VARCHAR2', 'CHAR', 'NUMBER', 'DATE'] },
+        { q: 'q2', text: 'Maximum size of VARCHAR2 in Oracle is?', options: ['2000 bytes', '4000 bytes', '2 GB', '1000 bytes'] },
+        { q: 'q3', text: 'Which data type supports multilingual data?', options: ['CHAR', 'NCHAR', 'LONG', 'DATE'] },
+        { q: 'q4', text: 'Maximum precision supported by NUMBER is?', options: ['20', '30', '38', '50'] },
+        { q: 'q5', text: 'NUMBER(4,2) can store:', options: ['9999', '99.20', '1234.567', '999.999'] },
+        { q: 'q6', text: 'Which data type is used to store images?', options: ['CLOB', 'BLOB', 'CHAR', 'NUMBER'] },
+        { q: 'q7', text: 'Which command is DDL?', options: ['INSERT', 'CREATE', 'UPDATE', 'SELECT'] },
+        { q: 'q8', text: 'Which command is DML?', options: ['GRANT', 'INSERT', 'ALTER', 'COMMIT'] },
+        { q: 'q9', text: 'WHERE clause is used to:', options: ['Sort records', 'Filter records', 'Group records', 'Remove duplicates'] },
+        { q: 'q10', text: 'DISTINCT is used to:', options: ['Remove duplicates', 'Sort records', 'Join tables', 'Filter records'] },
+        { q: 'q11', text: 'PRIMARY KEY enforces:', options: ['Only unique', 'Only not null', 'Unique and Not Null', 'Default values'] },
+        { q: 'q12', text: 'FOREIGN KEY is used to:', options: ['Identify table', 'Link two tables', 'Delete rows', 'Sort records'] },
+        { q: 'q13', text: 'LEFT JOIN returns:', options: ['Matching rows only', 'All left table rows', 'All right table rows', 'No rows'] },
+        { q: 'q14', text: 'RIGHT JOIN returns:', options: ['All right table rows', 'All left rows', 'Matching only', 'Cartesian product'] },
+        { q: 'q15', text: 'FULL JOIN returns:', options: ['Matching only', 'Left only', 'All records from both tables', 'Right only'] },
+        { q: 'q16', text: 'CROSS JOIN produces:', options: ['Matching rows', 'Cartesian product', 'Grouped rows', 'Filtered rows'] },
+        { q: 'q17', text: 'A subquery is:', options: ['Query inside query', 'Join condition', 'Constraint', 'Operator'] },
+        { q: 'q18', text: 'GROUP BY is used with:', options: ['WHERE', 'Aggregate functions', 'ORDER BY', 'JOIN'] },
+        { q: 'q19', text: 'HAVING clause filters:', options: ['Rows', 'Groups', 'Tables', 'Columns'] },
+        { q: 'q20', text: 'RANK() function gives:', options: ['Rank without gaps', 'Rank with gaps', 'Row number only', 'Count value'] },
+        { q: 'q21', text: 'DENSE_RANK() gives:', options: ['Rank with gaps', 'Rank without gaps', 'Duplicate ranks', 'Count'] },
+        { q: 'q22', text: 'ROW_NUMBER() gives:', options: ['Sequential unique numbers', 'Same rank', 'Gaps', 'Count'] },
+        { q: 'q23', text: 'ROWNUM is:', options: ['Function', 'Pseudo column', 'Constraint', 'Operator'] },
+        { q: 'q24', text: 'CHECK constraint is used to:', options: ['Restrict values', 'Create table', 'Delete table', 'Sort data'] },
+        { q: 'q25', text: 'DEFAULT constraint is used to:', options: ['Set automatic value', 'Remove null', 'Join table', 'Sort data'] },
+        { q: 'q26', text: 'UNIQUE constraint allows:', options: ['Duplicate values', 'Unique values', 'Null only', 'Default only'] },
+        { q: 'q27', text: 'ORDER BY DESC means:', options: ['Ascending', 'Descending', 'Grouping', 'Filtering'] },
+        { q: 'q28', text: 'UPPER() is:', options: ['Number function', 'Character function', 'Date function', 'Logical function'] },
+        { q: 'q29', text: 'ROUND() is:', options: ['Character function', 'Number function', 'Date function', 'Logical function'] },
+        { q: 'q30', text: 'SYSDATE returns:', options: ['Current number', 'Current date', 'Current string', 'Null'] },
+        { q: 'q31', text: 'TO_CHAR() is:', options: ['Conversion function', 'Date function', 'Join function', 'Logical function'] },
+        { q: 'q32', text: 'CASE expression is used for:', options: ['Looping', 'Conditional logic', 'Sorting', 'Joining'] },
+        { q: 'q33', text: 'COMMIT is:', options: ['DML', 'TCL', 'DDL', 'DCL'] },
+        { q: 'q34', text: 'GRANT belongs to:', options: ['DDL', 'DML', 'DCL', 'TCL'] },
+        { q: 'q35', text: 'Arithmetic operator example:', options: ['AND', '+', 'LIKE', 'IN'] },
+        { q: 'q36', text: 'Relational operator example:', options: ['>', '+', '||', 'AND'] },
+        { q: 'q37', text: 'Logical operator example:', options: ['OR', '+', '=', '*'] },
+        { q: 'q38', text: 'Which LOB stores large text data?', options: ['BLOB', 'CLOB', 'RAW', 'LONG'] },
+        { q: 'q39', text: 'Only one LONG column is allowed per:', options: ['Database', 'Table', 'Schema', 'View'] },
+        { q: 'q40', text: 'HAVING is used with:', options: ['GROUP BY', 'WHERE', 'ORDER BY', 'JOIN'] }
+      ];
+
+      const sqlQuestions = [
+        { q: 'q41', text: 'STUDENTS(student_id, name, course_id) and COURSES(course_id, course_name). Write a query to display student name and course name using INNER JOIN.' },
+        { q: 'q42', text: 'Write a query to display all students even if they are not enrolled in any course.' },
+        { q: 'q43', text: 'EMP(emp_id, name, salary). Write a subquery to find employees earning more than average salary.' },
+        { q: 'q44', text: 'Write a query using subquery to find second highest salary.' },
+        { q: 'q45', text: 'DEPT(dept_id, dept_name) and EMP(emp_id, salary, dept_id). Write a query to display department name and total salary using GROUP BY.' }
+      ];
+
+      let html = `
+        <div class="exam-container">
+          <div class="exam-header">
+            <h3 class="exam-title">SQL Assessment</h3>
+            <div class="exam-timer">
+              <div class="timer-label">Time Remaining</div>
+              <div class="timer-value" id="examTimer">20:00</div>
+            </div>
+          </div>
+
+          <div class="exam-info">
+            <ul>
+              <li><span style="color: #6366f1; font-weight: bold;">⏱</span> <b>Total Time:</b> 20 Minutes</li>
+              <li><span style="color: #6366f1; font-weight: bold;">📝</span> <b>Section A:</b> 40 MCQs (1 mark each)</li>
+              <li><span style="color: #6366f1; font-weight: bold;">💻</span> <b>Section B:</b> 5 SQL Queries (4 marks each)</li>
+              <li><span style="color: #dc2626; font-weight: bold;">🚫</span> <b>Strict Policy:</b> Auto-submit on tab switch or minimizing.</li>
+            </ul>
+          </div>
+
+          <h4 style="font-weight: 700; margin-top: 2rem;">Section A: Multiple Choice Questions (40 Marks)</h4>
+          <hr style="margin-bottom: 1.5rem;">
+
+          <div>
+      `;
+
+      mcqQuestions.forEach((item, idx) => {
+        html += `
+          <div class="question-card">
+            <p class="question-text">Q${idx + 1}. ${item.text}</p>
+            <div>
+        `;
+        item.options.forEach((opt, i) => {
+          const letter = String.fromCharCode(65 + i);
+          html += `
+            <label class="option-label">
+              <input type="radio" name="${item.q}" value="${letter}" onchange="examAnswers['${item.q}'] = '${letter}'">
+              <span>${opt}</span>
+            </label>
+          `;
+        });
+        html += `</div></div>`;
+      });
+
+      html += `
+          </div>
+          <h4 style="font-weight: 700; margin-top: 3rem;">Section B: SQL Query Writing (20 Marks)</h4>
+          <hr style="margin-bottom: 1.5rem;">
+          <div>
+      `;
+
+      sqlQuestions.forEach((item, idx) => {
+        html += `
+          <div class="sql-question-card">
+            <p class="question-text">Q${41 + idx}. ${item.text}</p>
+            <textarea class="sql-textarea" rows="4" onchange="examAnswers['${item.q}'] = this.value" required></textarea>
+          </div>
+        `;
+      });
+
+      html += `
+          </div>
+          <div style="text-align: center; margin-top: 2rem;">
+            <button class="btn-submit" onclick="submitExam()">Submit Exam</button>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('examSection').innerHTML = html;
+      document.getElementById('examSection').classList.remove('d-none');
+      document.querySelector('main').style.display = 'none';
+      document.querySelector('nav').style.display = 'none';
+      document.querySelector('.motivation-bar').style.display = 'none';
+      document.querySelector('.notification-bar').style.display = 'none';
     }
 
-    // 5. Send to Google Script
-    const response = await fetch(window.API, { // Use the global API variable
-      method: "POST",
-      body: JSON.stringify(payload)
-    });
+    async function submitExam() {
+      if (!studentExam) return;
 
-    const result = await response.json();
+      const payload = {
+        action: "secureExamSubmit",
+        name: studentExam.name,
+        mobile: studentExam.mobile,
+        email: studentExam.email,
+        answers: {}
+      };
 
-    if (result.status === "success") {
-      examSubmitted = true;
-      clearInterval(timerInterval);
-      alert("✅ Exam submitted successfully! Check your email for the scorecard.");
-      document.getElementById("examSection").innerHTML = `
-        <div class="alert alert-success text-center">
-          <h3>Exam Submitted!</h3>
-          <p>Your results have been sent to ${window.studentExam.email}</p>
-        </div>`;
-    } else {
-      throw new Error(result.message || "Server rejected submission");
+      for (let i = 1; i <= 40; i++) {
+        payload.answers[`q${i}`] = examAnswers[`q${i}`] || null;
+      }
+
+      for (let i = 41; i <= 45; i++) {
+        payload[`q${i}`] = examAnswers[`q${i}`] || '';
+      }
+
+      try {
+        const response = await fetch(API, {
+          method: "POST",
+          body: JSON.stringify(payload)
+        });
+
+        const result = await response.json();
+
+        if (result.status === "success") {
+          clearInterval(timerInterval);
+          alert("✅ Exam submitted successfully! Check your email for the scorecard.");
+          location.reload();
+        } else {
+          throw new Error(result.message || "Server rejected submission");
+        }
+      } catch (err) {
+        console.error("Submission error:", err);
+        alert("❌ Error: " + err.message);
+      }
     }
 
-  } catch (err) {
-    console.error("Submission error:", err);
-    alert("❌ Error: " + err.message);
-    submitBtn.disabled = false;
-    submitBtn.innerText = "Submit Exam";
-  }
-}
+    function enterFullscreen() {
+      const elem = document.documentElement;
+      if (elem.requestFullscreen) elem.requestFullscreen();
+    }
 
+    function handleKeyDown(e) {
+      if (e.key === "F12" || (e.ctrlKey && e.shiftKey && e.key === 'I') || (e.ctrlKey && e.key === 'U')) {
+        e.preventDefault();
+      }
+      if (e.shiftKey && e.altKey && e.key.toLowerCase() === 'a') {
+        e.preventDefault();
+        openAdminDashboard();
+      }
+    }
 
-// ================= SECURITY =================
+    function handleVisibilityChange() {
+      if (examStarted && document.hidden) {
+        alert("⚠ Tab switch detected. Auto submitting.");
+        submitExam();
+      }
+    }
 
-// Disable right click
-document.addEventListener('contextmenu', e => e.preventDefault());
+    async function openAdminDashboard() {
+      const pwd = prompt('Enter admin password');
+      if (!pwd) return;
 
-// Disable copy
-document.addEventListener('copy', e => e.preventDefault());
+      try {
+        const res = await fetch(API, {
+          method: 'POST',
+          body: JSON.stringify({ action: 'fetchAdmin', password: pwd })
+        });
+        const data = await res.json();
 
-// Disable devtools
-document.addEventListener('keydown', function(e) {
-  if (e.key === "F12" ||
-     (e.ctrlKey && e.shiftKey && e.key === 'I') ||
-     (e.ctrlKey && e.key === 'U')) {
-    e.preventDefault();
-  }
-});
+        if (data.status !== 'success') {
+          alert('❌ Invalid password');
+          return;
+        }
 
-// Tab switch
-document.addEventListener("visibilitychange", function () {
-  if (examStarted && !examSubmitted && document.hidden) {
-    alert("⚠ Tab switch detected. Auto submitting.");
-    submitExam();
-  }
-});
+        let html = '<table class="table table-bordered"><tr class="table-light"><th>Name</th><th>Mobile</th><th>File</th></tr>';
+        data.rows.forEach(r => {
+          html += `<tr><td>${r[1]}</td><td>${r[2]}</td><td><a href="${r[4]}" target="_blank" class="text-primary">Download</a></td></tr>`;
+        });
+        html += '</table>';
 
-function enterFullscreen() {
-  const elem = document.documentElement;
-  if (elem.requestFullscreen) elem.requestFullscreen();
-}
-</script>
+        const modal = document.createElement('div');
+        modal.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:9999;';
+        modal.innerHTML = `
+          <div style="background:white;border-radius:1rem;padding:2rem;max-width:900px;width:90%;max-height:80vh;overflow:auto;">
+            <h5 style="margin-bottom:1.5rem;font-weight:700;">Admin Dashboard</h5>
+            ${html}
+            <button onclick="this.closest('[style*=fixed]').remove()" class="btn btn-secondary mt-3">Close</button>
+          </div>
+        `;
+        document.body.appendChild(modal);
+      } catch (err) {
+        console.error(err);
+        alert('Admin fetch failed');
+      }
+    }
+  </script>
+
 </body>
 </html>
