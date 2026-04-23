@@ -2221,5 +2221,14 @@
   "time": "03:12 PM",
   "batch": "FEB_19_2026",
   "body": "UNIX Architecture:\n\nUser Applications --> Unix Shell --> Unix Kernel --> System Hardware\n\nUnix Shell Types:\n1. Bash\n2. Bourne\n3. Korn\n4. C Shell\n\n\nUnix File Structure:\n/ (root)\n|\n----------------------------------\n| | | | | | | |\nbin boot mnt etc dev home lib var\n\n\nTypes of commands:\n\n Basic /General Commands\n Space management Commands\n Directory related commands\n File related commands\n Networking commands/Communication Commands\n Process related commands\n VI/ VIEW Editor /CUI Editor\n Gedit\n Job scheduling – crontab\n\nUnix/Linux Commands:\n\n# pwd : This command will show you – you are in which directory\n# cd : cd command use to change directory or go to any particular directory."
+},
+{
+  "date": "23-APR-2026",
+  "session": "Evening",
+  "title": "Practice Session",
+  "subject": "LINUX",
+  "time": "08:38 PM",
+  "batch": "FEB_19_2026",
+  "body": "UNIX Architecture:\n\nUser Applications --> Unix Shell --> Unix Kernel --> System Hardware\n\nUnix Shell Types:\n1. Bash\n2. Bourne\n3. Korn\n4. C Shell\n\n\nUnix File Structure:\n/ (root)\n|\n----------------------------------\n| | | | | | | |\nbin boot mnt etc dev home lib var\n\n\nTypes of commands:\n\n Basic /General Commands\n Space management Commands\n Directory related commands\n File related commands\n Networking commands/Communication Commands\n Process related commands\n VI/ VIEW Editor /CUI Editor\n Gedit\n Job scheduling – crontab\n\nUnix/Linux Commands:\n\n# pwd : This command will show you – you are in which directory\n# cd : cd command use to change directory or go to any particular directory."
 }
 ]
