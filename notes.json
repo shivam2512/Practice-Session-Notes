@@ -2230,5 +2230,14 @@
   "time": "08:38 PM",
   "batch": "FEB_19_2026",
   "body": "UNIX Architecture:\n\nUser Applications --> Unix Shell --> Unix Kernel --> System Hardware\n\nUnix Shell Types:\n1. Bash\n2. Bourne\n3. Korn\n4. C Shell\n\n\nUnix File Structure:\n/ (root)\n|\n----------------------------------\n| | | | | | | |\nbin boot mnt etc dev home lib var\n\n\nTypes of commands:\n\n Basic /General Commands\n Space management Commands\n Directory related commands\n File related commands\n Networking commands/Communication Commands\n Process related commands\n VI/ VIEW Editor /CUI Editor\n Gedit\n Job scheduling – crontab\n\nUnix/Linux Commands:\n\n# pwd : This command will show you – you are in which directory\n# cd : cd command use to change directory or go to any particular directory."
+},
+{
+  "date": "24-APR-2026",
+  "session": "Afternoon",
+  "title": "Practice Session",
+  "subject": "LINUX",
+  "time": "03:32 PM",
+  "batch": "FEB_19_2026",
+  "body": "1) # cal : It will print current month calendar\n# cal 1990 It will print 1990 year's calendar\nCal command is having more attributes or multiple options output which you can try.\nGo with below command and find the multiple options of cal command.\n# man cal\n\n2) # man : man is help command in UNIX. Any commands help/info require then use it.\ne.g. : # man date\n# man cal\n# man find\n\n3) # date : date will print today's date and time.\n# date +%m : Month Number will print (1=jan, 2=feb, 3=mar.....)\n# date +%j : Month Name will show (Jan, Feb, Mar, Apr......)\n# date +%m%h : Month Name and Number both will print\n# date +%d : Todays date will print (1, 2, 3, 4,...... 30, 31)\n# date +%y : Current year will print (2016, 2017....)\n# date +%H%M%S : Hours, Minutes and Seconds\n# date +%D : Date will print e.g. 7/24/2016\n# date +%T : Time will print e.g. 10:46:32\n\nNOTE: Options can vary based on the linux version, for more details check options using man date\n\n4) # echo : It will print Massage on terminal\n# echo Ramesh and Suresh are friends\nAbove bold massage will print on terminal\n\n5) # echo $HOME : will show which your home directory is.\n   # echo $SHELL : will show which shell you are using (bash, bourn, korn or C)\n   \n6) # bc : bc command use for calculator.\nPress ctrl + d Key to exit from calculator.\n\n7) # exit : to exit from current session. (ctrl + d) short cut key for exit command.\n\n8) # history : It will record your command history only."
 }
 ]
