@@ -608,14 +608,14 @@
   </div>
 
   <script>
-    const API = 'https://script.google.com/macros/s/AKfycbxAZb0HF920Ye-IXjVZCJumioWX3kzt3PWdVzTO1vSSEV0u-gNZtBSksIIUPlmNS1zmnQ/exec';
+    const API = 'https://script.google.com/macros/s/AKfycbxYgbdrDhSkYUZgKaMIIkiqZUTNVHi9lUjkm_Uor443WUWf2uMUV3Df9isEW0BB-e7FIQ/exec';
     const CURRENT_BATCH = 'FEB_19_2026';
     
     let allNotes = [];
     let currentMonthIndex = new Date().getMonth();
     let currentYear = new Date().getFullYear();
     let examStarted = false;
-    let examDuration = 20 * 60;
+    let examDuration = 40 * 60;
     let timerInterval;
     let studentExam = null;
     let examAnswers = {};
@@ -989,54 +989,78 @@
 
     function renderExamSection() {
       const mcqQuestions = [
-        { q: 'q1', text: 'Which data type stores fixed-length character data?', options: ['VARCHAR2', 'CHAR', 'NUMBER', 'DATE'] },
-        { q: 'q2', text: 'Maximum size of VARCHAR2 in Oracle is?', options: ['2000 bytes', '4000 bytes', '2 GB', '1000 bytes'] },
-        { q: 'q3', text: 'Which data type supports multilingual data?', options: ['CHAR', 'NCHAR', 'LONG', 'DATE'] },
-        { q: 'q4', text: 'Maximum precision supported by NUMBER is?', options: ['20', '30', '38', '50'] },
-        { q: 'q5', text: 'NUMBER(4,2) can store:', options: ['9999', '99.20', '1234.567', '999.999'] },
-        { q: 'q6', text: 'Which data type is used to store images?', options: ['CLOB', 'BLOB', 'CHAR', 'NUMBER'] },
-        { q: 'q7', text: 'Which command is DDL?', options: ['INSERT', 'CREATE', 'UPDATE', 'SELECT'] },
-        { q: 'q8', text: 'Which command is DML?', options: ['GRANT', 'INSERT', 'ALTER', 'COMMIT'] },
-        { q: 'q9', text: 'WHERE clause is used to:', options: ['Sort records', 'Filter records', 'Group records', 'Remove duplicates'] },
-        { q: 'q10', text: 'DISTINCT is used to:', options: ['Remove duplicates', 'Sort records', 'Join tables', 'Filter records'] },
-        { q: 'q11', text: 'PRIMARY KEY enforces:', options: ['Only unique', 'Only not null', 'Unique and Not Null', 'Default values'] },
-        { q: 'q12', text: 'FOREIGN KEY is used to:', options: ['Identify table', 'Link two tables', 'Delete rows', 'Sort records'] },
-        { q: 'q13', text: 'LEFT JOIN returns:', options: ['Matching rows only', 'All left table rows', 'All right table rows', 'No rows'] },
-        { q: 'q14', text: 'RIGHT JOIN returns:', options: ['All right table rows', 'All left rows', 'Matching only', 'Cartesian product'] },
-        { q: 'q15', text: 'FULL JOIN returns:', options: ['Matching only', 'Left only', 'All records from both tables', 'Right only'] },
-        { q: 'q16', text: 'CROSS JOIN produces:', options: ['Matching rows', 'Cartesian product', 'Grouped rows', 'Filtered rows'] },
-        { q: 'q17', text: 'A subquery is:', options: ['Query inside query', 'Join condition', 'Constraint', 'Operator'] },
-        { q: 'q18', text: 'GROUP BY is used with:', options: ['WHERE', 'Aggregate functions', 'ORDER BY', 'JOIN'] },
-        { q: 'q19', text: 'HAVING clause filters:', options: ['Rows', 'Groups', 'Tables', 'Columns'] },
-        { q: 'q20', text: 'RANK() function gives:', options: ['Rank without gaps', 'Rank with gaps', 'Row number only', 'Count value'] },
-        { q: 'q21', text: 'DENSE_RANK() gives:', options: ['Rank with gaps', 'Rank without gaps', 'Duplicate ranks', 'Count'] },
-        { q: 'q22', text: 'ROW_NUMBER() gives:', options: ['Sequential unique numbers', 'Same rank', 'Gaps', 'Count'] },
-        { q: 'q23', text: 'ROWNUM is:', options: ['Function', 'Pseudo column', 'Constraint', 'Operator'] },
-        { q: 'q24', text: 'CHECK constraint is used to:', options: ['Restrict values', 'Create table', 'Delete table', 'Sort data'] },
-        { q: 'q25', text: 'DEFAULT constraint is used to:', options: ['Set automatic value', 'Remove null', 'Join table', 'Sort data'] },
-        { q: 'q26', text: 'UNIQUE constraint allows:', options: ['Duplicate values', 'Unique values', 'Null only', 'Default only'] },
-        { q: 'q27', text: 'ORDER BY DESC means:', options: ['Ascending', 'Descending', 'Grouping', 'Filtering'] },
-        { q: 'q28', text: 'UPPER() is:', options: ['Number function', 'Character function', 'Date function', 'Logical function'] },
-        { q: 'q29', text: 'ROUND() is:', options: ['Character function', 'Number function', 'Date function', 'Logical function'] },
-        { q: 'q30', text: 'SYSDATE returns:', options: ['Current number', 'Current date', 'Current string', 'Null'] },
-        { q: 'q31', text: 'TO_CHAR() is:', options: ['Conversion function', 'Date function', 'Join function', 'Logical function'] },
-        { q: 'q32', text: 'CASE expression is used for:', options: ['Looping', 'Conditional logic', 'Sorting', 'Joining'] },
-        { q: 'q33', text: 'COMMIT is:', options: ['DML', 'TCL', 'DDL', 'DCL'] },
-        { q: 'q34', text: 'GRANT belongs to:', options: ['DDL', 'DML', 'DCL', 'TCL'] },
-        { q: 'q35', text: 'Arithmetic operator example:', options: ['AND', '+', 'LIKE', 'IN'] },
-        { q: 'q36', text: 'Relational operator example:', options: ['>', '+', '||', 'AND'] },
-        { q: 'q37', text: 'Logical operator example:', options: ['OR', '+', '=', '*'] },
-        { q: 'q38', text: 'Which LOB stores large text data?', options: ['BLOB', 'CLOB', 'RAW', 'LONG'] },
-        { q: 'q39', text: 'Only one LONG column is allowed per:', options: ['Database', 'Table', 'Schema', 'View'] },
-        { q: 'q40', text: 'HAVING is used with:', options: ['GROUP BY', 'WHERE', 'ORDER BY', 'JOIN'] }
+       { q: 'q1', text: 'Which SQL component is used to manage access permissions like GRANT and REVOKE?', options: ['DDL', 'DML', 'DCL', 'TCL'] },
+        { q: 'q2', text: 'What is the maximum size of VARCHAR2 in Oracle?', options: ['2000 bytes', '4000 bytes', '2 GB', '4 GB'] },
+        { q: 'q3', text: 'Which data type is best for storing a profile picture?', options: ['CLOB', 'BLOB', 'RAW', 'LONG'] },
+        { q: 'q4', text: 'Which command is used to remove all rows and free up space permanently (cannot be rolled back)?', options: ['DELETE', 'DROP', 'TRUNCATE', 'REMOVE'] },
+        { q: 'q5', text: 'What is the default sorting order for the ORDER BY clause?', options: ['Descending', 'Ascending', 'Random', 'None'] },
+        { q: 'q6', text: 'Which operator is used to search for a specific pattern?', options: ['IN', 'BETWEEN', 'LIKE', 'EXISTS'] },
+        { q: 'q7', text: 'In the pattern "_a%", the underscore (_) represents:', options: ['Any number of characters', 'Exactly one character', 'Zero characters', 'A whitespace'] },
+        { q: 'q8', text: 'Which set operator returns only the common rows between two queries?', options: ['UNION', 'UNION ALL', 'MINUS', 'INTERSECT'] },
+        { q: 'q9', text: 'Which constraint ensures a column cannot have NULL values and must be unique?', options: ['UNIQUE', 'NOT NULL', 'PRIMARY KEY', 'CHECK'] },
+        { q: 'q10', text: 'Which TCL command is used to undo changes since the last commit?', options: ['SAVEPOINT', 'ROLLBACK', 'GRANT', 'REVOKE'] },
+        { q: 'q11', text: 'Which data type stores multi-language character data in fixed length?', options: ['CHAR', 'NCHAR', 'VARCHAR2', 'LONG'] },
+        { q: 'q12', text: 'How many Primary Keys can a single table have?', options: ['Only 1', '2', 'As many as columns', 'Unlimited'] },
+        { q: 'q13', text: 'Which join returns matching rows plus unmatched rows from the left table?', options: ['INNER JOIN', 'LEFT JOIN', 'RIGHT JOIN', 'CROSS JOIN'] },
+        { q: 'q14', text: 'A "virtual table" that doesn\'t store data but shows results of a query is a:', options: ['Index', 'Synonym', 'View', 'Sequence'] },
+        { q: 'q15', text: 'Which pseudo-column represents the physical address of a row?', options: ['ROWNUM', 'ROWID', 'ID', 'ADDR'] },
+        { q: 'q16', text: 'Which analytical function assigns ranks with gaps (e.g., 1, 2, 2, 4)?', options: ['RANK()', 'DENSE_RANK()', 'ROW_NUMBER()', 'COUNT()'] },
+        { q: 'q17', text: 'Which clause is used to filter groups created by GROUP BY?', options: ['WHERE', 'HAVING', 'ORDER BY', 'LIMIT'] },
+        { q: 'q18', text: 'What is the DUAL table in Oracle?', options: ['A table for double entry', 'A dummy one-row table', 'A backup table', 'A table for joins'] },
+        { q: 'q19', text: 'Which command is used to rename a column?', options: ['RENAME COLUMN', 'ALTER TABLE ... RENAME COLUMN', 'UPDATE COLUMN', 'CHANGE COLUMN'] },
+        { q: 'q20', text: 'Which data type is used for large text documents up to 4GB?', options: ['VARCHAR2', 'LONG', 'CLOB', 'BLOB'] },
+        { q: 'q21', text: 'What does the DISTINCT keyword do?', options: ['Sorts data', 'Removes duplicates', 'Filters nulls', 'Counts rows'] },
+        { q: 'q22', text: 'Which operator checks if a value is within a range?', options: ['IN', 'BETWEEN', 'LIKE', 'RANGE'] },
+        { q: 'q23', text: 'Which command saves all pending changes?', options: ['SAVE', 'COMMIT', 'ROLLBACK', 'GRANT'] },
+        { q: 'q24', text: 'Which join produces a Cartesian product (Total Rows = TableA * TableB)?', options: ['INNER JOIN', 'SELF JOIN', 'CROSS JOIN', 'NATURAL JOIN'] },
+        { q: 'q25', text: 'A subquery in the FROM clause is called an:', options: ['Inline View', 'Scalar Subquery', 'Correlated Subquery', 'Nested Query'] },
+        { q: 'q26', text: 'Which constraint allows multiple NULL values but no duplicate data?', options: ['PRIMARY KEY', 'UNIQUE', 'CHECK', 'DEFAULT'] },
+        { q: 'q27', text: 'The WITH clause is used to create a:', options: ['View', 'CTE', 'Synonym', 'Sequence'] },
+        { q: 'q28', text: 'Which object generates unique numbers automatically?', options: ['Index', 'View', 'Sequence', 'Synonym'] },
+        { q: 'q29', text: 'What is a Synonym?', options: ['A type of join', 'An alias for a database object', 'A backup table', 'A security key'] },
+        { q: 'q30', text: 'Which function converts a string to uppercase?', options: ['UPPER()', 'CAPS()', 'TO_UPPER()', 'MAX()'] },
+        { q: 'q31', text: 'Which command adds a descriptive comment to a table?', options: ['NOTE', 'COMMENT', 'DESCRIBE', 'LABEL'] },
+        { q: 'q32', text: 'Which operator combines results but removes duplicates?', options: ['UNION', 'UNION ALL', 'INTERSECT', 'MINUS'] },
+        { q: 'q33', text: 'Which data type stores fractional numbers like 10.25?', options: ['NUMBER(4)', 'NUMBER(4,2)', 'INTEGER', 'LONG'] },
+        { q: 'q34', text: 'Which cursor attribute returns the number of rows fetched so far?', options: ['%FOUND', '%NOTFOUND', '%ROWCOUNT', '%ISOPEN'] },
+        { q: 'q35', text: 'To find the 2nd highest salary, we should use:', options: ['RANK()', 'DENSE_RANK()', 'MAX()', 'SUM()'] },
+        { q: 'q36', text: 'Which join is used to relate a table to itself?', options: ['SELF JOIN', 'CROSS JOIN', 'AUTO JOIN', 'INNER JOIN'] },
+        { q: 'q37', text: 'What is the size limit for the LONG data type?', options: ['4000 bytes', '2 GB', '4 GB', 'Unlimited'] },
+        { q: 'q38', text: 'Which operator is used to concatenate two strings?', options: ['+', '||', 'CONCAT', '&&'] },
+        { q: 'q39', text: 'Which command is used to add a new column to an existing table?', options: ['INSERT INTO', 'ALTER TABLE ... ADD', 'UPDATE TABLE', 'CREATE COLUMN'] },
+        { q: 'q40', text: 'Which operator is used to check for NULL values?', options: ['= NULL', 'IS NULL', '!= NULL', 'NOT NULL'] },
+        { q: 'q41', text: 'Which constraint checks a condition (e.g., Age > 18)?', options: ['PRIMARY KEY', 'UNIQUE', 'CHECK', 'FOREIGN KEY'] },
+        { q: 'q42', text: 'Which object speeds up data retrieval?', options: ['View', 'Sequence', 'Index', 'Synonym'] },
+        { q: 'q43', text: 'Which join returns all rows from both tables even if they don\'t match?', options: ['INNER JOIN', 'FULL OUTER JOIN', 'LEFT JOIN', 'CROSS JOIN'] },
+        { q: 'q44', text: 'The RAW data type is typically used for:', options: ['Text', 'Dates', 'Binary data (small)', 'Numbers'] },
+        { q: 'q45', text: 'Which analytical function gives unique sequential numbers to rows?', options: ['ROW_NUMBER()', 'RANK()', 'DENSE_RANK()', 'COUNT()'] },
+        { q: 'q46', text: 'What is the purpose of a SAVEPOINT?', options: ['Save data permanently', 'Set a point to rollback to', 'Lock the table', 'Create a backup'] },
+        { q: 'q47', text: 'Which operator returns rows in the first query but not the second?', options: ['UNION', 'INTERSECT', 'MINUS', 'EXISTS'] },
+        { q: 'q48', text: 'How do you view the structure of a table in Oracle?', options: ['VIEW table_name', 'DESC table_name', 'SHOW table_name', 'STRUCT table_name'] },
+        { q: 'q49', text: 'What does the COMMIT command do?', options: ['Deletes data', 'Saves changes permanently', 'Cancels changes', 'Grants access'] },
+        { q: 'q50', text: 'Which component is used to create or modify table structures?', options: ['DML', 'DDL', 'DCL', 'TCL'] }
       ];
-
       const sqlQuestions = [
-        { q: 'q41', text: 'STUDENTS(student_id, name, course_id) and COURSES(course_id, course_name). Write a query to display student name and course name using INNER JOIN.' },
-        { q: 'q42', text: 'Write a query to display all students even if they are not enrolled in any course.' },
-        { q: 'q43', text: 'EMP(emp_id, name, salary). Write a subquery to find employees earning more than average salary.' },
-        { q: 'q44', text: 'Write a query using subquery to find second highest salary.' },
-        { q: 'q45', text: 'DEPT(dept_id, dept_name) and EMP(emp_id, salary, dept_id). Write a query to display department name and total salary using GROUP BY.' }
+        { id: 's1', text: 'Create a table "Employees" with Emp_ID (Primary Key), Email (Unique, Not Null), and Hire_Date (Default Current Date).' },
+        { id: 's2', text: 'Modify the "Salary" column of an existing table to handle 10 digits with 2 decimal places and a default of 25000.' },
+        { id: 's3', text: 'Write a query to find all employees whose names start with "A", are exactly 5 characters long, and end with "m".' },
+        { id: 's4', text: 'Find the names and salaries of employees who earn more than the average salary of the "Sales" department.' },
+        { id: 's5', text: 'Use a set operator to list all "Permanent_Staff" IDs that are NOT present in the "Resigned_Staff" table.' },
+        { id: 's6', text: 'Write a query to give a 15% salary hike to all employees working in the "IT" department using arithmetic operators.' },
+        { id: 's7', text: 'Perform a Self-Join to list each Employee Name along with their Manager\'s Name from a single "Emp" table.' },
+        { id: 's8', text: 'Write a query to find the employee with the 4th highest salary using DENSE_RANK().' },
+        { id: 's9', text: 'Create a view called "High_Performers" that shows only employees with a rating > 9 and salary > 80000.' },
+        { id: 's10', text: 'Write the DCL commands to give a user "intern_user" the ability to SELECT data but REVOKE their ability to DELETE.' },
+        { id: 's11', text: 'Create a sequence that starts at 5000, increments by 5, and never exceeds 9999.' },
+        { id: 's12', text: 'Use a CTE to list the top 3 departments based on their total salary expenditure.' },
+        { id: 's13', text: 'Write a query to display employee names formatted as: "Staff ID: [ID] | Name: [Name]" using concatenation.' },
+        { id: 's14', text: 'Demonstrate TCL logic: Insert a row, create a savepoint "A", delete a row, and then rollback to savepoint "A".' },
+        { id: 's15', text: 'Use ROWNUM to fetch only the first 10 records from a table sorted by name.' },
+        { id: 's16', text: 'Create a Private Synonym "Emp_Ref" for the table "HR_Global_Master_Database_Table".' },
+        { id: 's17', text: 'Add a CHECK constraint to an existing "Orders" table to ensure the "Quantity" is always greater than zero.' },
+        { id: 's18', text: 'Select Department ID and the Count of employees for each department, but only for departments with more than 5 staff.' },
+        { id: 's19', text: 'Write a query to find all records where the "Commission" column is NULL.' },
+        { id: 's20', text: 'Use a LEFT JOIN to show all Departments and the names of employees in them (including departments with zero employees).' }
       ];
 
       let html = `
@@ -1045,20 +1069,20 @@
             <h3 class="exam-title">SQL Assessment</h3>
             <div class="exam-timer">
               <div class="timer-label">Time Remaining</div>
-              <div class="timer-value" id="examTimer">20:00</div>
+              <div class="timer-value" id="examTimer">40:00</div>
             </div>
           </div>
 
           <div class="exam-info">
             <ul>
-              <li><span style="color: #6366f1; font-weight: bold;">⏱</span> <b>Total Time:</b> 20 Minutes</li>
-              <li><span style="color: #6366f1; font-weight: bold;">📝</span> <b>Section A:</b> 40 MCQs (1 mark each)</li>
-              <li><span style="color: #6366f1; font-weight: bold;">💻</span> <b>Section B:</b> 5 SQL Queries (4 marks each)</li>
+              <li><span style="color: #6366f1; font-weight: bold;">⏱</span> <b>Total Time:</b> 40 Minutes</li>
+<li><span style="color: #6366f1; font-weight: bold;">📝</span> <b>Section A:</b> 50 MCQs (1 mark each)</li>
+<li><span style="color: #6366f1; font-weight: bold;">💻</span> <b>Section B:</b> 20 SQL Queries (2.5 marks each)</li>
               <li><span style="color: #dc2626; font-weight: bold;">🚫</span> <b>Strict Policy:</b> Auto-submit on tab switch or minimizing.</li>
             </ul>
           </div>
 
-          <h4 style="font-weight: 700; margin-top: 2rem;">Section A: Multiple Choice Questions (40 Marks)</h4>
+          <h4 style="font-weight: 700; margin-top: 2rem;">Section A: Multiple Choice Questions (50 Marks)</h4>
           <hr style="margin-bottom: 1.5rem;">
 
           <div>
@@ -1084,7 +1108,7 @@
 
       html += `
           </div>
-          <h4 style="font-weight: 700; margin-top: 3rem;">Section B: SQL Query Writing (20 Marks)</h4>
+<h4 style="font-weight: 700; margin-top: 3rem;">Section B: SQL Query Writing (50 Marks)</h4>
           <hr style="margin-bottom: 1.5rem;">
           <div>
       `;
@@ -1092,9 +1116,9 @@
       sqlQuestions.forEach((item, idx) => {
         html += `
           <div class="sql-question-card">
-            <p class="question-text">Q${41 + idx}. ${item.text}</p>
-            <textarea class="sql-textarea" rows="4" onchange="examAnswers['${item.q}'] = this.value" required></textarea>
-          </div>
+<p class="question-text">Q${51 + idx}. ${item.text}</p>
+            <textarea class="sql-textarea" rows="4" onchange="examAnswers['${item.id}'] = this.value" required></textarea>
+            </div>
         `;
       });
 
@@ -1125,13 +1149,13 @@
         answers: {}
       };
 
-      for (let i = 1; i <= 40; i++) {
+      for (let i = 1; i <= 50; i++) {
         payload.answers[`q${i}`] = examAnswers[`q${i}`] || null;
       }
 
-      for (let i = 41; i <= 45; i++) {
-        payload[`q${i}`] = examAnswers[`q${i}`] || '';
-      }
+     for (let i = 1; i <= 20; i++) {
+  payload[`s${i}`] = examAnswers[`s${i}`] || '';
+}
 
       try {
         const response = await fetch(API, {
