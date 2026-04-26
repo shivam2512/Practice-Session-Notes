@@ -519,6 +519,24 @@
       border-color: #6366f1;
       box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
     }
+
+    .spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255,255,255,0.3);
+  border-top: 3px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+
   </style>
 </head>
 <body>
@@ -608,7 +626,7 @@
   </div>
 
   <script>
-    const API = 'https://script.google.com/macros/s/AKfycbxYgbdrDhSkYUZgKaMIIkiqZUTNVHi9lUjkm_Uor443WUWf2uMUV3Df9isEW0BB-e7FIQ/exec';
+    const API = 'https://script.google.com/macros/s/AKfycbwU4J2C8CYtscI_D69h1yKSzqbN2ZKVjoYDzFWTqFmM8EPx-vZw7J9O0cw5Ua0175N0Eg/exec';
     const CURRENT_BATCH = 'FEB_19_2026';
     
     let allNotes = [];
@@ -1125,8 +1143,10 @@
       html += `
           </div>
           <div style="text-align: center; margin-top: 2rem;">
-            <button class="btn-submit" onclick="submitExam()">Submit Exam</button>
-          </div>
+<button id="submitBtn" class="btn-submit" onclick="submitExam()">
+  Submit Exam
+</button>
+            </div>
         </div>
       `;
 
@@ -1138,45 +1158,60 @@
       document.querySelector('.notification-bar').style.display = 'none';
     }
 
-    async function submitExam() {
-      if (!studentExam) return;
+  async function submitExam() {
+  if (!studentExam) return;
 
-      const payload = {
-        action: "secureExamSubmit",
-        name: studentExam.name,
-        mobile: studentExam.mobile,
-        email: studentExam.email,
-        answers: {}
-      };
+  const btn = document.getElementById("submitBtn");
 
-      for (let i = 1; i <= 50; i++) {
-        payload.answers[`q${i}`] = examAnswers[`q${i}`] || null;
-      }
+  // 🔒 Prevent multiple clicks
+  if (btn.disabled) return;
 
-     for (let i = 1; i <= 20; i++) {
-  payload[`s${i}`] = examAnswers[`s${i}`] || '';
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span>Submitting...';
+
+  const payload = {
+    action: "secureExamSubmit",
+    name: studentExam.name,
+    mobile: studentExam.mobile,
+    email: studentExam.email,
+    answers: {}
+  };
+
+  for (let i = 1; i <= 50; i++) {
+    payload.answers[`q${i}`] = examAnswers[`q${i}`] || null;
+  }
+
+  for (let i = 1; i <= 20; i++) {
+    payload[`s${i}`] = examAnswers[`s${i}`] || '';
+  }
+
+  try {
+    const response = await fetch(API, {
+      method: "POST",
+      body: JSON.stringify(payload)
+    });
+
+    const result = await response.json();
+
+    if (result.status === "success") {
+      clearInterval(timerInterval);
+      btn.innerHTML = "✅ Submitted";
+      alert("✅ Exam submitted successfully! Check your email for the scorecard.");
+      location.reload();
+    } else {
+      throw new Error(result.message || "Server rejected submission");
+    }
+  } catch (err) {
+    console.error("Submission error:", err);
+
+    // ❌ Re-enable button if failed
+    btn.disabled = false;
+    btn.innerHTML = "Submit Exam";
+
+    alert("❌ Error: " + err.message);
+  }
 }
 
-      try {
-        const response = await fetch(API, {
-          method: "POST",
-          body: JSON.stringify(payload)
-        });
-
-        const result = await response.json();
-
-        if (result.status === "success") {
-          clearInterval(timerInterval);
-          alert("✅ Exam submitted successfully! Check your email for the scorecard.");
-          location.reload();
-        } else {
-          throw new Error(result.message || "Server rejected submission");
-        }
-      } catch (err) {
-        console.error("Submission error:", err);
-        alert("❌ Error: " + err.message);
-      }
-    }
 
     function enterFullscreen() {
       const elem = document.documentElement;
