@@ -2284,5 +2284,14 @@
   "time": "09:10 PM",
   "batch": "FEB_19_2026",
   "body": "--mailx command configuration:\n\n1. Run command on terminal:\nsudo apt install mailutils\n\n2. In package configuration prompt:\nSelect: Internet Site and press Enter.\nYou will see your virtual machine hostname, just keep it as it is and press Enter.\nThen package will install and you will return back to terminal.\n\n3. Configure SMTP:\nsudo nano /etc/postfix/main.cf\nAdd the below lines at the end of the file:\n\nrelayhost = [smtp.gmail.com]:587\nsmtp_sasl_auth_enable = yes\nsmtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd\nsmtp_sasl_security_options = noanonymous\nsmtp_tls_security_level = encrypt\nsmtp_tls_CAfile = /etc/ssl/certs/ca-certificates.crt\n\nBefore relayhost line there will be:\ninet_protocols = all\nRemove \"all\" and write:\nipv4\n\nNow save and exit:\nCTRL + O -> ENTER -> CTRL + X\n\n4. Go to Google in your Windows desktop and search:\nhttps://accounts.google.com/v3/signin/challenge/pwd?...(App Password Page)\n\nIf two-step verification is not enabled, enable it first and then use the same above link again.\nThen give the App Name (anything you want), click Create and save the generated app password.\n\n5. Go back to terminal and run:\nsudo nano /etc/postfix/sasl_passwd\n\nEnter the below line:\n[smtp.gmail.com]:587\nyour_email_from_which_you_generated_app_paswd@gmail.com:your_app_password_without_space\n\nSave and exit:\nCTRL + O -> ENTER -> CTRL + X\n\n6. sudo chmod 600 /etc/postfix/sasl_passwd\n\n7. sudo postmap /etc/postfix/sasl_passwd\n\n8. sudo systemctl restart postfix\n\n9. Send Mail using mailx:\nmailx -s \"Subject\"\nTo:\nCc:\nMail body\nCTRL + D to run and exit."
+},
+{
+  "date": "28-APR-2026",
+  "session": "Afternoon",
+  "title": "Practice Session",
+  "subject": "SQL",
+  "time": "03:00 PM",
+  "batch": "FEB_19_2026",
+  "body": "Doubts discussion and mailx command configuration"
 }
 ]
