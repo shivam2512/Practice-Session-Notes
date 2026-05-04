@@ -2358,6 +2358,15 @@
   "body": "25) # ls - Command\n\nIt will show you list of files and directories present in your current folder.\n\nOption description\nls -a list all files including hidden file starting with '.'\nls --color colored list [=always/never/auto]\nls -d list directories - with ' */'\nls -F add one char of */=>@| to enteries. (* = executive files, / = directory, @ = linking files)\nls -i list file's inode index number\nls -l list with long format - show permissions\nls -la list long format including hidden files\nls -lh list long format with readable file size\nls -ls list with long format with file size\nls -r list in reverse order\nls -R list recursively directory tree\nls -s list file size\nls -S sort by file size\nls -t sort by time & date\nls -X sort by extension name\n\nWhat is inode number? : - It is an unique number which assigns to each files and directories in UNIX by administrator for identification purpose and that unique number called as inode number.\n\nHow to check hidden files in UNIX? : Files and directories name start with (.) dot these are hidden files or hidden directories in UNIX. # ls -a command will show you all files including hidden files.\n\n# ls -l :- It shows you list of files and directories in your current directory.\n# ls -lrt :- List files in reverse order and time wise sorting of the files and directories.\n\n$ ls -l\ntotal 4\n\ndrwxr-xr-x 3 root Admin 40 2011-08-17 16:52 Music\ndrwxr-xr-x 2 root Admin 120 2011-08-17 17:14 Pictures\n-rwxr-xr-x 1 root Admin 40 2011-08-17 18:52 abc.txt\n-rwxr-xr-x 1 root Admin 40 2011-08-17 18:52 Templates.txt\n\nAfter doing # ls -l we are getting above output, we need to check what is meaning of every column.\n\n1) File types and Permission :\nYour fist column shows like for example drwxr-xr-x\nIf there is ‘d’ in the start, It means It is a directory.\nAnything else Apart from ‘d’ all are files.\nCheck below screen shot will help you what is type of file\n\nbrw-r--r-- 1 unixguy staff 64, 64 Jan 27 05:52 block\ncrw-r--r-- 1 unixguy staff 64, 255 Jan 26 13:57 character\ndrwxrwxr-x 2 unixguy staff 48 Jan 26 11:28 directory\nprw-r--r-- 1 unixguy staff 0 Jan 26 11:50 fifo\nsrw-rw-rw- 1 unixguy staff 0 Jan 26 12:00 socket\nlrwxrwxrwx 1 unixguy staff 3 Jan 26 11:44 link -> dir\n-rw-rw---- 1 unixguy staff 217 Jan 26 14:08 regularfile\n\nPermission will show you like drwxrwxr-x, and first character d means it is directory and\nafter ‘d’ it is showing like rwxrwxr-x. This is what the permission is having to everyone.\n\nr: Read Permission\nw: Write Permission\nx: Execute Permission\n-: No Permission\n\nrwx: All permission\nrw-: Only read and write permission\nr-- : Only read permission\n--- : No permission having\n-w-: Only write permission\n--x: Only execute permission"
 },
 {
+  "date": "02-MAY-2026",
+  "session": "Afternoon",
+  "title": "Practice Session",
+  "subject": "LINUX",
+  "time": "03:02 PM",
+  "batch": "FEB_19_2026",
+  "body": "DOUBTS DISCUSSION SESSION"
+},
+{
   "date": "04-MAY-2026",
   "session": "Afternoon",
   "title": "Practice Session",
