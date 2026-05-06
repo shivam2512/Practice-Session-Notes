@@ -2410,5 +2410,14 @@
   "time": "02:51 PM",
   "batch": "FEB_19_2026",
   "body": "# How to create new user:\nsudo useradd -m username\n\n-m: it will create home directory for newly created user.\n\n# set password for new user:\n\nsudo passwd username\n\nNew Password:\nRetype password:\n\n# to delete any user\nsudo userdel username\n\n# to view list of manually created users:\n\nawk -F: '$3 >= 1000 {print $1}' /etc/passwd\n\n# chown : to change the owner of the file and directory (you can only make owner to the user who is present in the system)\n# chown <New_owner_id/name> <File_name>\n# chown oracle abc.txt\n\n# to create new group:\n\nsudo groupadd grpname\n\n# to add user to group:\n\nsudo usermod -aG grpname username\n\n# to view list of groups:\n\ncat /etc/group \n\n# chgrp : to change the group name\n# chgrp <New_group_id/name> <File_name>\n# chgrp dba_support abc.txt\n\n# file : It will show you file type. (empty file, text file or executable file)\n# file abc.txt"
+},
+{
+  "date": "06-MAY-2026",
+  "session": "Evening",
+  "title": "Practice Session",
+  "subject": "LINUX",
+  "time": "09:10 PM",
+  "batch": "FEB_19_2026",
+  "body": "# How to create new user:\nsudo useradd -m username\n\n-m: it will create home directory for newly created user.\n\n# set password for new user:\n\nsudo passwd username\n\nNew Password:\nRetype password:\n\n# to delete any user\nsudo userdel username\n\n# to view list of manually created users:\n\nawk -F: '$3 >= 1000 {print $1}' /etc/passwd\n\n# chown : to change the owner of the file and directory (you can only make owner to the user who is present in the system)\n# chown <New_owner_id/name> <File_name>\n# chown oracle abc.txt\n\n# to create new group:\n\nsudo groupadd grpname\n\n# to add user to group:\n\nsudo usermod -aG grpname username\n\n# to view list of groups:\n\ncat /etc/group \n\n# chgrp : to change the group name\n# chgrp <New_group_id/name> <File_name>\n# chgrp dba_support abc.txt\n\n# file : It will show you file type. (empty file, text file or executable file)\n# file abc.txt"
 }
 ]
