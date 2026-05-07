@@ -2419,5 +2419,14 @@
   "time": "09:10 PM",
   "batch": "FEB_19_2026",
   "body": "# How to create new user:\nsudo useradd -m username\n\n-m: it will create home directory for newly created user.\n\n# set password for new user:\n\nsudo passwd username\n\nNew Password:\nRetype password:\n\n# to delete any user\nsudo userdel username\n\n# to view list of manually created users:\n\nawk -F: '$3 >= 1000 {print $1}' /etc/passwd\n\n# chown : to change the owner of the file and directory (you can only make owner to the user who is present in the system)\n# chown <New_owner_id/name> <File_name>\n# chown oracle abc.txt\n\n# to create new group:\n\nsudo groupadd grpname\n\n# to add user to group:\n\nsudo usermod -aG grpname username\n\n# to view list of groups:\n\ncat /etc/group \n\n# chgrp : to change the group name\n# chgrp <New_group_id/name> <File_name>\n# chgrp dba_support abc.txt\n\n# file : It will show you file type. (empty file, text file or executable file)\n# file abc.txt"
+},
+{
+  "date": "07-MAY-2026",
+  "session": "Afternoon",
+  "title": "Practice Session",
+  "subject": "LINUX",
+  "time": "02:57 PM",
+  "batch": "FEB_19_2026",
+  "body": "How to Transfer files from Windows to Linux / Unix Server\n\nWINSCP, FTTP, Filezilla and FLASH Exp such kinds of tools mostly get used for transferring files fromwindows to linux or unix server.\n\nInstall above any one tool on your desktop and use it for transferring files from windows to linux or Unix\nserver. (Refer to Special Session In Practice Partner Program Folder) for WINSCP tool guide.\n\nHow to copy-paste file from one server to another server?\n\nWith the help of # scp command. We can copy – paste file from one server to another server.\n\nServer 1: abc.google.com /root/ramesh/abc.txt <file available in this server>\nServer 2: xyz.google.com\nServer3: pqr.google.com\n\nHow to transfer abc.txt file to pqr.google.com server. check below syntax.\n\nYou are logged in into abc.google.com :- use below syntax\n\n# scp /root/ramesh/abc.txt USERID@pqr.google.com:/root/suresh/\n\n# scp abc.txt userid@pqr.google.com:/root/suresh (If you are in /root/ramesh directory in abc.google.com)\n\n# scp userid@abc.google.com:/root/ramesh/abc.txt . (If you are in pqr.google.com server)\n\n( . “dot” means it will paste in directory in which you are present and executing the command)\n\n# ARCHIVAL METHODS: \nzip & unzip Command\n\n# zip : zip command use to zip multiple files under single output.\n\n# zip abc.zip 1.txt 2.txt 3.txt 4.txt 5.txt 6.txt\nOutput is abc.zip contains all input file i.e. 1.txt 2.txt 3.txt 4.txt etc\n\n# unzip : unzip command use to unzip the files.\n\n# unzip abc.zip all files will unzipped\n\n# unzip abc.zip 1.txt 1.txt file will unzipped from abc.zip"
 }
 ]
