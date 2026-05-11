@@ -2482,5 +2482,14 @@
   "time": "03:04 PM",
   "batch": "FEB_19_2026",
   "body": "gzip and bzip2 with tar in linux to compress folders\n\n\n1. Use of gzip with tar command:\ncreate .tar.gz file\n\ntar -czvf backup.tar.gz folder_name1 fol2 fol3 fol4\n\nc - create archive\nz - use gzip compression\nv - verbose (show files)\nf - filename\n\n\n# Extract folders from .tar.gz file:\n\ntar -xzvf backup.tar.gz\n\n# view content without extracting\n\ntar -tzvf backup.tar.gz\n\n\n2. Use of bzip2 with tar in linux to compress folders\n\ntar -cjvf backup.tar.bz2 folder_name1 fol2 fol3 fol4\n\nOption: j - using bzip2 compression\n\n\n\n# Extract folders from .tar.bz2 file:\n\ntar -xjvf backup.tar.bz2\n\n#--view content without extracting\n\ntar -tjvf backup.tar.bz2\n\n# head : It will show you 1st 10 lines of the file (default 10 lines)\n\n# head abc.txt (1st 10 lines of the abc.txt files will print)\n# head -n50 abc.txt (1st 50 lines of the abc.txt files will print)\n\n# tail : It will show you 1st 10 lines of the file (default 10 lines)\n\n# tail abc.txt (1st 10 lines of the abc.txt files will print)\n\n# tail -n50 abc.txt (1st 50 lines of the abc.txt files will print)\n\n# tail -f : It will show you file which is continuously updating.\n# tail -f abc.log"
+},
+{
+  "date": "11-MAY-2026",
+  "session": "Evening",
+  "title": "Practice Session",
+  "subject": "LINUX",
+  "time": "08:09 PM",
+  "batch": "FEB_19_2026",
+  "body": "gzip and bzip2 with tar in linux to compress folders\n\n\n1. Use of gzip with tar command:\ncreate .tar.gz file\n\ntar -czvf backup.tar.gz folder_name1 fol2 fol3 fol4\n\nc - create archive\nz - use gzip compression\nv - verbose (show files)\nf - filename\n\n\n# Extract folders from .tar.gz file:\n\ntar -xzvf backup.tar.gz\n\n# view content without extracting\n\ntar -tzvf backup.tar.gz\n\n\n2. Use of bzip2 with tar in linux to compress folders\n\ntar -cjvf backup.tar.bz2 folder_name1 fol2 fol3 fol4\n\nOption: j - using bzip2 compression\n\n\n\n# Extract folders from .tar.bz2 file:\n\ntar -xjvf backup.tar.bz2\n\n#--view content without extracting\n\ntar -tjvf backup.tar.bz2\n\n# head : It will show you 1st 10 lines of the file (default 10 lines)\n\n# head abc.txt (1st 10 lines of the abc.txt files will print)\n# head -n50 abc.txt (1st 50 lines of the abc.txt files will print)\n\n# tail : It will show you 1st 10 lines of the file (default 10 lines)\n\n# tail abc.txt (1st 10 lines of the abc.txt files will print)\n\n# tail -n50 abc.txt (1st 50 lines of the abc.txt files will print)\n\n# tail -f : It will show you file which is continuously updating.\n# tail -f abc.log"
 }
 ]
