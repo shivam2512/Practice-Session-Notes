@@ -2500,5 +2500,14 @@
   "time": "02:40 PM",
   "batch": "FEB_19_2026",
   "body": "## cut command:\n\nExtracting specific columns/fields/characters from text files or command output.\n\nSyntax:\ncut OPTION [FILE]\n\nMain Options:\n-c: cut by character position\n-d: specify delimiter (Separator: ,:,;)\n-f: selecting field number\n-s: to skip rows not following delimiter pattern\n--complement: show everything except selected part\n\n\ndemo.txt\n1:A:Linux:65222\n2:B:SQL:58695\n3:C:UNix:65895\n4:D:SQL:598658\n5:E:SQL:65269\n\n\n1. Cut by character position (-c):\n\nabc.txt:\nUser 1\nUser 2\nUser 3\nUser 4\nUser 5\n\n# Get first 3 characters:\n\ncut -c 1-3 abc.txt\n\nOutput:\nUse\nUse\nUse\nUse\nUse\n\n# Get only 6th character:\n\ncut -c 6 abc.txt\n\nOutput:\n1\n2\n3\n4\n5\n\n# Get data from 2nd character onward:\n\ncut -c 2- fileName\n\n\n2. Cut fields using delimiter (-d + -f)\n\n# Extract user names (2nd column)\n\ncut -d \":\" -f 2 cut_eg.txt\n\n# Extract data from second column but ignore rows not following delimiter pattern:\n\ncut -d \":\" -f 2 -s cut_eg.txt\n\n\n3. --complement: show everything except selected part\n\ncut -d \":\" -f 2 --complement cut_eg.txt\n\nOutput: It will ignore second column and rest all columns will get printed.\n\nYou can also add -s with --complement to ignore rows not following delimiter pattern:\n\ncut -d \":\" -f 2 --complement -s cut_eg.txt"
+},
+{
+  "date": "12-MAY-2026",
+  "session": "Evening",
+  "title": "Practice Session",
+  "subject": "LINUX",
+  "time": "09:20 PM",
+  "batch": "FEB_19_2026",
+  "body": "## cut command:\n\nExtracting specific columns/fields/characters from text files or command output.\n\nSyntax:\ncut OPTION [FILE]\n\nMain Options:\n-c: cut by character position\n-d: specify delimiter (Separator: ,:,;)\n-f: selecting field number\n-s: to skip rows not following delimiter pattern\n--complement: show everything except selected part\n\n\ndemo.txt\n1:A:Linux:65222\n2:B:SQL:58695\n3:C:UNix:65895\n4:D:SQL:598658\n5:E:SQL:65269\n\n\n1. Cut by character position (-c):\n\nabc.txt:\nUser 1\nUser 2\nUser 3\nUser 4\nUser 5\n\n# Get first 3 characters:\n\ncut -c 1-3 abc.txt\n\nOutput:\nUse\nUse\nUse\nUse\nUse\n\n# Get only 6th character:\n\ncut -c 6 abc.txt\n\nOutput:\n1\n2\n3\n4\n5\n\n# Get data from 2nd character onward:\n\ncut -c 2- fileName\n\n\n2. Cut fields using delimiter (-d + -f)\n\n# Extract user names (2nd column)\n\ncut -d \":\" -f 2 cut_eg.txt\n\n# Extract data from second column but ignore rows not following delimiter pattern:\n\ncut -d \":\" -f 2 -s cut_eg.txt\n\n\n3. --complement: show everything except selected part\n\ncut -d \":\" -f 2 --complement cut_eg.txt\n\nOutput: It will ignore second column and rest all columns will get printed.\n\nYou can also add -s with --complement to ignore rows not following delimiter pattern:\n\ncut -d \":\" -f 2 --complement -s cut_eg.txt"
 }
 ]
