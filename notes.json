@@ -2554,5 +2554,14 @@
   "time": "03:00 PM",
   "batch": "FEB_19_2026",
   "body": "## VI and NANO editor in LINUX\n\nBoth vi and nano are text editors used to create and edit files in linux.\n\nvi: Powerful editor used mostly by admins and developers.\nnano: Alternate option for vi editor and it is also used to create and edit files on terminal.\n\n## 1. NANO editor:\n\nOpen/Create file:\n\nnano file1.txt\n\nIf file exists -> Open the file\nIf not -> Create new file\n\n### To Save:\nPress CTRL + O and then Press Enter\n\n### Exit:\nCTRL + X\n\n## Common Nano Shortcuts:\n\nCTRL + O + Enter - Save File\nCTRL + X - Exit\nCTRL + K - Cut line\nCTRL + U - Paste line\nCTRL + W - Search text\nCTRL + G - Help\n\n## VI editor:\n\nVI editor is an advanced editing tool used to create or edit any file.\n\n### Open File:\n\nvi fileNAME\n\n## Modes in VI Editor:\n\n1. Command Mode:\nDefault mode.\nWhen file is opened using vi filename, editor opens in command mode.\n\n2. Insert Mode:\nUsed to write/edit text.\nPress i to enter insert mode.\n\n3. Last Line Mode:\nUsed for save, quit and search operations.\nPress ESC and then use commands like :wq\n\n## Common Shortcuts in VI editor:\n\ni - Insert mode\n:wq - Save and Quit\n:q - Quit\ndd - Delete line\nyy - Copy line\np - Paste\nu - Undo\n/word - Search word in file\n:set number - Enable line number in vi editor\n:set nonumber - Disable line number in vi editor\n"
+},
+{
+  "date": "15-MAY-2026",
+  "session": "Evening",
+  "title": "Practice Session",
+  "subject": "LINUX",
+  "time": "09:00 PM",
+  "batch": "FEB_19_2026",
+  "body": "## VI and NANO editor in LINUX\n\nBoth vi and nano are text editors used to create and edit files in linux.\n\nvi: Powerful editor used mostly by admins and developers.\nnano: Alternate option for vi editor and it is also used to create and edit files on terminal.\n\n## 1. NANO editor:\n\nOpen/Create file:\n\nnano file1.txt\n\nIf file exists -> Open the file\nIf not -> Create new file\n\n### To Save:\nPress CTRL + O and then Press Enter\n\n### Exit:\nCTRL + X\n\n## Common Nano Shortcuts:\n\nCTRL + O + Enter - Save File\nCTRL + X - Exit\nCTRL + K - Cut line\nCTRL + U - Paste line\nCTRL + W - Search text\nCTRL + G - Help\n\n## VI editor:\n\nVI editor is an advanced editing tool used to create or edit any file.\n\n### Open File:\n\nvi fileNAME\n\n## Modes in VI Editor:\n\n1. Command Mode:\nDefault mode.\nWhen file is opened using vi filename, editor opens in command mode.\n\n2. Insert Mode:\nUsed to write/edit text.\nPress i to enter insert mode.\n\n3. Last Line Mode:\nUsed for save, quit and search operations.\nPress ESC and then use commands like :wq\n\n## Common Shortcuts in VI editor:\n\ni - Insert mode\n:wq - Save and Quit\n:q - Quit\ndd - Delete line\nyy - Copy line\np - Paste\nu - Undo\n/word - Search word in file\n:set number - Enable line number in vi editor\n:set nonumber - Disable line number in vi editor\n"
 }
 ]
