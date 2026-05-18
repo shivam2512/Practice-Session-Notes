@@ -2563,5 +2563,23 @@
   "time": "09:00 PM",
   "batch": "FEB_19_2026",
   "body": "## VI and NANO editor in LINUX\n\nBoth vi and nano are text editors used to create and edit files in linux.\n\nvi: Powerful editor used mostly by admins and developers.\nnano: Alternate option for vi editor and it is also used to create and edit files on terminal.\n\n## 1. NANO editor:\n\nOpen/Create file:\n\nnano file1.txt\n\nIf file exists -> Open the file\nIf not -> Create new file\n\n### To Save:\nPress CTRL + O and then Press Enter\n\n### Exit:\nCTRL + X\n\n## Common Nano Shortcuts:\n\nCTRL + O + Enter - Save File\nCTRL + X - Exit\nCTRL + K - Cut line\nCTRL + U - Paste line\nCTRL + W - Search text\nCTRL + G - Help\n\n## VI editor:\n\nVI editor is an advanced editing tool used to create or edit any file.\n\n### Open File:\n\nvi fileNAME\n\n## Modes in VI Editor:\n\n1. Command Mode:\nDefault mode.\nWhen file is opened using vi filename, editor opens in command mode.\n\n2. Insert Mode:\nUsed to write/edit text.\nPress i to enter insert mode.\n\n3. Last Line Mode:\nUsed for save, quit and search operations.\nPress ESC and then use commands like :wq\n\n## Common Shortcuts in VI editor:\n\ni - Insert mode\n:wq - Save and Quit\n:q - Quit\ndd - Delete line\nyy - Copy line\np - Paste\nu - Undo\n/word - Search word in file\n:set number - Enable line number in vi editor\n:set nonumber - Disable line number in vi editor\n"
+},
+{
+  "date": "16-MAY-2026",
+  "session": "Afternoon",
+  "title": "Practice Session",
+  "subject": "LINUX",
+  "time": "03:00 PM",
+  "batch": "FEB_19_2026",
+  "body": "Doubts Discussion Session"
+},
+{
+  "date": "18-MAY-2026",
+  "session": "Afternoon",
+  "title": "Practice Session",
+  "subject": "LINUX",
+  "time": "02:45 PM",
+  "batch": "FEB_19_2026",
+  "body": "## nice command:\n\nnice command is used to run a program with a specific CPU priority.\n\nSyntax:\n\nnice -n [priority] command\n\n## Priority (nice value):\n\nRange: -20 to 19\n\nLower value -> Higher CPU priority\nHigher value -> Lower CPU priority\n\n-20 : Highest Priority\n0   : Default Priority\n19  : Lowest Priority\n\n### Examples:\n\nnice -n -20 zip demo.zip file1.txt file2.txt 1_new.txt\n\nProcess runs very fast and gets more CPU priority.\n\nnice -n 19 tar -cvf backup.tar abc.txt file1.txt file2.txt\n\nProcess runs only when CPU is free.\n\nnice -n 0 tar -cvf backup.tar abc.txt file1.txt file2.txt\nOR\n\ntar -cvf backup.tar abc.txt file1.txt file2.txt\n\n## JOB Scheduling and Monitoring commands:\n\n## 1. at command:\n\nat command is used to schedule a command to run once at a specific time in future.\n\nSyntax:\n\nat time\n\nExample:\n\nat 13:30\n\nat> echo \"Job Scheduling\" > message.txt\n\nThen press CTRL + D\n\n## 2. CRONTAB:\n\ncrontab is used to schedule commands or scripts to run automatically at fixed intervals (minutes, hours, days, etc).\n\nUnlike at command (runs once), crontab runs repeatedly.\n\n## Crontab Syntax:\n\n* * * * * command\n1 2 3 4 5\n\n1: Minute (0-59)\n2: Hour (0-23)\n3: Day of month (1-31)\n4: Month (1-12)\n5: Day of week (0-6)\n\n0 = Sunday\n6 = Saturday\n\n## Example:\n\nEvery Saturday at 5 PM IST, execute below command:\n\n* 17 * * 6 echo \"Crontab Testing\" >> /home/shivam/Desktop/practice_session.txt\n\n## Common Crontab Commands:\n\n# To schedule or modify cron jobs:\n\ncrontab -e\n\n(It will open editor for you to schedule or modify jobs)\n\n# To check list of scheduled jobs:\n\ncrontab -l\n\n# To remove/delete all scheduled jobs:\n\ncrontab -r\n\nNOTE:\ncrontab -r is not recommended in production.\n\n# To prepare crontab execution pattern:\n\nYou can use online tool like Crontab Guru.\n"
 }
 ]
