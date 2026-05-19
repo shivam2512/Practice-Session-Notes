@@ -2599,5 +2599,14 @@
   "time": "03:00 PM",
   "batch": "FEB_19_2026",
   "body": "## tee command:\n\ntee command is used to store the output of first command into a new file while also displaying it on terminal.\n\nExamples:\n\n# ls -lrt | tee abc.txt\n\nOutput of ls -lrt will be stored in abc.txt file.\n\n# ps -ef | tee abcd.txt\n\nOutput of ps -ef will be stored in abcd.txt file.\n\n## Using cat command for same purpose:\n\n# ls -lrt | cat > abc.txt\n\nOutput of ls -lrt will be stored in abc.txt file.\n\n## HARD LINK and SOFT LINK:\n\nIn Linux, links are used to create references to files.\nThere are two types of links:\n\n## 1. HARD LINK:\n\n--> A hard link is another name/shortcut for the same file.\n--> Hard link uses same inode number.\n--> It points directly to the inode (actual data).\n--> If original file is deleted, hard link still works.\n--> Cannot link directories.\n--> You can create at any location.\n\n### Syntax:\n\nln file_name hl_link_name\n\n## 2. SOFT LINK (Symbolic Link):\n\n--> A soft link is like a shortcut that points to another file.\n--> It points to file path, not inode.\n--> If original file is deleted, link breaks.\n--> You need to create it on the same path where original file is present.\n\n### Syntax:\n\nln -s filename sl_link_name\n"
+},
+{
+  "date": "19-MAY-2026",
+  "session": "Evening",
+  "title": "Practice Session",
+  "subject": "LINUX",
+  "time": "09:00 PM",
+  "batch": "FEB_19_2026",
+  "body": "## tee command:\n\ntee command is used to store the output of first command into a new file while also displaying it on terminal.\n\nExamples:\n\n# ls -lrt | tee abc.txt\n\nOutput of ls -lrt will be stored in abc.txt file.\n\n# ps -ef | tee abcd.txt\n\nOutput of ps -ef will be stored in abcd.txt file.\n\n## Using cat command for same purpose:\n\n# ls -lrt | cat > abc.txt\n\nOutput of ls -lrt will be stored in abc.txt file.\n\n## HARD LINK and SOFT LINK:\n\nIn Linux, links are used to create references to files.\nThere are two types of links:\n\n## 1. HARD LINK:\n\n--> A hard link is another name/shortcut for the same file.\n--> Hard link uses same inode number.\n--> It points directly to the inode (actual data).\n--> If original file is deleted, hard link still works.\n--> Cannot link directories.\n--> You can create at any location.\n\n### Syntax:\n\nln file_name hl_link_name\n\n## 2. SOFT LINK (Symbolic Link):\n\n--> A soft link is like a shortcut that points to another file.\n--> It points to file path, not inode.\n--> If original file is deleted, link breaks.\n--> You need to create it on the same path where original file is present.\n\n### Syntax:\n\nln -s filename sl_link_name\n"
 }
 ]
