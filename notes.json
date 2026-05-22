@@ -2653,5 +2653,14 @@
   "time": "03:00 PM",
   "batch": "FEB_19_2026",
   "body": "## systemctl: is used to manage services (start, stop, restart, enable, disable, check status)\n\nSyntax:\nsystemctl [option] service_name\n\n1 start a services\nsudo systemctl start servicename\n\n2. Stop a service\nsudo systemctl stop servicename\n\n3. Restart a service\nsudo systemctl restart servicename\n\n4. To check status of service\nsudo systemctl status servicename\n\n5. Enable the disabled service\nsudo systemctl enable servicename\n\n6. Disable service\nsudo systemctl disable servicename\n\n\n##creating a service in linux\n\nsudo nano /etc/systemd/system/testapp.service\n\n## Adding sample data in service file\n\n[Unit]\nDescription=My Dummy Service\nAfter=network.target\n\n[Service]\nType=simple\nExecStart=/bin/bash -c \"while true; do echo Service Running; sleep 5; done\"\nRestart=always\nUser=root\n\n[Install]\nWantedBy=multi-user.target\n\n\nCTRL + O ->Enter , CTRL X\n\n\n## To reload the system so that service can appear in system:\n\nsudo systemctl daemon-reload"
+},
+{
+  "date": "22-MAY-2026",
+  "session": "Evening",
+  "title": "Practice Session",
+  "subject": "LINUX",
+  "time": "08:00 PM",
+  "batch": "FEB_19_2026",
+  "body": "## systemctl: is used to manage services (start, stop, restart, enable, disable, check status)\n\nSyntax:\nsystemctl [option] service_name\n\n1 start a services\nsudo systemctl start servicename\n\n2. Stop a service\nsudo systemctl stop servicename\n\n3. Restart a service\nsudo systemctl restart servicename\n\n4. To check status of service\nsudo systemctl status servicename\n\n5. Enable the disabled service\nsudo systemctl enable servicename\n\n6. Disable service\nsudo systemctl disable servicename\n\n\n##creating a service in linux\n\nsudo nano /etc/systemd/system/testapp.service\n\n## Adding sample data in service file\n\n[Unit]\nDescription=My Dummy Service\nAfter=network.target\n\n[Service]\nType=simple\nExecStart=/bin/bash -c \"while true; do echo Service Running; sleep 5; done\"\nRestart=always\nUser=root\n\n[Install]\nWantedBy=multi-user.target\n\n\nCTRL + O ->Enter , CTRL X\n\n\n## To reload the system so that service can appear in system:\n\nsudo systemctl daemon-reload"
 }
 ]
