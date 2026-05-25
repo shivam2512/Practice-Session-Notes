@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -558,13 +558,13 @@
   <!-- Motivation Bar -->
   <div class="motivation-bar">
     <div class="motivation-text">
-      🌟🚀 Work hard in silence today, so your offer letter speaks loudly tomorrow. 💼🔥
+      ðŸŒŸðŸš€ Work hard in silence today, so your offer letter speaks loudly tomorrow. ðŸ’¼ðŸ”¥
     </div>
   </div>
 
   <!-- Notification -->
   <div class="notification-bar" id="latestNotification">
-    Latest notes: Loading…
+    Latest notes: Loadingâ€¦
   </div>
 
   <!-- Main Content -->
@@ -573,12 +573,12 @@
     <div class="text-center mb-4">
       <label class="fw-bold fs-5 me-3">Select Batch:</label>
       <select id="batchSelect" class="batch-select">
-        <option value="MAY_2026">Batch – May 2026</option>
-        <option value="APR_2026">Batch – Apr 2026</option>
-        <option value="MAR_2026" selected>Batch – Mar 2026</option>
-        <option value="FEB_19_2026">Batch – Feb 2026</option>
-        <option value="JAN_22_2026">Batch – Jan 2026</option>
-        <option value="DEC_2025">Batch – Dec 2025</option>
+        <option value="MAY_2026">Batch â€“ May 2026</option>
+        <option value="APR_2026">Batch â€“ Apr 2026</option>
+        <option value="MAR_2026" selected>Batch â€“ Mar 2026</option>
+        <option value="FEB_19_2026">Batch â€“ Feb 2026</option>
+        <option value="JAN_22_2026">Batch â€“ Jan 2026</option>
+        <option value="DEC_2025">Batch â€“ Dec 2025</option>
       </select>
     </div>
 
@@ -600,9 +600,9 @@
 
     <!-- Calendar Navigation -->
     <div class="d-flex justify-content-between align-items-center mb-3">
-      <button class="btn-nav" onclick="prevMonth()">← Previous</button>
+      <button class="btn-nav" onclick="prevMonth()">â† Previous</button>
       <h4 class="fw-bold mb-0" id="monthLabel"></h4>
-      <button class="btn-nav" onclick="nextMonth()">Next →</button>
+      <button class="btn-nav" onclick="nextMonth()">Next â†’</button>
     </div>
 
     <!-- Calendar -->
@@ -646,14 +646,14 @@
     // but only for the specified subject and only within the selected batch's own date window.
     //
     // Confirmed schedule:
-    //   DEC_2025    : Both SQL + Linux (Nov 19 – Jan 21) ✔️
-    //   JAN_22_2026 : Both SQL + Linux (Jan 22 – Mar 18) ✔️
-    //   FEB_19_2026 : Linux with JAN batch (Feb 22–Mar 18) + SQL own (Mar 19–Apr 21) ✔️
-    //   MAR_2026    : SQL with FEB batch  (Mar 19–Apr 21) + Linux own (Apr 22–May 22) ✔️
-    //   APR_2026    : Linux with MAR batch (Apr 22–May 22) ✔️ DONE
-    //                 SQL with MAY batch  (May 25–Jun 25) 🔄 IN PROGRESS
-    //   MAY_2026    : SQL with APR batch  (May 25–Jun 25) 🔄 IN PROGRESS
-    //                 Linux with JUN batch (Jun 26–Jul 25) ⏳ upcoming
+    //   DEC_2025    : Both SQL + Linux (Nov 19 â€“ Jan 21) âœ”ï¸
+    //   JAN_22_2026 : Both SQL + Linux (Jan 22 â€“ Mar 18) âœ”ï¸
+    //   FEB_19_2026 : Linux with JAN batch (Feb 22â€“Mar 18) + SQL own (Mar 19â€“Apr 21) âœ”ï¸
+    //   MAR_2026    : SQL with FEB batch  (Mar 19â€“Apr 21) + Linux own (Apr 22â€“May 22) âœ”ï¸
+    //   APR_2026    : Linux with MAR batch (Apr 22â€“May 22) âœ”ï¸ DONE
+    //                 SQL with MAY batch  (May 25â€“Jun 25) ðŸ”„ IN PROGRESS
+    //   MAY_2026    : SQL with APR batch  (May 25â€“Jun 25) ðŸ”„ IN PROGRESS
+    //                 Linux with JUN batch (Jun 26â€“Jul 25) â³ upcoming
     //
     // Bidirectional SQL sharing for APR+MAY: notes can be tagged either batch;
     // both batches will see all shared SQL sessions (May 25 onwards).
@@ -731,7 +731,7 @@
       const latestDate = sorted[0].date;
       const latestDayNotes = allNotes.filter(n => n.date === latestDate);
       const latestNote = latestDayNotes.find(n => n.session === 'Evening') || latestDayNotes[0];
-      document.getElementById('latestNotification').textContent = `🔔 Latest notes available: ${latestNote.date} (${latestNote.session} session, uploaded at ${latestNote.time})`;
+      document.getElementById('latestNotification').textContent = `ðŸ”” Latest notes available: ${latestNote.date} (${latestNote.session} session, uploaded at ${latestNote.time})`;
     }
 
     function renderCalendar() {
@@ -808,7 +808,7 @@
         html += `
           <div class="note-card">
             <div class="note-header">
-              <strong>${note.date}</strong> – ${note.session} – ${note.title}
+              <strong>${note.date}</strong> â€“ ${note.session} â€“ ${note.title}
             </div>
             <div class="note-body">
               <pre class="note-code"><code>${note.body}</code></pre>
@@ -1001,7 +1001,7 @@
         const data = await res.json();
 
         if (!data.allowed) {
-          alert("❌ You have already attempted this exam.");
+          alert("âŒ You have already attempted this exam.");
           return;
         }
 
@@ -1023,7 +1023,7 @@
         
         if (examDuration <= 0) {
           clearInterval(timerInterval);
-          alert('⏰ Time Up!');
+          alert('â° Time Up!');
           submitExam();
         }
       }, 1000);
@@ -1126,10 +1126,10 @@
 
           <div class="exam-info">
             <ul>
-              <li><span style="color: #6366f1; font-weight: bold;">⏱</span> <b>Total Time:</b> 40 Minutes</li>
-<li><span style="color: #6366f1; font-weight: bold;">📝</span> <b>Section A:</b> 50 MCQs (1 mark each)</li>
-<li><span style="color: #6366f1; font-weight: bold;">💻</span> <b>Section B:</b> 20 SQL Queries (2.5 marks each)</li>
-              <li><span style="color: #dc2626; font-weight: bold;">🚫</span> <b>Strict Policy:</b> Auto-submit on tab switch or minimizing.</li>
+              <li><span style="color: #6366f1; font-weight: bold;">â±</span> <b>Total Time:</b> 40 Minutes</li>
+<li><span style="color: #6366f1; font-weight: bold;">ðŸ“</span> <b>Section A:</b> 50 MCQs (1 mark each)</li>
+<li><span style="color: #6366f1; font-weight: bold;">ðŸ’»</span> <b>Section B:</b> 20 SQL Queries (2.5 marks each)</li>
+              <li><span style="color: #dc2626; font-weight: bold;">ðŸš«</span> <b>Strict Policy:</b> Auto-submit on tab switch or minimizing.</li>
             </ul>
           </div>
 
@@ -1196,7 +1196,7 @@
 
   const btn = document.getElementById("submitBtn");
 
-  // 🔒 Prevent multiple clicks
+  // ðŸ”’ Prevent multiple clicks
   if (btn.disabled) return;
 
   btn.disabled = true;
@@ -1228,8 +1228,8 @@
 
     if (result.status === "success") {
       clearInterval(timerInterval);
-      btn.innerHTML = "✅ Submitted";
-      alert("✅ Exam submitted successfully! Check your email for the scorecard.");
+      btn.innerHTML = "âœ… Submitted";
+      alert("âœ… Exam submitted successfully! Check your email for the scorecard.");
       location.reload();
     } else {
       throw new Error(result.message || "Server rejected submission");
@@ -1237,11 +1237,11 @@
   } catch (err) {
     console.error("Submission error:", err);
 
-    // ❌ Re-enable button if failed
+    // âŒ Re-enable button if failed
     btn.disabled = false;
     btn.innerHTML = "Submit Exam";
 
-    alert("❌ Error: " + err.message);
+    alert("âŒ Error: " + err.message);
   }
 }
 
@@ -1263,7 +1263,7 @@
 
     function handleVisibilityChange() {
       if (examStarted && document.hidden) {
-        alert("⚠ Tab switch detected. Auto submitting.");
+        alert("âš  Tab switch detected. Auto submitting.");
         submitExam();
       }
     }
@@ -1280,7 +1280,7 @@
         const data = await res.json();
 
         if (data.status !== 'success') {
-          alert('❌ Invalid password');
+          alert('âŒ Invalid password');
           return;
         }
 
