@@ -633,26 +633,56 @@
     const CURRENT_BATCH = 'MAR_2026';
 
     const BATCH_RANGES = {
-      'DEC_2025': { start: '19-NOV-2025', end: '21-JAN-2026' },
+      'DEC_2025':    { start: '19-NOV-2025', end: '21-JAN-2026' },
       'JAN_22_2026': { start: '22-JAN-2026', end: '18-MAR-2026' },
       'FEB_19_2026': { start: '22-FEB-2026', end: '21-APR-2026' },
-      'MAR_2026': { start: '19-MAR-2026', end: '22-MAY-2026' },
-      'APR_2026': { start: '22-APR-2026', end: '25-JUN-2026' },
-      'MAY_2026': { start: '25-MAY-2026', end: '25-JUL-2026' }
+      'MAR_2026':    { start: '19-MAR-2026', end: '22-MAY-2026' },
+      'APR_2026':    { start: '22-APR-2026', end: '25-JUN-2026' },
+      'MAY_2026':    { start: '25-MAY-2026', end: '25-JUL-2026' }
+    };
+
+    // Cross-batch sharing rules (subject-specific):
+    // When a batch is selected, also include notes from a partner batch
+    // but only for the specified subject and only within the selected batch's own date window.
+    //
+    // Schedule logic:
+    //   FEB_19_2026 : Linux with JAN batch (Feb 22 – Mar 18) + SQL with MAR batch (Mar 19 – Apr 21)
+    //   MAR_2026    : SQL with FEB batch   (Mar 19 – Apr 21) + Linux with APR batch (Apr 22 – May 22)
+    //   APR_2026    : Linux with MAR batch  (Apr 22 – May 22) + SQL with MAY batch (May 25 – Jun 25)
+    //   MAY_2026    : SQL with APR batch   (May 25 – Jun 25) + Linux with JUN batch (Jun 26 – Jul 25)
+    const CROSS_BATCH_SHARING = {
+      'FEB_19_2026': [{ fromBatch: 'JAN_22_2026', subject: 'LINUX' }],
+      'MAR_2026':    [{ fromBatch: 'FEB_19_2026', subject: 'SQL'   }],
+      'APR_2026':    [{ fromBatch: 'MAR_2026',    subject: 'LINUX' }],
+      'MAY_2026':    [{ fromBatch: 'APR_2026',    subject: 'SQL'   }]
     };
 
     function isNoteForBatch(note, selectedBatch) {
       if (!note || !selectedBatch) return false;
+
+      // Primary: note is directly tagged with the selected batch
       if (note.batch === selectedBatch) return true;
-      const range = BATCH_RANGES[selectedBatch];
-      if (!range) return false;
-      const noteDate = toJSDate(note.date);
-      noteDate.setHours(0,0,0,0);
-      const start = toJSDate(range.start);
-      start.setHours(0,0,0,0);
-      const end = toJSDate(range.end);
-      end.setHours(0,0,0,0);
-      return noteDate >= start && noteDate <= end;
+
+      // Cross-batch sharing: note belongs to a partner batch and matches the shared subject,
+      // and its date falls within the selected batch's own date window.
+      const sharing = CROSS_BATCH_SHARING[selectedBatch];
+      if (sharing) {
+        const range = BATCH_RANGES[selectedBatch];
+        if (!range) return false;
+        const noteDate = toJSDate(note.date);
+        noteDate.setHours(0, 0, 0, 0);
+        const start = toJSDate(range.start);
+        start.setHours(0, 0, 0, 0);
+        const end = toJSDate(range.end);
+        end.setHours(0, 0, 0, 0);
+        for (const { fromBatch, subject } of sharing) {
+          if (note.batch === fromBatch && note.subject === subject) {
+            if (noteDate >= start && noteDate <= end) return true;
+          }
+        }
+      }
+
+      return false;
     }
     
     let allNotes = [];
