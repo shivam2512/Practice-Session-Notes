@@ -657,35 +657,9 @@
     //
     // Bidirectional SQL sharing for APR+MAY: notes can be tagged either batch;
     // both batches will see all shared SQL sessions (May 25 onwards).
-    const CROSS_BATCH_SHARING = {
-      'FEB_19_2026': [{ fromBatch: 'JAN_22_2026', subject: 'LINUX' }],
-      'MAR_2026':    [{ fromBatch: 'FEB_19_2026', subject: 'SQL'   }],
-      'APR_2026':    [
-        { fromBatch: 'MAR_2026', subject: 'LINUX' },  // Linux done: Apr 22 – May 22
-        { fromBatch: 'MAY_2026', subject: 'SQL'   }   // SQL active: May 25 – Jun 25
-      ],
-      'MAY_2026':    [
-        { fromBatch: 'APR_2026', subject: 'SQL'   }   // SQL active: May 25 – Jun 25
-      ]
-    };
-
     function isNoteForBatch(note, selectedBatch) {
       if (!note || !selectedBatch) return false;
-
-      // Primary: note is directly tagged with the selected batch
-      if (note.batch === selectedBatch) return true;
-
-      // Cross-batch sharing: note belongs to a partner batch and matches the shared subject
-      const sharing = CROSS_BATCH_SHARING[selectedBatch];
-      if (sharing) {
-        for (const { fromBatch, subject } of sharing) {
-          if (note.batch === fromBatch && note.subject === subject) {
-            return true;
-          }
-        }
-      }
-
-      return false;
+      return note.batch === selectedBatch;
     }
     
     let allNotes = [];
