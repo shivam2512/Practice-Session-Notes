@@ -843,7 +843,7 @@
       const selectedBatch = document.getElementById('batchSelect').value;
       const sessionNotes = allNotes.filter(
         n => n.session === session && n.subject === "SQL" && isNoteForBatch(n, selectedBatch)
-      );
+      ).sort((a, b) => toJSDate(a.date) - toJSDate(b.date));
       const sqlContent = sessionNotes.map(n => `-- ${n.date} : ${n.title}\n${n.body}\n\n`).join("");
       const blob = new Blob([sqlContent], { type: "text/sql" });
       const url = URL.createObjectURL(blob);
@@ -864,7 +864,7 @@
 
       const linuxNotes = allNotes.filter(
         n => n.session === session && n.subject === "LINUX" && isNoteForBatch(n, selectedBatch)
-      );
+      ).sort((a, b) => toJSDate(a.date) - toJSDate(b.date));
 
       if (!linuxNotes.length) {
         showNotification(`No Linux notes found for ${session}`, 'danger');
