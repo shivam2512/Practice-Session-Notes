@@ -675,21 +675,12 @@
       // Primary: note is directly tagged with the selected batch
       if (note.batch === selectedBatch) return true;
 
-      // Cross-batch sharing: note belongs to a partner batch and matches the shared subject,
-      // and its date falls within the selected batch's own date window.
+      // Cross-batch sharing: note belongs to a partner batch and matches the shared subject
       const sharing = CROSS_BATCH_SHARING[selectedBatch];
       if (sharing) {
-        const range = BATCH_RANGES[selectedBatch];
-        if (!range) return false;
-        const noteDate = toJSDate(note.date);
-        noteDate.setHours(0, 0, 0, 0);
-        const start = toJSDate(range.start);
-        start.setHours(0, 0, 0, 0);
-        const end = toJSDate(range.end);
-        end.setHours(0, 0, 0, 0);
         for (const { fromBatch, subject } of sharing) {
           if (note.batch === fromBatch && note.subject === subject) {
-            if (noteDate >= start && noteDate <= end) return true;
+            return true;
           }
         }
       }
@@ -746,7 +737,7 @@
 
     async function loadNotes() {
       try {
-        const res = await fetch('notes.json');
+        const res = await fetch('notes.json?v=' + new Date().getTime());
         const notes = await res.json();
         allNotes = notes;
         renderCalendar();
