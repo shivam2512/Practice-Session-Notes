@@ -642,16 +642,28 @@
     // When a batch is selected, also include notes from a partner batch
     // but only for the specified subject and only within the selected batch's own date window.
     //
-    // Schedule logic:
-    //   FEB_19_2026 : Linux with JAN batch (Feb 22 – Mar 18) + SQL with MAR batch (Mar 19 – Apr 21)
-    //   MAR_2026    : SQL with FEB batch   (Mar 19 – Apr 21) + Linux with APR batch (Apr 22 – May 22)
-    //   APR_2026    : Linux with MAR batch  (Apr 22 – May 22) + SQL with MAY batch (May 25 – Jun 25)
-    //   MAY_2026    : SQL with APR batch   (May 25 – Jun 25) + Linux with JUN batch (Jun 26 – Jul 25)
+    // Confirmed schedule:
+    //   DEC_2025    : Both SQL + Linux (Nov 19 – Jan 21) ✔️
+    //   JAN_22_2026 : Both SQL + Linux (Jan 22 – Mar 18) ✔️
+    //   FEB_19_2026 : Linux with JAN batch (Feb 22–Mar 18) + SQL own (Mar 19–Apr 21) ✔️
+    //   MAR_2026    : SQL with FEB batch  (Mar 19–Apr 21) + Linux own (Apr 22–May 22) ✔️
+    //   APR_2026    : Linux with MAR batch (Apr 22–May 22) ✔️ DONE
+    //                 SQL with MAY batch  (May 25–Jun 25) 🔄 IN PROGRESS
+    //   MAY_2026    : SQL with APR batch  (May 25–Jun 25) 🔄 IN PROGRESS
+    //                 Linux with JUN batch (Jun 26–Jul 25) ⏳ upcoming
+    //
+    // Bidirectional SQL sharing for APR+MAY: notes can be tagged either batch;
+    // both batches will see all shared SQL sessions (May 25 onwards).
     const CROSS_BATCH_SHARING = {
       'FEB_19_2026': [{ fromBatch: 'JAN_22_2026', subject: 'LINUX' }],
       'MAR_2026':    [{ fromBatch: 'FEB_19_2026', subject: 'SQL'   }],
-      'APR_2026':    [{ fromBatch: 'MAR_2026',    subject: 'LINUX' }],
-      'MAY_2026':    [{ fromBatch: 'APR_2026',    subject: 'SQL'   }]
+      'APR_2026':    [
+        { fromBatch: 'MAR_2026', subject: 'LINUX' },  // Linux done: Apr 22 – May 22
+        { fromBatch: 'MAY_2026', subject: 'SQL'   }   // SQL active: May 25 – Jun 25
+      ],
+      'MAY_2026':    [
+        { fromBatch: 'APR_2026', subject: 'SQL'   }   // SQL active: May 25 – Jun 25
+      ]
     };
 
     function isNoteForBatch(note, selectedBatch) {
