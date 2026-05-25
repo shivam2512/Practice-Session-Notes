@@ -573,9 +573,6 @@
     <div class="text-center mb-4">
       <label class="fw-bold fs-5 me-3">Select Batch:</label>
       <select id="batchSelect" class="batch-select">
-        <option value="MAY_2026">Batch – May 2026</option>
-        <option value="APR_2026">Batch – Apr 2026</option>
-        <option value="MAR_2026" selected>Batch – Mar 2026</option>
         <option value="FEB_19_2026">Batch – Feb 2026</option>
         <option value="JAN_22_2026">Batch – Jan 2026</option>
         <option value="DEC_2025">Batch – Dec 2025</option>
@@ -630,30 +627,7 @@
 
   <script>
     const API = 'https://script.google.com/macros/s/AKfycbwU4J2C8CYtscI_D69h1yKSzqbN2ZKVjoYDzFWTqFmM8EPx-vZw7J9O0cw5Ua0175N0Eg/exec';
-    const CURRENT_BATCH = 'MAR_2026';
-
-    const BATCH_RANGES = {
-      'DEC_2025': { start: '19-NOV-2025', end: '21-JAN-2026' },
-      'JAN_22_2026': { start: '22-JAN-2026', end: '18-MAR-2026' },
-      'FEB_19_2026': { start: '22-FEB-2026', end: '21-APR-2026' },
-      'MAR_2026': { start: '19-MAR-2026', end: '22-MAY-2026' },
-      'APR_2026': { start: '22-APR-2026', end: '25-JUN-2026' },
-      'MAY_2026': { start: '25-MAY-2026', end: '25-JUL-2026' }
-    };
-
-    function isNoteForBatch(note, selectedBatch) {
-      if (!note || !selectedBatch) return false;
-      if (note.batch === selectedBatch) return true;
-      const range = BATCH_RANGES[selectedBatch];
-      if (!range) return false;
-      const noteDate = toJSDate(note.date);
-      noteDate.setHours(0,0,0,0);
-      const start = toJSDate(range.start);
-      start.setHours(0,0,0,0);
-      const end = toJSDate(range.end);
-      end.setHours(0,0,0,0);
-      return noteDate >= start && noteDate <= end;
-    }
+    const CURRENT_BATCH = 'FEB_19_2026';
     
     let allNotes = [];
     let currentMonthIndex = new Date().getMonth();
@@ -749,7 +723,7 @@
       for (let d = 1; d <= daysInMonth; d++) {
         const dayStr = String(d).padStart(2, '0');
         const hasNote = allNotes.some(n => {
-          if (!isNoteForBatch(n, selectedBatch)) return false;
+          if (n.batch !== selectedBatch) return false;
           const { day, monthNum, year } = parseNoteDate(n.date);
           return day === dayStr && monthNum === currentMonthIndex + 1 && Number(year) === currentYear;
         });
@@ -757,7 +731,7 @@
         const subjects = [...new Set(
           allNotes
             .filter(n => {
-              if (!isNoteForBatch(n, selectedBatch)) return false;
+              if (n.batch !== selectedBatch) return false;
               const { day, monthNum, year } = parseNoteDate(n.date);
               return day === dayStr && monthNum === currentMonthIndex + 1 && Number(year) === currentYear;
             })
@@ -783,7 +757,7 @@
     function handleDayClick(dayStr) {
       const selectedBatch = document.getElementById('batchSelect').value;
       const filtered = allNotes.filter(n => {
-        if (!isNoteForBatch(n, selectedBatch)) return false;
+        if (n.batch !== selectedBatch) return false;
         const { day, monthNum, year } = parseNoteDate(n.date);
         return day === dayStr && monthNum === currentMonthIndex + 1 && Number(year) === currentYear;
       });
@@ -841,21 +815,9 @@
 
     function downloadSQLFile(session, filename) {
       const selectedBatch = document.getElementById('batchSelect').value;
-
-      if (!allNotes.length) {
-        showNotification('Notes are still loading, please try again.', 'danger');
-        return;
-      }
-
       const sessionNotes = allNotes.filter(
-        n => n.session === session && n.subject === "SQL" && isNoteForBatch(n, selectedBatch)
-      ).sort((a, b) => toJSDate(a.date) - toJSDate(b.date));
-
-      if (!sessionNotes.length) {
-        showNotification(`No SQL ${session} notes found for the selected batch.`, 'danger');
-        return;
-      }
-
+        n => n.session === session && n.subject === "SQL" && n.batch === selectedBatch
+      );
       const sqlContent = sessionNotes.map(n => `-- ${n.date} : ${n.title}\n${n.body}\n\n`).join("");
       const blob = new Blob([sqlContent], { type: "text/sql" });
       const url = URL.createObjectURL(blob);
@@ -866,7 +828,7 @@
       a.click();
       a.remove();
       URL.revokeObjectURL(url);
-      showNotification(`✅ ${filename} downloaded! (${sessionNotes.length} notes)`);
+      showNotification(`${filename} downloaded successfully!`);
     }
 
     function downloadLinuxPDF(session, filename) {
@@ -875,8 +837,8 @@
       const doc = new jsPDF("p", "mm", "a4");
 
       const linuxNotes = allNotes.filter(
-        n => n.session === session && n.subject === "LINUX" && isNoteForBatch(n, selectedBatch)
-      ).sort((a, b) => toJSDate(a.date) - toJSDate(b.date));
+        n => n.session === session && n.subject === "LINUX" && n.batch === selectedBatch
+      );
 
       if (!linuxNotes.length) {
         showNotification(`No Linux notes found for ${session}`, 'danger');
