@@ -3956,6 +3956,24 @@
         "title": "Practice Session",
         "subject": "LINUX",
         "time": "03:00 PM",
+        "batch": "MAR_2026",
+        "body": "Doubts discussion session"
+    },
+ {
+        "date": "23-MAY-2026",
+        "session": "Evening",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "time": "08:00 PM",
+        "batch": "MAR_2026",
+        "body": "Doubts discussion session"
+    },
+  {
+        "date": "23-MAY-2026",
+        "session": "Afternoon",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "time": "03:00 PM",
         "batch": "APR_2026",
         "body": "Doubts discussion session"
     },
@@ -3967,6 +3985,24 @@
         "time": "08:00 PM",
         "batch": "APR_2026",
         "body": "Doubts discussion session"
+    },
+ {
+        "date": "25-MAY-2026",
+        "session": "Afternoon",
+        "title": "Practice Session",
+        "subject": "SQL",
+        "time": "03:00 PM",
+        "batch": "APR_2026",
+        "body": "## Prod Support / Application support :\n\n\t\tUNIX/Linux\n\t\tSQL\n\t\tProd support tools\n\t\t\tTicket Monitoring tools\n\t\t\t\tservice now - Ticket Monitoring Tool\n\t\t\t\tHelix\n\t\t\t\tZendesk\n\t\t\t\tsymphony\n\t\t\t    JIRA - Ticketing tool and is manily used for internal team communication.\n\t\t\t\n\t\t\tJob monitoring tools\n\t\t\t\tControl M -\n\t\t\t\tAutosys - \n\t\t\t\t\n\t\t\tGit/GITHUB/BIT BUCKET - This is used by Development and testing teams for version releases.\n\t\t\t\nIntroduction to SQL and Syllabus Discussion.\n\nORACLE SQL Developer - Get the Setup installed in your system."
+    },
+ {
+        "date": "25-MAY-2026",
+        "session": "Evening",
+        "title": "Practice Session",
+        "subject": "SQL",
+        "time": "09:00 PM",
+        "batch": "APR_2026",
+        "body": "## Prod Support / Application support :\n\n\t\tUNIX/Linux\n\t\tSQL\n\t\tProd support tools\n\t\t\tTicket Monitoring tools\n\t\t\t\tservice now - Ticket Monitoring Tool\n\t\t\t\tHelix\n\t\t\t\tZendesk\n\t\t\t\tsymphony\n\t\t\t    JIRA - Ticketing tool and is manily used for internal team communication.\n\t\t\t\n\t\t\tJob monitoring tools\n\t\t\t\tControl M -\n\t\t\t\tAutosys - \n\t\t\t\t\n\t\t\tGit/GITHUB/BIT BUCKET - This is used by Development and testing teams for version releases.\n\t\t\t\nIntroduction to SQL and Syllabus Discussion.\n\nORACLE SQL Developer - Get the Setup installed in your system."
     },
  {
         "date": "25-MAY-2026",
