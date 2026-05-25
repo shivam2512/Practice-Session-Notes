@@ -575,7 +575,7 @@
       <select id="batchSelect" class="batch-select">
         <option value="MAY_2026">Batch – May 2026</option>
         <option value="APR_2026">Batch – Apr 2026</option>
-        <option value="MAR_2026">Batch – Mar 2026</option>
+        <option value="MAR_2026" selected>Batch – Mar 2026</option>
         <option value="FEB_19_2026">Batch – Feb 2026</option>
         <option value="JAN_22_2026">Batch – Jan 2026</option>
         <option value="DEC_2025">Batch – Dec 2025</option>
@@ -630,7 +630,7 @@
 
   <script>
     const API = 'https://script.google.com/macros/s/AKfycbwU4J2C8CYtscI_D69h1yKSzqbN2ZKVjoYDzFWTqFmM8EPx-vZw7J9O0cw5Ua0175N0Eg/exec';
-    const CURRENT_BATCH = 'MAY_2026';
+    const CURRENT_BATCH = 'MAR_2026';
 
     const BATCH_RANGES = {
       'DEC_2025': { start: '19-NOV-2025', end: '21-JAN-2026' },
@@ -841,9 +841,21 @@
 
     function downloadSQLFile(session, filename) {
       const selectedBatch = document.getElementById('batchSelect').value;
+
+      if (!allNotes.length) {
+        showNotification('Notes are still loading, please try again.', 'danger');
+        return;
+      }
+
       const sessionNotes = allNotes.filter(
         n => n.session === session && n.subject === "SQL" && isNoteForBatch(n, selectedBatch)
       ).sort((a, b) => toJSDate(a.date) - toJSDate(b.date));
+
+      if (!sessionNotes.length) {
+        showNotification(`No SQL ${session} notes found for the selected batch.`, 'danger');
+        return;
+      }
+
       const sqlContent = sessionNotes.map(n => `-- ${n.date} : ${n.title}\n${n.body}\n\n`).join("");
       const blob = new Blob([sqlContent], { type: "text/sql" });
       const url = URL.createObjectURL(blob);
@@ -854,7 +866,7 @@
       a.click();
       a.remove();
       URL.revokeObjectURL(url);
-      showNotification(`${filename} downloaded successfully!`);
+      showNotification(`✅ ${filename} downloaded! (${sessionNotes.length} notes)`);
     }
 
     function downloadLinuxPDF(session, filename) {
