@@ -4219,5 +4219,23 @@
         "time": "02:50 PM",
         "batch": "MAY_2026",
         "body": "--SQL Commands:\n\nTypes: DDL, DML, TCL, DRL/DQL, DCL\n\n1. DDL commands (Data Definition Language): It is used for creating/modifying the database object structure.\n\na. CREATE command: It is used for creating a database object/table:\n\nSyntax:\ncreate table table_name\n(\ncol1 datatype,\ncol2 datatype,\ncol3 datatype\n);\n\nEg:\ncreate table employee555\n(\nemp_id number,\nemp_name varchar2(100),\nsalary number\n);\n\n--to view table structure:\ndesc employee555;\n\nb. ALTER: It is used to modify existing table structure.\n\nb.1. ADD (adds a new column):\n\nalter table employee555 add email varchar2(500);\n\ndesc employee555;\n\nb.2. MODIFY the column datatype/size:\n\nalter table employee555 modify emp_id varchar2(10);\nalter table employee555 modify emp_name varchar2(50);\n\nNOTE: Modify will only work if the column is empty.\n\ndesc employee555;\n\nb.3. DROP (remove column): It is used for dropping/deleting the existing column from table structure.\n\nalter table employee555 drop column email;\n\ndesc employee555;\n\nb.4. RENAME: It is used to rename any existing column.\n\nalter table employee555 rename column salary to emp_salary;\n\ndesc employee555;\n\nc. RENAME: It is used to change the name of the table.\n\nrename employee555 to emp555;\n\ndesc emp555;"
+    },
+       {
+        "date": "01-JUN-2026",
+        "session": "Evening",
+        "title": "Practice Session",
+        "subject": "SQL",
+        "time": "08:00 PM",
+        "batch": "APR_2026",
+        "body": "--SQL Commands:\n\nTypes: DDL, DML, TCL, DRL/DQL, DCL\n\n1. DDL commands (Data Definition Language): It is used for creating/modifying the database object structure.\n\na. CREATE command: It is used for creating a database object/table:\n\nSyntax:\ncreate table table_name\n(\ncol1 datatype,\ncol2 datatype,\ncol3 datatype\n);\n\nEg:\ncreate table employee555\n(\nemp_id number,\nemp_name varchar2(100),\nsalary number\n);\n\n--to view table structure:\ndesc employee555;\n\nb. ALTER: It is used to modify existing table structure.\n\nb.1. ADD (adds a new column):\n\nalter table employee555 add email varchar2(500);\n\ndesc employee555;\n\nb.2. MODIFY the column datatype/size:\n\nalter table employee555 modify emp_id varchar2(10);\nalter table employee555 modify emp_name varchar2(50);\n\nNOTE: Modify will only work if the column is empty.\n\ndesc employee555;\n\nb.3. DROP (remove column): It is used for dropping/deleting the existing column from table structure.\n\nalter table employee555 drop column email;\n\ndesc employee555;\n\nb.4. RENAME: It is used to rename any existing column.\n\nalter table employee555 rename column salary to emp_salary;\n\ndesc employee555;\n\nc. RENAME: It is used to change the name of the table.\n\nrename employee555 to emp555;\n\ndesc emp555;"
+     },
+      {
+        "date": "01-JUN-2026",
+        "session": "Evening",
+        "title": "Practice Session",
+        "subject": "SQL",
+        "time": "08:00 PM",
+        "batch": "MAY_2026",
+        "body": "--SQL Commands:\n\nTypes: DDL, DML, TCL, DRL/DQL, DCL\n\n1. DDL commands (Data Definition Language): It is used for creating/modifying the database object structure.\n\na. CREATE command: It is used for creating a database object/table:\n\nSyntax:\ncreate table table_name\n(\ncol1 datatype,\ncol2 datatype,\ncol3 datatype\n);\n\nEg:\ncreate table employee555\n(\nemp_id number,\nemp_name varchar2(100),\nsalary number\n);\n\n--to view table structure:\ndesc employee555;\n\nb. ALTER: It is used to modify existing table structure.\n\nb.1. ADD (adds a new column):\n\nalter table employee555 add email varchar2(500);\n\ndesc employee555;\n\nb.2. MODIFY the column datatype/size:\n\nalter table employee555 modify emp_id varchar2(10);\nalter table employee555 modify emp_name varchar2(50);\n\nNOTE: Modify will only work if the column is empty.\n\ndesc employee555;\n\nb.3. DROP (remove column): It is used for dropping/deleting the existing column from table structure.\n\nalter table employee555 drop column email;\n\ndesc employee555;\n\nb.4. RENAME: It is used to rename any existing column.\n\nalter table employee555 rename column salary to emp_salary;\n\ndesc employee555;\n\nc. RENAME: It is used to change the name of the table.\n\nrename employee555 to emp555;\n\ndesc emp555;"
     }
 ]
