@@ -4758,5 +4758,23 @@
         "time": "03:00 PM",
         "batch": "MAY_2026",
   "body": "## 2.1. Numeric Functions\n\nNumeric functions work on numeric columns and values.\n\n### a. ABS\nReturns the absolute (positive) value of the given number.\n\n```sql\nselect abs(-100000) from dual;\n\nselect e.*, abs(emp_id)\nfrom emp e;\n```\n\nExample:\n\n```text\nabs(-1324533)\n= 1324533\n```\n\n### b. MOD\nDisplays the remainder after division.\n\n```sql\nselect mod(10,2) from dual;\n\nselect emp_id,\n       emp_name,\n       mod(emp_id,2) as remainder\nfrom emp678;\n\nselect emp_id,\n       emp_name\nfrom emp678\nwhere mod(emp_id,2) = 0;\n```\n\n### c. POWER\nReturns the power of a number.\n\n```sql\nselect power(5,3) from dual;\n```\n\nExample:\n\n```text\n5 * 5 * 5 = 125\n```\n\n### d. SQRT\nReturns the square root of a number.\n\n```sql\nselect sqrt(25) from dual;\n```\n\n### e. ROUND\nRounds a number to a specified decimal place.\n\n```sql\nselect round(123.4567, 2) from dual;\nselect round(123.4567) from dual;\n\nselect emp_id,\n       emp_name,\n       salary,\n       round(salary, 1) as rounded_salary\nfrom emp678;\n\nselect e.*, round(salary, 1) as rounded_salary\nfrom emp678 e;\n```\n\n### f. TRUNC\nRemoves decimal places without rounding.\n\n```sql\nselect trunc(123.4567, 2) from dual;\nselect trunc(123.456) from dual;\n\nselect * from emp;\n\nselect trunc(salary, 2)\nfrom emp;\n```\n\n---\n\n## 2.2. Character Functions\n\nCharacter functions work on character/string values.\n\n### a. ASCII\nAmerican Standard Code for Information Interchange.\nReturns ASCII value of a character.\n\n```sql\nselect ascii('') from dual;\nselect ascii('z') from dual;\n\nselect e.*, ascii(city)\nfrom emp e;\n```\n\n### b. LOWER\nConverts text into lowercase.\n\n```sql\nselect lower('RAHUL') from dual;\n\nselect * from emp678;\n\nselect emp_name,\n       lower(emp_name)\nfrom emp678;\n\nupdate emp678\nset emp_name = lower(emp_name);\n```\n\n### c. UPPER\nConverts text into uppercase.\n\n```sql\nselect upper('Rahul') from dual;\n\nselect emp_name,\n       upper(emp_name)\nfrom emp678;\n\nupdate emp678\nset emp_name = upper(emp_name);\n```\n\n### d. INITCAP\nConverts the first letter of each word into uppercase.\n\n```sql\nselect initcap(emp_name)\nfrom emp;\n\nselect initcap('aMiT kuMAr')\nfrom dual;\n```\n\n---\n\n## 3. String Manipulation Functions\n\n### a. Concatenation Operator (||)\nUsed to combine multiple strings.\n\n```sql\nselect 'SQL ' || 'Afternoon ' || 'Session'\nfrom dual;\n```\n\n### b. CONCAT Function\nUsed to concatenate string values together.\n\n```sql\nselect concat(concat('SQL ', 'Afternoon '), 'Session')\nfrom dual;\n```\n\n---\n\n## 4. General Functions\n\n### a. NVL\nUsed to convert NULL values into a real value.\n\n```sql\nselect * from emp678;\n\nselect e.*, nvl(salary, 0)\nfrom emp678 e;\n```\n\n### b. NVL2\nExtended version of NVL.\n\n```sql\nselect * from emp;\n```\n\nIf manager_id is found:\n\n```text\nManager detail is available\n```\n\nIf manager_id is not found:\n\n```text\nManager detail is not available\n```\n\n```sql\nselect e.*,\n       nvl2(manager_id,\n            'Manager detail is available',\n            'Manager detail is not available') as Manager_confirmation\nfrom emp e;\n```\n\n---\n\n# Conversion Functions\n\nConversion functions are used to convert one datatype into another datatype.\n\n## 1. TO_CHAR\n\nConverts NUMBER or DATE datatype values into CHARACTER (STRING) datatype.\n\n### Convert DATE to CHAR\n\n```sql\nselect sysdate from dual;\n```\n\nOutput:\n\n```text\n16-APR-26 01:52:47 PM\n```\n\n```sql\nselect to_char(sysdate) from dual;\n```\n\nOutput:\n\n```text\n'16-APR-26 01:53:28 PM'\n```\n\n### Convert NUMBER to CHAR\n\n```sql\nselect 123 from dual;\n```\n\nOutput:\n\n```text\n123\n```\n\n```sql\nselect to_char(123) from dual;\n```\n\nOutput:\n\n```text\n'123'\n```\n\n---\n\n## 2. TO_NUMBER\n\nConverts CHARACTER datatype into NUMBER datatype.\n\n```sql\nselect '101' from dual;\n```\n\nOutput:\n\n```text\n'101'\n```\n\n```sql\nselect to_number('101') from dual;\n```\n\nOutput:\n\n```text\n101\n```\n\n---\n\n## 3. TO_DATE\n\nConverts CHARACTER datatype into DATE datatype.\n\n```sql\nselect '16-JAN-26 01:57:04 PM' from dual;\n```\n\nOutput:\n\n```text\n'16-JAN-26 01:57:04 PM'\n```\n\n```sql\nselect to_date('16-JAN-26 01:57:04 PM') from dual;\n```\n\nOutput:\n\n```text\n16-JAN-26 01:57:04 PM\n```\n"
-    }
+    },
+       {
+        "date": "19-JUN-2026",
+        "session": "Evening",
+        "title": "Practice Session",
+        "subject": "SQL",
+        "time": "09:00 PM",
+        "batch": "APR_2026",
+"body":"Doubts Session"
+    },
+    {
+        "date": "19-JUN-2026",
+        "session": "Evening",
+        "title": "Practice Session",
+        "subject": "SQL",
+        "time": "09:00 PM",
+        "batch": "MAY_2026",
+"body":"Doubts Session"    
+}
 ]
