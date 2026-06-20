@@ -4776,5 +4776,23 @@
         "time": "09:00 PM",
         "batch": "MAY_2026",
 "body":"Doubts Session"    
+},
+ {
+        "date": "20-JUN-2026",
+        "session": "Afternoon",
+        "title": "Practice Session",
+        "subject": "SQL",
+        "time": "02:30 PM",
+        "batch": "APR_2026",
+"body":"Doubts Session"
+    },
+    {
+        "date": "20-JUN-2026",
+        "session": "Afternoon",
+        "title": "Practice Session",
+        "subject": "SQL",
+        "time": "02:30 PM",
+        "batch": "MAY_2026",
+"body":"Doubts Session"    
 }
 ]
