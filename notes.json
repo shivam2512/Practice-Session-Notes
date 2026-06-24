@@ -4884,5 +4884,23 @@
         "time": "07:54 PM",
         "batch": "MAY_2026",
   "body": "## GROUP BY AND HAVING CLAUSE\n\n### GROUP BY\n\nGROUP BY is used to form groups of data.\n\nRecords of the same group are grouped together.\n\nNote:\nThe columns present in the GROUP BY clause must also be present in the SELECT statement.\n\n```sql\nselect * from sales;\n```\n\n### Total Sales per Product\n\n```sql\nselect product,\n       sum(amount) as total_sales\nfrom sales\ngroup by product;\n```\n\n### Total Sales in Each City\n\n```sql\nselect city,\n       sum(amount) as total_sales\nfrom sales\ngroup by city;\n```\n\n### Total Sales per Product per City\n\n```sql\nselect product,\n       city,\n       sum(amount) as total_sales\nfrom sales\ngroup by product, city;\n```\n\n---\n\n### HAVING Clause\n\nHAVING clause is used to filter grouped (aggregated) data.\n\n```sql\nselect * from employee\nwhere dept_name = 'IT';\n```\n\n```sql\nselect city,\n       sum(amount) as total_sales\nfrom sales\ngroup by city\nhaving city in ('Delhi', 'Mumbai');\n```\n\n### Difference Between WHERE and HAVING\n\n```text\nWHERE  -> Filters individual rows.\nHAVING -> Filters grouped data.\n```\n\n### Show Products Whose Total Sales Amount is Greater Than 50000\n\n```sql\nselect product,\n       sum(amount) as total_sales\nfrom sales\ngroup by product\nhaving sum(amount) > 50000;\n```\n\n### Show Products Sold More Than One Time\n\n```sql\nselect product,\n       count(*) as product_count\nfrom sales\ngroup by product\nhaving count(*) > 1;\n```\n\n---\n\n# DATA LOADER\n\nData Loader is used to load data from CSV, Excel, TXT, CTL, or other external files into database tables.\n\n---\n\n## 1. CSV Data Import\n\nUsed to import data from a CSV file into a database table.\n\nSteps:\n\n1. Go to Table\n2. Click Import Data\n3. Select CSV File\n4. Perform Import\n\n---\n\n## 2. CTL (Control File Import)\n\n### Create a .CTL File\n\nSyntax:\n\n```text\nLOAD DATA\nINFILE 'C:\\Users\\hp\\Documents\\account_new.txt'\nAPPEND\nINTO TABLE account77\nFIELDS TERMINATED BY ','\n(\naccount_no,\ncustomer_id,\naccount_type,\nbalance\n)\n```\n\nThe above syntax adds new data from the file:\n\n```text\naccount_new.txt\n```\n\ninto the existing table:\n\n```text\naccount77\n```\n\n---\n\n### Syntax 2: Add Data Directly Inside CTL File\n\n```text\nLOAD DATA\nINFILE *\nAPPEND\nINTO TABLE account77\nFIELDS TERMINATED BY ','\n(\naccount_no,\ncustomer_id,\naccount_type,\nbalance\n)\nBEGINDATA\n7000,500,Savings,10000\n7001,501,Savings,11000\n7002,502,Savings,12000\n7003,503,Current,13000\n7004,504,Current,14000\n7005,505,Current,15000\n```\n\nThis syntax loads the data written directly inside the CTL file into the database table.\n\n---\n\n## How to Save a CTL File\n\n1. Click on Save As\n2. Give file name:\n\n```text\nemployee.ctl\n```\n\n3. Select:\n\n```text\nSave as type -> All Files\n```\n\n---\n\n## Run SQL*Loader\n\nOpen Command Prompt and navigate to the location where both the CTL file and TXT file are present.\n\nCommand:\n\n```text\nsqlldr userid=system/DBS control=account.ctl\n```\n\n---\n\n## Reference Files\n\nTable:\n\n```text\naccount77\n```\n\nColumns:\n\n```text\naccount_no\ncustomer_id\naccount_type\nbalance\n```\n\nTXT File:\n\n```text\naccount_new.txt\n```\n\nCTL File:\n\n```text\naccount.ctl\n```\n"
+},
+{
+        "date": "24-JUN-2026",
+        "session": "Afternoon",
+        "title": "Practice Session",
+        "subject": "SQL",
+        "time": "03:10 PM",
+        "batch": "APR_2026",
+"body": "Revision of yesterday's (23-Jun-26) topics"
+},
+{
+        "date": "24-JUN-2026",
+        "session": "Afternoon",
+        "title": "Practice Session",
+        "subject": "SQL",
+        "time": "03:10 PM",
+        "batch": "MAY_2026",
+        "body": "Revision of yesterday's (23-Jun-26) topics"
 }
 ]
