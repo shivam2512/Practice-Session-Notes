@@ -692,7 +692,39 @@
       document.addEventListener('visibilitychange', handleVisibilityChange);
 
       // Batch change
-      document.getElementById('batchSelect').addEventListener('change', () => {
+      let previousBatch = document.getElementById('batchSelect').value;
+      document.getElementById('batchSelect').addEventListener('change', (e) => {
+        if (e.target.value === 'ADD_NEW') {
+          const newBatchName = prompt("Enter new batch display name (e.g., 'Batch — Jun 2026'):");
+          if (newBatchName) {
+            let newBatchValue = newBatchName.toUpperCase().replace(/[^A-Z0-9]/g, '_').replace(/_+/g, '_').replace(/^_|_$/g, '');
+            // if user just types JUN_2026, keep it, if they type Batch - Jun 2026, it becomes BATCH_JUN_2026 which is fine, but value usually is JUN_2026
+            if (newBatchValue.startsWith('BATCH_')) {
+              newBatchValue = newBatchValue.replace('BATCH_', '');
+            }
+            
+            const option = document.createElement('option');
+            option.value = newBatchValue;
+            option.textContent = newBatchName;
+            
+            // Insert before the ADD_NEW option
+            const addNewOpt = e.target.querySelector('option[value="ADD_NEW"]');
+            if (addNewOpt) {
+              e.target.insertBefore(option, addNewOpt);
+            } else {
+              e.target.appendChild(option);
+            }
+            
+            e.target.value = newBatchValue;
+            previousBatch = newBatchValue;
+          } else {
+            // User cancelled, revert to previous batch
+            e.target.value = previousBatch;
+            return;
+          }
+        } else {
+          previousBatch = e.target.value;
+        }
         renderCalendar();
         clearNotesView();
       });
@@ -1258,6 +1290,23 @@
       if (e.shiftKey && e.altKey && e.key.toLowerCase() === 'a') {
         e.preventDefault();
         openAdminDashboard();
+      }
+      if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'a') {
+        e.preventDefault();
+        const select = document.getElementById('batchSelect');
+        let addNewOption = select.querySelector('option[value="ADD_NEW"]');
+        if (addNewOption) {
+            addNewOption.remove();
+            alert("Admin mode disabled: 'Add New Batch' option hidden.");
+            if (select.value === 'ADD_NEW') select.selectedIndex = 0;
+        } else {
+            addNewOption = document.createElement('option');
+            addNewOption.value = 'ADD_NEW';
+            addNewOption.className = 'text-primary fw-bold';
+            addNewOption.textContent = '+ Add New Batch...';
+            select.appendChild(addNewOption);
+            alert("Admin mode enabled: 'Add New Batch' option is now available in the dropdown.");
+        }
       }
     }
 
