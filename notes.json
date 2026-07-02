@@ -5,6 +5,24 @@
         "title": "Practice Session",
         "subject": "LINUX",
         "body": "UNIX Architecture:\n\nUsers: System Administrators or anyone who uses the system\n\nUnix Shell: It is a program that interprets commands and acts as Interface between Users& Kernel\n\nUnix Kernel: The kernel in an OS is the code and it acts as bridge between the activities by user and the hardware\n\nUser Applications --> Unix Shell --> Unix Kernel --> System Hardware\n\nUnix Shell Types:\n1. Bash\n2. Bourne\n3. Korn\n4. C Shell\n\nUnix File Structure:\n/ (root)\n|\n----------------------------------\n| | | | | | | |\nbin boot mnt etc dev home lib var\n\nCommands:\n1. Basic /General Commands\n2. Space management Commands\n3. Directory related commands\n4. File related commands\n5. Networking commands/Communication Commands\n6 Process related commands\n7 VI/ VIEW Editor /CUI Editor\n8 Gedit\n9 Job scheduling - crontab\n\n# pwd : This command willshow you – you are in which directory\n# cd : cd command use to change directory or go to any particular directory.\n\nAbsolute Path: /home/shivam/Documents\nRelative Path: Direct folder name: Desktop\n\ncd .. - used to come one step back\ncd ~ - used to navigate directly to default directory from any location\n",
+        "time": "03:00 PM",
+        "batch": "JUN_2026"
+    },
+    {
+        "date": "01-JUL-2026",
+        "session": "Afternoon",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "UNIX Architecture:\n\nUsers: System Administrators or anyone who uses the system\n\nUnix Shell: It is a program that interprets commands and acts as Interface between Users& Kernel\n\nUnix Kernel: The kernel in an OS is the code and it acts as bridge between the activities by user and the hardware\n\nUser Applications --> Unix Shell --> Unix Kernel --> System Hardware\n\nUnix Shell Types:\n1. Bash\n2. Bourne\n3. Korn\n4. C Shell\n\nUnix File Structure:\n/ (root)\n|\n----------------------------------\n| | | | | | | |\nbin boot mnt etc dev home lib var\n\nCommands:\n1. Basic /General Commands\n2. Space management Commands\n3. Directory related commands\n4. File related commands\n5. Networking commands/Communication Commands\n6 Process related commands\n7 VI/ VIEW Editor /CUI Editor\n8 Gedit\n9 Job scheduling - crontab\n\n# pwd : This command willshow you – you are in which directory\n# cd : cd command use to change directory or go to any particular directory.\n",
+        "time": "03:00 PM",
+        "batch": "MAY_2026"
+    },
+    {
+        "date": "01-JUL-2026",
+        "session": "Evening",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "UNIX Architecture:\n\nUsers: System Administrators or anyone who uses the system\n\nUnix Shell: It is a program that interprets commands and acts as Interface between Users& Kernel\n\nUnix Kernel: The kernel in an OS is the code and it acts as bridge between the activities by user and the hardware\n\nUser Applications --> Unix Shell --> Unix Kernel --> System Hardware\n\nUnix Shell Types:\n1. Bash\n2. Bourne\n3. Korn\n4. C Shell\n\nUnix File Structure:\n/ (root)\n|\n----------------------------------\n| | | | | | | |\nbin boot mnt etc dev home lib var\n\nCommands:\n1. Basic /General Commands\n2. Space management Commands\n3. Directory related commands\n4. File related commands\n5. Networking commands/Communication Commands\n6 Process related commands\n7 VI/ VIEW Editor /CUI Editor\n8 Gedit\n9 Job scheduling - crontab\n\n# pwd : This command willshow you – you are in which directory\n# cd : cd command use to change directory or go to any particular directory.\n",
         "time": "09:00 PM",
         "batch": "JUN_2026"
     },
@@ -14,17 +32,8 @@
         "title": "Practice Session",
         "subject": "LINUX",
         "body": "UNIX Architecture:\n\nUsers: System Administrators or anyone who uses the system\n\nUnix Shell: It is a program that interprets commands and acts as Interface between Users& Kernel\n\nUnix Kernel: The kernel in an OS is the code and it acts as bridge between the activities by user and the hardware\n\nUser Applications --> Unix Shell --> Unix Kernel --> System Hardware\n\nUnix Shell Types:\n1. Bash\n2. Bourne\n3. Korn\n4. C Shell\n\nUnix File Structure:\n/ (root)\n|\n----------------------------------\n| | | | | | | |\nbin boot mnt etc dev home lib var\n\nCommands:\n1. Basic /General Commands\n2. Space management Commands\n3. Directory related commands\n4. File related commands\n5. Networking commands/Communication Commands\n6 Process related commands\n7 VI/ VIEW Editor /CUI Editor\n8 Gedit\n9 Job scheduling - crontab\n\n# pwd : This command willshow you – you are in which directory\n# cd : cd command use to change directory or go to any particular directory.\n",
-        "time": "03:00 PM",
+        "time": "09:00 PM",
         "batch": "MAY_2026"
-    },
-    {
-        "date": "01-JUL-2026",
-        "session": "Afternoon",
-        "title": "Practice Session",
-        "subject": "LINUX",
-        "body": "UNIX Architecture:\n\nUsers: System Administrators or anyone who uses the system\n\nUnix Shell: It is a program that interprets commands and acts as Interface between Users& Kernel\n\nUnix Kernel: The kernel in an OS is the code and it acts as bridge between the activities by user and the hardware\n\nUser Applications --> Unix Shell --> Unix Kernel --> System Hardware\n\nUnix Shell Types:\n1. Bash\n2. Bourne\n3. Korn\n4. C Shell\n\nUnix File Structure:\n/ (root)\n|\n----------------------------------\n| | | | | | | |\nbin boot mnt etc dev home lib var\n\nCommands:\n1. Basic /General Commands\n2. Space management Commands\n3. Directory related commands\n4. File related commands\n5. Networking commands/Communication Commands\n6 Process related commands\n7 VI/ VIEW Editor /CUI Editor\n8 Gedit\n9 Job scheduling - crontab\n\n# pwd : This command willshow you – you are in which directory\n# cd : cd command use to change directory or go to any particular directory.\n",
-        "time": "03:00 PM",
-        "batch": "JUN_2026"
     },
     {
         "date": "30-JUN-2026",
