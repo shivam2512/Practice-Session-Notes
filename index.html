@@ -883,7 +883,7 @@
       const selectedBatch = document.getElementById('batchSelect').value;
       const sessionNotes = allNotes.filter(
         n => n.session === session && n.subject === "SQL" && n.batch === selectedBatch
-      );
+      ).sort((a, b) => toJSDate(a.date) - toJSDate(b.date));
       const sqlContent = sessionNotes.map(n => `-- ${n.date} : ${n.title}\n${n.body}\n\n`).join("");
       const blob = new Blob([sqlContent], { type: "text/sql" });
       const url = URL.createObjectURL(blob);
