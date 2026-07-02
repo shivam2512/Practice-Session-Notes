@@ -904,7 +904,7 @@
 
       const linuxNotes = allNotes.filter(
         n => n.session === session && n.subject === "LINUX" && n.batch === selectedBatch
-      );
+      ).sort((a, b) => toJSDate(a.date) - toJSDate(b.date));
 
       if (!linuxNotes.length) {
         showNotification(`No Linux notes found for ${session}`, 'danger');
