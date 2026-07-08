@@ -1,5 +1,32 @@
 [
     {
+        "date": "08-JUL-2026",
+        "session": "Afternoon",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "10) # who : who are the users logged-in into the server.\nHow many users logged in into the server that will check\n\n11) # whoami : who is the user login into the session.\n\n12) # uname : It will show you which OS you are using (Linux, AIX, SunOS, HP-UX)\n# uname -a : shows all details of the system. (OS name, System\nConfiguration, Terminal Details…etc…..)\n# uname -e : Shows Kernel details\n# uname -n : Shows server name in which you are logged in.\n\nNOTE: this options may vary from OS to OS, check for latest option supported with uname command using: man uname\n\n13) # hostname : It will also show the server name in which you are logged in\n\n14) #hostnamectl: it is used to check detailed information related to hostname\n\n15) # script : script command use to record your session into new file.\ne.g. # script history_log.txt\n\nScript started, file is history_log.txt\n<Enter some commands>\n\nTo stop script, type exit and press [Enter]. Then you will get below massage.\nScript done, file is history_log.txt\n\n# cat :- with the help of cat command you can view the containt of history_log.txt file\n# cat history_log.txt\n\n16) # clear : This command use to clear the terminal\n\n18) # df : Used to check disk (filesystem) space.\n19) # du : Used to check directory (folder) space\ndf -h, du -h are used to check the space related information in human readbale form.\n\n20) # tty : shows you terminal path and which instance is opened for the terminal\n21) # stty : shows you terminal details (speed related information)\n\n22) # mkdir : Use to create directory/folder in UNIX.\n$ mkdir anushka -- - - - - -- - 1 directory created\n$ mkdir salman khan -- - -- - - 2 directories created\n$ mkdir “aamir khan” --------- 1 directory created.\n\n23) # rmdir : Use to delete an empty directories only.\n$ rmdir anushka\n\n24) # touch : Use to create an empty file in UNIX.\n$ touch anushka.txt -- - - - - -- - 1 file created\n$ touch salman khan -- - -- - - 2 files created\n$ touch “aamir khan” --------- 1 file created.\n\n25) # rm : use to delete the files.\n# rm -r : use to delete the directories\n$ rm anushka.txt ----------- it will ask confirmation popup (Y/N)\n$ rm -f anushka.txt---------- It will not ask confirmation popup. File will get deleted immediately.\n$ rm -f *.txt --------------All *.txt files will removed.\n$ rm –f ritesh*----------- filename which starts with ritesh name, all will get deleted\n",
+        "time": "03:00 PM",
+        "batch": "JUN_2026"
+    },
+    {
+        "date": "08-JUL-2026",
+        "session": "Afternoon",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "10) # who : who are the users logged-in into the server.\nHow many users logged in into the server that will check\n\n11) # whoami : who is the user login into the session.\n\n12) # uname : It will show you which OS you are using (Linux, AIX, SunOS, HP-UX)\n# uname -a : shows all details of the system. (OS name, System\nConfiguration, Terminal Details…etc…..)\n# uname -e : Shows Kernel details\n# uname -n : Shows server name in which you are logged in.\n\nNOTE: this options may vary from OS to OS, check for latest option supported with uname command using: man uname\n\n13) # hostname : It will also show the server name in which you are logged in\n\n14) #hostnamectl: it is used to check detailed information related to hostname\n\n15) # script : script command use to record your session into new file.\ne.g. # script history_log.txt\n\nScript started, file is history_log.txt\n<Enter some commands>\n\nTo stop script, type exit and press [Enter]. Then you will get below massage.\nScript done, file is history_log.txt\n\n# cat :- with the help of cat command you can view the containt of history_log.txt file\n# cat history_log.txt\n\n16) # clear : This command use to clear the terminal\n\n18) # df : Used to check disk (filesystem) space.\n19) # du : Used to check directory (folder) space\ndf -h, du -h are used to check the space related information in human readbale form.\n\n20) # tty : shows you terminal path and which instance is opened for the terminal\n21) # stty : shows you terminal details (speed related information)\n\n22) # mkdir : Use to create directory/folder in UNIX.\n$ mkdir anushka -- - - - - -- - 1 directory created\n$ mkdir salman khan -- - -- - - 2 directories created\n$ mkdir “aamir khan” --------- 1 directory created.\n\n23) # rmdir : Use to delete an empty directories only.\n$ rmdir anushka\n\n24) # touch : Use to create an empty file in UNIX.\n$ touch anushka.txt -- - - - - -- - 1 file created\n$ touch salman khan -- - -- - - 2 files created\n$ touch “aamir khan” --------- 1 file created.\n\n25) # rm : use to delete the files.\n# rm -r : use to delete the directories\n$ rm anushka.txt ----------- it will ask confirmation popup (Y/N)\n$ rm -f anushka.txt---------- It will not ask confirmation popup. File will get deleted immediately.\n$ rm -f *.txt --------------All *.txt files will removed.\n$ rm –f ritesh*----------- filename which starts with ritesh name, all will get deleted\n",
+        "time": "03:00 PM",
+        "batch": "MAY_2026"
+    },
+    {
+        "date": "07-JUN-2026",
+        "session": "Afternoon",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "mailx command configuration",
+        "time": "03:00 PM",
+        "batch": "MAY_2026"
+    },
+    {
         "date": "06-JUL-2026",
         "session": "Evening",
         "title": "Practice Session",
