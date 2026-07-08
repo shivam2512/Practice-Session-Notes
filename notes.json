@@ -17,8 +17,35 @@
         "time": "03:00 PM",
         "batch": "MAY_2026"
     },
+	 {
+        "date": "07-JUL-2026",
+        "session": "Evening",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "mailx command configuration",
+        "time": "09:00 PM",
+        "batch": "JUN_2026"
+    },
+	   {
+        "date": "07-JUL-2026",
+        "session": "Evening",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "mailx command configuration",
+        "time": "09:00 PM",
+        "batch": "MAY_2026"
+    },
     {
-        "date": "07-JUN-2026",
+        "date": "07-JUL-2026",
+        "session": "Afternoon",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "mailx command configuration",
+        "time": "03:00 PM",
+        "batch": "JUN_2026"
+    },
+	   {
+        "date": "07-JUL-2026",
         "session": "Afternoon",
         "title": "Practice Session",
         "subject": "LINUX",
