@@ -1,5 +1,23 @@
 [
     {
+        "date": "10-JUL-2026",
+        "session": "Afternoon",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "26). # cat : cat command use to view the file, create the file and Append the file.\n\nNote :- You cannot edit the file with # cat command.\nPlease review below syntax.\n\n# cat abc.txt :- abc.txt file will open and you can view the contain of that file.\n# cat >xyz.txt\n| this pointer will start and you can type any text here\nLater you will (ctrl + d) key to save and exit from cat command.\n\n# cat >>xyz.txt\nYou can continue with adding new more lines into xyz.txt file.\nPress (ctrl +d) save and quit.\n\n# cat >xyz.txt\nIf xyz.txt file is already exist then this command will replace new file on it. If not then it will\ncreate new file.\n\n27). # cp : cp command use to copy-paste files and folders.\n\nMake a copy of a file in a same directory. Use below syntax.\n\n# cp origfile newfile\n\nFew more syntax of cp command below:\n\n# cp mylog.txt /home/public_html/backup/\n# cp /home/public_html/mylog.txt /home/public_html/backup/\n# cp /home/public_html/mylog.txt .\n\n\n# cp -R : Used to copy directory including all files in it.\n# cp -R <directory_name> /root/ram\n\n# mv : mv command use to cut-paste and rename too\nBelow syntax use for rename in same folder.\n\n# mv old_name.txt new_name.txt\n\nFew syntax below : -\n\n# mv mylog.txt /home/public_html/backup/\n# mv mylog.txt /home/public_html/backup/youlog.txt (cut-paste and rename too)\n# mv /home/public_html/mylog.txt /home/public_html/backup/\n# mv /home/public_html/mylog.txt .\n\nto cut paste folders also you can use:\n\nmv folderName /path_where_paste_it\n",
+        "time": "03:00 PM",
+        "batch": "JUN_2026"
+    },
+    {
+        "date": "10-JUL-2026",
+        "session": "Afternoon",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "26). # cat : cat command use to view the file, create the file and Append the file.\n\nNote :- You cannot edit the file with # cat command.\nPlease review below syntax.\n\n# cat abc.txt :- abc.txt file will open and you can view the contain of that file.\n# cat >xyz.txt\n| this pointer will start and you can type any text here\nLater you will (ctrl + d) key to save and exit from cat command.\n\n# cat >>xyz.txt\nYou can continue with adding new more lines into xyz.txt file.\nPress (ctrl +d) save and quit.\n\n# cat >xyz.txt\nIf xyz.txt file is already exist then this command will replace new file on it. If not then it will\ncreate new file.\n\n27). # cp : cp command use to copy-paste files and folders.\n\nMake a copy of a file in a same directory. Use below syntax.\n\n# cp origfile newfile\n\nFew more syntax of cp command below:\n\n# cp mylog.txt /home/public_html/backup/\n# cp /home/public_html/mylog.txt /home/public_html/backup/\n# cp /home/public_html/mylog.txt .\n\n\n# cp -R : Used to copy directory including all files in it.\n# cp -R <directory_name> /root/ram\n\n# mv : mv command use to cut-paste and rename too\nBelow syntax use for rename in same folder.\n\n# mv old_name.txt new_name.txt\n\nFew syntax below : -\n\n# mv mylog.txt /home/public_html/backup/\n# mv mylog.txt /home/public_html/backup/youlog.txt (cut-paste and rename too)\n# mv /home/public_html/mylog.txt /home/public_html/backup/\n# mv /home/public_html/mylog.txt .\n\nto cut paste folders also you can use:\n\nmv folderName /path_where_paste_it\n",
+        "time": "03:00 PM",
+        "batch": "MAY_2026"
+    },
+    {
         "date": "09-JUL-2026",
         "session": "Evening",
         "title": "Practice Session",
