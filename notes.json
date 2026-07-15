@@ -1,5 +1,41 @@
 [
     {
+        "date": "15-JUL-2026",
+        "session": "Evening",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "# ARCHIVAL METHODS:\nzip & unzip Commands:\n\n# zip : zip command use to zip multiple files under single output.\n\n# zip abc.zip 1.txt 2.txt 3.txt 4.txt 5.txt 6.txt\n# zip -r sample.zip fol1 fol2 fol3 file1.txt file2.txt\nAddition of new file or folder in existing zip file\n# zip -r abc.zip filename.txt folname\nOutput is abc.zip contains all input file i.e. 1.txt 2.txt 3.txt 4.txt etc\n\nIf you need to delete any spexific file or folder from zip:\nzip -d demo.zip filename foldername/\n\n# unzip : unzip command use to unzip the files/folders\n# unzip abc.zip all files will unzipped\n# unzip abc.zip 1.txt 1.txt fol/ file will unzipped from abc.zip\n\nIf you need to unzip any file/folder to any other location\n\nunzip  demo.zip filename -d /home/shivam/Desktop",
+        "time": "08:12 PM",
+        "batch": "JUN_2026"
+    },
+    {
+        "date": "15-JUL-2026",
+        "session": "Evening",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "# ARCHIVAL METHODS:\nzip & unzip Commands:\n\n# zip : zip command use to zip multiple files under single output.\n\n# zip abc.zip 1.txt 2.txt 3.txt 4.txt 5.txt 6.txt\n# zip -r sample.zip fol1 fol2 fol3 file1.txt file2.txt\nAddition of new file or folder in existing zip file\n# zip -r abc.zip filename.txt folname\nOutput is abc.zip contains all input file i.e. 1.txt 2.txt 3.txt 4.txt etc\n\nIf you need to delete any spexific file or folder from zip:\nzip -d demo.zip filename foldername/\n\n# unzip : unzip command use to unzip the files/folders\n# unzip abc.zip all files will unzipped\n# unzip abc.zip 1.txt 1.txt fol/ file will unzipped from abc.zip\n\nIf you need to unzip any file/folder to any other location\n\nunzip  demo.zip filename -d /home/shivam/Desktop",
+        "time": "08:12 PM",
+        "batch": "MAY_2026"
+    },
+    {
+        "date": "15-JUL-2026",
+        "session": "Afternoon",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "# ARCHIVAL METHODS:\nzip & unzip Commands:\n\n# zip : zip command use to zip multiple files under single output.\n\n# zip abc.zip 1.txt 2.txt 3.txt 4.txt 5.txt 6.txt\n# zip -r sample.zip fol1 fol2 fol3 file1.txt file2.txt\nAddition of new file or folder in existing zip file\n# zip -r abc.zip filename.txt folname\nOutput is abc.zip contains all input file i.e. 1.txt 2.txt 3.txt 4.txt etc\n\nIf you need to delete any spexific file or folder from zip:\nzip -d demo.zip filename foldername/\n\n# unzip : unzip command use to unzip the files/folders\n# unzip abc.zip all files will unzipped\n# unzip abc.zip 1.txt 1.txt fol/ file will unzipped from abc.zip\n\nIf you need to unzip any file/folder to any other location\n\nunzip  demo.zip filename -d /home/shivam/Desktop",
+        "time": "03:00 PM",
+        "batch": "JUN_2026"
+    },
+    {
+        "date": "15-JUL-2026",
+        "session": "Afternoon",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "# ARCHIVAL METHODS:\nzip & unzip Commands:\n\n# zip : zip command use to zip multiple files under single output.\n\n# zip abc.zip 1.txt 2.txt 3.txt 4.txt 5.txt 6.txt\n# zip -r sample.zip fol1 fol2 fol3 file1.txt file2.txt\nAddition of new file or folder in existing zip file\n# zip -r abc.zip filename.txt folname\nOutput is abc.zip contains all input file i.e. 1.txt 2.txt 3.txt 4.txt etc\n\nIf you need to delete any spexific file or folder from zip:\nzip -d demo.zip filename foldername/\n\n# unzip : unzip command use to unzip the files/folders\n# unzip abc.zip all files will unzipped\n# unzip abc.zip 1.txt 1.txt fol/ file will unzipped from abc.zip\n\nIf you need to unzip any file/folder to any other location\n\nunzip  demo.zip filename -d /home/shivam/Desktop",
+        "time": "03:00 PM",
+        "batch": "MAY_2026"
+    },
+    {
         "date": "14-JUL-2026",
         "session": "Evening",
         "title": "Practice Session",
