@@ -1,5 +1,23 @@
 [
     {
+        "date": "16-JUL-2026",
+        "session": "Afternoon",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "Doubts discussion and Archival Methods:\n\n# gzip : gzip command use to zip the file in UNIX.\n# gzip abc.txt----------------------------------------------- output would be abc.txt.gz\n# gzip 1.txt 2.txt 3.txt 4.txt-----------------output would be 1.txt.gz 2.txt.gz 3.txt.gz\n\n--to keep the original file while archiving the file\ngzip -k abc.txt\n\nTo unzip above files use below command::\n# gunzip : gunzip command use to unzip the files\n# gunzip abc.txt.gz\n# gunzip 1.txt.gz 2.txt.gz",
+        "time": "03:00 PM",
+        "batch": "JUN_2026"
+    },
+    {
+        "date": "16-JUL-2026",
+        "session": "Afternoon",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "Doubts Discussion and Archival Methods:\n\n# gzip : gzip command use to zip the file in UNIX.\n# gzip abc.txt----------------------------------------------- output would be abc.txt.gz\n# gzip 1.txt 2.txt 3.txt 4.txt-----------------output would be 1.txt.gz 2.txt.gz 3.txt.gz\n\n--to keep the original file while archiving the file\ngzip -k abc.txt\n\nTo unzip above files use below command::\n# gunzip : gunzip command use to unzip the files\n# gunzip abc.txt.gz\n# gunzip 1.txt.gz 2.txt.gz",
+        "time": "03:00 PM",
+        "batch": "MAY_2026"
+    },
+    {
         "date": "15-JUL-2026",
         "session": "Evening",
         "title": "Practice Session",
