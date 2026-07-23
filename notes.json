@@ -1,5 +1,23 @@
 [
     {
+        "date": "23-JUL-2026",
+        "session": "Afternoon",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "nice: is used to run a program with a specific CPU priority.\nSyntax:\n\nnice -n [priority] command\n\nPriority(nice value): -20 to 19\n\n-20: Highest Priority\n0: Default Priority\n19: Lowest Priority\n\nnice -n -20 zip demo.zip file1.txt file2.txt 1_new.txt\nProcess runs very fast and gets the more CPU priority.\n\nnice -n 19 tar -cvf backup.tar abc.txt file1.txt file2.txt\nProcess runs only when CPU is free.\n\nnice -n 0 tar -cvf backup.tar abc.txt file1.txt file2.txt OR\ntar -cvf backup.tar abc.txt file1.txt file2.txt\n\n\nJOB Scheduling and Monitoring commands:\n\n1. at command: is used to schedule a command to run once at a specific time in future.\nSyntax:\nat time\n\nEg:\nat 13:30\nat> echo \"Job Scheduling\" > message.txt\nThen press CTRL + D\n\n\nTypes of editors in Linux:\n1. VI Editor (Visual Editor): vi is a powerful terminal based text editor available in\nalmost every Linux system.\n\nModes of vi editor:\n1. Command mode - default mode for navigation and commands\n2. Insert mode - Used for type/editing text\n3. Last line mode - used for saving, quiting, searching\n\nSyntax:\nvi filename (it will open the file in command mode i.e. readonly mode)\n\nTo go to insert mode: type i\n\nIn insert mode you can navigate the file and can update its content\nTo navigate in insert mode you can use (arrow keys)\nTo directly go to first line you can press: gg\nTo directly go to the last line press: G\nTo delete any character: x\nTo delete entire line: dd\nTo copy any line: yy\nTo paste the copied part: p\nTo undo the action: u\nTo search any word in file: /word\nTo exit from insert mode press ESC button, to save the file content and quit vi editor\npress - :wq\nw (it will save the updated content)\nq (will quit the vi editor)\n\nTo just save the file content - :w\nTo quit without saving - :q!\nTo save as a new file - :w filename\n",
+        "time": "02:54 PM",
+        "batch": "JUN_2026"
+    },
+    {
+        "date": "23-JUL-2026",
+        "session": "Afternoon",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "nice: is used to run a program with a specific CPU priority.\nSyntax:\n\nnice -n [priority] command\n\nPriority(nice value): -20 to 19\n\n-20: Highest Priority\n0: Default Priority\n19: Lowest Priority\n\nnice -n -20 zip demo.zip file1.txt file2.txt 1_new.txt\nProcess runs very fast and gets the more CPU priority.\n\nnice -n 19 tar -cvf backup.tar abc.txt file1.txt file2.txt\nProcess runs only when CPU is free.\n\nnice -n 0 tar -cvf backup.tar abc.txt file1.txt file2.txt OR\ntar -cvf backup.tar abc.txt file1.txt file2.txt\n\n\nJOB Scheduling and Monitoring commands:\n\n1. at command: is used to schedule a command to run once at a specific time in future.\nSyntax:\nat time\n\nEg:\nat 13:30\nat> echo \"Job Scheduling\" > message.txt\nThen press CTRL + D\n\n\nTypes of editors in Linux:\n1. VI Editor (Visual Editor): vi is a powerful terminal based text editor available in\nalmost every Linux system.\n\nModes of vi editor:\n1. Command mode - default mode for navigation and commands\n2. Insert mode - Used for type/editing text\n3. Last line mode - used for saving, quiting, searching\n\nSyntax:\nvi filename (it will open the file in command mode i.e. readonly mode)\n\nTo go to insert mode: type i\n\nIn insert mode you can navigate the file and can update its content\nTo navigate in insert mode you can use (arrow keys)\nTo directly go to first line you can press: gg\nTo directly go to the last line press: G\nTo delete any character: x\nTo delete entire line: dd\nTo copy any line: yy\nTo paste the copied part: p\nTo undo the action: u\nTo search any word in file: /word\nTo exit from insert mode press ESC button, to save the file content and quit vi editor\npress - :wq\nw (it will save the updated content)\nq (will quit the vi editor)\n\nTo just save the file content - :w\nTo quit without saving - :q!\nTo save as a new file - :w filename\n",
+        "time": "02:54 PM",
+        "batch": "MAY_2026"
+    },
+    {
         "date": "22-JUL-2026",
         "session": "Evening",
         "title": "Practice Session",
