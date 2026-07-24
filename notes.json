@@ -1,6 +1,24 @@
 [
     {
         "date": "24-JUL-2026",
+        "session": "Evening",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "2. NANO editor: It is a simple and user-friendly command-line text editor in Linux/Unix.\n\nSyntax:\nnano filename\n\nIf you need to save the file content and exit from nano editor: CTRL + O + Enter + CTRL + X\n\nOptions:\nnano -c filename - showing the cursor position\nnano -l filename - Show line number\nnano +n filename - Open file at line number n (n=1,2,3,4.......)\nnano -B filename - create backup of file\n\nShortcuts for nano editor:\nCTRL + O and Enter: Save file\nCTRL + X: Exit nano\nCTRL + K: Cut line\nCTRL + U: Paste line\nCTRL + W: Search text\nCTRL + C: Show cursor position\nALT + 6: To copy the selected part\nALT + U: to undo the action\n\n## CRONTAB: is used to schedule commands or scripts to run automatically at fixed intervals (minutes, hours, days, etc)\n\nUnlike at (runs once), crontab runs repeatedly.\n\nSyntax:\n* * * * * command\n1 2 3 4 5\n\n1: Minute (0-59)\n2: Hour (0-23)\n3: Day of month (1-31)\n4: Month (1-12)\n5: Day of week (0-6) (0=Sun, 6=Sat)\n\nEg:\nEvery 2 mins we need to execute this command:\n*/2 * * * * echo \"crontab example\" >> /home/shivam/Desktop/crontabexg.txt\n\nTo open crontab editor:\ncrontab -e\n\nTo list scheduled jobs:\ncrontab -l\n\nTo remove all cron jobs:\ncrontab -r\n",
+        "time": "09:00 PM",
+        "batch": "JUN_2026"
+    },
+    {
+        "date": "24-JUL-2026",
+        "session": "Evening",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "2. NANO editor: It is a simple and user-friendly command-line text editor in Linux/Unix.\n\nSyntax:\nnano filename\n\nIf you need to save the file content and exit from nano editor: CTRL + O + Enter + CTRL + X\n\nOptions:\nnano -c filename - showing the cursor position\nnano -l filename - Show line number\nnano +n filename - Open file at line number n (n=1,2,3,4.......)\nnano -B filename - create backup of file\n\nShortcuts for nano editor:\nCTRL + O and Enter: Save file\nCTRL + X: Exit nano\nCTRL + K: Cut line\nCTRL + U: Paste line\nCTRL + W: Search text\nCTRL + C: Show cursor position\nALT + 6: To copy the selected part\nALT + U: to undo the action\n\n## CRONTAB: is used to schedule commands or scripts to run automatically at fixed intervals (minutes, hours, days, etc)\n\nUnlike at (runs once), crontab runs repeatedly.\n\nSyntax:\n* * * * * command\n1 2 3 4 5\n\n1: Minute (0-59)\n2: Hour (0-23)\n3: Day of month (1-31)\n4: Month (1-12)\n5: Day of week (0-6) (0=Sun, 6=Sat)\n\nEg:\nEvery 2 mins we need to execute this command:\n*/2 * * * * echo \"crontab example\" >> /home/shivam/Desktop/crontabexg.txt\n\nTo open crontab editor:\ncrontab -e\n\nTo list scheduled jobs:\ncrontab -l\n\nTo remove all cron jobs:\ncrontab -r\n",
+        "time": "09:00 PM",
+        "batch": "MAY_2026"
+    },
+    {
+        "date": "24-JUL-2026",
         "session": "Afternoon",
         "title": "Practice Session",
         "subject": "LINUX",
