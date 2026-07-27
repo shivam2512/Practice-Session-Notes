@@ -1,6 +1,24 @@
 [
     {
         "date": "27-JUL-2026",
+        "session": "Evening",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "# tee : Output of 1st command stores in a new file.\n\n# ls -lrt | tee abc.txt\nOutput of ls -lrt stores in new file i.e. abc.txt\n\n# ps -ef | tee abcd.txt\nOutput of ps -ef stores in a new file i.e. abcd.txt\n\nWith the help of cat command also you can do the same, check below examples\n# ls -lrt | cat > abc.txt\n\n# HARD LINK and SOFT LINK:\nIn Linux, links are used to create references to files. There are two types of links:\n\n1. HARD LINK:\n--A hard link is shortcut/another name for the same file (same inode number)\n--It points directly to the inode (actual data)\n--If the original file is deleted, the hard link still works\n--Cannot link directories\n--You can create at any location\n--If HL file or Original file is updated same changes will reflect in both the files\nSyntax:\nln file_name hl_link_name\n\n\n2. SOFT LINK (Symbolic link):\n--A soft link is like a shortcut that points to another file.\n--Points to file path, not inode\n--If original file is deleted -> link breaks\n--You need to create on the same path where the original file is present.\n--If SL file or Original file is updated same changes will reflect in both the files\n\nSyntax:\nln -s filename sl_link_name",
+        "time": "08:38 PM",
+        "batch": "JUN_2026"
+    },
+    {
+        "date": "27-JUL-2026",
+        "session": "Evening",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "# tee : Output of 1st command stores in a new file.\n\n# ls -lrt | tee abc.txt\nOutput of ls -lrt stores in new file i.e. abc.txt\n\n# ps -ef | tee abcd.txt\nOutput of ps -ef stores in a new file i.e. abcd.txt\n\nWith the help of cat command also you can do the same, check below examples\n# ls -lrt | cat > abc.txt\n\n# HARD LINK and SOFT LINK:\nIn Linux, links are used to create references to files. There are two types of links:\n\n1. HARD LINK:\n--A hard link is shortcut/another name for the same file (same inode number)\n--It points directly to the inode (actual data)\n--If the original file is deleted, the hard link still works\n--Cannot link directories\n--You can create at any location\n--If HL file or Original file is updated same changes will reflect in both the files\nSyntax:\nln file_name hl_link_name\n\n\n2. SOFT LINK (Symbolic link):\n--A soft link is like a shortcut that points to another file.\n--Points to file path, not inode\n--If original file is deleted -> link breaks\n--You need to create on the same path where the original file is present.\n--If SL file or Original file is updated same changes will reflect in both the files\n\nSyntax:\nln -s filename sl_link_name",
+        "time": "08:38 PM",
+        "batch": "MAY_2026"
+    },
+    {
+        "date": "27-JUL-2026",
         "session": "Afternoon",
         "title": "Practice Session",
         "subject": "LINUX",
