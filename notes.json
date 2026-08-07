@@ -1,5 +1,23 @@
 [
     {
+        "date": "07-Aug-2026",
+        "session": "Afternoon",
+        "title": "Practice Session",
+        "subject": "SQL",
+        "body": "--DCL (Data Control Language):\n--It controls access and permissions on database objects.\n--It decides who can do what in the database.\n\n--Creating a new user:\n1. create user admin123 identified by MyPassword;\n\n--Give session access to user:\n2. grant create session to admin123;\n\n3. To create a new DB connection with newly created user -> Left side Green (+) button\n\n--Types:\n\n--1. Grant:\n--It is used to give permissions.\n--It gives access/rights to a user.\n\n--Syntax:\n--GRANT privilege on OBJECT to user;\nselect * from account;\n\ngrant select, insert, update, delete on account to admin123;\n\n--2. Revoke:\n--It is used to take back the permission.\n\nrevoke insert, update on account from admin123;\n\n--To access the table using new user, run the below in new user's worksheet:\nselect * from system.tableName;\n\n--Database link:\nit is a link that acts as bridge which allows one database/user to access another database's tables.\n\n--Firstly we will grant db link creation access to new user (admin123)\ngrant create database link to admin123;\n\n--defining quota that how many links the user can create\nalter user admin123 quota unlimited on users;\n\n--Now create database link in admin123's worksheet to access the \ntables/objects of DBS connection:\n\n--Steps to create a DB link between DBS and DBS9\n\nStep 1: Connect to admin123 and create the DB link\n\ncreate database link db_link123\nconnect to system --username of DBS connection\nidentified by DBS --password of DBS connection\nusing '(DESCRIPTION=\n(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))\n(CONNECT_DATA=(SID=xe)))';  --connection details of DBS connection\n\n--OR\n\ncreate database link dbs_link678\nconnect to system identified by DBS\nusing 'localhost:1521/XE';\n\n--Step 2: to check if db link is working or not:\n\nselect * from courses@DB_LINK123;\ninsert into courses@DBS_LINK678 values (104, 'Unix');\nupdate courses@DB_LINK123 set course_name='SQL' where course_id=104;\ndesc courses@DB_LINK123;\n\n--to delete the db link:\ndrop database link DBS_LINK678;",
+        "time": "02:57 PM",
+        "batch": "JUL_2026"
+    },
+    {
+        "date": "07-Aug-2026",
+        "session": "Afternoon",
+        "title": "Practice Session",
+        "subject": "SQL",
+        "body": "--DCL (Data Control Language):\n--It controls access and permissions on database objects.\n--It decides who can do what in the database.\n\n--Creating a new user:\n1. create user admin123 identified by MyPassword;\n\n--Give session access to user:\n2. grant create session to admin123;\n\n3. To create a new DB connection with newly created user -> Left side Green (+) button\n\n--Types:\n\n--1. Grant:\n--It is used to give permissions.\n--It gives access/rights to a user.\n\n--Syntax:\n--GRANT privilege on OBJECT to user;\nselect * from account;\n\ngrant select, insert, update, delete on account to admin123;\n\n--2. Revoke:\n--It is used to take back the permission.\n\nrevoke insert, update on account from admin123;\n\n--To access the table using new user, run the below in new user's worksheet:\nselect * from system.tableName;\n\n--Database link:\nit is a link that acts as bridge which allows one database/user to access another database's tables.\n\n--Firstly we will grant db link creation access to new user (admin123)\ngrant create database link to admin123;\n\n--defining quota that how many links the user can create\nalter user admin123 quota unlimited on users;\n\n--Now create database link in admin123's worksheet to access the \ntables/objects of DBS connection:\n\n--Steps to create a DB link between DBS and DBS9\n\nStep 1: Connect to admin123 and create the DB link\n\ncreate database link db_link123\nconnect to system --username of DBS connection\nidentified by DBS --password of DBS connection\nusing '(DESCRIPTION=\n(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))\n(CONNECT_DATA=(SID=xe)))';  --connection details of DBS connection\n\n--OR\n\ncreate database link dbs_link678\nconnect to system identified by DBS\nusing 'localhost:1521/XE';\n\n--Step 2: to check if db link is working or not:\n\nselect * from courses@DB_LINK123;\ninsert into courses@DBS_LINK678 values (104, 'Unix');\nupdate courses@DB_LINK123 set course_name='SQL' where course_id=104;\ndesc courses@DB_LINK123;\n\n--to delete the db link:\ndrop database link DBS_LINK678;",
+        "time": "02:47 PM",
+        "batch": "JUN_2026"
+    },
+    {
         "date": "06-Aug-2026",
         "session": "Evening",
         "title": "Practice Session",
