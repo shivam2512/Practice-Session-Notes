@@ -8,16 +8,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   
   <style>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Practice Session Notes - Beautiful Edition</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  
-  <style>
     * {
       margin: 0;
       padding: 0;
@@ -27,7 +17,7 @@
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
       min-height: 100vh;
-      background: linear-gradient(135deg, #fffcf5 0%, #ffffff 50%, #f7fdf9 100%);
+      background: linear-gradient(135deg, #f5f7fa 0%, #e3f2fd 50%, #e8eaf6 100%);
     }
 
     /* Smooth scrolling */
@@ -55,36 +45,18 @@
 
     /* Navbar */
     .navbar-custom {
-      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      background: linear-gradient(135deg, #1e293b 0%, #1e40af 50%, #4338ca 100%);
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
       padding: 1rem 0;
-      border-bottom: 4px solid;
-      border-image: linear-gradient(to right, #FF9933 33%, #FFFFFF 33%, #FFFFFF 66%, #138808 66%) 1;
     }
 
     .navbar-brand {
       font-size: 1.5rem;
       font-weight: 700;
-      display: flex;
-      align-items: center;
-      text-decoration: none;
-    }
-
-    .brand-text {
-      background: linear-gradient(135deg, #FF9933 0%, #ffffff 50%, #138808 100%);
+      background: linear-gradient(135deg, #bfdbfe, #7dd3fc);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-    }
-
-    .ashoka-chakra {
-      animation: spin-chakra 12s linear infinite;
-      filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.3));
-    }
-
-    @keyframes spin-chakra {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
     }
 
     .btn-exam {
@@ -126,22 +98,27 @@
 
     /* Motivation Bar */
     .motivation-bar {
-      background: linear-gradient(135deg, #FF9933 0%, #ffffff 50%, #138808 100%);
+      background: linear-gradient(270deg, #3b82f6, #8b5cf6, #10b981, #14b8a6);
+      background-size: 600% 600%;
+      animation: gradientMove 10s ease infinite;
       overflow: hidden;
       padding: 0.75rem 0;
-      border-bottom: 2px solid #000080;
-      border-top: 2px solid #000080;
     }
 
     .motivation-text {
       display: inline-block;
       white-space: nowrap;
-      color: #000080;
-      font-weight: 700;
-      font-size: 1.1rem;
+      color: white;
+      font-weight: 600;
+      font-size: 1rem;
       padding-left: 100%;
-      animation: scrollText 25s linear infinite;
-      text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+      animation: scrollText 20s linear infinite;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     @keyframes scrollText {
@@ -281,23 +258,6 @@
       font-weight: 700;
     }
 
-    .calendar-day.independence-day {
-      background: linear-gradient(135deg, #ffe3d1 0%, #ffffff 50%, #dcfce7 100%) !important;
-      border: 2px dashed #000080 !important;
-      color: #000080 !important;
-      font-weight: 800 !important;
-      box-shadow: 0 8px 24px rgba(0, 0, 128, 0.25) !important;
-      position: relative;
-    }
-
-    .calendar-day.independence-day::after {
-      content: '🇮🇳';
-      position: absolute;
-      font-size: 0.75rem;
-      bottom: 1px;
-      right: 2px;
-    }
-
     /* Notes Display */
     .note-card {
       background: white;
@@ -305,8 +265,7 @@
       overflow: hidden;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
       margin-bottom: 1.5rem;
-      border-left: 5px solid #FF9933;
-      border-right: 5px solid #138808;
+      border-left: 4px solid #6366f1;
       transition: all 0.3s ease;
     }
 
@@ -316,7 +275,7 @@
     }
 
     .note-header {
-      background: linear-gradient(135deg, #000080, #1e3a8a);
+      background: linear-gradient(135deg, #6366f1, #3b82f6);
       color: white;
       padding: 1.5rem;
       font-weight: 600;
@@ -585,27 +544,7 @@
   <!-- Navbar -->
   <nav class="navbar-custom">
     <div class="container d-flex align-items-center justify-content-between flex-wrap gap-3">
-      <span class="navbar-brand">
-        <svg class="ashoka-chakra me-2" viewBox="0 0 100 100" width="30" height="30" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="50" cy="50" r="45" stroke="#000080" stroke-width="2.5" fill="none" />
-          <circle cx="50" cy="50" r="8" fill="#000080" />
-          <g stroke="#000080" stroke-width="1.5">
-            <line x1="50" y1="5" x2="50" y2="95" />
-            <line x1="5" y1="50" x2="95" y2="50" />
-            <line x1="50" y1="5" x2="50" y2="95" transform="rotate(15 50 50)" />
-            <line x1="50" y1="5" x2="50" y2="95" transform="rotate(30 50 50)" />
-            <line x1="50" y1="5" x2="50" y2="95" transform="rotate(45 50 50)" />
-            <line x1="50" y1="5" x2="50" y2="95" transform="rotate(60 50 50)" />
-            <line x1="50" y1="5" x2="50" y2="95" transform="rotate(75 50 50)" />
-            <line x1="50" y1="5" x2="50" y2="95" transform="rotate(105 50 50)" />
-            <line x1="50" y1="5" x2="50" y2="95" transform="rotate(120 50 50)" />
-            <line x1="50" y1="5" x2="50" y2="95" transform="rotate(135 50 50)" />
-            <line x1="50" y1="5" x2="50" y2="95" transform="rotate(150 50 50)" />
-            <line x1="50" y1="5" x2="50" y2="95" transform="rotate(165 50 50)" />
-          </g>
-        </svg>
-        <span class="brand-text">Practice Session Notes</span>
-      </span>
+      <span class="navbar-brand">Practice Session Notes</span>
       <button class="btn-exam" onclick="initExam()">
         SQL Assessment (MCQ + Scenario based)
       </button>
@@ -619,7 +558,7 @@
   <!-- Motivation Bar -->
   <div class="motivation-bar">
     <div class="motivation-text">
-      🇮🇳 Wishing you all a very Happy 80th Independence Day! 🧡 White, Saffron, Green – Colors of Freedom, Unity, and Pride. Let us work hard today for a brighter tomorrow! 🕊️✨
+      🌟🚀 Work hard in silence today, so your offer letter speaks loudly tomorrow. 💼🔥
     </div>
   </div>
 
@@ -709,14 +648,14 @@
     // but only for the specified subject and only within the selected batch's own date window.
     //
     // Confirmed schedule:
-    //   DEC_2025    : Both SQL + Linux (Nov 19 — Jan 21) ✔️ 
-    //   JAN_22_2026 : Both SQL + Linux (Jan 22 — Mar 18) ✔️ 
-    //   FEB_19_2026 : Linux with JAN batch (Feb 22—Mar 18) + SQL own (Mar 19—Apr 21) ✔️ 
-    //   MAR_2026    : SQL with FEB batch  (Mar 19—Apr 21) + Linux own (Apr 22—May 22) ✔️ 
-    //   APR_2026    : Linux with MAR batch (Apr 22—May 22) ✔️  DONE
+    //   DEC_2025    : Both SQL + Linux (Nov 19 — Jan 21) âœ”ï¸
+    //   JAN_22_2026 : Both SQL + Linux (Jan 22 — Mar 18) âœ”ï¸
+    //   FEB_19_2026 : Linux with JAN batch (Feb 22—Mar 18) + SQL own (Mar 19—Apr 21) âœ”ï¸
+    //   MAR_2026    : SQL with FEB batch  (Mar 19—Apr 21) + Linux own (Apr 22—May 22) âœ”ï¸
+    //   APR_2026    : Linux with MAR batch (Apr 22—May 22) âœ”ï¸ DONE
     //                 SQL with MAY batch  (May 25—Jun 25) 🔔„ IN PROGRESS
     //   MAY_2026    : SQL with APR batch  (May 25—Jun 25) 🔔„ IN PROGRESS
-    //                 Linux with JUN batch (Jun 26—Jul 25) ⏳ upcoming
+    //                 Linux with JUN batch (Jun 26—Jul 25) â³ upcoming
     //
     // Bidirectional SQL sharing for APR+MAY: notes can be tagged either batch;
     // both batches will see all shared SQL sessions (May 25 onwards).
@@ -747,7 +686,6 @@
       }
       fetchOnlineUsers();
       setInterval(fetchOnlineUsers, 10000);
-      startIndependenceConfetti();
 
       // Security
       document.addEventListener('contextmenu', e => e.preventDefault());
@@ -870,17 +808,12 @@
         const isToday = today.getMonth() === currentMonthIndex && 
                         today.getFullYear() === currentYear && 
                         today.getDate() === d;
-        const isIndependenceDay = (currentMonthIndex === 7 && d === 15 && currentYear === 2026);
 
         let classes = 'calendar-day';
         if (hasNote) classes += ' has-notes';
         if (isToday) classes += ' today';
-        if (isIndependenceDay) classes += ' independence-day';
 
-        let tooltip = subjects.length ? `Subjects: ${subjects.join(', ')}` : '';
-        if (isIndependenceDay) {
-          tooltip = tooltip ? `🇮🇳 Happy Independence Day! | ${tooltip}` : '🇮🇳 Happy Independence Day!';
-        }
+        const tooltip = subjects.length ? `Subjects: ${subjects.join(', ')}` : '';
         html += `<div class="${classes}" onclick="handleDayClick('${dayStr}')" title="${tooltip}">${d}</div>`;
       }
 
@@ -1124,7 +1057,7 @@
         
         if (examDuration <= 0) {
           clearInterval(timerInterval);
-          alert('⏳ Time Up!');
+          alert('â° Time Up!');
           submitExam();
         }
       }, 1000);
@@ -1329,8 +1262,8 @@
 
     if (result.status === "success") {
       clearInterval(timerInterval);
-      btn.innerHTML = "✅ Submitted";
-      alert("✅ Exam submitted successfully! Check your email for the scorecard.");
+      btn.innerHTML = "âœ… Submitted";
+      alert("âœ… Exam submitted successfully! Check your email for the scorecard.");
       location.reload();
     } else {
       throw new Error(result.message || "Server rejected submission");
@@ -1338,11 +1271,11 @@
   } catch (err) {
     console.error("Submission error:", err);
 
-    // ❌ Re-enable button if failed
+    // âŒ Re-enable button if failed
     btn.disabled = false;
     btn.innerHTML = "Submit Exam";
 
-    alert("❌ Error: " + err.message);
+    alert("âŒ Error: " + err.message);
   }
 }
 
@@ -1381,7 +1314,7 @@
 
     function handleVisibilityChange() {
       if (examStarted && document.hidden) {
-        alert("⚠️ Tab switch detected. Auto submitting.");
+        alert("âš  Tab switch detected. Auto submitting.");
         submitExam();
       }
     }
@@ -1398,7 +1331,7 @@
         const data = await res.json();
 
         if (data.status !== 'success') {
-          alert('❌ Invalid password');
+          alert('âŒ Invalid password');
           return;
         }
 
@@ -1423,102 +1356,7 @@
         alert('Admin fetch failed');
       }
     }
-
-    function startIndependenceConfetti() {
-      const canvas = document.getElementById('confettiCanvas');
-      if (!canvas) return;
-      const ctx = canvas.getContext('2d');
-      let width = canvas.width = window.innerWidth;
-      let height = canvas.height = window.innerHeight;
-
-      window.addEventListener('resize', () => {
-        width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight;
-      });
-
-      const colors = ['#FF9933', '#FFFFFF', '#138808', '#000080'];
-      const particles = [];
-      const particleCount = 120;
-
-      class ConfettiParticle {
-        constructor() {
-          this.x = Math.random() * width;
-          this.y = Math.random() * -height - 20;
-          this.size = Math.random() * 8 + 6;
-          this.color = colors[Math.floor(Math.random() * colors.length)];
-          this.speedX = Math.random() * 2 - 1;
-          this.speedY = Math.random() * 3 + 2;
-          this.rotation = Math.random() * 360;
-          this.rotationSpeed = Math.random() * 4 - 2;
-        }
-
-        update() {
-          this.x += this.speedX;
-          this.y += this.speedY;
-          this.rotation += this.rotationSpeed;
-
-          if (this.y > height) {
-            this.y = -20;
-            this.x = Math.random() * width;
-          }
-        }
-
-        draw() {
-          ctx.save();
-          ctx.translate(this.x, this.y);
-          ctx.rotate(this.rotation * Math.PI / 180);
-          ctx.fillStyle = this.color;
-          if (this.color === '#000080') {
-            ctx.beginPath();
-            ctx.arc(0, 0, this.size / 2, 0, Math.PI * 2);
-            ctx.fill();
-          } else {
-            ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size);
-          }
-          ctx.restore();
-        }
-      }
-
-      for (let i = 0; i < particleCount; i++) {
-        particles.push(new ConfettiParticle());
-      }
-
-      let startTime = Date.now();
-      const duration = 6000;
-
-      function animate() {
-        ctx.clearRect(0, 0, width, height);
-        particles.forEach(p => {
-          p.update();
-          p.draw();
-        });
-
-        if (Date.now() - startTime < duration) {
-          requestAnimationFrame(animate);
-        } else {
-          let opacity = 1;
-          function fadeOut() {
-            ctx.clearRect(0, 0, width, height);
-            opacity -= 0.05;
-            if (opacity > 0) {
-              ctx.globalAlpha = opacity;
-              particles.forEach(p => {
-                p.update();
-                p.draw();
-              });
-              requestAnimationFrame(fadeOut);
-            } else {
-              canvas.remove();
-            }
-          }
-          fadeOut();
-        }
-      }
-
-      animate();
-    }
   </script>
 
-  <canvas id="confettiCanvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 10000;"></canvas>
 </body>
 </html>
