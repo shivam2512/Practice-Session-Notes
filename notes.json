@@ -1,5 +1,41 @@
 [
     {
+        "date": "17-Aug-2026",
+        "session": "Evening",
+        "title": "Practice Session",
+        "subject": "SQL",
+        "body": "Doubts Discussion Session",
+        "time": "08:27 PM",
+        "batch": "JUL_2026"
+    },
+    {
+        "date": "17-Aug-2026",
+        "session": "Evening",
+        "title": "Practice Session",
+        "subject": "SQL",
+        "body": "Doubts Discussion Session",
+        "time": "08:27 PM",
+        "batch": "JUN_2026"
+    },
+    {
+        "date": "17-Aug-2026",
+        "session": "Afternoon",
+        "title": "Practice Session",
+        "subject": "SQL",
+        "body": "Doubts Discussion Session",
+        "time": "03:00 PM",
+        "batch": "JUL_2026"
+    },
+    {
+        "date": "17-JUL-2026",
+        "session": "Afternoon",
+        "title": "Practice Session",
+        "subject": "SQL",
+        "body": "Doubts Discussion Session",
+        "time": "03:00 PM",
+        "batch": "JUN_2026"
+    },
+    {
         "date": "14-Aug-2026",
         "session": "Evening",
         "title": "Practice Session",
