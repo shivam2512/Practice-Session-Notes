@@ -1,5 +1,23 @@
 [
     {
+        "date": "21-Aug-2026",
+        "session": "Afternoon",
+        "title": "Practice Session",
+        "subject": "SQL",
+        "body": "## CASE AND DECODE\n\nCASE and DECODE are used for conditional data matching or actions.\n\nExample:\n\n```text\nif (10 == 12)\n   action\nelse\n   action\n```\n\n---\n\n## 1. DECODE\n\nDECODE is a function used to implement IF-ELSE type conditions.\n\n### Syntax Example:\n\n```sql\nselect decode(10, 12, 'Ten', 'Values are not matching')\nfrom dual;\n\nselect decode(15, 15, 'Fifteen', 'Values are not matching')\nfrom dual;\n```\n\n### Example using Table Data:\n\n```sql\nselect * from emp;\n\nselect e.*,\n       decode(city,\n              'MUMBAI',\n              'Matched',\n              'Not Matched')\nfrom emp e;\n```\n\n```sql\nselect * from emp678;\n\nselect e.*,\n       decode(status,\n              'Active',\n              'Active User',\n              'Inactive User')\nfrom emp678 e;\n```\n\n---\n\n## 2. CASE\n\nCASE is the extended version of DECODE.\n\nCASE is not a function; it is an expression.\n\n### Syntax:\n\n```sql\nselect\ncase :input\nwhen '1' then 'One'\nwhen '2' then 'Two'\nwhen '3' then 'Three'\nelse 'Condition is not matching'\nend\nfrom dual;\n```\n\n### Example:\n\n```sql\nselect * from emp678;\n\nselect\ncase :Salary\nwhen '30000' then 'Salary exist'\nwhen '13000' then 'Salary exist'\nelse 'Salary does not exist'\nend\nfrom emp678;\n```\n\n### CASE with Multiple Conditions:\n\n```sql\nselect e.*,\n       case\n            when salary < 15000 then 'Low Salary'\n            when salary > 15000 then 'High Salary'\n            else 'No Salary Details available'\n       end\nfrom emp678 e;\n```",
+        "time": "05:06 PM",
+        "batch": "JUL_2026"
+    },
+    {
+        "date": "21-Aug-2026",
+        "session": "Afternoon",
+        "title": "Practice Session",
+        "subject": "SQL",
+        "body": "## CASE AND DECODE\n\nCASE and DECODE are used for conditional data matching or actions.\n\nExample:\n\n```text\nif (10 == 12)\n   action\nelse\n   action\n```\n\n---\n\n## 1. DECODE\n\nDECODE is a function used to implement IF-ELSE type conditions.\n\n### Syntax Example:\n\n```sql\nselect decode(10, 12, 'Ten', 'Values are not matching')\nfrom dual;\n\nselect decode(15, 15, 'Fifteen', 'Values are not matching')\nfrom dual;\n```\n\n### Example using Table Data:\n\n```sql\nselect * from emp;\n\nselect e.*,\n       decode(city,\n              'MUMBAI',\n              'Matched',\n              'Not Matched')\nfrom emp e;\n```\n\n```sql\nselect * from emp678;\n\nselect e.*,\n       decode(status,\n              'Active',\n              'Active User',\n              'Inactive User')\nfrom emp678 e;\n```\n\n---\n\n## 2. CASE\n\nCASE is the extended version of DECODE.\n\nCASE is not a function; it is an expression.\n\n### Syntax:\n\n```sql\nselect\ncase :input\nwhen '1' then 'One'\nwhen '2' then 'Two'\nwhen '3' then 'Three'\nelse 'Condition is not matching'\nend\nfrom dual;\n```\n\n### Example:\n\n```sql\nselect * from emp678;\n\nselect\ncase :Salary\nwhen '30000' then 'Salary exist'\nwhen '13000' then 'Salary exist'\nelse 'Salary does not exist'\nend\nfrom emp678;\n```\n\n### CASE with Multiple Conditions:\n\n```sql\nselect e.*,\n       case\n            when salary < 15000 then 'Low Salary'\n            when salary > 15000 then 'High Salary'\n            else 'No Salary Details available'\n       end\nfrom emp678 e;\n```\n",
+        "time": "03:06 PM",
+        "batch": "JUN_2026"
+    },
+    {
         "date": "20-Aug-2026",
         "session": "Evening",
         "title": "Practice Session",
