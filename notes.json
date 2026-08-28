@@ -1,5 +1,23 @@
 [
     {
+        "date": "28-Aug-2026",
+        "session": "Afternoon",
+        "title": "Practice Session",
+        "subject": "SQL",
+        "body": "--PLSQL:\n\n--1. Index.\n--2. Procedures.\n\n--1. Index: It is a database shortcut that helps find data faster.\n\nJust Like:\nBook Index: Quickly find the page number for specific topic/content.\nSQL Index: Quickly find required row.\n\nTypes:\n1. Primary index: Created automatically when you define PRIMARY KEY. No duplicate values allowed.\n\nselect * from emp678 where emp_id=108;\nselect * from emp678 where phone_no=140;\n\nReal time: Searching employee using phone_no as its primary key. (result will be\ndisplayed faster)\n\n2. Unique index: Does not allow duplicate values.\nUsed for columns like PAN, Email, Aadhar, Bank Account No.\n\n3. Single column index: It is a index on single column of the table.\n\nselect * from emp678 where emp_id=122;\n\n--creating index on emp_id column\ncreate index indx_empid on emp678(emp_id);\n\nselect * from emp678 where emp_id=110;\n\nselect * from emp where emp_id between 100 and 200 and city = 'MUMBAI';\n\ncreate index idx_emp_id on emp(emp_id, city);\n\n--to drop any index:\ndrop index INDX_EMPID;\n\n(II)--PROCEDURE - It is named as PLSQL program stored in DB that performs a specific task.\n\nAPPLICATION --> CALL PROC --> PROC PERFORM INSERT/UPDATE/DELETE -> DATABASE\n\nSELECT * FROM EMP_TEST;\n\nCREATE OR REPLACE PROC...\n\n---PROC TO increase salary of emps in the table:\n\nselect * from emp_test;\n\nManual update:\nupdate emp_test set salary=4000 where emp_id=4;\n\n--Creating procedure:\n\ncreate or replace procedure Inc_salary1\n(\ne_emp_id in number,  --2\ne_amount in number   --3000\n)\nas begin\nupdate emp_test set salary= salary + e_amount\nwhere emp_id=e_emp_id;\ncommit;\nend;\n/\n\n\n--Executing proc:\n\nexec inc_salary1(5,2000);\n",
+        "time": "02:50 PM",
+        "batch": "JUL_2026"
+    },
+    {
+        "date": "28-Aug-2026",
+        "session": "Afternoon",
+        "title": "Practice Session",
+        "subject": "SQL",
+        "body": "--PLSQL:\n\n--1. Index.\n--2. Procedures.\n\n--1. Index: It is a database shortcut that helps find data faster.\n\nJust Like:\nBook Index: Quickly find the page number for specific topic/content.\nSQL Index: Quickly find required row.\n\nTypes:\n1. Primary index: Created automatically when you define PRIMARY KEY. No duplicate values allowed.\n\nselect * from emp678 where emp_id=108;\nselect * from emp678 where phone_no=140;\n\nReal time: Searching employee using phone_no as its primary key. (result will be\ndisplayed faster)\n\n2. Unique index: Does not allow duplicate values.\nUsed for columns like PAN, Email, Aadhar, Bank Account No.\n\n3. Single column index: It is a index on single column of the table.\n\nselect * from emp678 where emp_id=122;\n\n--creating index on emp_id column\ncreate index indx_empid on emp678(emp_id);\n\nselect * from emp678 where emp_id=110;\n\nselect * from emp where emp_id between 100 and 200 and city = 'MUMBAI';\n\ncreate index idx_emp_id on emp(emp_id, city);\n\n--to drop any index:\ndrop index INDX_EMPID;\n\n(II)--PROCEDURE - It is named as PLSQL program stored in DB that performs a specific task.\n\nAPPLICATION --> CALL PROC --> PROC PERFORM INSERT/UPDATE/DELETE -> DATABASE\n\nSELECT * FROM EMP_TEST;\n\nCREATE OR REPLACE PROC...\n\n---PROC TO increase salary of emps in the table:\n\nselect * from emp_test;\n\nManual update:\nupdate emp_test set salary=4000 where emp_id=4;\n\n--Creating procedure:\n\ncreate or replace procedure Inc_salary1\n(\ne_emp_id in number,  --2\ne_amount in number   --3000\n)\nas begin\nupdate emp_test set salary= salary + e_amount\nwhere emp_id=e_emp_id;\ncommit;\nend;\n/\n\n\n--Executing proc:\n\nexec inc_salary1(5,2000);\n",
+        "time": "02:50 PM",
+        "batch": "JUN_2026"
+    },
+    {
         "date": "27-Aug-2026",
         "session": "Evening",
         "title": "Practice Session",
