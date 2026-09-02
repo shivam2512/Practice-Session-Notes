@@ -25,20 +25,15 @@ async function main() {
         const batchValue = await askQuestion("Enter batch internal value (e.g. 'JUN_2026'): ");
         
         let indexContent = fs.readFileSync(indexFile, 'utf8');
-        // Try to insert the new option at the bottom of the batchSelect dropdown
-        const insertOption = `        <option value="${batchValue}">${batchName}</option>\n      </select>`;
-        
-        if (indexContent.includes('</select>')) {
-            // we only want to replace the FIRST </select> which is the batch one
-            // let's do it properly
-            const selectIndex = indexContent.indexOf('</select>');
-            if(selectIndex !== -1) {
-                indexContent = indexContent.substring(0, selectIndex) + insertOption + indexContent.substring(selectIndex + 9);
-                fs.writeFileSync(indexFile, indexContent, 'utf8');
-                console.log(`\n✅ Added Batch '${batchName}' permanently to index.html`);
-            } else {
-                 console.log("❌ Could not find </select> tag in index.html");
-            }
+        // Insert the new option at the top of the batchSelect dropdown (descending order)
+        const selectTag = '<select id="batchSelect" class="batch-select">';
+        if (indexContent.includes(selectTag)) {
+            const insertOption = `${selectTag}\n        <option value="${batchValue}">${batchName}</option>`;
+            indexContent = indexContent.replace(selectTag, insertOption);
+            fs.writeFileSync(indexFile, indexContent, 'utf8');
+            console.log(`\n✅ Added Batch '${batchName}' permanently to index.html`);
+        } else {
+            console.log("❌ Could not find <select id=\"batchSelect\" ...> tag in index.html");
         }
         
     } else if (choice === '2') {
