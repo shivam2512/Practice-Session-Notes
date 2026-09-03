@@ -1,6 +1,24 @@
 [
     {
         "date": "03-Sep-2026",
+        "session": "Evening",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "UNIX Architecture:\n\nUsers: System Administrators or anyone who uses the system\nUnix Shell: It is a program that interprets commands and acts as Interface between Users& Kernel\nUnix Kernel: The kernel in an OS is the code and it acts as bridge between the activities by user and the hardware\n\nUser Applications --> Unix Shell --> Unix Kernel --> System Hardware\n\nUnix Shell Types:\n1. Bash\n2. Bourne\n3. Korn\n4. C Shell\n\nUnix File Structure:\n             / (root)\n                |\n--------------------------------------\n|    |    |   |   |   |    |   |\nbin boot mnt etc dev home lib var ....\n\n\nCommands:\n1. Basic /General Commands\n2. Space management Commands\n3. Directory related commands\n4. File related commands\n5. Networking commands/Communication Commands\n6 Process related commands\n7 VI/ VIEW Editor /CUI Editor\n8 Gedit\n9 Job scheduling - crontab\n\n\n# pwd : This command willshow you – you are in which directory\n# cd : cd command use to change directory or go to any particular directory.\n",
+        "time": "09:00 PM",
+        "batch": "SEP_2026"
+    },
+    {
+        "date": "03-Sep-2026",
+        "session": "Evening",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "UNIX Architecture:\n\nUsers: System Administrators or anyone who uses the system\nUnix Shell: It is a program that interprets commands and acts as Interface between Users& Kernel\nUnix Kernel: The kernel in an OS is the code and it acts as bridge between the activities by user and the hardware\n\nUser Applications --> Unix Shell --> Unix Kernel --> System Hardware\n\nUnix Shell Types:\n1. Bash\n2. Bourne\n3. Korn\n4. C Shell\n\nUnix File Structure:\n             / (root)\n                |\n--------------------------------------\n|    |    |   |   |   |    |   |\nbin boot mnt etc dev home lib var ....\n\n\nCommands:\n1. Basic /General Commands\n2. Space management Commands\n3. Directory related commands\n4. File related commands\n5. Networking commands/Communication Commands\n6 Process related commands\n7 VI/ VIEW Editor /CUI Editor\n8 Gedit\n9 Job scheduling - crontab\n\n\n# pwd : This command willshow you – you are in which directory\n# cd : cd command use to change directory or go to any particular directory.\n",
+        "time": "09:00 PM",
+        "batch": "JUL_2026"
+    },
+    {
+        "date": "03-Sep-2026",
         "session": "Afternoon",
         "title": "Practice Session",
         "subject": "LINUX",
