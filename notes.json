@@ -1,6 +1,24 @@
 [
     {
         "date": "05-Sep-2026",
+        "session": "Evening",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "DOUBTS DISCUSSION SESSION",
+        "time": "08:00 PM",
+        "batch": "SEP_2026"
+    },
+    {
+        "date": "05-Sep-2026",
+        "session": "Evening",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "DOUBTS DISCUSSION SESSION",
+        "time": "08:00 PM",
+        "batch": "JUL_2026"
+    },
+    {
+        "date": "05-Sep-2026",
         "session": "Afternoon",
         "title": "Practice Session",
         "subject": "SQL",
