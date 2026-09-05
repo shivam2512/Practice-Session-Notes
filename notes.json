@@ -1,5 +1,23 @@
 [
     {
+        "date": "05-Sep-2026",
+        "session": "Afternoon",
+        "title": "Practice Session",
+        "subject": "SQL",
+        "body": "--DOUBTS DISCUSSION SESSION--\n--USER DEFINED FUNCTIONS: It is a PLSQL program created by developers to perform\na specific task and return exactly one value.\n\nSyntax:\n\ncreate or replace function func_name\n(\nparameter1 in  datatype,\nparameter2 in  datatype\n)\nreturn datatype\nis \n--- variables\nbegin\n---logic\nreturn values;\nend;\n/\n\nselect * from emp678;\n\n--create a function to calculate 10% bonus:\n\ncreate or replace function cal_bonus\n(\np_salary in number,\n\n)\nreturn number\nis\nv_bonus number;\nbegin\nv_bonus:= p_salary * 0.10;\nreturn v_bonus;\nend;\n/\n\n\n--calling a function:\nselect emp_id, emp_name, salary,\ncal_bonus(salary) as bonus\nfrom emp678;\n\n--\nselect cal_bonus(150000) from dual;\n\n\n\n---Procedure/Stored Procedure:  It is a PLSQL program that performs a sepcific task. Unlike\nfunctions a procedure does not have a return value.\n\nSyntax:\n\ncreate or replace procedure proc_name\n(\nparameter1 datatype,\nparameter2 datatype,\n..\n..\n..\n)\nis\n--variables\nbegin\n--logic\nend;\n/\n\n\n--create a proc to calculate 10% bonus\ncreate or replace procedure cal_bonus1\n(\np_empid in number,\np_bonus out number\n)\nis\nv_salary number;\nbegin\nselect salary into v_salary\nfrom emp678 \np_bonus:=p_salary * 0.10;\nend;\n/\n\n\n--execute the proc:\ndeclare \nv_bonus number;\nbegin cal_bonus1(50000, v_bonus);\nDBMS_OUTPUT.PUT_LINE('BONUS = ' || v_bonus);\nend;\n/",
+        "time": "03:00 PM",
+        "batch": "SEP_2026"
+    },
+    {
+        "date": "05-Sep-2026",
+        "session": "Afternoon",
+        "title": "Practice Session",
+        "subject": "SQL",
+        "body": "-- DOUBTS DISCUSSION SESSION --\n--USER DEFINED FUNCTIONS: It is a PLSQL program created by developers to perform\na specific task and return exactly one value.\n\nSyntax:\n\ncreate or replace function func_name\n(\nparameter1 in  datatype,\nparameter2 in  datatype\n)\nreturn datatype\nis \n--- variables\nbegin\n---logic\nreturn values;\nend;\n/\n\nselect * from emp678;\n\n--create a function to calculate 10% bonus:\n\ncreate or replace function cal_bonus\n(\np_salary in number,\n\n)\nreturn number\nis\nv_bonus number;\nbegin\nv_bonus:= p_salary * 0.10;\nreturn v_bonus;\nend;\n/\n\n\n--calling a function:\nselect emp_id, emp_name, salary,\ncal_bonus(salary) as bonus\nfrom emp678;\n\n--\nselect cal_bonus(150000) from dual;\n\n\n\n---Procedure/Stored Procedure:  It is a PLSQL program that performs a sepcific task. Unlike\nfunctions a procedure does not have a return value.\n\nSyntax:\n\ncreate or replace procedure proc_name\n(\nparameter1 datatype,\nparameter2 datatype,\n..\n..\n..\n)\nis\n--variables\nbegin\n--logic\nend;\n/\n\n\n--create a proc to calculate 10% bonus\ncreate or replace procedure cal_bonus1\n(\np_empid in number,\np_bonus out number\n)\nis\nv_salary number;\nbegin\nselect salary into v_salary\nfrom emp678 \np_bonus:=p_salary * 0.10;\nend;\n/\n\n\n--execute the proc:\ndeclare \nv_bonus number;\nbegin cal_bonus1(50000, v_bonus);\nDBMS_OUTPUT.PUT_LINE('BONUS = ' || v_bonus);\nend;\n/\n",
+        "time": "03:00 PM",
+        "batch": "JUL_2026"
+    },
+    {
         "date": "04-Sep-2026",
         "session": "Evening",
         "title": "Practice Session",
