@@ -1,5 +1,23 @@
 [
     {
+        "date": "08-Sep-2026",
+        "session": "Afternoon",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "Revision: mailx command configuration (refer notes of 07-Sep-26 for complete process)",
+        "time": "02:47 PM",
+        "batch": "SEP_2026"
+    },
+    {
+        "date": "08-Sep-2026",
+        "session": "Afternoon",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "Revision: mailx command configuration (refer notes of 07-Sep-26 for complete process)",
+        "time": "02:47 PM",
+        "batch": "JUL_2026"
+    },
+    {
         "date": "07-Sep-2026",
         "session": "Evening",
         "title": "Practice Session",
