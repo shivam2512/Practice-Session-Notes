@@ -1,6 +1,24 @@
 [
     {
         "date": "09-Sep-2026",
+        "session": "Evening",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "21) # mkdir : Use to create directory/folder in UNIX.\n$ mkdir anushka -- - - - - -- - 1 directory created\n$ mkdir fol1 fol2 -- - -- - - 2 directories created\n\nIf there is a space in folder name then give folder name in double quotes \"folder Name\"\n$ mkdir “aamir khan” --------- 1 directory created.\n\nIf you need to create multiple empty folders with name unix1, unix2, unix3 .....unix50\n$ mkdir unix{1..50}\n\nTo create empty folders at any specific location:\n$ mkdir /home/shivam/Desktop/unix{1..30}\n\n22) # rmdir : Use to delete an empty directories only.\n$ rmdir anushka\n\nIf you need to remove multiple empty folders with names unix1, unix2, unix3 .....unix50\n$ rmdir unix{1..50} ----it will remove all folders with names unix1 ..... unix50\n\nTo remove empty folders at any specific location:\n$ mkdir /home/shivam/Desktop/unix{1..30}  ---it will remove all folders with names unix1 ..... unix30\n\n23) # touch : Use to create an empty file in UNIX.\n$ touch anushka.txt -- - - - - -- - 1 file created\n$ touch salman khan -- - -- - - 2 files created\n$ touch “aamir khan” --------- 1 file created.\n\nIf you need to create multiple empty files with name unix1, unix2, unix3 .....unix50\n$ touch unix{1..50}\n\nTo create empty files at any specific location:\n$ touch /home/shivam/Desktop/unix{1..30}\n\n24) # rm : used to delete the files. (both non-empty and empty files)\n$ rm anushka.txt\n$ rm anushka.txt file1.log file2.log file3.sh\n$ rm /home/shivam/Desktop/file.txt\n\nIf you need to remove multiple files with name unix1, unix2, unix3 .....unix50\n$ rm unix{1..50} ----it will remove all files with names unix1 ..... unix50\n\nTo remove multiple files at any specific location:\n$ rm /home/shivam/Desktop/unix{1..30}  ---it will remove all files with names unix1 ..... unix30\n\n25) # rm -r : used to delete the directories/folders (both non-empty and empty folders/directory)\n$ rm -r folder\n$ rm -r folder1 folder2 folder3\n$ rm -r /home/shivam/Desktop/folderName\n\n\n",
+        "time": "08:13 PM",
+        "batch": "SEP_2026"
+    },
+    {
+        "date": "09-Sep-2026",
+        "session": "Evening",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "21) # mkdir : Use to create directory/folder in UNIX.\n$ mkdir anushka -- - - - - -- - 1 directory created\n$ mkdir fol1 fol2 -- - -- - - 2 directories created\n\nIf there is a space in folder name then give folder name in double quotes \"folder Name\"\n$ mkdir “aamir khan” --------- 1 directory created.\n\nIf you need to create multiple empty folders with name unix1, unix2, unix3 .....unix50\n$ mkdir unix{1..50}\n\nTo create empty folders at any specific location:\n$ mkdir /home/shivam/Desktop/unix{1..30}\n\n22) # rmdir : Use to delete an empty directories only.\n$ rmdir anushka\n\nIf you need to remove multiple empty folders with names unix1, unix2, unix3 .....unix50\n$ rmdir unix{1..50} ----it will remove all folders with names unix1 ..... unix50\n\nTo remove empty folders at any specific location:\n$ mkdir /home/shivam/Desktop/unix{1..30}  ---it will remove all folders with names unix1 ..... unix30\n\n23) # touch : Use to create an empty file in UNIX.\n$ touch anushka.txt -- - - - - -- - 1 file created\n$ touch salman khan -- - -- - - 2 files created\n$ touch “aamir khan” --------- 1 file created.\n\nIf you need to create multiple empty files with name unix1, unix2, unix3 .....unix50\n$ touch unix{1..50}\n\nTo create empty files at any specific location:\n$ touch /home/shivam/Desktop/unix{1..30}\n\n24) # rm : used to delete the files. (both non-empty and empty files)\n$ rm anushka.txt\n$ rm anushka.txt file1.log file2.log file3.sh\n$ rm /home/shivam/Desktop/file.txt\n\nIf you need to remove multiple files with name unix1, unix2, unix3 .....unix50\n$ rm unix{1..50} ----it will remove all files with names unix1 ..... unix50\n\nTo remove multiple files at any specific location:\n$ rm /home/shivam/Desktop/unix{1..30}  ---it will remove all files with names unix1 ..... unix30\n\n25) # rm -r : used to delete the directories/folders (both non-empty and empty folders/directory)\n$ rm -r folder\n$ rm -r folder1 folder2 folder3\n$ rm -r /home/shivam/Desktop/folderName\n\n\n",
+        "time": "08:13 PM",
+        "batch": "JUL_2026"
+    },
+    {
+        "date": "09-Sep-2026",
         "session": "Afternoon",
         "title": "Practice Session",
         "subject": "LINUX",
