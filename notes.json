@@ -1,6 +1,24 @@
 [
     {
         "date": "14-Sep-2026",
+        "session": "Evening",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "27). # cp : cp command use to copy-paste files and folders.\n\nMake a copy of a file in a same directory. Use below syntax.\n# cp origfile newfile\nFew more syntax of cp command below:\n# cp mylog.txt /home/public_html/backup/\n# cp /home/public_html/mylog.txt /home/public_html/backup/\n# cp /home/public_html/mylog.txt .\n\n# cp -R : Used to copy directory including all files in it.\n# cp -R <directory_name> /root/ram\n\n# mv : mv command use to cut-paste and rename too\nBelow syntax use for rename in same folder.\n# mv old_name.txt new_name.txt\n\nFew syntax below : -\n# mv mylog.txt /home/public_html/backup/\n# mv mylog.txt /home/public_html/backup/youlog.txt (cut-paste and rename too)\n# mv /home/public_html/mylog.txt /home/public_html/backup/\n# mv /home/public_html/mylog.txt .\n\nto cut paste folders also you can use:\nmv folderName /path_where_paste_it\n\n# wc : It will show you word count, character count and line count of the file.\n\n$ wc testfile.txt\n63 469 3007 testfile.txt\n\nIt means there 63 lines, 469 words and 3007 characters available in testfile.txt.\n\nSome syntax below:-\n# wc -l test.txt for line count only\n# wc -c test .txt for character count only\n# wc -w test.txt for word count only\n\n(|) Pipe : What is use of Pipe in UNIX?\nOutput of 1st command gives input to 2nd command.\n\nExamples below:\n\n# ls-l | wc -l\n25\n\nHow many lines are there after doing # ls -l that line count will show.",
+        "time": "09:00 PM",
+        "batch": "SEP_2026"
+    },
+    {
+        "date": "14-Sep-2026",
+        "session": "Evening",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "27). # cp : cp command use to copy-paste files and folders.\n\nMake a copy of a file in a same directory. Use below syntax.\n# cp origfile newfile\nFew more syntax of cp command below:\n# cp mylog.txt /home/public_html/backup/\n# cp /home/public_html/mylog.txt /home/public_html/backup/\n# cp /home/public_html/mylog.txt .\n\n# cp -R : Used to copy directory including all files in it.\n# cp -R <directory_name> /root/ram\n\n# mv : mv command use to cut-paste and rename too\nBelow syntax use for rename in same folder.\n# mv old_name.txt new_name.txt\n\nFew syntax below : -\n# mv mylog.txt /home/public_html/backup/\n# mv mylog.txt /home/public_html/backup/youlog.txt (cut-paste and rename too)\n# mv /home/public_html/mylog.txt /home/public_html/backup/\n# mv /home/public_html/mylog.txt .\n\nto cut paste folders also you can use:\nmv folderName /path_where_paste_it\n\n# wc : It will show you word count, character count and line count of the file.\n\n$ wc testfile.txt\n63 469 3007 testfile.txt\n\nIt means there 63 lines, 469 words and 3007 characters available in testfile.txt.\n\nSome syntax below:-\n# wc -l test.txt for line count only\n# wc -c test .txt for character count only\n# wc -w test.txt for word count only\n\n(|) Pipe : What is use of Pipe in UNIX?\nOutput of 1st command gives input to 2nd command.\n\nExamples below:\n\n# ls-l | wc -l\n25\n\nHow many lines are there after doing # ls -l that line count will show.",
+        "time": "09:00 PM",
+        "batch": "JUL_2026"
+    },
+    {
+        "date": "14-Sep-2026",
         "session": "Afternoon",
         "title": "Practice Session",
         "subject": "LINUX",
