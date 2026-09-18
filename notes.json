@@ -1,5 +1,23 @@
 [
     {
+        "date": "17-Sep-2026",
+        "session": "Evening",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "# How to create new user:\nsudo useradd -m username\n\n-m: it will create home directory for newly created user.\n\n# set password for new user:\nsudo passwd username\nNew Password:\nRetype password:\n\n# to delete any user\nsudo userdel username\n\n# to view list of manually created users:\nawk -F: '$3 >= 1000 {print $1}' /etc/passwd\n\n# chown : to change the owner of the file and directory (you can only make owner to the\nuser who is present in the system)\n# chown <New_owner_id/name> <File_name>\n# chown oracle abc.txt\n\n# to create new group:\nsudo groupadd grpname\n\n# to add user to group:\nsudo usermod -aG grpname username\n\n# to view list of groups:\ncat /etc/group\n\n# chgrp : to change the group name\n# chgrp <New_group_id/name> <File_name>\n# chgrp dba_support abc.txt\n\n# to change owner and grpname in single command:\nsudo chown ownername:grpname file/folname\n\n# to change owner and grp recursively for folder:\nsudo chown -R ownername:grpname folderName\n\n# file : It will show you file type. (empty file, text file or executable file)\n# file abc.txt\n\n# sort : sort will sort the file content (lines) alphabetically.\n# sort animal.txt\n# sort -r filename: it will display the file content in reverse order.\n# sort data of file and save it again in the same file\nsort filename -o filename\n\n# sort file data and save it in another file\nsort filename1 >> filename2\n \n",
+        "time": "09:00 PM",
+        "batch": "SEP_2026"
+    },
+    {
+        "date": "17-Sep-2026",
+        "session": "Evening",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "# How to create new user:\nsudo useradd -m username\n\n-m: it will create home directory for newly created user.\n\n# set password for new user:\nsudo passwd username\nNew Password:\nRetype password:\n\n# to delete any user\nsudo userdel username\n\n# to view list of manually created users:\nawk -F: '$3 >= 1000 {print $1}' /etc/passwd\n\n# chown : to change the owner of the file and directory (you can only make owner to the\nuser who is present in the system)\n# chown <New_owner_id/name> <File_name>\n# chown oracle abc.txt\n\n# to create new group:\nsudo groupadd grpname\n\n# to add user to group:\nsudo usermod -aG grpname username\n\n# to view list of groups:\ncat /etc/group\n\n# chgrp : to change the group name\n# chgrp <New_group_id/name> <File_name>\n# chgrp dba_support abc.txt\n\n# to change owner and grpname in single command:\nsudo chown ownername:grpname file/folname\n\n# to change owner and grp recursively for folder:\nsudo chown -R ownername:grpname folderName\n\n# file : It will show you file type. (empty file, text file or executable file)\n# file abc.txt\n\n# sort : sort will sort the file content (lines) alphabetically.\n# sort animal.txt\n# sort -r filename: it will display the file content in reverse order.\n# sort data of file and save it again in the same file\nsort filename -o filename\n\n# sort file data and save it in another file\nsort filename1 >> filename2\n \n",
+        "time": "09:00 PM",
+        "batch": "JUL_2026"
+    },
+    {
         "date": "18-Sep-2026",
         "session": "Afternoon",
         "title": "Practice Session",
