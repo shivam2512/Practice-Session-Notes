@@ -1,5 +1,23 @@
 [
     {
+        "date": "18-Sep-2026",
+        "session": "Evening",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "# ARCHIVAL METHODS:\n\nzip & unzip Commands:\n\n# zip : zip command use to zip multiple files under single output.\n# zip abc.zip 1.txt 2.txt 3.txt 4.txt 5.txt 6.txt\n# zip -r sample.zip fol1 fol2 fol3 file1.txt file2.txt\n\nAddition of new file or folder in existing zip file\n# zip -r abc.zip filename.txt folname\n\nOutput is abc.zip contains all input file i.e. 1.txt 2.txt 3.txt 4.txt etc\n\nIf you need to delete any spexific file or folder from zip:\nzip -d demo.zip filename foldername/\n\n# unzip : unzip command use to unzip the files/folders\n# unzip abc.zip all files will unzipped\n\n# unzip abc.zip 1.txt 1.txt fol/ file will unzipped from abc.zip\n\nIf you need to unzip any file/folder to any other location\nunzip demo.zip filename -d /home/shivam/Desktop\n\n# gzip : gzip command use to zip the file in UNIX.\n\n\n# gzip abc.txt----------------------------------------------- output would be abc.txt.gz\n\n# gzip 1.txt 2.txt 3.txt 4.txt-----------------output would be 1.txt.gz 2.txt.gz 3.txt.gz\n--to keep the original file while archiving the file\ngzip -k abc.txt",
+        "time": "08:15 PM",
+        "batch": "SEP_2026"
+    },
+    {
+        "date": "18-Sep-2026",
+        "session": "Evening",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "# ARCHIVAL METHODS:\n\nzip & unzip Commands:\n\n# zip : zip command use to zip multiple files under single output.\n# zip abc.zip 1.txt 2.txt 3.txt 4.txt 5.txt 6.txt\n# zip -r sample.zip fol1 fol2 fol3 file1.txt file2.txt\n\nAddition of new file or folder in existing zip file\n# zip -r abc.zip filename.txt folname\n\nOutput is abc.zip contains all input file i.e. 1.txt 2.txt 3.txt 4.txt etc\n\nIf you need to delete any spexific file or folder from zip:\nzip -d demo.zip filename foldername/\n\n# unzip : unzip command use to unzip the files/folders\n# unzip abc.zip all files will unzipped\n\n# unzip abc.zip 1.txt 1.txt fol/ file will unzipped from abc.zip\n\nIf you need to unzip any file/folder to any other location\nunzip demo.zip filename -d /home/shivam/Desktop\n\n# gzip : gzip command use to zip the file in UNIX.\n\n\n# gzip abc.txt----------------------------------------------- output would be abc.txt.gz\n\n# gzip 1.txt 2.txt 3.txt 4.txt-----------------output would be 1.txt.gz 2.txt.gz 3.txt.gz\n--to keep the original file while archiving the file\ngzip -k abc.txt",
+        "time": "08:15 PM",
+        "batch": "JUL_2026"
+    },
+    {
         "date": "17-Sep-2026",
         "session": "Evening",
         "title": "Practice Session",
