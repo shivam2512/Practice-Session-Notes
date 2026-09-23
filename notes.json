@@ -1,5 +1,23 @@
 [
     {
+        "date": "23-Sep-2026",
+        "session": "Afternoon",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "JOB Running commands:\n\n1. &: is used to run a command in the background so the terminal can be used for other\ncommands.\n\nsleep 60 &\nsleep runs for 60 seconds in background, terminal is free to run other commands for that\n60 seconds.\n\n2. fg: is used to bring a background process back to the foreground.\n\nstart job to background:\n\nsleep 100 &\nto view the background jobs: cmd: jobs\n[1]+ Running sleep 60 &\n\nto bring the job on foreground:\nfg %1\n\nto stop any cmd running in foreground (i.e. in terminal press CTRL Z button)\n[1]+ Stopped sleep 60 &\n\nNow to move this stopped job to background run:\nbg %job_number: bg %1\n\n3. sh command: is used to run the script file from terminal \n### Run script normally:\nsh test.sh\n### Run script in background:\nsh test.sh &\n\n##sample code to create script file\n\ncat > test.sh\n#!/bin/sh\n\nUSAGE=$(df -h / | awk 'NR==2 {print $5}' | tr -d '%')\n\nif [ \"$USAGE\" -ge 80 ]; then\necho \"Disk usage is ${USAGE}% on $(hostname)\" | mailx -s \"[ALERT] High Disk Usage\" support@example.com\nelse\necho \"Disk usage is ${USAGE}% on $(hostname)\" | mailx -s \"[INFO] Disk Usage Normal\" support@example.com\nfi\n\n## give execute permission to owner:\nchmod u+x test.sh\n\n4. nohup command: nohup (Run process even after logout): runs a process that continues\neven if theterminal is closed.\nnohup sleep 12000 &\nsleep 12000 -> waits for 12000 seconds\n\nnohup -> keeps running even if you logout\n& -> runs in background.\n\n",
+        "time": "03:05 PM",
+        "batch": "SEP_2026"
+    },
+    {
+        "date": "23-Sep-2026",
+        "session": "Afternoon",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "JOB Running commands:\n\n1. &: is used to run a command in the background so the terminal can be used for other\ncommands.\n\nsleep 60 &\nsleep runs for 60 seconds in background, terminal is free to run other commands for that\n60 seconds.\n\n2. fg: is used to bring a background process back to the foreground.\n\nstart job to background:\n\nsleep 100 &\nto view the background jobs: cmd: jobs\n[1]+ Running sleep 60 &\n\nto bring the job on foreground:\nfg %1\n\nto stop any cmd running in foreground (i.e. in terminal press CTRL Z button)\n[1]+ Stopped sleep 60 &\n\nNow to move this stopped job to background run:\nbg %job_number: bg %1\n\n3. sh command: is used to run the script file from terminal \n### Run script normally:\nsh test.sh\n### Run script in background:\nsh test.sh &\n\n##sample code to create script file\n\ncat > test.sh\n#!/bin/sh\n\nUSAGE=$(df -h / | awk 'NR==2 {print $5}' | tr -d '%')\n\nif [ \"$USAGE\" -ge 80 ]; then\necho \"Disk usage is ${USAGE}% on $(hostname)\" | mailx -s \"[ALERT] High Disk Usage\" support@example.com\nelse\necho \"Disk usage is ${USAGE}% on $(hostname)\" | mailx -s \"[INFO] Disk Usage Normal\" support@example.com\nfi\n\n## give execute permission to owner:\nchmod u+x test.sh\n\n4. nohup command: nohup (Run process even after logout): runs a process that continues\neven if theterminal is closed.\nnohup sleep 12000 &\nsleep 12000 -> waits for 12000 seconds\n\nnohup -> keeps running even if you logout\n& -> runs in background.\n\n",
+        "time": "03:05 PM",
+        "batch": "JUL_2026"
+    },
+    {
         "date": "22-Sep-2026",
         "session": "Evening",
         "title": "Practice Session",
