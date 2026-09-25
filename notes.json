@@ -1,6 +1,24 @@
 [
     {
         "date": "25-Sep-2026",
+        "session": "Evening",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "## NANO editor: It is a simple and user-friendly command-line text editor in Linux/Unix.\nSyntax:\nnano filename\n\nIf you need to save the file content and exit from nano editor: CTRL + O + Enter + CTRL + X\n\nOptions:\n\nnano -l filename - Show line number\nnano +n filename - Open file at line number n (n=1,2,3,4.......)\nnano -B filename - create backup of file\n\nShortcuts for nano editor:\nCTRL + O and Enter: Save file\nCTRL + X: Exit nano\nCTRL + K: Cut line\nCTRL + U: Paste line\nCTRL + W: Search text\nCTRL + C: Show cursor position\nALT + 6: To copy the selected part\nALT + U: to undo the action\n\n# head : It will show you 1st 10 lines of the file (default 10 lines)\n# head abc.txt (1st 10 lines of the abc.txt files will print)\n# head -n50 abc.txt (1st 50 lines of the abc.txt files will print)\n\n# tail : It will show you 1st 10 lines of the file (default 10 lines)\n# tail abc.txt (1st 10 lines of the abc.txt files will print)\n# tail -n50 abc.txt (1st 50 lines of the abc.txt files will print)\n# tail -f : It will show you file which is continuously updating.\n# tail -f abc.log\n\n## Job scheduling commands:\n\n1. at command: is used to schedule a command to run once at a specific time in future.\nSyntax:\nat time\nEg:\nat 13:30\nat> echo \"Job Scheduling\" > message.txt\nThen press CTRL + D\n\n## CRONTAB: is used to schedule commands or scripts to run automatically at fixed\nintervals (minutes, hours, days, etc)\n\nUnlike at (runs once), crontab runs repeatedly.\n\nSyntax:\n* * * * * command\n1 2 3 4 5\n\n1: Minute (0-59)\n2: Hour (0-23)\n3: Day of month (1-31)\n4: Month (1-12)\n5: Day of week (0-6) (0=Sun, 6=Sat)\n\nEg:\nEvery 2 mins we need to execute this command:\n*/2 * * * * echo \"crontab example\" >> /home/shivam/Desktop/crontabexg.txt\n\nTo open crontab editor:\ncrontab -e\n\nTo list scheduled jobs:\ncrontab -l\n\nTo remove all cron jobs:\ncrontab -r",
+        "time": "08:52 PM",
+        "batch": "SEP_2026"
+    },
+    {
+        "date": "25-Sep-2026",
+        "session": "Evening",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "## NANO editor: It is a simple and user-friendly command-line text editor in Linux/Unix.\nSyntax:\nnano filename\n\nIf you need to save the file content and exit from nano editor: CTRL + O + Enter + CTRL + X\n\nOptions:\n\nnano -l filename - Show line number\nnano +n filename - Open file at line number n (n=1,2,3,4.......)\nnano -B filename - create backup of file\n\nShortcuts for nano editor:\nCTRL + O and Enter: Save file\nCTRL + X: Exit nano\nCTRL + K: Cut line\nCTRL + U: Paste line\nCTRL + W: Search text\nCTRL + C: Show cursor position\nALT + 6: To copy the selected part\nALT + U: to undo the action\n\n# head : It will show you 1st 10 lines of the file (default 10 lines)\n# head abc.txt (1st 10 lines of the abc.txt files will print)\n# head -n50 abc.txt (1st 50 lines of the abc.txt files will print)\n\n# tail : It will show you 1st 10 lines of the file (default 10 lines)\n# tail abc.txt (1st 10 lines of the abc.txt files will print)\n# tail -n50 abc.txt (1st 50 lines of the abc.txt files will print)\n# tail -f : It will show you file which is continuously updating.\n# tail -f abc.log\n\n## Job scheduling commands:\n\n1. at command: is used to schedule a command to run once at a specific time in future.\nSyntax:\nat time\nEg:\nat 13:30\nat> echo \"Job Scheduling\" > message.txt\nThen press CTRL + D\n\n## CRONTAB: is used to schedule commands or scripts to run automatically at fixed\nintervals (minutes, hours, days, etc)\n\nUnlike at (runs once), crontab runs repeatedly.\n\nSyntax:\n* * * * * command\n1 2 3 4 5\n\n1: Minute (0-59)\n2: Hour (0-23)\n3: Day of month (1-31)\n4: Month (1-12)\n5: Day of week (0-6) (0=Sun, 6=Sat)\n\nEg:\nEvery 2 mins we need to execute this command:\n*/2 * * * * echo \"crontab example\" >> /home/shivam/Desktop/crontabexg.txt\n\nTo open crontab editor:\ncrontab -e\n\nTo list scheduled jobs:\ncrontab -l\n\nTo remove all cron jobs:\ncrontab -r",
+        "time": "08:52 PM",
+        "batch": "JUL_2026"
+    },
+    {
+        "date": "25-Sep-2026",
         "session": "Afternoon",
         "title": "Practice Session",
         "subject": "LINUX",
