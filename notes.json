@@ -1,5 +1,23 @@
 [
     {
+        "date": "30-Sep-2026",
+        "session": "Afternoon",
+        "title": "Pracitce Session",
+        "subject": "LINUX",
+        "body": "## Links in UNIX:\n\nWhy Use Links: Instead of copying large files (which wastes disk space and time), links\nlet you create shortcuts or duplicate entries that points to existing data\n\nTypes:\n1. Soft link (Shortcut): Use when you need a fast, flexible pointer to a file or folder-even\nacross different drives.\n\nSyntax:\nln -s file_name hl_link_name\n\n2. Hard link (Duplicate pointer): Use whe you want to duplicate access to a file without\ntaking extra disk space, or to protect data from accidental deletion.\n\nSyntax:\nln file_name hl_link_name\n\nComparison:\nSoft link:\nA shortcut containing path.\nIf original file deleted -- SL breaks\nSupports folder -- Yes\nAccross USB/Drive -- Yes\nDisk space used: Tiny (few bytes)\nSL file has unique inode number\n\nHard link:\nA second name pointing directly to disk data.\nIf original file deleted -- Data stays safe with HL\nSupports folder -- No\nAccross USB/Drive -- No (same drive only)\nDisk space used: zero additional data space\nHL file shares the same inode number as original file\n\n## scp command:\n\nHow to copy-paste file from one server to another server?\nWith the help of # scp command. We can copy – paste file from one server to another server.\nServer 1: abc.google.com /root/ramesh/abc.txt <file available in this server>\nServer 2: xyz.google.com\nServer3: pqr.google.com\n\nHow to transfer abc.txt file to pqr.google.com server. check below syntax.\n\nYou are logged in into abc.google.com :- use below syntax\n# scp /root/ramesh/abc.txt USERID@pqr.google.com:/root/suresh/\n# scp abc.txt userid@pqr.google.com:/root/suresh (If you are in /root/ramesh directory in abc.google.com)\n# scp userid@abc.google.com:/root/ramesh/abc.txt . (If you are in pqr.google.com server)\n( . “dot” means it will paste in directory in which you are present and executing the command)\n\n## WINSCP tool navigation ",
+        "time": "03:15 PM",
+        "batch": "SEP_2026"
+    },
+    {
+        "date": "30-Sep-2026",
+        "session": "Afternoon",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "## Links in UNIX:\n\nWhy Use Links: Instead of copying large files (which wastes disk space and time), links\nlet you create shortcuts or duplicate entries that points to existing data\n\nTypes:\n1. Soft link (Shortcut): Use when you need a fast, flexible pointer to a file or folder-even\nacross different drives.\n\nSyntax:\nln -s file_name hl_link_name\n\n2. Hard link (Duplicate pointer): Use whe you want to duplicate access to a file without\ntaking extra disk space, or to protect data from accidental deletion.\n\nSyntax:\nln file_name hl_link_name\n\nComparison:\nSoft link:\nA shortcut containing path.\nIf original file deleted -- SL breaks\nSupports folder -- Yes\nAccross USB/Drive -- Yes\nDisk space used: Tiny (few bytes)\nSL file has unique inode number\n\nHard link:\nA second name pointing directly to disk data.\nIf original file deleted -- Data stays safe with HL\nSupports folder -- No\nAccross USB/Drive -- No (same drive only)\nDisk space used: zero additional data space\nHL file shares the same inode number as original file\n\n## scp command:\n\nHow to copy-paste file from one server to another server?\nWith the help of # scp command. We can copy – paste file from one server to another server.\nServer 1: abc.google.com /root/ramesh/abc.txt <file available in this server>\nServer 2: xyz.google.com\nServer3: pqr.google.com\n\nHow to transfer abc.txt file to pqr.google.com server. check below syntax.\n\nYou are logged in into abc.google.com :- use below syntax\n# scp /root/ramesh/abc.txt USERID@pqr.google.com:/root/suresh/\n# scp abc.txt userid@pqr.google.com:/root/suresh (If you are in /root/ramesh directory in abc.google.com)\n# scp userid@abc.google.com:/root/ramesh/abc.txt . (If you are in pqr.google.com server)\n( . “dot” means it will paste in directory in which you are present and executing the command)\n\n## WINSCP tool navigation ",
+        "time": "03:15 PM",
+        "batch": "JUL_2026"
+    },
+    {
         "date": "29-Sep-2026",
         "session": "Afternoon",
         "title": "Practice Session",
