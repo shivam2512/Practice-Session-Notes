@@ -1,5 +1,23 @@
 [
     {
+        "date": "01-Oct-2026",
+        "session": "Afternoon",
+        "title": "Practice Session",
+        "subject": "SQL",
+        "body": "Production Support / Application Support : \n  YONO app --\n \t\tUnix  \n \t\tSQL \n \t\tticketing tools  - ServiceNow ticketing, Helix, Assyst, JIRA ...\n \t\tprod support tools  - SOP - Standard operating procedures\n \t\t \n \tL0 - Level 0 support - non technical (Service Desk/ IT HELP DESK) -- pckgs: low () \n \tL1 - Level 1 support - Technical team  \n \tL2 - Level 2 support - More technical team \n \tL3/Dev - Level 3 support - Development team\n \t\n    Unix - Prod server : \n \t\tWeb Application servers  \n \t\t\tApache tomcat  \n \t\t\tOracle Web Logic  \n  \n \t\t\t\tweb applications  \n \t\t\t\tweb applications  \n \t\t\t\tstandalone applications \n \t\t\t\tmobile applications  \n \t\t \n \t\tLog file -  \n \t\tRuntime activities of applications  \n \t\tlog is used to track and troubleshoot issues \n \t\tit is a runtime dynamic file.\t \n  \n \t\t\tunix commands  \n \t\t\t\tcd  \n \t\t\t\tls -lrt  \n \t\t\t\tpwd \n \t\t\t\tcat \n \t\t\t\tmkdir \n \t\t\t\t \n \tSQL -  \n \t\tDatabase server  \n \t\t\tSQL commands  \n \t\t\t \n  \n SDLC : Software  Development Life cycle  \n \tRequirement Gathering - Product Owner (PO) \n \tPlanning - Solution Architect - SA \n \tDesigning - Algorithm / Flowchart SA/Development Team  \n \tDevelopment - Development team - Java/.net/database  \n \tTesting - Testing team -Unit testing - Functional testing - Integrated testing -UAT (User Acceptance Testing) \n \tDeployment - production server \n \tMaintenance - Support team",
+        "time": "03:00 PM",
+        "batch": "OCT_2026"
+    },
+    {
+        "date": "01-Oct-2026",
+        "session": "Afternoon",
+        "title": "Practice Session",
+        "subject": "SQL",
+        "body": "Production Support / Application Support : \n  YONO app --\n \t\tUnix  \n \t\tSQL \n \t\tticketing tools  - ServiceNow ticketing, Helix, Assyst, JIRA ...\n \t\tprod support tools  - SOP - Standard operating procedures\n \t\t \n \tL0 - Level 0 support - non technical (Service Desk/ IT HELP DESK) -- pckgs: low () \n \tL1 - Level 1 support - Technical team  \n \tL2 - Level 2 support - More technical team \n \tL3/Dev - Level 3 support - Development team\n \t\n    Unix - Prod server : \n \t\tWeb Application servers  \n \t\t\tApache tomcat  \n \t\t\tOracle Web Logic  \n  \n \t\t\t\tweb applications  \n \t\t\t\tweb applications  \n \t\t\t\tstandalone applications \n \t\t\t\tmobile applications  \n \t\t \n \t\tLog file -  \n \t\tRuntime activities of applications  \n \t\tlog is used to track and troubleshoot issues \n \t\tit is a runtime dynamic file.\t \n  \n \t\t\tunix commands  \n \t\t\t\tcd  \n \t\t\t\tls -lrt  \n \t\t\t\tpwd \n \t\t\t\tcat \n \t\t\t\tmkdir \n \t\t\t\t \n \tSQL -  \n \t\tDatabase server  \n \t\t\tSQL commands  \n \t\t\t \n  \n SDLC : Software  Development Life cycle  \n \tRequirement Gathering - Product Owner (PO) \n \tPlanning - Solution Architect - SA \n \tDesigning - Algorithm / Flowchart SA/Development Team  \n \tDevelopment - Development team - Java/.net/database  \n \tTesting - Testing team -Unit testing - Functional testing - Integrated testing -UAT (User Acceptance Testing) \n \tDeployment - production server \n \tMaintenance - Support team",
+        "time": "03:00 PM",
+        "batch": "SEP_2026"
+    },
+    {
         "date": "30-Sep-2026",
         "session": "Evening",
         "title": "Practice Session",
