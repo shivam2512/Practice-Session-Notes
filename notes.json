@@ -1,6 +1,24 @@
 [
     {
         "date": "06-Oct-2026",
+        "session": "Evening",
+        "title": "Practice Session",
+        "subject": "SQL",
+        "body": "Binary Datatypes: is used to store non-readable data (not plain text data)\nTo insert data in binary columns: utl_raw.cast_to_raw\n\n1. RAW: stores small binary data\nSIZE: 2000 bytes (2kb)\nData stored in the form of hexadecimal values.\nEg: ADD#@$%^$23643AFDAG -- Password123\n\nReal time use: for storing passwords, encrypted token, API, digital signatures.\n\n2. LONG RAW: also stores binary data\nSIZE: 2 GB\nonly one long raw column per table\n\nReal time use: Images, Audio, video, etc\n\n--creating a new table:\n\ncreate table emp_details159\n(\nemp_id number(3),\nemp_name varchar2(50),\nemp_gender char(1),\nemp_dob date,\nemp_exp_details long,\nemp_country nchar(20),\nemp_address nvarchar2(100),\nemp_password raw(100)\n);\n\n--To insert data in table:\n\nNumber - 123\nchar, varchar2, nchar, nvarchar2, date, raw, long - 'Text'\n\ninsert into emp_details369 values ('Amit','M','25-DEC-1998',\n'An IT Professional having the working experience of more than 15 years in Application support, IT Support, Linux Support, ITIL Management and DevOps',\n'भारत','पुणे',utl_raw.cast_to_raw('Amit@12345'));\n\n--LOB (Large Object Data Types)\n\nUsed when data size is very large (MBs/ GBs)\nMax size: 4 GB\n\n1. BLOB (Binary Large Object): (4 GB) - this is also of binary type, so utl_raw.cast_to_raw will be used\nto store data in this.\nStores binary data, which is not human readable.\nReal time examples: Images (JPG, PNG), Videos, Audio files, PDFs, scanned documents.\n\n2. CLOB (Character Large Object): Stores large text data, human readable format (4 GB)\nExamples: Email body, logs, XML/JSON, product description, app. error messages.\n\n3. NCLOB (National Character Large Object):\nsame as clob, support multi language data\neg: HINDI, English, Tamil ...\n\nchar, nchar, varchar2, nvarchar2, date, number, long, raw, long raw, blob, clob, nclob\n\n--creating a table:\n\ncreate table user_security666\n(\nphoto blob,\napp_log clob,\ndescription nclob\n);\n\n--to view the table structure:\ndesc user_security666;\n\n--to view the table data:\nselect * from user_security666;\n\n--to view system date:\nselect sysdate from dual;",
+        "time": "09:00 PM",
+        "batch": "OCT_2026"
+    },
+    {
+        "date": "06-Oct-2026",
+        "session": "Evening",
+        "title": "Practice Session",
+        "subject": "SQL",
+        "body": "Binary Datatypes: is used to store non-readable data (not plain text data)\nTo insert data in binary columns: utl_raw.cast_to_raw\n\n1. RAW: stores small binary data\nSIZE: 2000 bytes (2kb)\nData stored in the form of hexadecimal values.\nEg: ADD#@$%^$23643AFDAG -- Password123\n\nReal time use: for storing passwords, encrypted token, API, digital signatures.\n\n2. LONG RAW: also stores binary data\nSIZE: 2 GB\nonly one long raw column per table\n\nReal time use: Images, Audio, video, etc\n\n--creating a new table:\n\ncreate table emp_details159\n(\nemp_id number(3),\nemp_name varchar2(50),\nemp_gender char(1),\nemp_dob date,\nemp_exp_details long,\nemp_country nchar(20),\nemp_address nvarchar2(100),\nemp_password raw(100)\n);\n\n--To insert data in table:\n\nNumber - 123\nchar, varchar2, nchar, nvarchar2, date, raw, long - 'Text'\n\ninsert into emp_details369 values ('Amit','M','25-DEC-1998',\n'An IT Professional having the working experience of more than 15 years in Application support, IT Support, Linux Support, ITIL Management and DevOps',\n'भारत','पुणे',utl_raw.cast_to_raw('Amit@12345'));\n\n--LOB (Large Object Data Types)\n\nUsed when data size is very large (MBs/ GBs)\nMax size: 4 GB\n\n1. BLOB (Binary Large Object): (4 GB) - this is also of binary type, so utl_raw.cast_to_raw will be used\nto store data in this.\nStores binary data, which is not human readable.\nReal time examples: Images (JPG, PNG), Videos, Audio files, PDFs, scanned documents.\n\n2. CLOB (Character Large Object): Stores large text data, human readable format (4 GB)\nExamples: Email body, logs, XML/JSON, product description, app. error messages.\n\n3. NCLOB (National Character Large Object):\nsame as clob, support multi language data\neg: HINDI, English, Tamil ...\n\nchar, nchar, varchar2, nvarchar2, date, number, long, raw, long raw, blob, clob, nclob\n\n--creating a table:\n\ncreate table user_security666\n(\nphoto blob,\napp_log clob,\ndescription nclob\n);\n\n--to view the table structure:\ndesc user_security666;\n\n--to view the table data:\nselect * from user_security666;\n\n--to view system date:\nselect sysdate from dual;",
+        "time": "09:00 PM",
+        "batch": "SEP_2026"
+    },
+    {
+        "date": "06-Oct-2026",
         "session": "Afternoon",
         "title": "Practice Session",
         "subject": "SQL",
