@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Practice Session Notes - Beautiful Edition</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e3f2fd 50%, #e8eaf6 100%);
+    }
+
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(to bottom, #667eea, #764ba2);
+      border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(to bottom, #5568d3, #6a3f91);
+    }
+
+    /* Navbar */
+    .navbar-custom {
+      background: linear-gradient(135deg, #1e293b 0%, #1e40af 50%, #4338ca 100%);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      padding: 1rem 0;
+    }
+
+    .navbar-brand {
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #bfdbfe, #7dd3fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .btn-exam {
+      background: linear-gradient(135deg, #ef4444, #dc2626);
+      color: white;
+      font-weight: 600;
+      padding: 0.7rem 1.5rem;
+      border-radius: 0.75rem;
+      border: none;
+      box-shadow: 0 8px 20px rgba(239, 68, 68, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .btn-exam:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(239, 68, 68, 0.5);
+    }
+
+    .online-users {
+      color: #67e8f9;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .online-dot {
+      width: 10px;
+      height: 10px;
+      background: #4ade80;
+      border-radius: 50%;
+      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    /* Motivation Bar */
+    .motivation-bar {
+      background: linear-gradient(270deg, #3b82f6, #8b5cf6, #10b981, #14b8a6);
+      background-size: 600% 600%;
+      animation: gradientMove 10s ease infinite;
+      overflow: hidden;
+      padding: 0.75rem 0;
+    }
+
+    .motivation-text {
+      display: inline-block;
+      white-space: nowrap;
+      color: white;
+      font-weight: 600;
+      font-size: 1rem;
+      padding-left: 100%;
+      animation: scrollText 20s linear infinite;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes scrollText {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+
+    /* Notification */
+    .notification-bar {
+      background: linear-gradient(135deg, #cffafe, #bfdbfe);
+      border-left: 4px solid #06b6d4;
+      color: #164e63;
+      padding: 1rem;
+      text-align: center;
+      font-weight: 500;
+      box-shadow: 0 4px 12px rgba(6, 182, 212, 0.2);
+    }
+
+    /* Buttons */
+    .btn-download {
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.75rem;
+      font-weight: 600;
+      border: none;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      transition: all 0.3s ease;
+      color: white;
+    }
+
+    .btn-download:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+      color: white;
+    }
+
+    .btn-green {
+      background: linear-gradient(135deg, #10b981, #059669);
+    }
+
+    .btn-blue {
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+    }
+
+    .btn-yellow {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+    }
+
+    .btn-red {
+      background: linear-gradient(135deg, #ef4444, #dc2626);
+    }
+
+    .btn-nav {
+      background: white;
+      border: 2px solid #e5e7eb;
+      color: #374151;
+      padding: 0.6rem 1.5rem;
+      border-radius: 0.75rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-nav:hover {
+      background: #f9fafb;
+      border-color: #9ca3af;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Calendar Container */
+    .calendar-container {
+      background: white;
+      border-radius: 1.5rem;
+      padding: 2rem;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+      margin-bottom: 2rem;
+    }
+
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 0.75rem;
+    }
+
+    .weekday-header {
+      text-align: center;
+      font-weight: 600;
+      color: #6b7280;
+      padding: 0.75rem;
+      background: linear-gradient(135deg, #f9fafb, #f3f4f6);
+      border-radius: 0.75rem;
+      border: 1px solid #e5e7eb;
+      font-size: 0.9rem;
+    }
+
+    .calendar-day {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 1rem;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1.1rem;
+      border: 2px solid #e5e7eb;
+      background: white;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .calendar-day:hover {
+      transform: translateY(-4px);
+      background: linear-gradient(135deg, #fce7f3, #fbcfe8);
+      border-color: #f9a8d4;
+      box-shadow: 0 12px 24px rgba(244, 114, 182, 0.3);
+      color: #831843;
+    }
+
+    .calendar-day.has-notes {
+      background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+      border-color: #6ee7b7;
+      color: #065f46;
+      box-shadow: 0 6px 16px rgba(16, 185, 129, 0.25);
+    }
+
+    .calendar-day.has-notes:hover {
+      background: linear-gradient(135deg, #a7f3d0, #6ee7b7);
+      box-shadow: 0 12px 24px rgba(16, 185, 129, 0.4);
+    }
+
+    .calendar-day.today {
+      background: linear-gradient(135deg, #fef3c7, #fde68a);
+      border-color: #fbbf24;
+      color: #78350f;
+      box-shadow: 0 8px 20px rgba(251, 191, 36, 0.3);
+      ring: 4px;
+      ring-color: #fef3c7;
+      font-weight: 700;
+    }
+
+    /* Notes Display */
+    .note-card {
+      background: white;
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+      margin-bottom: 1.5rem;
+      border-left: 4px solid #6366f1;
+      transition: all 0.3s ease;
+    }
+
+    .note-card:hover {
+      transform: scale(1.01);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.18);
+    }
+
+    .note-header {
+      background: linear-gradient(135deg, #6366f1, #3b82f6);
+      color: white;
+      padding: 1.5rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .note-body {
+      padding: 1.5rem;
+    }
+
+    .note-code {
+      background: linear-gradient(135deg, #f9fafb, #f1f5f9);
+      padding: 1rem;
+      border-radius: 0.75rem;
+      overflow-x: auto;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      border: 1px solid #e2e8f0;
+      box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Exam Styles */
+    .exam-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      background: white;
+      border-radius: 1.5rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    }
+
+    .exam-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 1.5rem;
+      border-bottom: 2px solid #e0e7ff;
+      margin-bottom: 2rem;
+    }
+
+    .exam-title {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .exam-timer {
+      text-align: right;
+    }
+
+    .timer-label {
+      font-size: 0.9rem;
+      color: #6b7280;
+    }
+
+    .timer-value {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #dc2626;
+    }
+
+    .exam-info {
+      background: linear-gradient(135deg, #eff6ff, #e0e7ff);
+      border-left: 4px solid #6366f1;
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .exam-info ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .exam-info li {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    .question-card {
+      background: linear-gradient(135deg, white, #fafafa);
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+      border: 2px solid #e5e7eb;
+      margin-bottom: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .question-card:hover {
+      border-color: #a78bfa;
+      box-shadow: 0 8px 20px rgba(167, 139, 250, 0.15);
+    }
+
+    .question-text {
+      font-weight: 600;
+      color: #1f2937;
+      margin-bottom: 1rem;
+    }
+
+    .option-label {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-bottom: 0.5rem;
+    }
+
+    .option-label:hover {
+      background: #ede9fe;
+    }
+
+    .sql-question-card {
+      background: linear-gradient(135deg, white, #eff6ff);
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+      border: 2px solid #bfdbfe;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
+    }
+
+    .sql-textarea {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid #cbd5e1;
+      border-radius: 0.5rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+
+    .sql-textarea:focus {
+      outline: none;
+      border-color: #6366f1;
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    }
+
+    .btn-submit {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: white;
+      padding: 1rem 3rem;
+      font-size: 1.2rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 1rem;
+      box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .btn-submit:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(16, 185, 129, 0.4);
+    }
+
+    /* Hidden assignment section */
+    #assignmentSection,
+    #openAssignmentsBtn {
+      display: none !important;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .calendar-grid {
+        grid-template-columns: repeat(7, 1fr);
+        gap: 0.4rem;
+      }
+
+      .calendar-day {
+        font-size: 0.9rem;
+        padding: 0.5rem;
+      }
+
+      .weekday-header {
+        font-size: 0.75rem;
+        padding: 0.5rem;
+      }
+
+      .btn-download {
+        width: 100%;
+        margin-bottom: 0.5rem;
+      }
+
+      .exam-header {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .navbar-custom .container {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+
+    .floating-notification {
+      position: fixed;
+      top: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 9999;
+      padding: 1rem 2rem;
+      border-radius: 0.75rem;
+      color: white;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      animation: slideDown 0.3s ease;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+    }
+
+    .batch-select {
+      padding: 0.6rem 1.2rem;
+      border: 2px solid #c7d2fe;
+      border-radius: 0.75rem;
+      font-weight: 500;
+      background: white;
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .batch-select:focus {
+      outline: none;
+      border-color: #6366f1;
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    }
+
+    .spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255,255,255,0.3);
+  border-top: 3px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar-custom">
+    <div class="container d-flex align-items-center justify-content-between flex-wrap gap-3">
+      <span class="navbar-brand">Practice Session Notes</span>
+      <button class="btn-exam" onclick="initExam()">
+        SQL Assessment (MCQ + Scenario based)
+      </button>
+      <div class="online-users">
+        <span class="online-dot"></span>
+        <span id="onlineUsers">Loading...</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Motivation Bar -->
+  <div class="motivation-bar">
+    <div class="motivation-text">
+      🌟🚀 Work hard in silence today, so your offer letter speaks loudly tomorrow. 💼🔥
+    </div>
+  </div>
+
+  <!-- Notification -->
+  <div class="notification-bar" id="latestNotification">
+    Latest notes: Loading…
+  </div>
+
+  <!-- Main Content -->
+  <main class="container py-4">
+    <!-- Batch Selection -->
+    <div class="text-center mb-4">
+      <label class="fw-bold fs-5 me-3">Select Batch:</label>
+      <select id="batchSelect" class="batch-select">
+        <option value="MAY_2026">Batch — May 2026</option>
+        <option value="APR_2026">Batch — Apr 2026</option>
+        <option value="MAR_2026" selected>Batch — Mar 2026</option>
+        <option value="FEB_19_2026">Batch — Feb 2026</option>
+        <option value="JAN_22_2026">Batch — Jan 2026</option>
+        <option value="DEC_2025">Batch — Dec 2025</option>
+              <option value="JUN_2026">Batch - Jun 2026</option>
+              <option value="JUL_2026">Batch — Jul 2026</option>
+      </select>
+    </div>
+
+    <!-- Download Buttons -->
+    <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
+      <button class="btn-download btn-green" onclick="downloadSQLFile('Afternoon','Afternoon.sql')">
+        Download SQL Afternoon Notes
+      </button>
+      <button class="btn-download btn-blue" onclick="downloadSQLFile('Evening','Evening.sql')">
+        Download SQL Evening Notes
+      </button>
+      <button class="btn-download btn-yellow" onclick="downloadLinuxPDF('Afternoon','Linux_Afternoon.pdf')">
+        Download Linux Afternoon Notes
+      </button>
+      <button class="btn-download btn-red" onclick="downloadLinuxPDF('Evening','Linux_Evening.pdf')">
+        Download Linux Evening Notes
+      </button>
+    </div>
+
+    <!-- Calendar Navigation -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <button class="btn-nav" onclick="prevMonth()">← Previous</button>
+      <h4 class="fw-bold mb-0" id="monthLabel"></h4>
+      <button class="btn-nav" onclick="nextMonth()">Next →</button>
+    </div>
+
+    <!-- Calendar -->
+    <div class="calendar-container" id="calendarContainer"></div>
+
+    <!-- Notes Display -->
+    <div id="notesContainer"></div>
+
+    <!-- Empty State -->
+    <div id="emptyState" class="text-center py-5 d-none">
+      <h5 class="text-muted">No notes selected. Click on a date to view notes.</h5>
+    </div>
+
+    <!-- Clear Button -->
+    <div class="text-center mt-3">
+      <button class="btn btn-secondary d-none" id="clearViewBtn" onclick="clearNotesView()">
+        Clear View
+      </button>
+    </div>
+  </main>
+
+  <!-- Exam Section -->
+  <div id="examSection" class="d-none" style="min-height: 100vh; background: linear-gradient(135deg, #faf5ff, #f5f3ff, #fce7f3); padding: 2rem;">
+  </div>
+
+  <script>
+    const API = 'https://script.google.com/macros/s/AKfycbwU4J2C8CYtscI_D69h1yKSzqbN2ZKVjoYDzFWTqFmM8EPx-vZw7J9O0cw5Ua0175N0Eg/exec';
+    const CURRENT_BATCH = 'MAR_2026';
+
+    const BATCH_RANGES = {
+      'DEC_2025':    { start: '19-NOV-2025', end: '21-JAN-2026' },
+      'JAN_22_2026': { start: '22-JAN-2026', end: '18-MAR-2026' },
+      'FEB_19_2026': { start: '22-FEB-2026', end: '21-APR-2026' },
+      'MAR_2026':    { start: '19-MAR-2026', end: '22-MAY-2026' },
+      'APR_2026':    { start: '22-APR-2026', end: '25-JUN-2026' },
+      'MAY_2026':    { start: '25-MAY-2026', end: '25-JUL-2026' }
+    };
+
+    // Cross-batch sharing rules (subject-specific):
+    // When a batch is selected, also include notes from a partner batch
+    // but only for the specified subject and only within the selected batch's own date window.
+    //
+    // Confirmed schedule:
+    //   DEC_2025    : Both SQL + Linux (Nov 19 — Jan 21) âœ”ï¸
+    //   JAN_22_2026 : Both SQL + Linux (Jan 22 — Mar 18) âœ”ï¸
+    //   FEB_19_2026 : Linux with JAN batch (Feb 22—Mar 18) + SQL own (Mar 19—Apr 21) âœ”ï¸
+    //   MAR_2026    : SQL with FEB batch  (Mar 19—Apr 21) + Linux own (Apr 22—May 22) âœ”ï¸
+    //   APR_2026    : Linux with MAR batch (Apr 22—May 22) âœ”ï¸ DONE
+    //                 SQL with MAY batch  (May 25—Jun 25) 🔔„ IN PROGRESS
+    //   MAY_2026    : SQL with APR batch  (May 25—Jun 25) 🔔„ IN PROGRESS
+    //                 Linux with JUN batch (Jun 26—Jul 25) â³ upcoming
+    //
+    // Bidirectional SQL sharing for APR+MAY: notes can be tagged either batch;
+    // both batches will see all shared SQL sessions (May 25 onwards).
+    function isNoteForBatch(note, selectedBatch) {
+      if (!note || !selectedBatch) return false;
+      return note.batch === selectedBatch;
+    }
+    
+    let allNotes = [];
+    let currentMonthIndex = new Date().getMonth();
+    let currentYear = new Date().getFullYear();
+    let examStarted = false;
+    let examDuration = 40 * 60;
+    let timerInterval;
+    let studentExam = null;
+    let examAnswers = {};
+
+    const monthMap = { JAN: "01", FEB: "02", MAR: "03", APR: "04", MAY: "05", JUN: "06", JUL: "07", AUG: "08", SEP: "09", OCT: "10", NOV: "11", DEC: "12" };
+    const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      loadNotes();
+      const currentUser = initCurrentUser();
+      if (currentUser) {
+        pingUser(currentUser);
+        setInterval(() => pingUser(currentUser), 15000);
+      }
+      fetchOnlineUsers();
+      setInterval(fetchOnlineUsers, 10000);
+
+      // Security
+      document.addEventListener('contextmenu', e => e.preventDefault());
+      document.addEventListener('copy', e => e.preventDefault());
+      document.addEventListener('keydown', handleKeyDown);
+      document.addEventListener('visibilitychange', handleVisibilityChange);
+
+      // Batch change
+      let previousBatch = document.getElementById('batchSelect').value;
+      document.getElementById('batchSelect').addEventListener('change', (e) => {
+        if (e.target.value === 'ADD_NEW') {
+          const newBatchName = prompt("Enter new batch display name (e.g., 'Batch — Jun 2026'):");
+          if (newBatchName) {
+            let newBatchValue = newBatchName.toUpperCase().replace(/[^A-Z0-9]/g, '_').replace(/_+/g, '_').replace(/^_|_$/g, '');
+            // if user just types JUN_2026, keep it, if they type Batch - Jun 2026, it becomes BATCH_JUN_2026 which is fine, but value usually is JUN_2026
+            if (newBatchValue.startsWith('BATCH_')) {
+              newBatchValue = newBatchValue.replace('BATCH_', '');
+            }
+            
+            const option = document.createElement('option');
+            option.value = newBatchValue;
+            option.textContent = newBatchName;
+            
+            // Insert before the ADD_NEW option
+            const addNewOpt = e.target.querySelector('option[value="ADD_NEW"]');
+            if (addNewOpt) {
+              e.target.insertBefore(option, addNewOpt);
+            } else {
+              e.target.appendChild(option);
+            }
+            
+            e.target.value = newBatchValue;
+            previousBatch = newBatchValue;
+          } else {
+            // User cancelled, revert to previous batch
+            e.target.value = previousBatch;
+            return;
+          }
+        } else {
+          previousBatch = e.target.value;
+        }
+        renderCalendar();
+        clearNotesView();
+      });
+    });
+
+    function parseNoteDate(str) {
+      const [d, mText, y] = str.split("-");
+      const mNum = Number(monthMap[mText.toUpperCase()]);
+      return { day: d, monthNum: mNum, monthText: mText.toUpperCase(), year: y };
+    }
+
+    function toJSDate(str) {
+      const {day, monthNum, year} = parseNoteDate(str);
+      return new Date(Number(year), monthNum - 1, Number(day));
+    }
+
+    async function loadNotes() {
+      try {
+        const res = await fetch('notes.json?v=' + new Date().getTime());
+        const notes = await res.json();
+        allNotes = notes;
+        renderCalendar();
+        updateLatestNotification();
+      } catch(err) {
+        console.error('Error loading notes:', err);
+        document.getElementById('latestNotification').textContent = 'Failed to load notes.';
+      }
+    }
+
+    function updateLatestNotification() {
+      if (!allNotes.length) {
+        document.getElementById('latestNotification').textContent = 'No notes available yet.';
+        return;
+      }
+      const sorted = [...allNotes].sort((a,b) => toJSDate(b.date) - toJSDate(a.date));
+      const latestDate = sorted[0].date;
+      const latestDayNotes = allNotes.filter(n => n.date === latestDate);
+      const latestNote = latestDayNotes.find(n => n.session === 'Evening') || latestDayNotes[0];
+      document.getElementById('latestNotification').textContent = `🔔” Latest notes available: ${latestNote.date} (${latestNote.session} session, uploaded at ${latestNote.time})`;
+    }
+
+    function renderCalendar() {
+      const selectedBatch = document.getElementById('batchSelect').value;
+      document.getElementById('monthLabel').textContent = `${monthNames[currentMonthIndex]} ${currentYear}`;
+      
+      const daysInMonth = new Date(currentYear, currentMonthIndex + 1, 0).getDate();
+      let firstDay = new Date(currentYear, currentMonthIndex, 1).getDay();
+      firstDay = firstDay === 0 ? 7 : firstDay;
+      const today = new Date();
+
+      let html = '<div class="calendar-grid mb-3">';
+      ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].forEach(day => {
+        html += `<div class="weekday-header">${day}</div>`;
+      });
+      html += '</div><div class="calendar-grid">';
+
+      for (let i = 1; i < firstDay; i++) {
+        html += '<div></div>';
+      }
+
+      for (let d = 1; d <= daysInMonth; d++) {
+        const dayStr = String(d).padStart(2, '0');
+        const hasNote = allNotes.some(n => {
+          if (n.batch !== selectedBatch) return false;
+          const { day, monthNum, year } = parseNoteDate(n.date);
+          return day === dayStr && monthNum === currentMonthIndex + 1 && Number(year) === currentYear;
+        });
+
+        const subjects = [...new Set(
+          allNotes
+            .filter(n => {
+              if (n.batch !== selectedBatch) return false;
+              const { day, monthNum, year } = parseNoteDate(n.date);
+              return day === dayStr && monthNum === currentMonthIndex + 1 && Number(year) === currentYear;
+            })
+            .map(n => n.subject)
+        )];
+
+        const isToday = today.getMonth() === currentMonthIndex && 
+                        today.getFullYear() === currentYear && 
+                        today.getDate() === d;
+
+        let classes = 'calendar-day';
+        if (hasNote) classes += ' has-notes';
+        if (isToday) classes += ' today';
+
+        const tooltip = subjects.length ? `Subjects: ${subjects.join(', ')}` : '';
+        html += `<div class="${classes}" onclick="handleDayClick('${dayStr}')" title="${tooltip}">${d}</div>`;
+      }
+
+      html += '</div>';
+      document.getElementById('calendarContainer').innerHTML = html;
+    }
+
+    function handleDayClick(dayStr) {
+      const selectedBatch = document.getElementById('batchSelect').value;
+      const filtered = allNotes.filter(n => {
+        if (n.batch !== selectedBatch) return false;
+        const { day, monthNum, year } = parseNoteDate(n.date);
+        return day === dayStr && monthNum === currentMonthIndex + 1 && Number(year) === currentYear;
+      });
+
+      if (filtered.length === 0) {
+        document.getElementById('emptyState').classList.remove('d-none');
+        document.getElementById('notesContainer').innerHTML = '';
+        document.getElementById('clearViewBtn').classList.add('d-none');
+        return;
+      }
+
+      document.getElementById('emptyState').classList.add('d-none');
+      let html = '';
+      filtered.forEach(note => {
+        html += `
+          <div class="note-card">
+            <div class="note-header">
+              <strong>${note.date}</strong> — ${note.session} — ${note.title}
+            </div>
+            <div class="note-body">
+              <pre class="note-code"><code>${note.body}</code></pre>
+            </div>
+          </div>
+        `;
+      });
+      document.getElementById('notesContainer').innerHTML = html;
+      document.getElementById('clearViewBtn').classList.remove('d-none');
+    }
+
+    function clearNotesView() {
+      document.getElementById('notesContainer').innerHTML = '';
+      document.getElementById('emptyState').classList.add('d-none');
+      document.getElementById('clearViewBtn').classList.add('d-none');
+    }
+
+    function prevMonth() {
+      if (currentMonthIndex === 0) {
+        currentMonthIndex = 11;
+        currentYear--;
+      } else {
+        currentMonthIndex--;
+      }
+      renderCalendar();
+    }
+
+    function nextMonth() {
+      if (currentMonthIndex === 11) {
+        currentMonthIndex = 0;
+        currentYear++;
+      } else {
+        currentMonthIndex++;
+      }
+      renderCalendar();
+    }
+
+    function downloadSQLFile(session, filename) {
+      const selectedBatch = document.getElementById('batchSelect').value;
+      const sessionNotes = allNotes.filter(
+        n => n.session === session && n.subject === "SQL" && n.batch === selectedBatch
+      ).sort((a, b) => toJSDate(a.date) - toJSDate(b.date));
+      const sqlContent = sessionNotes.map(n => `-- ${n.date} : ${n.title}\n${n.body}\n\n`).join("");
+      const blob = new Blob([sqlContent], { type: "text/sql" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+      showNotification(`${filename} downloaded successfully!`);
+    }
+
+    function downloadLinuxPDF(session, filename) {
+      const selectedBatch = document.getElementById('batchSelect').value;
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF("p", "mm", "a4");
+
+      const linuxNotes = allNotes.filter(
+        n => n.session === session && n.subject === "LINUX" && n.batch === selectedBatch
+      ).sort((a, b) => toJSDate(a.date) - toJSDate(b.date));
+
+      if (!linuxNotes.length) {
+        showNotification(`No Linux notes found for ${session}`, 'danger');
+        return;
+      }
+
+      const pageWidth = doc.internal.pageSize.width;
+      const pageHeight = doc.internal.pageSize.height;
+      const marginLeft = 10;
+      const marginRight = 10;
+      const marginTop = 10;
+      const marginBottom = 15;
+      const usableWidth = pageWidth - marginLeft - marginRight;
+      const lineHeight = 6;
+      let y = marginTop;
+
+      linuxNotes.forEach(n => {
+        doc.setFont("courier", "bold");
+        doc.setFontSize(12);
+        if (y + lineHeight > pageHeight - marginBottom) {
+          doc.addPage();
+          y = marginTop;
+        }
+        doc.text(`${n.date} - ${n.title}`, marginLeft, y);
+        y += lineHeight + 2;
+
+        doc.setFont("courier", "normal");
+        doc.setFontSize(10);
+        const rawLines = n.body.split("\n");
+        rawLines.forEach(rawLine => {
+          const wrappedLines = doc.splitTextToSize(rawLine, usableWidth);
+          wrappedLines.forEach(wLine => {
+            if (y + lineHeight > pageHeight - marginBottom) {
+              doc.addPage();
+              y = marginTop;
+            }
+            doc.text(wLine, marginLeft, y);
+            y += lineHeight;
+          });
+        });
+        y += lineHeight;
+      });
+
+      doc.save(filename);
+      showNotification(`${filename} downloaded successfully!`);
+    }
+
+    function showNotification(message, type = 'success') {
+      const notif = document.createElement('div');
+      notif.className = 'floating-notification';
+      notif.style.background = type === 'success' 
+        ? 'linear-gradient(135deg, #10b981, #059669)' 
+        : 'linear-gradient(135deg, #ef4444, #dc2626)';
+      notif.textContent = message;
+      document.body.appendChild(notif);
+      setTimeout(() => notif.remove(), 5000);
+    }
+
+    function initCurrentUser() {
+      let user = localStorage.getItem('currentUser');
+      if (!user) {
+        user = prompt('Enter your name');
+        if (user && user.trim()) {
+          user = user.trim();
+          localStorage.setItem('currentUser', user);
+        }
+      }
+      return user;
+    }
+
+    async function pingUser(name) {
+      if (!name) return;
+      try {
+        await fetch(API, {
+          method: 'POST',
+          body: JSON.stringify({ action: 'pingUser', name })
+        });
+      } catch (e) {
+        console.error('Ping failed:', e);
+      }
+    }
+
+    async function fetchOnlineUsers() {
+      try {
+        const res = await fetch(API, {
+          method: 'POST',
+          body: JSON.stringify({ action: 'getOnlineUsers' })
+        });
+        const data = await res.json();
+        if (data.status === 'success') {
+          document.getElementById('onlineUsers').textContent = `Online: ${data.users.join(', ')}`;
+        }
+      } catch (e) {
+        console.error('Fetch online users failed:', e);
+      }
+    }
+
+    // Exam Functions
+    async function initExam() {
+      const name = prompt("Enter Your Full Name");
+      if (!name || name.trim().length < 3) {
+        alert("Enter valid full name");
+        return;
+      }
+
+      const mobile = prompt("Enter 10 Digit Mobile Number");
+      const cleanMobile = mobile ? mobile.replace(/\D/g, '') : '';
+
+      if (!/^\d{10}$/.test(cleanMobile)) {
+        alert("Mobile number must be exactly 10 digits");
+        return;
+      }
+
+      const email = prompt("Enter Your Email Address");
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (!email || !emailPattern.test(email)) {
+        alert("Enter valid email address");
+        return;
+      }
+
+      try {
+        const res = await fetch(API, {
+          method: 'POST',
+          body: JSON.stringify({ action: "checkExamAttempt", mobile: cleanMobile })
+        });
+        const data = await res.json();
+
+        if (!data.allowed) {
+          alert("❌ You have already attempted this exam.");
+          return;
+        }
+
+        studentExam = { name: name.trim(), mobile: cleanMobile, email: email.trim() };
+        examStarted = true;
+        renderExamSection();
+        enterFullscreen();
+        startTimer();
+      } catch (err) {
+        console.error('Exam init failed:', err);
+        alert('Failed to initialize exam');
+      }
+    }
+
+    function startTimer() {
+      timerInterval = setInterval(() => {
+        examDuration--;
+        updateTimerDisplay();
+        
+        if (examDuration <= 0) {
+          clearInterval(timerInterval);
+          alert('â° Time Up!');
+          submitExam();
+        }
+      }, 1000);
+    }
+
+    function updateTimerDisplay() {
+      const min = Math.floor(examDuration / 60);
+      const sec = examDuration % 60;
+      const timerEl = document.getElementById('examTimer');
+      if (timerEl) {
+        timerEl.textContent = `${min}:${sec < 10 ? '0' : ''}${sec}`;
+      }
+    }
+
+    function renderExamSection() {
+      const mcqQuestions = [
+       { q: 'q1', text: 'Which SQL component is used to manage access permissions like GRANT and REVOKE?', options: ['DDL', 'DML', 'DCL', 'TCL'] },
+        { q: 'q2', text: 'What is the maximum size of VARCHAR2 in Oracle?', options: ['2000 bytes', '4000 bytes', '2 GB', '4 GB'] },
+        { q: 'q3', text: 'Which data type is best for storing a profile picture?', options: ['CLOB', 'BLOB', 'RAW', 'LONG'] },
+        { q: 'q4', text: 'Which command is used to remove all rows and free up space permanently (cannot be rolled back)?', options: ['DELETE', 'DROP', 'TRUNCATE', 'REMOVE'] },
+        { q: 'q5', text: 'What is the default sorting order for the ORDER BY clause?', options: ['Descending', 'Ascending', 'Random', 'None'] },
+        { q: 'q6', text: 'Which operator is used to search for a specific pattern?', options: ['IN', 'BETWEEN', 'LIKE', 'EXISTS'] },
+        { q: 'q7', text: 'In the pattern "_a%", the underscore (_) represents:', options: ['Any number of characters', 'Exactly one character', 'Zero characters', 'A whitespace'] },
+        { q: 'q8', text: 'Which set operator returns only the common rows between two queries?', options: ['UNION', 'UNION ALL', 'MINUS', 'INTERSECT'] },
+        { q: 'q9', text: 'Which constraint ensures a column cannot have NULL values and must be unique?', options: ['UNIQUE', 'NOT NULL', 'PRIMARY KEY', 'CHECK'] },
+        { q: 'q10', text: 'Which TCL command is used to undo changes since the last commit?', options: ['SAVEPOINT', 'ROLLBACK', 'GRANT', 'REVOKE'] },
+        { q: 'q11', text: 'Which data type stores multi-language character data in fixed length?', options: ['CHAR', 'NCHAR', 'VARCHAR2', 'LONG'] },
+        { q: 'q12', text: 'How many Primary Keys can a single table have?', options: ['Only 1', '2', 'As many as columns', 'Unlimited'] },
+        { q: 'q13', text: 'Which join returns matching rows plus unmatched rows from the left table?', options: ['INNER JOIN', 'LEFT JOIN', 'RIGHT JOIN', 'CROSS JOIN'] },
+        { q: 'q14', text: 'A "virtual table" that doesn\'t store data but shows results of a query is a:', options: ['Index', 'Synonym', 'View', 'Sequence'] },
+        { q: 'q15', text: 'Which pseudo-column represents the physical address of a row?', options: ['ROWNUM', 'ROWID', 'ID', 'ADDR'] },
+        { q: 'q16', text: 'Which analytical function assigns ranks with gaps (e.g., 1, 2, 2, 4)?', options: ['RANK()', 'DENSE_RANK()', 'ROW_NUMBER()', 'COUNT()'] },
+        { q: 'q17', text: 'Which clause is used to filter groups created by GROUP BY?', options: ['WHERE', 'HAVING', 'ORDER BY', 'LIMIT'] },
+        { q: 'q18', text: 'What is the DUAL table in Oracle?', options: ['A table for double entry', 'A dummy one-row table', 'A backup table', 'A table for joins'] },
+        { q: 'q19', text: 'Which command is used to rename a column?', options: ['RENAME COLUMN', 'ALTER TABLE ... RENAME COLUMN', 'UPDATE COLUMN', 'CHANGE COLUMN'] },
+        { q: 'q20', text: 'Which data type is used for large text documents up to 4GB?', options: ['VARCHAR2', 'LONG', 'CLOB', 'BLOB'] },
+        { q: 'q21', text: 'What does the DISTINCT keyword do?', options: ['Sorts data', 'Removes duplicates', 'Filters nulls', 'Counts rows'] },
+        { q: 'q22', text: 'Which operator checks if a value is within a range?', options: ['IN', 'BETWEEN', 'LIKE', 'RANGE'] },
+        { q: 'q23', text: 'Which command saves all pending changes?', options: ['SAVE', 'COMMIT', 'ROLLBACK', 'GRANT'] },
+        { q: 'q24', text: 'Which join produces a Cartesian product (Total Rows = TableA * TableB)?', options: ['INNER JOIN', 'SELF JOIN', 'CROSS JOIN', 'NATURAL JOIN'] },
+        { q: 'q25', text: 'A subquery in the FROM clause is called an:', options: ['Inline View', 'Scalar Subquery', 'Correlated Subquery', 'Nested Query'] },
+        { q: 'q26', text: 'Which constraint allows multiple NULL values but no duplicate data?', options: ['PRIMARY KEY', 'UNIQUE', 'CHECK', 'DEFAULT'] },
+        { q: 'q27', text: 'The WITH clause is used to create a:', options: ['View', 'CTE', 'Synonym', 'Sequence'] },
+        { q: 'q28', text: 'Which object generates unique numbers automatically?', options: ['Index', 'View', 'Sequence', 'Synonym'] },
+        { q: 'q29', text: 'What is a Synonym?', options: ['A type of join', 'An alias for a database object', 'A backup table', 'A security key'] },
+        { q: 'q30', text: 'Which function converts a string to uppercase?', options: ['UPPER()', 'CAPS()', 'TO_UPPER()', 'MAX()'] },
+        { q: 'q31', text: 'Which command adds a descriptive comment to a table?', options: ['NOTE', 'COMMENT', 'DESCRIBE', 'LABEL'] },
+        { q: 'q32', text: 'Which operator combines results but removes duplicates?', options: ['UNION', 'UNION ALL', 'INTERSECT', 'MINUS'] },
+        { q: 'q33', text: 'Which data type stores fractional numbers like 10.25?', options: ['NUMBER(4)', 'NUMBER(4,2)', 'INTEGER', 'LONG'] },
+        { q: 'q34', text: 'Which cursor attribute returns the number of rows fetched so far?', options: ['%FOUND', '%NOTFOUND', '%ROWCOUNT', '%ISOPEN'] },
+        { q: 'q35', text: 'To find the 2nd highest salary, we should use:', options: ['RANK()', 'DENSE_RANK()', 'MAX()', 'SUM()'] },
+        { q: 'q36', text: 'Which join is used to relate a table to itself?', options: ['SELF JOIN', 'CROSS JOIN', 'AUTO JOIN', 'INNER JOIN'] },
+        { q: 'q37', text: 'What is the size limit for the LONG data type?', options: ['4000 bytes', '2 GB', '4 GB', 'Unlimited'] },
+        { q: 'q38', text: 'Which operator is used to concatenate two strings?', options: ['+', '||', 'CONCAT', '&&'] },
+        { q: 'q39', text: 'Which command is used to add a new column to an existing table?', options: ['INSERT INTO', 'ALTER TABLE ... ADD', 'UPDATE TABLE', 'CREATE COLUMN'] },
+        { q: 'q40', text: 'Which operator is used to check for NULL values?', options: ['= NULL', 'IS NULL', '!= NULL', 'NOT NULL'] },
+        { q: 'q41', text: 'Which constraint checks a condition (e.g., Age > 18)?', options: ['PRIMARY KEY', 'UNIQUE', 'CHECK', 'FOREIGN KEY'] },
+        { q: 'q42', text: 'Which object speeds up data retrieval?', options: ['View', 'Sequence', 'Index', 'Synonym'] },
+        { q: 'q43', text: 'Which join returns all rows from both tables even if they don\'t match?', options: ['INNER JOIN', 'FULL OUTER JOIN', 'LEFT JOIN', 'CROSS JOIN'] },
+        { q: 'q44', text: 'The RAW data type is typically used for:', options: ['Text', 'Dates', 'Binary data (small)', 'Numbers'] },
+        { q: 'q45', text: 'Which analytical function gives unique sequential numbers to rows?', options: ['ROW_NUMBER()', 'RANK()', 'DENSE_RANK()', 'COUNT()'] },
+        { q: 'q46', text: 'What is the purpose of a SAVEPOINT?', options: ['Save data permanently', 'Set a point to rollback to', 'Lock the table', 'Create a backup'] },
+        { q: 'q47', text: 'Which operator returns rows in the first query but not the second?', options: ['UNION', 'INTERSECT', 'MINUS', 'EXISTS'] },
+        { q: 'q48', text: 'How do you view the structure of a table in Oracle?', options: ['VIEW table_name', 'DESC table_name', 'SHOW table_name', 'STRUCT table_name'] },
+        { q: 'q49', text: 'What does the COMMIT command do?', options: ['Deletes data', 'Saves changes permanently', 'Cancels changes', 'Grants access'] },
+        { q: 'q50', text: 'Which component is used to create or modify table structures?', options: ['DML', 'DDL', 'DCL', 'TCL'] }
+      ];
+      const sqlQuestions = [
+        { id: 's1', text: 'Create a table "Employees" with Emp_ID (Primary Key), Email (Unique, Not Null), and Hire_Date (Default Current Date).' },
+        { id: 's2', text: 'Modify the "Salary" column of an existing table to handle 10 digits with 2 decimal places and a default of 25000.' },
+        { id: 's3', text: 'Write a query to find all employees whose names start with "A", are exactly 5 characters long, and end with "m".' },
+        { id: 's4', text: 'Find the names and salaries of employees who earn more than the average salary of the "Sales" department.' },
+        { id: 's5', text: 'Use a set operator to list all "Permanent_Staff" IDs that are NOT present in the "Resigned_Staff" table.' },
+        { id: 's6', text: 'Write a query to give a 15% salary hike to all employees working in the "IT" department using arithmetic operators.' },
+        { id: 's7', text: 'Perform a Self-Join to list each Employee Name along with their Manager\'s Name from a single "Emp" table.' },
+        { id: 's8', text: 'Write a query to find the employee with the 4th highest salary using DENSE_RANK().' },
+        { id: 's9', text: 'Create a view called "High_Performers" that shows only employees with a rating > 9 and salary > 80000.' },
+        { id: 's10', text: 'Write the DCL commands to give a user "intern_user" the ability to SELECT data but REVOKE their ability to DELETE.' },
+        { id: 's11', text: 'Create a sequence that starts at 5000, increments by 5, and never exceeds 9999.' },
+        { id: 's12', text: 'Use a CTE to list the top 3 departments based on their total salary expenditure.' },
+        { id: 's13', text: 'Write a query to display employee names formatted as: "Staff ID: [ID] | Name: [Name]" using concatenation.' },
+        { id: 's14', text: 'Demonstrate TCL logic: Insert a row, create a savepoint "A", delete a row, and then rollback to savepoint "A".' },
+        { id: 's15', text: 'Use ROWNUM to fetch only the first 10 records from a table sorted by name.' },
+        { id: 's16', text: 'Create a Private Synonym "Emp_Ref" for the table "HR_Global_Master_Database_Table".' },
+        { id: 's17', text: 'Add a CHECK constraint to an existing "Orders" table to ensure the "Quantity" is always greater than zero.' },
+        { id: 's18', text: 'Select Department ID and the Count of employees for each department, but only for departments with more than 5 staff.' },
+        { id: 's19', text: 'Write a query to find all records where the "Commission" column is NULL.' },
+        { id: 's20', text: 'Use a LEFT JOIN to show all Departments and the names of employees in them (including departments with zero employees).' }
+      ];
+
+      let html = `
+        <div class="exam-container">
+          <div class="exam-header">
+            <h3 class="exam-title">SQL Assessment</h3>
+            <div class="exam-timer">
+              <div class="timer-label">Time Remaining</div>
+              <div class="timer-value" id="examTimer">40:00</div>
+            </div>
+          </div>
+
+          <div class="exam-info">
+            <ul>
+              <li><span style="color: #6366f1; font-weight: bold;">⏱</span> <b>Total Time:</b> 40 Minutes</li>
+<li><span style="color: #6366f1; font-weight: bold;">📝</span> <b>Section A:</b> 50 MCQs (1 mark each)</li>
+<li><span style="color: #6366f1; font-weight: bold;">💻</span> <b>Section B:</b> 20 SQL Queries (2.5 marks each)</li>
+              <li><span style="color: #dc2626; font-weight: bold;">🚫</span> <b>Strict Policy:</b> Auto-submit on tab switch or minimizing.</li>
+            </ul>
+          </div>
+
+          <h4 style="font-weight: 700; margin-top: 2rem;">Section A: Multiple Choice Questions (50 Marks)</h4>
+          <hr style="margin-bottom: 1.5rem;">
+
+          <div>
+      `;
+
+      mcqQuestions.forEach((item, idx) => {
+        html += `
+          <div class="question-card">
+            <p class="question-text">Q${idx + 1}. ${item.text}</p>
+            <div>
+        `;
+        item.options.forEach((opt, i) => {
+          const letter = String.fromCharCode(65 + i);
+          html += `
+            <label class="option-label">
+              <input type="radio" name="${item.q}" value="${letter}" onchange="examAnswers['${item.q}'] = '${letter}'">
+              <span>${opt}</span>
+            </label>
+          `;
+        });
+        html += `</div></div>`;
+      });
+
+      html += `
+          </div>
+<h4 style="font-weight: 700; margin-top: 3rem;">Section B: SQL Query Writing (50 Marks)</h4>
+          <hr style="margin-bottom: 1.5rem;">
+          <div>
+      `;
+
+      sqlQuestions.forEach((item, idx) => {
+        html += `
+          <div class="sql-question-card">
+<p class="question-text">Q${51 + idx}. ${item.text}</p>
+            <textarea class="sql-textarea" rows="4" onchange="examAnswers['${item.id}'] = this.value" required></textarea>
+            </div>
+        `;
+      });
+
+      html += `
+          </div>
+          <div style="text-align: center; margin-top: 2rem;">
+<button id="submitBtn" class="btn-submit" onclick="submitExam()">
+  Submit Exam
+</button>
+            </div>
+        </div>
+      `;
+
+      document.getElementById('examSection').innerHTML = html;
+      document.getElementById('examSection').classList.remove('d-none');
+      document.querySelector('main').style.display = 'none';
+      document.querySelector('nav').style.display = 'none';
+      document.querySelector('.motivation-bar').style.display = 'none';
+      document.querySelector('.notification-bar').style.display = 'none';
+    }
+
+  async function submitExam() {
+  if (!studentExam) return;
+
+  const btn = document.getElementById("submitBtn");
+
+  // 🔔’ Prevent multiple clicks
+  if (btn.disabled) return;
+
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span>Submitting...';
+
+  const payload = {
+    action: "secureExamSubmit",
+    name: studentExam.name,
+    mobile: studentExam.mobile,
+    email: studentExam.email,
+    answers: {}
+  };
+
+  for (let i = 1; i <= 50; i++) {
+    payload.answers[`q${i}`] = examAnswers[`q${i}`] || null;
+  }
+
+  for (let i = 1; i <= 20; i++) {
+    payload[`s${i}`] = examAnswers[`s${i}`] || '';
+  }
+
+  try {
+    const response = await fetch(API, {
+      method: "POST",
+      body: JSON.stringify(payload)
+    });
+
+    const result = await response.json();
+
+    if (result.status === "success") {
+      clearInterval(timerInterval);
+      btn.innerHTML = "âœ… Submitted";
+      alert("âœ… Exam submitted successfully! Check your email for the scorecard.");
+      location.reload();
+    } else {
+      throw new Error(result.message || "Server rejected submission");
+    }
+  } catch (err) {
+    console.error("Submission error:", err);
+
+    // âŒ Re-enable button if failed
+    btn.disabled = false;
+    btn.innerHTML = "Submit Exam";
+
+    alert("âŒ Error: " + err.message);
+  }
+}
+
+
+    function enterFullscreen() {
+      const elem = document.documentElement;
+      if (elem.requestFullscreen) elem.requestFullscreen();
+    }
+
+    function handleKeyDown(e) {
+      if (e.key === "F12" || (e.ctrlKey && e.shiftKey && e.key === 'I') || (e.ctrlKey && e.key === 'U')) {
+        e.preventDefault();
+      }
+      if (e.shiftKey && e.altKey && e.key.toLowerCase() === 'a') {
+        e.preventDefault();
+        openAdminDashboard();
+      }
+      if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'a') {
+        e.preventDefault();
+        const select = document.getElementById('batchSelect');
+        let addNewOption = select.querySelector('option[value="ADD_NEW"]');
+        if (addNewOption) {
+            addNewOption.remove();
+            alert("Admin mode disabled: 'Add New Batch' option hidden.");
+            if (select.value === 'ADD_NEW') select.selectedIndex = 0;
+        } else {
+            addNewOption = document.createElement('option');
+            addNewOption.value = 'ADD_NEW';
+            addNewOption.className = 'text-primary fw-bold';
+            addNewOption.textContent = '+ Add New Batch...';
+            select.appendChild(addNewOption);
+            alert("Admin mode enabled: 'Add New Batch' option is now available in the dropdown.");
+        }
+      }
+    }
+
+    function handleVisibilityChange() {
+      if (examStarted && document.hidden) {
+        alert("âš  Tab switch detected. Auto submitting.");
+        submitExam();
+      }
+    }
+
+    async function openAdminDashboard() {
+      const pwd = prompt('Enter admin password');
+      if (!pwd) return;
+
+      try {
+        const res = await fetch(API, {
+          method: 'POST',
+          body: JSON.stringify({ action: 'fetchAdmin', password: pwd })
+        });
+        const data = await res.json();
+
+        if (data.status !== 'success') {
+          alert('âŒ Invalid password');
+          return;
+        }
+
+        let html = '<table class="table table-bordered"><tr class="table-light"><th>Name</th><th>Mobile</th><th>File</th></tr>';
+        data.rows.forEach(r => {
+          html += `<tr><td>${r[1]}</td><td>${r[2]}</td><td><a href="${r[4]}" target="_blank" class="text-primary">Download</a></td></tr>`;
+        });
+        html += '</table>';
+
+        const modal = document.createElement('div');
+        modal.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:9999;';
+        modal.innerHTML = `
+          <div style="background:white;border-radius:1rem;padding:2rem;max-width:900px;width:90%;max-height:80vh;overflow:auto;">
+            <h5 style="margin-bottom:1.5rem;font-weight:700;">Admin Dashboard</h5>
+            ${html}
+            <button onclick="this.closest('[style*=fixed]').remove()" class="btn btn-secondary mt-3">Close</button>
+          </div>
+        `;
+        document.body.appendChild(modal);
+      } catch (err) {
+        console.error(err);
+        alert('Admin fetch failed');
+      }
+    }
+  </script>
+
+</body>
+</html>

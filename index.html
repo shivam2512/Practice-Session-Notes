@@ -573,13 +573,16 @@
     <div class="text-center mb-4">
       <label class="fw-bold fs-5 me-3">Select Batch:</label>
       <select id="batchSelect" class="batch-select">
+        <option value="OCT_2026">Batch - Oct 2026</option>
+        <option value="SEP_2026" selected>Batch — Sep 2026</option>
+        <option value="JUL_2026">Batch — Jul 2026</option>
+        <option value="JUN_2026">Batch - Jun 2026</option>
         <option value="MAY_2026">Batch — May 2026</option>
         <option value="APR_2026">Batch — Apr 2026</option>
-        <option value="MAR_2026" selected>Batch — Mar 2026</option>
+        <option value="MAR_2026">Batch — Mar 2026</option>
         <option value="FEB_19_2026">Batch — Feb 2026</option>
         <option value="JAN_22_2026">Batch — Jan 2026</option>
         <option value="DEC_2025">Batch — Dec 2025</option>
-              <option value="JUN_2026">Batch - Jun 2026</option>
       </select>
     </div>
 
@@ -647,14 +650,14 @@
     // but only for the specified subject and only within the selected batch's own date window.
     //
     // Confirmed schedule:
-    //   DEC_2025    : Both SQL + Linux (Nov 19 — Jan 21) âœ”ï¸
-    //   JAN_22_2026 : Both SQL + Linux (Jan 22 — Mar 18) âœ”ï¸
-    //   FEB_19_2026 : Linux with JAN batch (Feb 22—Mar 18) + SQL own (Mar 19—Apr 21) âœ”ï¸
-    //   MAR_2026    : SQL with FEB batch  (Mar 19—Apr 21) + Linux own (Apr 22—May 22) âœ”ï¸
-    //   APR_2026    : Linux with MAR batch (Apr 22—May 22) âœ”ï¸ DONE
-    //                 SQL with MAY batch  (May 25—Jun 25) 🔔„ IN PROGRESS
-    //   MAY_2026    : SQL with APR batch  (May 25—Jun 25) 🔔„ IN PROGRESS
-    //                 Linux with JUN batch (Jun 26—Jul 25) â³ upcoming
+    //   DEC_2025    : Both SQL + Linux (Nov 19 — Jan 21) ✔️
+    //   JAN_22_2026 : Both SQL + Linux (Jan 22 — Mar 18) ✔️
+    //   FEB_19_2026 : Linux with JAN batch (Feb 22—Mar 18) + SQL own (Mar 19—Apr 21) ✔️
+    //   MAR_2026    : SQL with FEB batch  (Mar 19—Apr 21) + Linux own (Apr 22—May 22) ✔️
+    //   APR_2026    : Linux with MAR batch (Apr 22—May 22) ✔️ DONE
+    //                 SQL with MAY batch  (May 25—Jun 25) ⏳ IN PROGRESS
+    //   MAY_2026    : SQL with APR batch  (May 25—Jun 25) ⏳ IN PROGRESS
+    //                 Linux with JUN batch (Jun 26—Jul 25) ⏳ upcoming
     //
     // Bidirectional SQL sharing for APR+MAY: notes can be tagged either batch;
     // both batches will see all shared SQL sessions (May 25 onwards).
@@ -677,6 +680,18 @@
 
     // Initialize
     document.addEventListener('DOMContentLoaded', () => {
+      // Auto select current month batch if available
+      const now = new Date();
+      const currentMonthKey = Object.keys(monthMap)[now.getMonth()];
+      const currentYearStr = String(now.getFullYear());
+      const batchSelect = document.getElementById('batchSelect');
+      const matchingOpt = Array.from(batchSelect.options).find(opt => 
+        opt.value.toUpperCase().includes(currentMonthKey) && opt.value.includes(currentYearStr)
+      );
+      if (matchingOpt) {
+        batchSelect.value = matchingOpt.value;
+      }
+
       loadNotes();
       const currentUser = initCurrentUser();
       if (currentUser) {
@@ -708,10 +723,10 @@
             option.value = newBatchValue;
             option.textContent = newBatchName;
             
-            // Insert before the ADD_NEW option
-            const addNewOpt = e.target.querySelector('option[value="ADD_NEW"]');
-            if (addNewOpt) {
-              e.target.insertBefore(option, addNewOpt);
+            // Insert at top to maintain descending order
+            const firstOpt = e.target.firstElementChild;
+            if (firstOpt) {
+              e.target.insertBefore(option, firstOpt);
             } else {
               e.target.appendChild(option);
             }
@@ -764,7 +779,7 @@
       const latestDate = sorted[0].date;
       const latestDayNotes = allNotes.filter(n => n.date === latestDate);
       const latestNote = latestDayNotes.find(n => n.session === 'Evening') || latestDayNotes[0];
-      document.getElementById('latestNotification').textContent = `🔔” Latest notes available: ${latestNote.date} (${latestNote.session} session, uploaded at ${latestNote.time})`;
+      document.getElementById('latestNotification').textContent = `📢 Latest notes available: ${latestNote.date} (${latestNote.session} session, uploaded at ${latestNote.time})`;
     }
 
     function renderCalendar() {
@@ -1056,7 +1071,7 @@
         
         if (examDuration <= 0) {
           clearInterval(timerInterval);
-          alert('â° Time Up!');
+          alert('⏳ Time Up!');
           submitExam();
         }
       }, 1000);
@@ -1229,7 +1244,7 @@
 
   const btn = document.getElementById("submitBtn");
 
-  // 🔔’ Prevent multiple clicks
+  // ⚠️ Prevent multiple clicks
   if (btn.disabled) return;
 
   btn.disabled = true;
@@ -1261,8 +1276,8 @@
 
     if (result.status === "success") {
       clearInterval(timerInterval);
-      btn.innerHTML = "âœ… Submitted";
-      alert("âœ… Exam submitted successfully! Check your email for the scorecard.");
+      btn.innerHTML = "✅ Submitted";
+      alert("✅ Exam submitted successfully! Check your email for the scorecard.");
       location.reload();
     } else {
       throw new Error(result.message || "Server rejected submission");
@@ -1270,11 +1285,11 @@
   } catch (err) {
     console.error("Submission error:", err);
 
-    // âŒ Re-enable button if failed
+    // ❌ Re-enable button if failed
     btn.disabled = false;
     btn.innerHTML = "Submit Exam";
 
-    alert("âŒ Error: " + err.message);
+    alert("❌ Error: " + err.message);
   }
 }
 
@@ -1313,7 +1328,7 @@
 
     function handleVisibilityChange() {
       if (examStarted && document.hidden) {
-        alert("âš  Tab switch detected. Auto submitting.");
+        alert("⚠️ Tab switch detected. Auto submitting.");
         submitExam();
       }
     }
@@ -1330,7 +1345,7 @@
         const data = await res.json();
 
         if (data.status !== 'success') {
-          alert('âŒ Invalid password');
+          alert('❌ Invalid password');
           return;
         }
 
