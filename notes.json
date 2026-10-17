@@ -1,5 +1,23 @@
 [
     {
+        "date": "17-Oct-2026",
+        "session": "Afternoon",
+        "title": "Practice Session",
+        "subject": "SQL",
+        "body": "Doubts discussion session",
+        "time": "02:10 PM",
+        "batch": "OCT_2026"
+    },
+    {
+        "date": "17-Oct-2026",
+        "session": "Afternoon",
+        "title": "Practice Session",
+        "subject": "SQL",
+        "body": "Doubts discussion session",
+        "time": "02:10 PM",
+        "batch": "SEP_2026"
+    },
+    {
         "date": "16-Oct-2026",
         "session": "Evening",
         "title": "Practice Session",
