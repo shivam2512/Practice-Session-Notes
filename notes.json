@@ -1,5 +1,23 @@
 [
     {
+        "date": "28-Oct-2026",
+        "session": "Afternoon",
+        "title": "Practice Session",
+        "subject": "SQL",
+        "body": "--PLSQL:\n\n--1. Index: It is a database shortcut that helps find data faster.\n\nJust Like:\nBook Index: Quickly find the page number for specific topic/content.\nSQL Index: Quickly find required row.\n\nTypes:\n1. Primary index: Created automatically when you define PRIMARY KEY. No duplicate values allowed.\n\nselect * from emp678 where emp_id=108;\nselect * from emp678 where phone_no=140;\n\nReal time: Searching employee using phone_no as its primary key. (result will be\ndisplayed faster)\n\n2. Unique index: Does not allow duplicate values.\nUsed for columns like PAN, Email, Aadhar, Bank Account No.\n\n3. Single column index: It is a index on single column of the table.\n\nselect * from emp678 where emp_id=122;\n\n--creating index on emp_id column\ncreate index indx_empid on emp678(emp_id);\n\nselect * from emp678 where emp_id=110;\n\nselect * from emp where emp_id between 100 and 200 and city = 'MUMBAI';\n\ncreate index idx_emp_id on emp(emp_id, city);\n\n--to drop any index:\ndrop index INDX_EMPID;\n\n--to check indexes applied on table:\n\nselect * from user_indexes where table_name='EMP678';\n\n2. VIEWS: A view is a virtual table created from a SQL Query, It does not store data it just shows data from base/original table.\n\nselect * from emp678;\n--creating view:\ncreate or replace view emp_view as \nselect * from emp678;\n\n--Use view:\nselect * from emp_view;\n\n3. SEQUENCES: A sequence is a DB object that generates unique numbers automatically\nUsed: Invoice number, orders_id, emp_ids\n\neg: create sequence order_id_seq start with 1 INCREMENT BY 1;\n\nUse: insert into orders(order_id, amount) values (order_id_seq.nextval, 500);\n\n\n\n",
+        "time": "02:42 PM",
+        "batch": "OCT_2026"
+    },
+    {
+        "date": "28-Oct-2026",
+        "session": "Afternoon",
+        "title": "Practice Session",
+        "subject": "SQL",
+        "body": "--PLSQL:\n\n--1. Index: It is a database shortcut that helps find data faster.\n\nJust Like:\nBook Index: Quickly find the page number for specific topic/content.\nSQL Index: Quickly find required row.\n\nTypes:\n1. Primary index: Created automatically when you define PRIMARY KEY. No duplicate values allowed.\n\nselect * from emp678 where emp_id=108;\nselect * from emp678 where phone_no=140;\n\nReal time: Searching employee using phone_no as its primary key. (result will be\ndisplayed faster)\n\n2. Unique index: Does not allow duplicate values.\nUsed for columns like PAN, Email, Aadhar, Bank Account No.\n\n3. Single column index: It is a index on single column of the table.\n\nselect * from emp678 where emp_id=122;\n\n--creating index on emp_id column\ncreate index indx_empid on emp678(emp_id);\n\nselect * from emp678 where emp_id=110;\n\nselect * from emp where emp_id between 100 and 200 and city = 'MUMBAI';\n\ncreate index idx_emp_id on emp(emp_id, city);\n\n--to drop any index:\ndrop index INDX_EMPID;\n\n--to check indexes applied on table:\n\nselect * from user_indexes where table_name='EMP678';\n\n2. VIEWS: A view is a virtual table created from a SQL Query, It does not store data it just shows data from base/original table.\n\nselect * from emp678;\n--creating view:\ncreate or replace view emp_view as \nselect * from emp678;\n\n--Use view:\nselect * from emp_view;\n\n3. SEQUENCES: A sequence is a DB object that generates unique numbers automatically\nUsed: Invoice number, orders_id, emp_ids\n\neg: create sequence order_id_seq start with 1 INCREMENT BY 1;\n\nUse: insert into orders(order_id, amount) values (order_id_seq.nextval, 500);\n\n\n\n",
+        "time": "02:42 PM",
+        "batch": "SEP_2026"
+    },
+    {
         "date": "27-Oct-2026",
         "session": "Evening",
         "title": "Practice Session",
