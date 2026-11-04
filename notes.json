@@ -1,5 +1,23 @@
 [
     {
+        "date": "04-Nov-2026",
+        "session": "Afternoon",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "### COMMANDS ###\n\n# pwd : This command will show you – you are in which directory\n# cd : cd command use to change directory or go to any particular directory.\n\n# cal : It will print current month calendar\n# cal 1990 It will print 1990 year's calendar\nCal command is having more attributes or multiple options output which you can try.\nGo with below command and find the multiple options of cal command.\n\n# man : man is help command in UNIX. Any commands help/info require then use it.\ne.g. : # man date\n# man cal\n\n# date : date will print today's date and time.\n# date +%m : Month Number will print (1=jan, 2=feb, 3=mar.....)\n# date +%j : Month Name will show (Jan, Feb, Mar, Apr......)\n# date +%m%h : Month Name and Number both will print\n# date +%d : Todays date will print (1, 2, 3, 4,...... 30, 31)\n# date +%y : Current year will print (2016, 2017....)\n# date +%H%M%S : Hours, Minutes and Seconds\n# date +%D : Date will print e.g. 7/24/2016\n# date +%T : Time will print e.g. 10:46:32\n\nNOTE: Options can vary based on the linux version, for more details check options using\nman date\n\n# echo : It will print Massage on terminal\n# echo Ramesh and Suresh are friends\nAbove bold massage will print on terminal\n\n# echo $HOME : will show which your home directory is.\n# echo $SHELL : will show which shell you are using (bash, bourn, korn or C)\n# echo $HOME : to print logged user's home location path\n\n# bc : bc command use for calculator.\nPress ctrl + d Key to exit from calculator.\n\n# clear: to clear the content of the terminal.\n\n# exit : to exit from current session. (ctrl + d) short cut key for exit command.\n\n# history : It will record your command history only.\n",
+        "time": "02:41 PM",
+        "batch": "NOV_2026"
+    },
+    {
+        "date": "04-Nov-2026",
+        "session": "Afternoon",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "### COMMANDS ###\n\n# pwd : This command will show you – you are in which directory\n# cd : cd command use to change directory or go to any particular directory.\n\n# cal : It will print current month calendar\n# cal 1990 It will print 1990 year's calendar\nCal command is having more attributes or multiple options output which you can try.\nGo with below command and find the multiple options of cal command.\n\n# man : man is help command in UNIX. Any commands help/info require then use it.\ne.g. : # man date\n# man cal\n\n# date : date will print today's date and time.\n# date +%m : Month Number will print (1=jan, 2=feb, 3=mar.....)\n# date +%j : Month Name will show (Jan, Feb, Mar, Apr......)\n# date +%m%h : Month Name and Number both will print\n# date +%d : Todays date will print (1, 2, 3, 4,...... 30, 31)\n# date +%y : Current year will print (2016, 2017....)\n# date +%H%M%S : Hours, Minutes and Seconds\n# date +%D : Date will print e.g. 7/24/2016\n# date +%T : Time will print e.g. 10:46:32\n\nNOTE: Options can vary based on the linux version, for more details check options using\nman date\n\n# echo : It will print Massage on terminal\n# echo Ramesh and Suresh are friends\nAbove bold massage will print on terminal\n\n# echo $HOME : will show which your home directory is.\n# echo $SHELL : will show which shell you are using (bash, bourn, korn or C)\n# echo $HOME : to print logged user's home location path\n\n# bc : bc command use for calculator.\nPress ctrl + d Key to exit from calculator.\n\n# clear: to clear the content of the terminal.\n\n# exit : to exit from current session. (ctrl + d) short cut key for exit command.\n\n# history : It will record your command history only.\n\n",
+        "time": "02:41 PM",
+        "batch": "OCT_2026"
+    },
+    {
         "date": "03-Nov-2026",
         "session": "Evening",
         "title": "Practice Session",
