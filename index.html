@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <title>Practice Session Notes - Beautiful Edition</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  
+
   <style>
     * {
       margin: 0;
@@ -92,8 +93,15 @@
     }
 
     @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.3;
+      }
     }
 
     /* Motivation Bar */
@@ -116,14 +124,27 @@
     }
 
     @keyframes gradientMove {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
     }
 
     @keyframes scrollText {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-100%); }
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-100%);
+      }
     }
 
     /* Notification */
@@ -498,6 +519,7 @@
         opacity: 0;
         transform: translateX(-50%) translateY(-20px);
       }
+
       to {
         opacity: 1;
         transform: translateX(-50%) translateY(0);
@@ -521,24 +543,25 @@
     }
 
     .spinner {
-  width: 20px;
-  height: 20px;
-  border: 3px solid rgba(255,255,255,0.3);
-  border-top: 3px solid white;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  display: inline-block;
-  vertical-align: middle;
-  margin-right: 8px;
-}
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-top: 3px solid white;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
 
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
   </style>
 </head>
+
 <body>
 
   <!-- Navbar -->
@@ -574,10 +597,10 @@
       <label class="fw-bold fs-5 me-3">Select Batch:</label>
       <select id="batchSelect" class="batch-select">
         <option value="NOV_2026">Batch — Nov 2026</option>
-        <option value="OCT_2026">Batch - Oct 2026</option>
+        <option value="OCT_2026">Batch — Oct 2026</option>
         <option value="SEP_2026" selected>Batch — Sep 2026</option>
         <option value="JUL_2026">Batch — Jul 2026</option>
-        <option value="JUN_2026">Batch - Jun 2026</option>
+        <option value="JUN_2026">Batch — Jun 2026</option>
         <option value="MAY_2026">Batch — May 2026</option>
         <option value="APR_2026">Batch — Apr 2026</option>
         <option value="MAR_2026">Batch — Mar 2026</option>
@@ -630,7 +653,8 @@
   </main>
 
   <!-- Exam Section -->
-  <div id="examSection" class="d-none" style="min-height: 100vh; background: linear-gradient(135deg, #faf5ff, #f5f3ff, #fce7f3); padding: 2rem;">
+  <div id="examSection" class="d-none"
+    style="min-height: 100vh; background: linear-gradient(135deg, #faf5ff, #f5f3ff, #fce7f3); padding: 2rem;">
   </div>
 
   <script>
@@ -638,12 +662,12 @@
     const CURRENT_BATCH = 'MAR_2026';
 
     const BATCH_RANGES = {
-      'DEC_2025':    { start: '19-NOV-2025', end: '21-JAN-2026' },
+      'DEC_2025': { start: '19-NOV-2025', end: '21-JAN-2026' },
       'JAN_22_2026': { start: '22-JAN-2026', end: '18-MAR-2026' },
       'FEB_19_2026': { start: '22-FEB-2026', end: '21-APR-2026' },
-      'MAR_2026':    { start: '19-MAR-2026', end: '22-MAY-2026' },
-      'APR_2026':    { start: '22-APR-2026', end: '25-JUN-2026' },
-      'MAY_2026':    { start: '25-MAY-2026', end: '25-JUL-2026' }
+      'MAR_2026': { start: '19-MAR-2026', end: '22-MAY-2026' },
+      'APR_2026': { start: '22-APR-2026', end: '25-JUN-2026' },
+      'MAY_2026': { start: '25-MAY-2026', end: '25-JUL-2026' }
     };
 
     // Cross-batch sharing rules (subject-specific):
@@ -666,7 +690,7 @@
       if (!note || !selectedBatch) return false;
       return note.batch === selectedBatch;
     }
-    
+
     let allNotes = [];
     let currentMonthIndex = new Date().getMonth();
     let currentYear = new Date().getFullYear();
@@ -677,7 +701,7 @@
     let examAnswers = {};
 
     const monthMap = { JAN: "01", FEB: "02", MAR: "03", APR: "04", MAY: "05", JUN: "06", JUL: "07", AUG: "08", SEP: "09", OCT: "10", NOV: "11", DEC: "12" };
-    const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
     // Initialize
     document.addEventListener('DOMContentLoaded', () => {
@@ -686,7 +710,7 @@
       const currentMonthKey = Object.keys(monthMap)[now.getMonth()];
       const currentYearStr = String(now.getFullYear());
       const batchSelect = document.getElementById('batchSelect');
-      const matchingOpt = Array.from(batchSelect.options).find(opt => 
+      const matchingOpt = Array.from(batchSelect.options).find(opt =>
         opt.value.toUpperCase().includes(currentMonthKey) && opt.value.includes(currentYearStr)
       );
       if (matchingOpt) {
@@ -719,11 +743,11 @@
             if (newBatchValue.startsWith('BATCH_')) {
               newBatchValue = newBatchValue.replace('BATCH_', '');
             }
-            
+
             const option = document.createElement('option');
             option.value = newBatchValue;
             option.textContent = newBatchName;
-            
+
             // Insert at top to maintain descending order
             const firstOpt = e.target.firstElementChild;
             if (firstOpt) {
@@ -731,7 +755,7 @@
             } else {
               e.target.appendChild(option);
             }
-            
+
             e.target.value = newBatchValue;
             previousBatch = newBatchValue;
           } else {
@@ -754,7 +778,7 @@
     }
 
     function toJSDate(str) {
-      const {day, monthNum, year} = parseNoteDate(str);
+      const { day, monthNum, year } = parseNoteDate(str);
       return new Date(Number(year), monthNum - 1, Number(day));
     }
 
@@ -765,7 +789,7 @@
         allNotes = notes;
         renderCalendar();
         updateLatestNotification();
-      } catch(err) {
+      } catch (err) {
         console.error('Error loading notes:', err);
         document.getElementById('latestNotification').textContent = 'Failed to load notes.';
       }
@@ -776,7 +800,7 @@
         document.getElementById('latestNotification').textContent = 'No notes available yet.';
         return;
       }
-      const sorted = [...allNotes].sort((a,b) => toJSDate(b.date) - toJSDate(a.date));
+      const sorted = [...allNotes].sort((a, b) => toJSDate(b.date) - toJSDate(a.date));
       const latestDate = sorted[0].date;
       const latestDayNotes = allNotes.filter(n => n.date === latestDate);
       const latestNote = latestDayNotes.find(n => n.session === 'Evening') || latestDayNotes[0];
@@ -786,7 +810,7 @@
     function renderCalendar() {
       const selectedBatch = document.getElementById('batchSelect').value;
       document.getElementById('monthLabel').textContent = `${monthNames[currentMonthIndex]} ${currentYear}`;
-      
+
       const daysInMonth = new Date(currentYear, currentMonthIndex + 1, 0).getDate();
       let firstDay = new Date(currentYear, currentMonthIndex, 1).getDay();
       firstDay = firstDay === 0 ? 7 : firstDay;
@@ -820,9 +844,9 @@
             .map(n => n.subject)
         )];
 
-        const isToday = today.getMonth() === currentMonthIndex && 
-                        today.getFullYear() === currentYear && 
-                        today.getDate() === d;
+        const isToday = today.getMonth() === currentMonthIndex &&
+          today.getFullYear() === currentYear &&
+          today.getDate() === d;
 
         let classes = 'calendar-day';
         if (hasNote) classes += ' has-notes';
@@ -971,8 +995,8 @@
     function showNotification(message, type = 'success') {
       const notif = document.createElement('div');
       notif.className = 'floating-notification';
-      notif.style.background = type === 'success' 
-        ? 'linear-gradient(135deg, #10b981, #059669)' 
+      notif.style.background = type === 'success'
+        ? 'linear-gradient(135deg, #10b981, #059669)'
         : 'linear-gradient(135deg, #ef4444, #dc2626)';
       notif.textContent = message;
       document.body.appendChild(notif);
@@ -1069,7 +1093,7 @@
       timerInterval = setInterval(() => {
         examDuration--;
         updateTimerDisplay();
-        
+
         if (examDuration <= 0) {
           clearInterval(timerInterval);
           alert('⏳ Time Up!');
@@ -1089,7 +1113,7 @@
 
     function renderExamSection() {
       const mcqQuestions = [
-       { q: 'q1', text: 'Which SQL component is used to manage access permissions like GRANT and REVOKE?', options: ['DDL', 'DML', 'DCL', 'TCL'] },
+        { q: 'q1', text: 'Which SQL component is used to manage access permissions like GRANT and REVOKE?', options: ['DDL', 'DML', 'DCL', 'TCL'] },
         { q: 'q2', text: 'What is the maximum size of VARCHAR2 in Oracle?', options: ['2000 bytes', '4000 bytes', '2 GB', '4 GB'] },
         { q: 'q3', text: 'Which data type is best for storing a profile picture?', options: ['CLOB', 'BLOB', 'RAW', 'LONG'] },
         { q: 'q4', text: 'Which command is used to remove all rows and free up space permanently (cannot be rolled back)?', options: ['DELETE', 'DROP', 'TRUNCATE', 'REMOVE'] },
@@ -1240,59 +1264,59 @@
       document.querySelector('.notification-bar').style.display = 'none';
     }
 
-  async function submitExam() {
-  if (!studentExam) return;
+    async function submitExam() {
+      if (!studentExam) return;
 
-  const btn = document.getElementById("submitBtn");
+      const btn = document.getElementById("submitBtn");
 
-  // ⚠️ Prevent multiple clicks
-  if (btn.disabled) return;
+      // ⚠️ Prevent multiple clicks
+      if (btn.disabled) return;
 
-  btn.disabled = true;
-  btn.innerHTML = '<span class="spinner"></span>Submitting...';
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spinner"></span>Submitting...';
 
-  const payload = {
-    action: "secureExamSubmit",
-    name: studentExam.name,
-    mobile: studentExam.mobile,
-    email: studentExam.email,
-    answers: {}
-  };
+      const payload = {
+        action: "secureExamSubmit",
+        name: studentExam.name,
+        mobile: studentExam.mobile,
+        email: studentExam.email,
+        answers: {}
+      };
 
-  for (let i = 1; i <= 50; i++) {
-    payload.answers[`q${i}`] = examAnswers[`q${i}`] || null;
-  }
+      for (let i = 1; i <= 50; i++) {
+        payload.answers[`q${i}`] = examAnswers[`q${i}`] || null;
+      }
 
-  for (let i = 1; i <= 20; i++) {
-    payload[`s${i}`] = examAnswers[`s${i}`] || '';
-  }
+      for (let i = 1; i <= 20; i++) {
+        payload[`s${i}`] = examAnswers[`s${i}`] || '';
+      }
 
-  try {
-    const response = await fetch(API, {
-      method: "POST",
-      body: JSON.stringify(payload)
-    });
+      try {
+        const response = await fetch(API, {
+          method: "POST",
+          body: JSON.stringify(payload)
+        });
 
-    const result = await response.json();
+        const result = await response.json();
 
-    if (result.status === "success") {
-      clearInterval(timerInterval);
-      btn.innerHTML = "✅ Submitted";
-      alert("✅ Exam submitted successfully! Check your email for the scorecard.");
-      location.reload();
-    } else {
-      throw new Error(result.message || "Server rejected submission");
+        if (result.status === "success") {
+          clearInterval(timerInterval);
+          btn.innerHTML = "✅ Submitted";
+          alert("✅ Exam submitted successfully! Check your email for the scorecard.");
+          location.reload();
+        } else {
+          throw new Error(result.message || "Server rejected submission");
+        }
+      } catch (err) {
+        console.error("Submission error:", err);
+
+        // ❌ Re-enable button if failed
+        btn.disabled = false;
+        btn.innerHTML = "Submit Exam";
+
+        alert("❌ Error: " + err.message);
+      }
     }
-  } catch (err) {
-    console.error("Submission error:", err);
-
-    // ❌ Re-enable button if failed
-    btn.disabled = false;
-    btn.innerHTML = "Submit Exam";
-
-    alert("❌ Error: " + err.message);
-  }
-}
 
 
     function enterFullscreen() {
@@ -1313,16 +1337,16 @@
         const select = document.getElementById('batchSelect');
         let addNewOption = select.querySelector('option[value="ADD_NEW"]');
         if (addNewOption) {
-            addNewOption.remove();
-            alert("Admin mode disabled: 'Add New Batch' option hidden.");
-            if (select.value === 'ADD_NEW') select.selectedIndex = 0;
+          addNewOption.remove();
+          alert("Admin mode disabled: 'Add New Batch' option hidden.");
+          if (select.value === 'ADD_NEW') select.selectedIndex = 0;
         } else {
-            addNewOption = document.createElement('option');
-            addNewOption.value = 'ADD_NEW';
-            addNewOption.className = 'text-primary fw-bold';
-            addNewOption.textContent = '+ Add New Batch...';
-            select.appendChild(addNewOption);
-            alert("Admin mode enabled: 'Add New Batch' option is now available in the dropdown.");
+          addNewOption = document.createElement('option');
+          addNewOption.value = 'ADD_NEW';
+          addNewOption.className = 'text-primary fw-bold';
+          addNewOption.textContent = '+ Add New Batch...';
+          select.appendChild(addNewOption);
+          alert("Admin mode enabled: 'Add New Batch' option is now available in the dropdown.");
         }
       }
     }
@@ -1374,4 +1398,5 @@
   </script>
 
 </body>
+
 </html>
