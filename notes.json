@@ -1,6 +1,24 @@
 [
     {
         "date": "16-Nov-2026",
+        "session": "Evening",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "# How to create new user:\nsudo useradd -m username\n\n-m: it will create home directory for newly created user.\n\n# set password for new user:\nsudo passwd username\nNew Password:\nRetype password:\n\n# to delete any user\nsudo userdel username\n\n# to view list of manually created users:\nawk -F: '$3 >= 1000 {print $1}' /etc/passwd\n\n# chown : to change the owner of the file and directory (you can only make owner to the\nuser who is present in the system)\n\n# chown <New_owner_id/name> <File_name>\n# chown oracle abc.txt\n\n# to create new group:\nsudo groupadd grpname\n\n# to add user to group:\nsudo usermod -aG grpname username\n\n# to view list of groups:\ncat /etc/group\n\n# chgrp : to change the group name\n# chgrp <New_group_id/name> <File_name>\n# chgrp dba_support abc.txt\n\n# to change owner and grpname in single command:\nsudo chown ownername:grpname file/folname\n\n# to change owner and grp recursively for folder:\nsudo chown -R ownername:grpname folderName",
+        "time": "07:13 PM",
+        "batch": "NOV_2026"
+    },
+    {
+        "date": "16-Nov-2026",
+        "session": "Evening",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "# How to create new user:\nsudo useradd -m username\n\n-m: it will create home directory for newly created user.\n\n# set password for new user:\nsudo passwd username\nNew Password:\nRetype password:\n\n# to delete any user\nsudo userdel username\n\n# to view list of manually created users:\nawk -F: '$3 >= 1000 {print $1}' /etc/passwd\n\n# chown : to change the owner of the file and directory (you can only make owner to the\nuser who is present in the system)\n\n# chown <New_owner_id/name> <File_name>\n# chown oracle abc.txt\n\n# to create new group:\nsudo groupadd grpname\n\n# to add user to group:\nsudo usermod -aG grpname username\n\n# to view list of groups:\ncat /etc/group\n\n# chgrp : to change the group name\n# chgrp <New_group_id/name> <File_name>\n# chgrp dba_support abc.txt\n\n# to change owner and grpname in single command:\nsudo chown ownername:grpname file/folname\n\n# to change owner and grp recursively for folder:\nsudo chown -R ownername:grpname folderName",
+        "time": "07:13 PM",
+        "batch": "OCT_2026"
+    },
+    {
+        "date": "16-Nov-2026",
         "session": "Afternoon",
         "title": "Practice Session",
         "subject": "LINUX",
