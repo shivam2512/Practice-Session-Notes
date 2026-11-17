@@ -1,5 +1,23 @@
 [
     {
+        "date": "17-Nov-2026",
+        "session": "Afternoon",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "## scp command:\n\nHow to copy-paste file from one server to another server?\nWith the help of # scp command. We can copy – paste file from one server to another server.\n\nServer 1: abc.google.com /root/ramesh/abc.txt <file available in this server>\nServer 2: xyz.google.com\nServer3: pqr.google.com\n\nHow to transfer abc.txt file to pqr.google.com server. check below syntax.\n\nYou are logged in into abc.google.com :- use below syntax\n# scp /root/ramesh/abc.txt USERID@pqr.google.com:/root/suresh/\n# scp abc.txt userid@pqr.google.com:/root/suresh (If you are in /root/ramesh directory in\nabc.google.com)\n# scp userid@abc.google.com:/root/ramesh/abc.txt . (If you are in pqr.google.com server)\n( . “dot” means it will paste in directory in which you are present and executing the command)\n\n# ARCHIVAL METHODS:\n\nzip & unzip Commands:\n\n# zip : zip command use to zip multiple files under single output.\n# zip abc.zip 1.txt 2.txt 3.txt 4.txt 5.txt 6.txt\n# zip -r sample.zip fol1 fol2 fol3 file1.txt file2.txt\n\nAddition of new file or folder in existing zip file\n# zip -r abc.zip filename.txt folname\nOutput is abc.zip contains all input file i.e. 1.txt 2.txt 3.txt 4.txt etc\n\nPassword encrypting the zip files:\n# zip -e abc.zip file1.txt\n\nIf you need to delete any specific file or folder from zip:\n# zip -d demo.zip filename foldername/\n\n# unzip : unzip command use to unzip the files/folders\n\n# unzip abc.zip all files will unzipped\n\n# unzip abc.zip 1.txt 1.txt fol/ file will unzipped from abc.zip\n\nIf you need to unzip any file/folder to any other location\n# unzip demo.zip filename -d /home/shivam/Desktop\n",
+        "time": "02:43 PM",
+        "batch": "NOV_2026"
+    },
+    {
+        "date": "17-Nov-2026",
+        "session": "Afternoon",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "## scp command:\n\nHow to copy-paste file from one server to another server?\nWith the help of # scp command. We can copy – paste file from one server to another server.\n\nServer 1: abc.google.com /root/ramesh/abc.txt <file available in this server>\nServer 2: xyz.google.com\nServer3: pqr.google.com\n\nHow to transfer abc.txt file to pqr.google.com server. check below syntax.\n\nYou are logged in into abc.google.com :- use below syntax\n# scp /root/ramesh/abc.txt USERID@pqr.google.com:/root/suresh/\n# scp abc.txt userid@pqr.google.com:/root/suresh (If you are in /root/ramesh directory in\nabc.google.com)\n# scp userid@abc.google.com:/root/ramesh/abc.txt . (If you are in pqr.google.com server)\n( . “dot” means it will paste in directory in which you are present and executing the command)\n\n# ARCHIVAL METHODS:\n\nzip & unzip Commands:\n\n# zip : zip command use to zip multiple files under single output.\n# zip abc.zip 1.txt 2.txt 3.txt 4.txt 5.txt 6.txt\n# zip -r sample.zip fol1 fol2 fol3 file1.txt file2.txt\n\nAddition of new file or folder in existing zip file\n# zip -r abc.zip filename.txt folname\nOutput is abc.zip contains all input file i.e. 1.txt 2.txt 3.txt 4.txt etc\n\nPassword encrypting the zip files:\n# zip -e abc.zip file1.txt\n\nIf you need to delete any specific file or folder from zip:\n# zip -d demo.zip filename foldername/\n\n# unzip : unzip command use to unzip the files/folders\n\n# unzip abc.zip all files will unzipped\n\n# unzip abc.zip 1.txt 1.txt fol/ file will unzipped from abc.zip\n\nIf you need to unzip any file/folder to any other location\n# unzip demo.zip filename -d /home/shivam/Desktop\n",
+        "time": "02:43 PM",
+        "batch": "OCT_2026"
+    },
+    {
         "date": "16-Nov-2026",
         "session": "Evening",
         "title": "Practice Session",
