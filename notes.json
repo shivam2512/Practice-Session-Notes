@@ -1,5 +1,23 @@
 [
     {
+        "date": "24-Nov-2026",
+        "session": "Afternoon",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "JOB Running commands:\n\n1. &: is used to run a command in the background so the terminal can be used for other\ncommands.\nsleep 60 &\nsleep runs for 60 seconds in background, terminal is free to run other commands for that\n60 seconds\n\n2. fg: is used to bring a background process back to the foreground.\nstart job to background:\nsleep 100 &\n\nto view the background jobs: cmd: jobs\n[1]+ Running sleep 60 &\n\nto bring the job on foreground:\nfg %1\n\nto stop any cmd running in foreground (i.e. in terminal press CTRL Z button)\n[1]+ Stopped sleep 60 &\n\nNow to move this stopped job to background run:\nbg %job_number: bg %1\n\n3. sh command: is used to run the script file from terminal\n### Run script normally:\nsh test.sh\n\n### Run script in background:\nsh test.sh &\n\n##sample code to create script file\n\ncat > test.sh\n#!/bin/sh\nUSAGE=$(df -h / | awk 'NR==2 {print $5}' | tr -d '%')\nif [ \"$USAGE\" -ge 80 ]; then\necho \"Disk usage is ${USAGE}% on $(hostname)\" | mailx -s \"[ALERT] High Disk Usage\"\nsupport@example.com\nelse\necho \"Disk usage is ${USAGE}% on $(hostname)\" | mailx -s \"[INFO] Disk Usage Normal\"\nsupport@example.com\nfi\n\n## give execute permission to owner:\nchmod u+x test.sh\n\n4. nohup command: nohup (Run process even after logout): runs a process that continues\neven if the terminal is closed.\n\nnohup sleep 12000 &\n\nsleep 12000 -> waits for 12000 seconds\n\nnohup -> keeps running even if you logout\n\n& -> runs in background.\n\n###nice command:\nUsed to control the process's CPU scheduling priority.\n\nWhy it is used:\nIf a heavy background process is running and consuming\nCPU, then you can give it a lower priority so important\napplications get more CPU scheduling preference.\n\nWe have different nice values to set the priority for the processes:\n-20 --> higher priority\n0 --> default priority\n+19 --> lower priority\n\n-20 -19.....18 19\n\n# When you need to run any command at any specific priority:\nnice -n -20 sh scipt.sh\n-20 will execute the cmd on highest priority",
+        "time": "02:31 PM",
+        "batch": "NOV_2026"
+    },
+    {
+        "date": "24-Nov-2026",
+        "session": "Afternoon",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "JOB Running commands:\n\n1. &: is used to run a command in the background so the terminal can be used for other\ncommands.\nsleep 60 &\nsleep runs for 60 seconds in background, terminal is free to run other commands for that\n60 seconds\n\n2. fg: is used to bring a background process back to the foreground.\nstart job to background:\nsleep 100 &\n\nto view the background jobs: cmd: jobs\n[1]+ Running sleep 60 &\n\nto bring the job on foreground:\nfg %1\n\nto stop any cmd running in foreground (i.e. in terminal press CTRL Z button)\n[1]+ Stopped sleep 60 &\n\nNow to move this stopped job to background run:\nbg %job_number: bg %1\n\n3. sh command: is used to run the script file from terminal\n### Run script normally:\nsh test.sh\n\n### Run script in background:\nsh test.sh &\n\n##sample code to create script file\n\ncat > test.sh\n#!/bin/sh\nUSAGE=$(df -h / | awk 'NR==2 {print $5}' | tr -d '%')\nif [ \"$USAGE\" -ge 80 ]; then\necho \"Disk usage is ${USAGE}% on $(hostname)\" | mailx -s \"[ALERT] High Disk Usage\"\nsupport@example.com\nelse\necho \"Disk usage is ${USAGE}% on $(hostname)\" | mailx -s \"[INFO] Disk Usage Normal\"\nsupport@example.com\nfi\n\n## give execute permission to owner:\nchmod u+x test.sh\n\n4. nohup command: nohup (Run process even after logout): runs a process that continues\neven if the terminal is closed.\n\nnohup sleep 12000 &\n\nsleep 12000 -> waits for 12000 seconds\n\nnohup -> keeps running even if you logout\n\n& -> runs in background.\n\n###nice command:\nUsed to control the process's CPU scheduling priority.\n\nWhy it is used:\nIf a heavy background process is running and consuming\nCPU, then you can give it a lower priority so important\napplications get more CPU scheduling preference.\n\nWe have different nice values to set the priority for the processes:\n-20 --> higher priority\n0 --> default priority\n+19 --> lower priority\n\n-20 -19.....18 19\n\n# When you need to run any command at any specific priority:\nnice -n -20 sh scipt.sh\n-20 will execute the cmd on highest priority",
+        "time": "02:31 PM",
+        "batch": "OCT_2026"
+    },
+    {
         "date": "23-Nov-2026",
         "session": "Evening",
         "title": "Practice Session",
