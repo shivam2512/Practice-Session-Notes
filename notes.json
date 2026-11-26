@@ -1,5 +1,23 @@
 [
     {
+        "date": "26-Nov-2026",
+        "session": "Afternoon",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "## Job scheduling commands:\n\nat command -- already covered\n\n## CRONTAB: is used to schedule commands or scripts to run automatically at fixed\nintervals (minutes, hours, days, etc)\n\nUnlike at (runs once), crontab runs repeatedly.\n\nSyntax:\n* * * * * command\n1 2 3 4 5\n\n1: Minute (0-59)\n2: Hour (0-23)\n3: Day of month (1-31)\n4: Month (1-12)\n5: Day of week (0-6) (0=Sun, 6=Sat)\n\nEg:\n\nEvery 2 mins we need to execute this command:\n*/2 * * * * echo \"crontab example\" >> /home/shivam/Desktop/crontabexg.txt\n\nTo open crontab editor:\ncrontab -e\n\nTo list scheduled jobs:\ncrontab -l\n\nTo remove all cron jobs:\ncrontab -r",
+        "time": "02:40 PM",
+        "batch": "NOV_2026"
+    },
+    {
+        "date": "26-Nov-2026",
+        "session": "Afternoon",
+        "title": "Practice Session",
+        "subject": "LINUX",
+        "body": "## Job scheduling commands:\n\nat command -- already covered\n\n## CRONTAB: is used to schedule commands or scripts to run automatically at fixed\nintervals (minutes, hours, days, etc)\n\nUnlike at (runs once), crontab runs repeatedly.\n\nSyntax:\n* * * * * command\n1 2 3 4 5\n\n1: Minute (0-59)\n2: Hour (0-23)\n3: Day of month (1-31)\n4: Month (1-12)\n5: Day of week (0-6) (0=Sun, 6=Sat)\n\nEg:\n\nEvery 2 mins we need to execute this command:\n*/2 * * * * echo \"crontab example\" >> /home/shivam/Desktop/crontabexg.txt\n\nTo open crontab editor:\ncrontab -e\n\nTo list scheduled jobs:\ncrontab -l\n\nTo remove all cron jobs:\ncrontab -r",
+        "time": "02:35 PM",
+        "batch": "OCT_2026"
+    },
+    {
         "date": "25-Nov-2026",
         "session": "Evening",
         "title": "Practice Session",
